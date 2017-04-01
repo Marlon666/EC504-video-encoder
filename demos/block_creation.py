@@ -14,6 +14,12 @@ This code demonstrates how an image I can be decomposed into blocks:
 
 [B1, B2, B3, B4]
 
+So the shape of this decomposed array is (4, 8, 8)
+
+4 blocks x 8 pixels tall x 8 pixels wide
+
+We can then reconstruct the image from the blocks, provided that we know the original dimensions of the image
+
 '''
 
 # Create an example image (16x16 pixels) and print it
