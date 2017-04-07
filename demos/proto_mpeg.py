@@ -3,6 +3,35 @@ from os import listdir
 import skimage.io
 import matplotlib.pyplot as plt
 
+quant_intra=[[ 8, 16, 19, 22, 26, 27, 29, 34],
+             [16, 16, 22, 24, 27, 29, 34, 37],
+             [19, 22, 26, 27, 29, 34, 34, 38],
+             [22, 22, 26, 27, 29, 34, 37, 40],
+             [22, 26, 27, 29, 32, 35, 40, 48],
+             [26, 27, 29, 32, 35, 40, 48, 58],
+             [26, 27, 29, 34, 38, 46, 56, 69],
+             [27, 29, 35, 38, 46, 56, 69, 83]]
+
+# Zigzag order. Note that zigzag order != indicies.
+zz_order = [[ 0,  1,  5,  6, 14, 15, 27, 28],
+            [ 2,  4,  7, 13, 16, 26, 29, 42],
+            [ 3,  8, 12, 17, 25, 30, 41, 43],
+            [ 9, 11, 18, 24, 31, 40, 44, 53],
+            [10, 19, 23, 32, 39, 45, 52, 54],
+            [20, 22, 33, 38, 46, 51, 55, 60],
+            [21, 34, 37, 47, 50, 56, 59, 61],
+            [35, 36, 48, 49, 57, 58, 62, 63]]
+
+# This is an array of indicies that we use to sample a flattened DCT array in zigzag order.
+zz_indices = [ 0,  1,  8, 16,  9,  2,  3, 10,
+               17, 24, 32, 25, 18, 11,  4,  5,
+               12, 19, 26, 33, 40, 48, 41, 34,
+               27, 20, 13,  6,  7, 14, 21, 28,
+               35, 42, 49, 56, 57, 50, 43, 36,
+               29, 22, 15, 23, 30, 37, 44, 51,
+               58, 59, 52, 45, 38, 31, 39, 46,
+               53, 60, 61, 54, 47, 55, 62, 63]
+
 class frame:
     def __init__(self, image):
         '''
@@ -228,3 +257,40 @@ def idct_sum(F, x, y):
         for v in range(0,8):
            sum = sum + C(u)*C(v)/4*F[u, v]*np.cos((2*x + 1)*u*np.pi/16)*np.cos((2*y + 1)*v*np.pi/16)
     return sum
+
+def quantize_intra(F):
+    return np.rint(F/quant_intra).astype(np.int)
+
+def zigzag_block(F):
+    """
+    Given a quantized 8x8 array of DCT coefficients, generate a string to encode the data
+    :param F: array of quantized DCT coefficients, shape (8,8)
+    :return: summary of DCT coefficients ready to be turned into bits
+    """
+
+    # First, we flatten the DCT array
+    F = F.flatten()
+
+    # Create a blank encoder string and insert the DC value
+    encoder_string = list()
+    encoder_string.append((F[0]))
+
+    # Insert a series of AC DCT coefficients in run/level format
+    zero_count = 0
+    for i in zz_indices[1:]:
+        coeff = F[i]
+        if coeff == 0:
+            zero_count = zero_count + 1
+        else:
+            encoder_string.append((zero_count, coeff))
+            zero_count = 0
+    # Finally, append an EOB and return the result
+    encoder_string.append('EOB')
+
+    return encoder_string
+
+def huffman(run_level):
+    """
+    :param run_level: (run, level) tuple to be converted into bit
+    :return: bitstring with huffman encoding
+    """
