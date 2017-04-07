@@ -12,6 +12,9 @@ class frame:
         self.g = image[:, :, 1]
         self.b = image[:, :, 2]
 
+        self.v_mblocks = np.shape(self.r)[0] // 16
+        self.h_mblocks = np.shape(self.r)[1] // 16
+
     def show(self):
         reconstructed_image = np.dstack((self.r, self.g, self.b))
         plt.imshow(reconstructed_image)
@@ -116,13 +119,58 @@ class frame:
         return np.vstack((
             np.hstack((mblocks[j * h_mblocks + i] for i in range(0, h_mblocks)))
             for j in range(0, v_mblocks)
-        ))
+        )).astype(np.uint8)
 
     def image_to_blocks(self):
-        pass
+        """
+        Convert the stored image into a sequence of 8x8 pixel blocks for encoding
+        :return: (x, 8, 8) shaped array. x depends on dimensions of original image
+        """
+        # First create sequences of 16x16 pixel macroblocks
+        r_mblocks = self.image_to_mblocks(self.r)
+        g_mblocks = self.image_to_mblocks(self.g)
+        b_mblocks = self.image_to_mblocks(self.b)
 
-    def blocks_to_image(self):
-        pass
+        # Now turn the macroblocks into a sequence of blocks
+        # Each call to mblocks_to_blocks turns 3 macroblocks (RBG) into the block representation of a single macroblock.
+        # Each mblocks_to_blocks call gives us a (6, 8, 8) shaped array
+        num_macroblocks = np.shape(r_mblocks)[0]
+        img_blocks = np.empty((0, 8, 8))
+        for i in range(0, num_macroblocks):
+            img_blocks = np.concatenate(
+                (img_blocks, self.mblocks_to_blocks(r_mblocks[i], g_mblocks[i], b_mblocks[i])), axis=0)
+        return img_blocks
+
+    def blocks_to_image(self, blocks):
+        """
+        Given a sequence of blocks, reconstruct the original image. This routine relies on knowing the original dim.
+        of the image through self.h_mblocks and self.h_vblocks
+        :param blocks: a sequence of blocks that represent a single image
+        :return: tuple of (r,g,b) color components of the image
+        """
+        # First, turn the blocks back into macroblocks
+        recovered_r_mblocks = np.empty((0, 16, 16))
+        recovered_g_mblocks = np.empty((0, 16, 16))
+        recovered_b_mblocks = np.empty((0, 16, 16))
+        num_macroblocks = np.shape(blocks)[0] // 6
+        for i in range(0, num_macroblocks):
+            [r, g, b] = self.blocks_to_mblock(blocks[i * 6:i * 6 + 7, :, :])
+            recovered_r_mblocks = np.concatenate((recovered_r_mblocks, [r]), axis=0)
+            recovered_g_mblocks = np.concatenate((recovered_g_mblocks, [g]), axis=0)
+            recovered_b_mblocks = np.concatenate((recovered_b_mblocks, [b]), axis=0)
+        # Second, turn the macroblocks back into an image
+        r = self.mblocks_to_image(recovered_r_mblocks, self.h_mblocks, self.v_mblocks)
+        g = self.mblocks_to_image(recovered_g_mblocks, self.h_mblocks, self.v_mblocks)
+        b = self.mblocks_to_image(recovered_b_mblocks, self.h_mblocks, self.v_mblocks)
+        return (r, g, b)
+
+    def set_image(self, blocks):
+        """
+        Given a sequence of blocks (x, 8, 8), reconstruct the image and save it as my stored image
+        :param blocks: Sequence of blocks that represent a single image
+        :return: None
+        """
+        (self.r, self.g, self.b) = self.blocks_to_image(blocks)
 
 def get_jpegs(directory, number):
     images = []
