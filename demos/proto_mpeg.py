@@ -107,13 +107,22 @@ class frame:
 
         return [r_mblock, g_mblock, b_mblock]
 
-    def mblocks_to_image(self, mblocks):
+    def mblocks_to_image(self, mblocks, h_mblocks, v_mblocks):
         """
-        :param mblocks: (x, 16, 16) array of macroblocks that we want to turn back into an image
+        :param mblocks: (x, 16, 16) array of macroblocks for a single color component that we want to turn back into an image
 
-        :return:
+        :return: (h, w) shaped array of image color components
         """
+        return np.vstack((
+            np.hstack((mblocks[j * h_mblocks + i] for i in range(0, h_mblocks)))
+            for j in range(0, v_mblocks)
+        ))
 
+    def image_to_blocks(self):
+        pass
+
+    def blocks_to_image(self):
+        pass
 
 def get_jpegs(directory, number):
     images = []
