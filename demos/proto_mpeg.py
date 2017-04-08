@@ -22,9 +22,9 @@ zz_order = [[ 0,  1,  5,  6, 14, 15, 27, 28],
             [21, 34, 37, 47, 50, 56, 59, 61],
             [35, 36, 48, 49, 57, 58, 62, 63]]
 
-# This is an array of indicies that we use to sample a flattened DCT array in zigzag order.
+# This is an array of indices that we use to sample a flattened DCT array in zigzag order.
 zz_indices = [ 0,  1,  8, 16,  9,  2,  3, 10,
-               17, 24, 32, 25, 18, 11,  4,  5,
+               17, 24, 32, 25, 18, 11, 4,  5,
                12, 19, 26, 33, 40, 48, 41, 34,
                27, 20, 13,  6,  7, 14, 21, 28,
                35, 42, 49, 56, 57, 50, 43, 36,
@@ -292,6 +292,30 @@ def zigzag_block(F):
     encoder_string.append('EOB')
 
     return encoder_string
+
+def zigzag_to_block(zz):
+    """
+    :param zz: List of decoded entries that describe a block of data
+    :return: 8x8 block of pixels
+    """
+    # Create a flattened array to reconstruct the data
+    block = np.zeros((64,))
+
+    # Insert the DC term
+    block[0] = zz[0]
+
+    # Insert the AC terms
+    index = 0
+    for i in range(1, len(zz)-1):
+        run = zz[i][0]
+        level = zz[i][1]
+        index = index + run + 1
+        block[index] = level
+
+    # Turn back into a 2d array
+    
+
+    return block.astype(np.int)
 
 def huffman(run_level):
     """

@@ -1,4 +1,4 @@
-from bitstring import BitArray, BitStream
+from bitstring import BitArray, BitStream, Bits
 import proto_mpeg
 import numpy as np
 import matplotlib.pyplot as plt
@@ -35,6 +35,7 @@ test_block = np.loadtxt('testblock.txt')
 # Run DCT and quantization on a single block
 test_block_dctq = proto_mpeg.dct(test_block)
 test_block_dctq = proto_mpeg.quantize_intra(test_block_dctq)
+print("Original quantized block:\n", test_block_dctq)
 
 # Reduce DCT block down to zigzag summary
 zz_summary = proto_mpeg.zigzag_block(test_block_dctq)
@@ -57,9 +58,9 @@ for i in range(1, len(zz_summary)-1):
         sign_bit = '0b1'
     else:
         # Level is positive, so we will write a sign bit of 0
-        sign_bit = '0b1'
+        sign_bit = '0b0'
     if run_level in encoder_table:
-        encoded_bits.append(run_level)
+        encoded_bits.append(encoder_table[run_level])
         encoded_bits.append(sign_bit)
     else:
         print("Warning. Tuple", zz_summary[i] ,"not found in encoder table.")
@@ -79,8 +80,43 @@ f.close()
 Decode the block
 '''
 
+# Get the decoder table for converting Bits into (run, level)
+decoder_table = huffman_mpeg.make_decoder_table()
+
 f = open('encode_test.bin', 'rb')
 decoded_bits = BitStream(f)
-print(decoded_bits.bin)
 
+# Read DC term
+decoded_zz_summary = list()
+decoded_zz_summary.append(decoded_bits.read('uint:8'))
+
+# Read up to EOB, giving us a bit string of encoded AC data followed by an EOB character
+AC_string = decoded_bits.readto(encoder_table['EOB'])
+
+# Loop through AC data and extract a zigzag summary
+bit_string = str()
+for i in range(1, len(AC_string)-2): # Why -2? There is an EOB and a sign bit at the end that we don't need to peek at.
+    bit_string = Bits('0b' + AC_string.peek('bin:' +  str(i)))
+    # print("Testing bit string:", bit_string.bin)
+    if bit_string in decoder_table:
+        run_level = decoder_table[bit_string]
+        if run_level != 'ESC':
+            print("Found", bit_string, "in decoder table with (run,level) =", run_level)
+            bit_string = AC_string.read('bin:' + str(i+1))
+            # print("Final read bit string:", bit_string)
+            if (bit_string[-1]) == '1':
+                # The sign bit is negative, so we need to change the sign of the level
+                run_level = (run_level[0], run_level[1]*-1)
+                decoded_zz_summary.append(run_level)
+        else:
+            pass
+            # We have an escape character, and need to read the bits directly
+
+# Finally, append the EOB character
+decoded_zz_summary.append('EOB')
+
+print("Decoded zigag summary:", decoded_zz_summary)
+
+# Turn the zig-zag summary back into a bock
+print(proto_mpeg.zigzag_to_block(decoded_zz_summary))
 
