@@ -1,0 +1,1 @@
+Note: This code uses a primitive version of the proto_mpeg library in order to demonstrate how to encode and decode a single block of data. The files are not up-to-date. See readme at the "demo" folder for more information.

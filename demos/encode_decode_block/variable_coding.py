@@ -90,6 +90,8 @@ decoded_bits = BitStream(f)
 decoded_zz_summary = list()
 decoded_zz_summary.append(decoded_bits.read('uint:8'))
 
+'''
+# ISSUE: Using this method, EOB charater might collide with raw data, or any other data in the stream for that matter.
 # Read up to EOB, giving us a bit string of encoded AC data followed by an EOB character
 AC_string = decoded_bits.readto(encoder_table['EOB'])
 
@@ -114,9 +116,42 @@ for i in range(1, len(AC_string)-2): # Why -2? There is an EOB and a sign bit at
 
 # Finally, append the EOB character
 decoded_zz_summary.append('EOB')
+'''
+
+# Loop through AC data, until EOB
+bit_string = str()
+i = 1
+#for i in range(1, len(decoded_bits)):
+while(1):
+    # Note: i is the number of bits to peek/read, beginning at decoded_bits.pos
+    bit_string = Bits('0b' + decoded_bits.peek('bin:' +  str(i)))
+    # print("Testing bit string:", bit_string.bin)
+    if bit_string in decoder_table:
+        data = decoder_table[bit_string]
+        # print("Found", data, "in decoder table with data =", data)
+        if data == 'ESC':
+            pass
+        if data == 'EOB':
+            decoded_zz_summary.append(data)
+            break
+        else:
+            # We have a run, level pair
+            bits_read = decoded_bits.read('bin:' + str(i+1))
+            # print("Read bits", bits_read)
+            if bits_read[-1] == '1':
+                # Sign bit is negative
+                data = (data[0], data[1]*-1)
+            decoded_zz_summary.append(data)
+        # In all cases, we do a read and need to reset the peek distance
+        i = 1
+    else:
+        # The bits we've peeked at don't match anything in the decoder table. Include one more bit in the search.
+        i = i + 1
+        # print("Length and position:", len(decoded_bits), decoded_bits.pos)
+        if i + decoded_bits.pos > len(decoded_bits):
+            raise Exception("Attempted to read beyond end of bitstring during AC decoding.")
 
 print("Decoded zigag summary:", decoded_zz_summary)
 
-# Turn the zig-zag summary back into a bock
+# Turn the zig-zag summary back into a block
 print(proto_mpeg.zigzag_to_block(decoded_zz_summary))
-

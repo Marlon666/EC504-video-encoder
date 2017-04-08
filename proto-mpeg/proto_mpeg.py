@@ -2,6 +2,9 @@ import numpy as np
 from os import listdir
 import skimage.io
 import matplotlib.pyplot as plt
+import dct
+import huffman_mpeg
+from bitstring import BitArray, BitStream, Bits
 
 quant_intra=[[ 8, 16, 19, 22, 26, 27, 29, 34],
              [16, 16, 22, 24, 27, 29, 34, 37],
@@ -31,6 +34,16 @@ zz_indices = [ 0,  1,  8, 16,  9,  2,  3, 10,
                29, 22, 15, 23, 30, 37, 44, 51,
                58, 59, 52, 45, 38, 31, 39, 46,
                53, 60, 61, 54, 47, 55, 62, 63]
+
+zz_reverse_indices = [ 0,  1,  5,  6, 14, 15, 27, 28,
+  2,  4,  7, 13, 16, 26, 29, 42,
+  3,  8, 12, 17, 25, 30, 41, 43,
+  9, 11, 18, 24, 31, 40, 44, 53,
+ 10, 19, 23, 32, 39, 45, 52, 54,
+ 20, 22, 33, 38, 46, 51, 55, 60,
+ 21, 34, 37, 47, 50, 56, 59, 61,
+ 35, 36, 48, 49, 57, 58, 62, 63]
+
 
 class frame:
     def __init__(self, image):
@@ -201,6 +214,143 @@ class frame:
         """
         (self.r, self.g, self.b) = self.blocks_to_image(blocks)
 
+    def quantize_intra(self, F):
+        return np.rint(F/quant_intra).astype(np.int)
+
+    def zigzag_from_block(self, F):
+        """
+        Given a quantized 8x8 array of DCT coefficients, generate a string to encode the data
+        :param F: array of quantized DCT coefficients, shape (8,8)
+        :return: summary of DCT coefficients ready to be turned into bits
+        """
+
+        # First, we flatten the DCT array
+        F = F.flatten()
+
+        # Create a blank encoder string
+        encoder_string = list()
+
+        # Insert the DC value
+        if F[0] < 0 or F[0] > 255:
+            raise Warning("DC term " + str(F[0]) + " does not fit in uint8 format")
+        encoder_string.append('uint:8=' + str(F[0]))
+
+        # Insert a series of AC DCT coefficients in run/level format
+        zero_count = 0
+        for i in zz_indices[1:]:
+            coeff = F[i]
+            if coeff == 0:
+                zero_count = zero_count + 1
+            else:
+                encoder_string.append((zero_count, coeff))
+                zero_count = 0
+        # Finally, append an EOB and return the result
+        encoder_string.append('EOB')
+
+        return encoder_string
+
+    def zigzag_to_block(self, zz):
+        """
+        :param zz: List of decoded entries that describe a block of data
+        :return: 8x8 block of pixels
+        """
+        # Create a flattened array to reconstruct the data
+        block = np.zeros((64,))
+
+        # Insert the DC term
+        block[0] = zz[0]
+
+        # Insert the AC terms
+        index = 0
+        for i in range(1, len(zz)-1):
+            run = zz[i][0]
+            level = zz[i][1]
+            index = index + run + 1
+            block[zz_indices[index]] = level
+            #block[index] = level
+
+        # Turn back into a 2d array and return
+        return np.reshape(block, (8,8)).astype(np.int)
+
+    def zigzag_to_bits(self, encoder_table, zz):
+
+        # Encode the DC term into a BitArray
+        encoded_bits = BitArray(zz[0])
+        # print("Encoded bits after adding DC term:", encoded_bits.bin)
+
+        # Encode the AC terms
+        for i in range(1, len(zz) - 1):
+            run_level = zz[i]
+            # Check to see if the level is negative. Note only positive levels are stored in encoder table.
+            if run_level[1] < 0:
+                run_level = tuple(map(abs, run_level))
+                # Level is negative, so we will write a sign bit of 1
+                sign_bit = '0b1'
+            else:
+                # Level is positive, so we will write a sign bit of 0
+                sign_bit = '0b0'
+            if run_level in encoder_table:
+                encoded_bits.append(encoder_table[run_level])
+                encoded_bits.append(sign_bit)
+            else:
+                print("Warning. Tuple", zz[i], "not found in encoder table.")
+                # The run_level combo was not fond in the encoder table. We will do the following:
+                # i) encode an escape character
+                # ii) encode a 6-bit unsigned integer for the run, which is at most 62
+                # iii) encode a 16-bit signed integer for the level
+                encoded_bits.append(encoder_table['ESC'])
+                run = 'uint:6=' + str(run_level[0])
+                level = 'int:16=' + str(run_level[1])
+                encoded_bits.append(run)
+                encoded_bits.append(level)
+                print("Last 28 bits:", encoded_bits[-28:])
+        # print("Encoded bits after adding AC terms:", encoded_bits.bin)
+
+        # Encode the EOB term
+        encoded_bits.append(encoder_table['EOB'])
+        # print("Encoded bits after adding EOB term:", encoded_bits.bin)
+
+        return encoded_bits
+
+    def encode_to_bits(self):
+        """
+        Encode the stored image data into a bitstream. The calling function is responsible for writing start and
+        end codes to the file to delineate different frames.
+        :return: BitArray representation
+        """
+        img_blocks = self.image_to_blocks()
+        total_blocks = np.shape(img_blocks)[0]
+        print("Beginning encoding for", total_blocks, "blocks.")
+
+        # Get the encoder table for converting (run, level) codes into bits
+        encoder_table = huffman_mpeg.make_encoder_table()
+
+        output = BitArray()
+
+        i = 0
+
+        checkpoints = set(np.rint(np.linspace(0, total_blocks, 11, endpoint=True)))
+
+
+        for block in img_blocks:
+
+            # Give progress update
+            if i in checkpoints:
+                print(int(i/total_blocks*100), '%')
+
+            # First, we create a zig-zag summary for the block after DCT and quantization
+            zz = self.zigzag_from_block(self.quantize_intra(dct.dct(block)))
+
+            # Then, we convert that zig-zag summary into a stream of bits
+            output.append(self.zigzag_to_bits(encoder_table, zz))
+
+            i = i + 1
+
+        return output
+
+    def decode_from_bits(self):
+        pass
+
 def get_jpegs(directory, number):
     images = []
     i = 1
@@ -210,115 +360,3 @@ def get_jpegs(directory, number):
         if i == number:
             break
     return images
-
-def C(u):
-    if u == 0:
-        return 2**(-1/2)
-    else:
-        return 1
-
-def dct(f):
-    '''
-    Two-dimensional discrete cosine transform
-    This is a slow, proof-of-concept implementation.
-    :param f: 8x8 array of pixels
-    :return: 8x8 array of DCT coefficients
-    '''
-    F = np.empty((8, 8), dtype=float)
-    for u in range(0,8):
-        for v in range(0,8):
-            F[u, v] = dct_sum(f, u, v)
-    return F
-
-def dct_sum(f, u, v):
-    '''
-    :param f: 8x8 array of pixels
-    :param u: horizontal frequency index
-    :param v: vertical frequency index
-    :return: F(u,v)
-    '''
-    coeff = C(u)*C(v)/4
-    sum = 0
-    for y in range(0,8):
-        for x in range(0,8):
-           sum = sum + f[x, y]*np.cos((2*x+1)*u*np.pi/16)*np.cos((2*y+1)*v*np.pi/16)
-    return coeff * sum
-
-def idct(F):
-    f = np.empty((8, 8), dtype=float)
-    for x in range(0,8):
-        for y in range(0,8):
-            f[x, y] = idct_sum(F, x, y)
-    return f
-
-def idct_sum(F, x, y):
-    sum = 0
-    for u in range(0,8):
-        for v in range(0,8):
-           sum = sum + C(u)*C(v)/4*F[u, v]*np.cos((2*x + 1)*u*np.pi/16)*np.cos((2*y + 1)*v*np.pi/16)
-    return sum
-
-def quantize_intra(F):
-    return np.rint(F/quant_intra).astype(np.int)
-
-def zigzag_block(F):
-    """
-    Given a quantized 8x8 array of DCT coefficients, generate a string to encode the data
-    :param F: array of quantized DCT coefficients, shape (8,8)
-    :return: summary of DCT coefficients ready to be turned into bits
-    """
-
-    # First, we flatten the DCT array
-    F = F.flatten()
-
-    # Create a blank encoder string
-    encoder_string = list()
-
-    # Insert the DC value
-    if F[0] < 0 or F[0] > 255:
-        raise Warning("DC term " + str(F[0]) + " does not fit in uint8 format")
-    encoder_string.append('uint:8=' + str(F[0]))
-
-    # Insert a series of AC DCT coefficients in run/level format
-    zero_count = 0
-    for i in zz_indices[1:]:
-        coeff = F[i]
-        if coeff == 0:
-            zero_count = zero_count + 1
-        else:
-            encoder_string.append((zero_count, coeff))
-            zero_count = 0
-    # Finally, append an EOB and return the result
-    encoder_string.append('EOB')
-
-    return encoder_string
-
-def zigzag_to_block(zz):
-    """
-    :param zz: List of decoded entries that describe a block of data
-    :return: 8x8 block of pixels
-    """
-    # Create a flattened array to reconstruct the data
-    block = np.zeros((64,))
-
-    # Insert the DC term
-    block[0] = zz[0]
-
-    # Insert the AC terms
-    index = 0
-    for i in range(1, len(zz)-1):
-        run = zz[i][0]
-        level = zz[i][1]
-        index = index + run + 1
-        block[index] = level
-
-    # Turn back into a 2d array
-    
-
-    return block.astype(np.int)
-
-def huffman(run_level):
-    """
-    :param run_level: (run, level) tuple to be converted into bit
-    :return: bitstring with huffman encoding
-    """
