@@ -271,9 +271,13 @@ def zigzag_block(F):
     # First, we flatten the DCT array
     F = F.flatten()
 
-    # Create a blank encoder string and insert the DC value
+    # Create a blank encoder string
     encoder_string = list()
-    encoder_string.append((F[0]))
+
+    # Insert the DC value
+    if F[0] < 0 or F[0] > 255:
+        raise Warning("DC term " + str(F[0]) + " does not fit in uint8 format")
+    encoder_string.append('uint:8=' + str(F[0]))
 
     # Insert a series of AC DCT coefficients in run/level format
     zero_count = 0
