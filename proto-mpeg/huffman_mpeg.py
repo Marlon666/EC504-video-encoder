@@ -15,6 +15,8 @@ def read_raw_VLC():
 
     return codes
 
+# TODO: We might try making encoder tables incorporate the sign bit, to eliminate the need to test the polarity of the level during encoding. This would mean we make two entries like (1,2) and (1,-2) that map to the same binary code.
+
 def make_encoder_table():
     """
     Make a dictionary. (O(1) lookups)
