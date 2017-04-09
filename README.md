@@ -7,11 +7,11 @@ Our midterm demo code, along with instructions to run, may be found in the [prot
 
 Before encoding: 640x480 pixels and 217 kB
 
-![before_encoding](http://imgur.com/allxWlg)
+![before_encoding](http://i.imgur.com/allxWlg.jpg)
 
 After encoding and decoding: 640x480 pixels and 35 kB
 
-![after_decoding](http://imgur.com/5cVy778)
+![after_decoding](http://i.imgur.com/5cVy778.png)
 
 ### Dependencies
 Our code was written with Python 3.5. We have utilized free Python libraries to implement our encoder and decoder prototype. The complete list may be found below. Each item links to the installation instructions.
