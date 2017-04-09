@@ -1,5 +1,21 @@
-import numpy as np
 from bitstring import Bits
+
+'''
+Special codes
+
+These codes are guaranteed not to collide with encoded image data. They are construted using 4.5 bytes of zeros followed
+by a 4-bit code.
+
+Why? The longest string of zeros we can encounter in a standard huffman code is 11. Furthermore, an escaped (run, level)
+encoding might have 22 zeros. So we want to handle the case where we encode 22 + 11 = 33 zeros. In practice, we need
+fewer zeros, but cutting down would afford little benefit.
+'''
+
+EOF = '00000000 00000000 00000000 00000000 0000 0001'.replace(' ', '')
+
+'''
+End special codes
+'''
 
 def read_raw_VLC():
     """

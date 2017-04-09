@@ -1,6 +1,28 @@
 import numpy as np
 from bitstring import Bits
 
+'''
+Special codes
+
+These codes are used to delineate certain sections of an encoded bitstream. They are guaranteed to not collide with
+image data. Why do we know this? The longest possible sequence of zeros in a standard MPEG huffman code is 11.
+The longest possible sequence of zeros in a nonstandard MPEG huffman code is an escaped encoding of a (run, level) =
+(0, 0), which equates to a string of 22 zeros, which could be followed by up to 11 zeros (for a total of 33 zeros).
+
+Special codes are formed using 4.5 bytes of zeros, followed by 4 bits with a unique value. In actuality, we could be
+a little tighter with bit usage, but with negligible benefit.
+'''
+
+# End of frame
+# EOF = '0000 0000 0000 0000 0000 0000 0000 0001'.replace(' ', '')
+EOF = '00000000 00000000 00000000 00000000 0000 0001'.replace(' ', '')
+
+
+'''
+End special codes
+'''
+
+
 def read_raw_VLC():
     """
     Read raw huffman codes from our text file
@@ -62,6 +84,7 @@ def make_decoder_table():
 
     return decoder_table
 
+
 def main():
 
     # Make encoder table, show how to access the bits for a given run, level tuple that we want to encode:
@@ -79,3 +102,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

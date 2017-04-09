@@ -37,7 +37,13 @@ def idct(F):
     f = np.empty((8, 8), dtype=float)
     for x in range(0,8):
         for y in range(0,8):
-            f[x, y] = idct_sum(F, x, y)
+            value = idct_sum(F, x, y)
+            if value > 255:
+                # Make sure that we restrict the IDCT to uint8 values
+                # print("IDCT produced value greater than 255:", value)
+                f[x, y] = 255
+            else:
+                f[x, y] = value
     return f
 
 def idct_sum(F, x, y):

@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import dct
 import huffman_mpeg
 from bitstring import BitArray, BitStream, Bits
+import ec504viewer
 
 quant_intra=[[ 8, 16, 19, 22, 26, 27, 29, 34],
              [16, 16, 22, 24, 27, 29, 34, 37],
@@ -57,11 +58,18 @@ class frame:
             self.b = data[:, :, 2]
             self.v_mblocks = np.shape(self.r)[0] // 16
             self.h_mblocks = np.shape(self.r)[1] // 16
+        else:
+            self.r = None
+            self.g = None
+            self.b = None
+            self.v_mblocks = None
+            self.h_mblocks = None
 
     def show(self):
         reconstructed_image = np.dstack((self.r, self.g, self.b))
-        plt.imshow(reconstructed_image)
-        plt.show()
+        #plt.imshow(reconstructed_image)
+        #plt.show()
+        ec504viewer.view_single(reconstructed_image)
 
     def image_to_mblocks(self, image_component):
         """
@@ -276,15 +284,15 @@ class frame:
         # Insert the AC terms
         index = 0
         for i in range(1, len(zz)-1):
-            print("processing run, level", zz[i])
+            # print("processing run, level", zz[i])
             run = zz[i][0]
             level = zz[i][1]
             index = index + run + 1
-            print("base index is", index)
-            print("zz_index is", zz_indices[index])
+            # print("base index is", index)
+            # print("zz_index is", zz_indices[index])
 
             block[zz_indices[index]] = level
-            print("block is now after insert:\n", block)
+            # print("block is now after insert:\n", block)
             #block[index] = level
 
         # Turn back into a 2d array and return
@@ -294,7 +302,6 @@ class frame:
 
         # Encode the DC term into a BitArray
         encoded_bits = BitArray(zz[0])
-        # print("Encoded bits after adding DC term:", encoded_bits.bin)
 
         # Encode the AC terms
         for i in range(1, len(zz) - 1):
@@ -312,7 +319,6 @@ class frame:
                     # Level is positive, so we will write a sign bit of 0
                     encoded_bits.append('0b0')
             else:
-                print("Warning. Tuple", zz[i], "not found in encoder table.")
                 # The run_level combo was not fond in the encoder table. We will do the following:
                 # i) encode an escape character
                 # ii) encode a 6-bit unsigned integer for the run, which is at most 62
@@ -322,12 +328,9 @@ class frame:
                 level = 'int:16=' + str(run_level[1])
                 encoded_bits.append(run)
                 encoded_bits.append(level)
-                print("Last 28 bits:", encoded_bits[-28:])
-        # print("Encoded bits after adding AC terms:", encoded_bits.bin)
 
         # Encode the EOB term
         encoded_bits.append(encoder_table['EOB'])
-        # print("Encoded bits after adding EOB term:", encoded_bits.bin)
 
         return encoded_bits
 
@@ -344,13 +347,12 @@ class frame:
         # Get the encoder table for converting (run, level) codes into bits
         encoder_table = huffman_mpeg.make_encoder_table()
 
+        # Create a BitArray that will hold all encoded bits
         output = BitArray()
 
+        # Counter and checkpoints used to provide % complete
         i = 0
-
         checkpoints = set(np.rint(np.linspace(0, total_blocks, 11, endpoint=True)))
-
-        final_zz_summary = dict()
 
         for block in img_blocks:
 
@@ -364,22 +366,19 @@ class frame:
             # Then, we convert that zig-zag summary into a stream of bits
             output.append(self.zigzag_to_bits(encoder_table, zz))
 
-
-
-            # ERROR CHECKING - REMOVE WHEN POSSIBLE
-            final_zz_summary[i] = zz
-            # END ERROR CHECKING
-
             i = i + 1
 
-        return (output, final_zz_summary)
+        return output
 
-    def decode_from_bits(self, bits, h_mblocks, v_mblocks, expected_zz):
+    def decode_from_bits(self, bits, h_mblocks, v_mblocks):
 
         # Get the decoder table for converting Bits into (run, level)
         decoder_table = huffman_mpeg.make_decoder_table()
 
         total_bits = len(bits)
+        total_blocks = h_mblocks*v_mblocks*6 # Because there are 6 blocks to every macroblock
+
+        print("Beginning decoding for", total_blocks, "blocks.")
 
         # This is the array we'll send to self.image_to_blocks after we've processed all bits
         blocks = np.empty((0, 8, 8))
@@ -387,8 +386,9 @@ class frame:
         # As we decode bits, we will use this list to summarize one 8x8 block at a time.
         decoded_zz_summary = list()
 
-        # Counter for error checking
+        # Counter and checkpoints used to provide % complete
         j = 0
+        checkpoints = set(np.rint(np.linspace(0, total_blocks, 11, endpoint=True)))
 
         # Loop through remainder of data, until we reach the end
         i = 1
@@ -398,55 +398,35 @@ class frame:
                 decoded_zz_summary.append(bits.read('uint:8'))
             # Note: i is the number of bits to peek/read, beginning at decoded_bits.pos
             bit_string = Bits('0b' + bits.peek('bin:' + str(i)))
-            print("Testing bit string:", bit_string.bin)
+            # print("Testing bit string:", bit_string.bin)
             if bit_string in decoder_table:
                 data = decoder_table[bit_string]
-                print("Found", data, "in decoder table with data =", data)
+                # print("Found", data, "in decoder table with data =", data)
                 if data == 'ESC':
+                    # A 6-bit run and a 16-bit signed int is stored immediately after this ESC charater
                     # throw away the escape character
                     bits.read('bin:' + str(i))
                     # read the run (6 bit unsigned int) and the level (16-bit signed int)
-                    print("At ESC character. Peeking 22 bits", bits.peek('bin:22'))
                     run = bits.read('uint:6')
                     level = bits.read('int:16')
                     decoded_zz_summary.append((run, level))
-                    print("Successfully handled escape character and appended run, level", (run, level))
+                    # print("Handled escape character and appended run, level", (run, level))
                 elif data == 'EOB':
-                    # throw away the EOB character, then append an EOB to our decoded zigzag summary of a single block
+                    # Throw away the EOB character, then append an EOB to our decoded zigzag summary of a single block
                     bits.read('bin:' + str(i))
                     decoded_zz_summary.append(data)
-                    # reconstruct a block from our completed zz summary, dequantize it, perform IDCT, store it
 
-                    print("zigzag summary:\n", decoded_zz_summary)
-
-                    zz_to_compare = expected_zz[j]
-                    zz_to_compare[0] = int(zz_to_compare[0].replace('uint:8=', ''))
-                    print("expected zigzag summary:\n", zz_to_compare)
-
-                    if decoded_zz_summary != zz_to_compare:
-                        raise Exception("Failed to decode zigzag summary on iteration", j)
-                    else:
-                        print("Expected zz summary matches what was decoded. Iteration:", j)
-
-                    j = j + 1
-                    '''
-                    dct_coeff = self.zigzag_to_block(decoded_zz_summary)
-                    print("DCT coeff:\n", dct_coeff)
-                    dct_coeff1 = self.dequantize_intra(dct_coeff)
-                    print("Dequantized coefficients:\n", dct_coeff1)
-                    dct_coeff2 = dct.idct(dct_coeff1).astype(np.uint8)
-                    print("Recovered pixels:\n", dct_coeff2)
-                    print(np.shape(dct_coeff2))
-                    blocks = np.append(blocks, [dct_coeff2], axis=0)
-                    '''
-                    '''
+                    # Reconstruct a block from our completed zz summary, dequantize it, perform IDCT, store it
                     blocks = np.append(blocks, [np.rint(
-                        dct.idct(self.dequantize_intra(self.zigzag_to_block(decoded_zz_summary)))).astype(int)], axis=0)
-                    '''
-                    # reset the zigzag summary so that the next thing we do is read a DC term
+                        dct.idct(self.dequantize_intra(self.zigzag_to_block(decoded_zz_summary)))).astype(np.uint8)], axis=0)
+
+                    # Reset the zigzag summary so that the next thing we do is read a DC term
                     decoded_zz_summary = list()
 
-                    print("decoded block. blocks is now shape", np.shape(blocks))
+                    # Give a progress update
+                    if j in checkpoints:
+                        print(int(j / total_blocks * 100), '%')
+                    j = j + 1
                 else:
                     # We have a run, level pair. We read i + 1 bits so that we grab the trailing sign bit.
                     bits_read = bits.read('bin:' + str(i + 1))
@@ -464,7 +444,10 @@ class frame:
                 if i + bits.pos > len(bits):
                     raise Exception("Attempted to read beyond end of bitstring during AC decoding.")
 
-
+        # Reconstruct an image from our decoded blocks, and store it.
+        self.h_mblocks = h_mblocks
+        self.v_mblocks = v_mblocks
+        self.set_image(blocks)
 
 def get_jpegs(directory, number):
     images = []

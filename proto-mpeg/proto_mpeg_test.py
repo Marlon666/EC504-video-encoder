@@ -1,49 +1,54 @@
 import proto_mpeg
 from bitstring import BitStream
-import huffman_mpeg
-import numpy as np
+import huffman_mpeg as codes
 
-EOF = '0000 0000 0000 0000 0000 0000 0000 0001'.replace(' ', '')
-
-# Encode...
 '''
+Encode and save a single image
+'''
+
+# Get a single 640x480 image
 print("Reading image.")
 image = proto_mpeg.get_jpegs('../testing/480p-assorted/',1)[0]
 
+# Create a frame object initialized with our image
 print("Preparing image for encoding.")
 frame = proto_mpeg.frame(image)
 
-(output,zz) = frame.encode_to_bits()
+# Retreive the binary encoding of the image
+output = frame.encode_to_bits()
+print("Number of bits needed to represent image:", len(output))
 
-print("Length of encoded bits is:", len(output))
-print("Total zigzag entries:", len(zz))
+# Append an end of frame character
+output.append('0b' + codes.EOF)
 
-output.append('0b' + EOF)
-
+# Write the frame to file
 f = open('output.bin', 'wb')
 output.tofile(f)
 f.close()
+del frame
 
-# try to save zigzag summary to file, so that the decoder can use it to check its work
-np.save('original_zz.npy', zz)
 
 '''
+Decode and show the image
+'''
 
-# Decode...
-#278707 bits
-
-# try to load zigzag summary from file
-zz_from_file = np.load('original_zz.npy').item()
-#print("Do dictionaries match?", zz==zz_from_file)
-
-# Get bitstream from file
+# Open a BitStream from the file
 f = open('output.bin', 'rb')
 decoded_bits = BitStream(f)
 
-frame1bits = decoded_bits.readto('0b' + EOF)[:-1*len(EOF)]
+# Read the stream up to the end of frame (EOF) character.
+frame1bits = decoded_bits.readto('0b' + codes.EOF)[:-1*len(codes.EOF)]
 
+# Create a frame object from the proto_mpeg library
 frame = proto_mpeg.frame()
-frame.decode_from_bits(frame1bits, 40, 30, zz_from_file)
+
+# Decode the bits and reconstruct the image
+frame.decode_from_bits(frame1bits, 40, 30)
+
+# View the image
+frame.show()
+
+f.close()
 
 
 

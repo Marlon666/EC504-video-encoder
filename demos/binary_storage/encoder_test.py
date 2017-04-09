@@ -1,4 +1,4 @@
-import encoder_lib as enc
+from demos.binary_storage import encoder_lib as enc
 
 dir =   './testing/720p-10'
 fname = 'test.mpg'

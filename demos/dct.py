@@ -1,9 +1,8 @@
-import scipy.fftpack # NOTE: scipy.fftpack.dct,idct can do the DCT in only one dimension
+from os import listdir
+
 import matplotlib.pyplot as plt
 import numpy as np
-from os import listdir
 import skimage.io
-import ec504viewer
 
 quant_intra=[[ 8, 16, 19, 22, 26, 27, 29, 34],
              [16, 16, 22, 24, 27, 29, 34, 37],
