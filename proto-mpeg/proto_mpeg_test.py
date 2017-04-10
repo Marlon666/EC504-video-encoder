@@ -1,13 +1,16 @@
 import proto_mpeg
 from bitstring import BitStream
 import huffman_mpeg as codes
+import time
+
 
 '''
 Encode and save a single image
 '''
-
+start_time = time.time()
 # Get a single 640x480 image
 print("Reading image.")
+
 image = proto_mpeg.get_jpegs('../testing/480p-assorted/',1)[0]
 
 # Create a frame object initialized with our image
@@ -18,6 +21,8 @@ frame = proto_mpeg.frame(image)
 output = frame.encode_to_bits()
 print("Number of bits needed to represent image:", len(output))
 
+
+
 # Append an end of frame character
 output.append('0b' + codes.EOF)
 
@@ -26,12 +31,12 @@ f = open('output.bin', 'wb')
 output.tofile(f)
 f.close()
 del frame
-
+print("Encoding time is %s seconds" % (time.time() - start_time))
 
 '''
 Decode and show the image
 '''
-
+start_time =time.time()
 # Open a BitStream from the file
 f = open('output.bin', 'rb')
 decoded_bits = BitStream(f)
@@ -49,7 +54,7 @@ frame.decode_from_bits(frame1bits, 40, 30)
 frame.show()
 
 f.close()
-
+print("Decoding time is %s seconds" % (time.time() - start_time))
 
 
 

@@ -2,7 +2,7 @@ import numpy as np
 from os import listdir
 import skimage.io
 import matplotlib.pyplot as plt
-import dct
+import dct_fast as dct
 import huffman_mpeg
 from bitstring import BitArray, BitStream, Bits
 import ec504viewer
