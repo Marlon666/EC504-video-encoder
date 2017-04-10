@@ -14,3 +14,7 @@ After encoding and decoding: 640x480 pixels and 35 kB
 ![after_decoding](http://i.imgur.com/5cVy778.png)
 
 ### Overview of the proto-mpeg encoder and decoder
+
+
+##GUI Prototype
+The Graphical User Interface prototype code and instructions to run may be found in the [GUI] folder.
