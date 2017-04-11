@@ -34,15 +34,15 @@ After each color component has been broken into a collection of macroblocks, the
 
 ![blocks](http://i.imgur.com/IOO8dDS.png)
 
-Our choice to retain all information for the red color component and to subsample green and blue was arbitrary. On the other hand, the MPEG-1 standard converts image information to the YCbCr color space prior to this step. Simialrly to how we treat the red component, the MPEG-1 standard retains all color information for the Y (luminance) component, to which the eye is more sensitive. It subsamples the Cb and Cr components (just as we have done with green and blue) due to our weaker visual sensitivity.
+Our choice to retain all information for the red color component and to subsample green and blue was arbitrary. On the other hand, the MPEG-1 standard converts image information to the YCbCr color space prior to this step. Similarly to how we treat the red component, the MPEG-1 standard retains all color information for the Y (luminance) component, to which the eye is more sensitive. It subsamples the Cb and Cr components (just as we have done with green and blue) due to our weaker visual sensitivity.
 
-After converting the original image into a collection of blocks, we apply the 2D discrete cosine transform to each block. This step allows us to express the values in each block in terms of a sum of spatial frequencies. Because the human vision system is generally more sensitive to lower spatial frequenies than it is to higher spatial frequencies, the 2-D DCT gives us another opportunity to strategically throw away image information.
+After converting the original image into a collection of blocks, we apply the 2D discrete cosine transform to each block. This step allows us to express the values in each block in terms of a sum of spatial frequencies. Because the human vision system is generally more sensitive to lower spatial frequenies than it is to higher spatial frequencies, the 2D DCT gives us another opportunity to strategically throw away image information.
 
 The left table below provides an example of a block of pixel values for a single color component. When we apply the 2D DCT to an 8x8 block, we obtain a new 8x8 block of DCT coefficients. The right table shows the result of applying a 2D DCT to the original pixel values (note that red values are negative).
 
 ![DCT1](http://i.imgur.com/dLHmvAs.png)
 
-The spatial frequencies represented by each DCT coefficient increase from the top left to the bottom right. In this example, the lowest frequency is 1527 and the highest frequency is -0.61. We use these DCT coefficients to encode the images, but only after throwing away some of the high-frequency data. This is done through a process called *quantization*.
+The spatial frequencies represented by each DCT coefficient increase from the top left to the bottom right. In this example, the coefficient 1527 corresponds to the lowest spatial frequency and -0.61 corresponds to the highest. We use these DCT coefficients to encode the images, but only after throwing away some of the high-frequency data. This is done through a process called *quantization*.
 
 The MPEG-1 standard provides a quantization matrix. The values in the quantization matrix increase with spatial frequency. The quantization process is performed by dividing the DCT coefficients by the quantization values, and then rounding the result to the nearest integer. Division by a larger value translates into an increased likelihood that the rounded result will be zero. The table below shows the MPEG-1 quantization matrix and the results of quantizing our DCT coefficients.
 
