@@ -44,13 +44,13 @@ The left table below provides an example of a block of pixel values for a single
 
 The spatial frequencies represented by each DCT coefficient increase from the top left to the bottom right. In this example, the lowest frequency is 1527 and the highest frequency is -0.61. We use these DCT coefficients to encode the images, but only after throwing away some of the high-frequency data. This is done through a process called *quantization*.
 
-The MPEG-1 standard provides a quantization matrix. The values in the quantization matrix increase with frequency. The quantization process is performed by dividing the DCT coefficients by the quantization values, and then rounding the result to the nearest integer. Division by a larger value translates into an increased likelihood that the rounded result will be zero. The table below shows the MPEG-1 quantization matrix and the results of quantizing our pixel values.
+The MPEG-1 standard provides a quantization matrix. The values in the quantization matrix increase with spatial frequency. The quantization process is performed by dividing the DCT coefficients by the quantization values, and then rounding the result to the nearest integer. Division by a larger value translates into an increased likelihood that the rounded result will be zero. The table below shows the MPEG-1 quantization matrix and the results of quantizing our DCT coefficients.
 
 ![DCT2](http://i.imgur.com/cngmDId.png)
 
-Behold! What was once 64 unique DCT coefficients is now the numbers 191, 1, and 0. Though it may seem that we discarded *too* much data, we can get a qualitatively better feeling about this process through inspection of the original pixel values: they are all fairly close. The range of `194-188 = 6` corresponds to only 2% of the 0-255 scale. So perhaps it's not too crazy to represent this entire block using three unique values.
+Behold! What was once 64 unique DCT coefficients are now the numbers 191, 1, and 0. Though it may seem that we discarded *too* much data, we can get a qualitatively better feeling about this process through inspection of the original pixel values: they are all fairly close. The range of `194-188 = 6` corresponds to only 2% of the 0-255 scale. So perhaps it's not too crazy to represent this entire block using three unique values.
 
-The final step in our encoding process utilizes variable length codes (VLC) in order to encode the quantized DCT coefficients. This is done by first flattening the `8x8` array in order of increasing spatial frequency. The most common pattern used is the *zig-zag* pattern, illustrated below.
+The final step in our encoding process utilizes variable length codes in order to encode the quantized DCT coefficients. This is done by first flattening the `8x8` array in order of increasing spatial frequency. The most common pattern used is the *zig-zag* pattern, illustrated below.
 
 ![zigzag](http://i.imgur.com/CWhbc2H.png)
 
@@ -58,7 +58,11 @@ If we apply the zig-zag pattern to our example, we obtain `191 0 1` followed by 
 
 `<DC term>  <run, level>  <EOB>`
 
-where the DC term is simply our first value (191); ` <run, level> ` indicates a string of `run` zeros that is terminated by a non-zero value `level`; and `EOB` is an "end of block" character that indicates the balance of coefficients in the block are zero. There may be multiple `<run, level>` pairs before the end of block character. The common `<run, level>` pairs, as well as the `<EOB>` character, are assigned Huffman codes by the MPEG-1 standard (which we utilize verbatim). We code the DC term for every block as an unsigned 8-bit integer.
+where the DC term is simply our first value (191); ` <run, level> ` indicates a string of `run` zeros that is terminated by a non-zero value `level`; and `EOB` is an "end of block" character that indicates the balance of coefficients in the block are zero. For our example, we would represent the data in our quantized block with the sequence
+
+`191 (1, 1) 'EOB'`
+
+There may be multiple `<run, level>` pairs before the end of block character. The common `<run, level>` pairs, as well as the `<EOB>` character, are assigned Huffman codes by the MPEG-1 standard (which we utilize verbatim). We code the DC term for every block as an unsigned 8-bit integer.
 
 Finally, we'd like to point out how it is possible to delineate different images within a single encoded file. Thanks to the design of the MPEG-1 Huffman codes, it is possible to design special bit strings that are guaranteed not to collide with image data. In our proto-mpeg encoder, we implement special codes by writing 4.5 bytes of zeros, followed by a 4-bit code that can signal various things--such as "end of this image" or "end of the video".
 
