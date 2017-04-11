@@ -15,7 +15,7 @@ quant_intra=[[ 8, 16, 19, 22, 26, 27, 29, 34],
 
 
 def get_jpegs(directory, number):
-    directory =  'testing/720p-10/'
+    directory =  '../testing/720p-10/'
     images = []
     i = 1
     for file in sorted(listdir(directory)):
