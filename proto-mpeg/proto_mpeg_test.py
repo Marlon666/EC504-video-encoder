@@ -50,11 +50,12 @@ frame = proto_mpeg.frame()
 # Decode the bits and reconstruct the image
 frame.decode_from_bits(frame1bits, 40, 30)
 
+print("Decoding time is %s seconds" % (time.time() - start_time))
 # View the image
 frame.show()
 
 f.close()
-print("Decoding time is %s seconds" % (time.time() - start_time))
+
 
 
 
