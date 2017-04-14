@@ -1,9 +1,10 @@
-import tkinter, tkFileDialog
+import tkinter
+from tkinter import filedialog
 from tkinter import ttk
 from tkinter import Listbox
 from tkinter import Label
-from ttk import *
-import tkMessageBox
+from tkinter.ttk import *
+from tkinter import messagebox
 
 top = tkinter.Tk()
 top.geometry('450x450')
@@ -52,11 +53,11 @@ def addFiles():
         for file in files:
             data = file.read()
             file.close()
-            print "File Location: %s" % file.name
+            print ("File Location: %s" % file.name)
             listbox.insert(0, file.name)
 
     else:
-        print "No files selected"
+        print ("No files selected")
 
 def clearFile():
     selection = listbox.curselection()
