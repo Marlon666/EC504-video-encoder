@@ -7,33 +7,18 @@ import huffman_mpeg as codes
 import matplotlib.pyplot as plt
 import motion as mot
 
-
 def encodeMot(mot_vec,nbits):
-	'''
-	Encodes mot_vec into bits
-	
-	mot_vec: array of motion vectors (3D - where the 3rd dim represents X and Y coordinates)
-	nbits: number of bits to encode every integer
-	
-	Returns
-	out: binary represantion of motion array
-	'''
+	print(mot_vec.shape)
 	out=BitArray()
 	mot_vec=mot_vec.reshape([-1])
 	for k in range(len(mot_vec)):
 		out.append('0b'+np.binary_repr(mot_vec[k],width=nbits))
+	print(len(out))
 	return out
 	
 def decodeMot(mot_bin,nbits,w,l):
-	'''
-	mot_bin: binary file for motion vectors
-	nbits: number of bits to decode every integer
-	w:required width
-	l:required length
-	
-	Returns
-	mot_vec: array of motion vectors of size (w,l,2) (2 dims for X and Y coordinates of the motion
-	'''
+	print(w*l*2)
+	print(len(mot_bin))
 	mot_vec = np.zeros(w*l*2)
 	for k in range(len(mot_vec)):
 		mot_vec[k]=mot_bin[k*nbits:(k+1)*nbits].uint
@@ -41,23 +26,7 @@ def decodeMot(mot_bin,nbits,w,l):
 		
 		
 def encodeVideo(outname,fname,nframes=-1,mot_est='none',mot_clip=100,Ssize=7):
-	'''
-	Encodes the frames in 'fname' into a single file and saves is in 'outname'
-	
-	outname:output file name
-	fnmae:folder directory which includes jpg images
-	nframes:number of framse to encode. If it is equal to -1, encode all frames
-	mot_est: Algorithm to use for motion estimation. Choose between 
-			'none' No motion estimation			
-			'frame_difference' Code differences of consecutive frames
-			'block_matching' Apply block matching algorithm
-	mot_clip: motion array will be squezeed to (-mot_clip,mot_clip)
-	Ssize: Size of search window
-	
-	Returns
-	Nothing
-	
-	'''
+
 	images = proto_mpeg.get_jpegs(fname,nframes)#[0]
 	output=BitArray()
 	# Create a frame object initialized with our image
@@ -104,24 +73,6 @@ def encodeVideo(outname,fname,nframes=-1,mot_est='none',mot_clip=100,Ssize=7):
 	del frame
 	
 def playVideo(fname,realTime=True,size=[432,720],mot_est='none',mot_clip=100,Ssize=7):
-	'''
-	Decodes and plays the video in 'fname'
-	
-	fnmae:input file name
-	realTime: Boolean, if true show each frame after decoding, if false first decode 
-				all of the frames then show them
-	size: Size of the frames
-	mot_est: Algorithm to use for motion estimation. Choose between 
-			'none' No motion estimation			
-			'frame_difference' Code differences of consecutive frames
-			'block_matching' Apply block matching algorithm
-	mot_clip: motion array will be squezeed to (-mot_clip,mot_clip)
-	Ssize: Size of search window
-	
-	Returns
-	Nothing
-	
-	'''
 	f = open(fname, 'rb')
 	decoded_bits = BitStream(f)
 
