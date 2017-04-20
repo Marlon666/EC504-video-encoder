@@ -2,7 +2,7 @@ import numpy as np
 from os import listdir
 import skimage.io
 import matplotlib.pyplot as plt
-import dct
+import dct_fast as dct
 import huffman_mpeg
 from bitstring import BitArray, BitStream, Bits
 import ec504viewer
@@ -64,11 +64,12 @@ class frame:
             self.b = None
             self.v_mblocks = None
             self.h_mblocks = None
-
+    def getFrame(self):
+        reconstructed_image = np.dstack((self.r, self.g, self.b))
+        return reconstructed_image
+        
     def show(self):
         reconstructed_image = np.dstack((self.r, self.g, self.b))
-        #plt.imshow(reconstructed_image)
-        #plt.show()
         ec504viewer.view_single(reconstructed_image)
 
     def image_to_mblocks(self, image_component):
@@ -352,13 +353,15 @@ class frame:
 
         # Counter and checkpoints used to provide % complete
         i = 0
-        checkpoints = set(np.rint(np.linspace(0, total_blocks, 11, endpoint=True)))
+        #checkpoints = set(np.rint(np.linspace(0, total_blocks, 11, endpoint=True)))
 
         for block in img_blocks:
 
             # Give progress update
+            '''
             if i in checkpoints:
                 print(int(i/total_blocks*100), '%')
+            '''
 
             # First, we create a zig-zag summary for the block after DCT and quantization
             zz = self.zigzag_from_block(self.quantize_intra(dct.dct(block)))
@@ -388,7 +391,7 @@ class frame:
 
         # Counter and checkpoints used to provide % complete
         j = 0
-        checkpoints = set(np.rint(np.linspace(0, total_blocks, 11, endpoint=True)))
+        #checkpoints = set(np.rint(np.linspace(0, total_blocks, 11, endpoint=True)))
 
         # Loop through remainder of data, until we reach the end
         i = 1
@@ -418,15 +421,17 @@ class frame:
 
                     # Reconstruct a block from our completed zz summary, dequantize it, perform IDCT, store it
                     blocks = np.append(blocks, [np.rint(
-                        dct.idct(self.dequantize_intra(self.zigzag_to_block(decoded_zz_summary)))).astype(np.uint8)], axis=0)
+                        dct.idct(self.dequantize_intra(self.zigzag_to_block(decoded_zz_summary)).astype(float))).astype(np.uint8)], axis=0)
 
                     # Reset the zigzag summary so that the next thing we do is read a DC term
                     decoded_zz_summary = list()
 
                     # Give a progress update
+                    '''
                     if j in checkpoints:
                         print(int(j / total_blocks * 100), '%')
                     j = j + 1
+                    '''
                 else:
                     # We have a run, level pair. We read i + 1 bits so that we grab the trailing sign bit.
                     bits_read = bits.read('bin:' + str(i + 1))
@@ -457,4 +462,5 @@ def get_jpegs(directory, number):
             images.append(skimage.io.imread(directory + '/' + file))
         if i == number:
             break
+        i=i+1
     return images
