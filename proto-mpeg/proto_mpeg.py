@@ -6,6 +6,7 @@ import dct_fast as dct
 import huffman_mpeg
 from bitstring import BitArray, BitStream, Bits
 import ec504viewer
+import time
 
 quant_intra=[[ 8, 16, 19, 22, 26, 27, 29, 34],
              [16, 16, 22, 24, 27, 29, 34, 37],
@@ -453,6 +454,8 @@ class frame:
         self.h_mblocks = h_mblocks
         self.v_mblocks = v_mblocks
         self.set_image(blocks)
+        
+
 
 def get_jpegs(directory, number):
     images = []
@@ -464,3 +467,7 @@ def get_jpegs(directory, number):
             break
         i=i+1
     return images
+    
+    
+
+								
