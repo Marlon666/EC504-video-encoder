@@ -6,7 +6,7 @@ import proto_mpeg_computation
 import numpy as np
 import time
 
-'''
+
 # 1. Test image_to_mblocks
 
 x = np.rint(np.random.rand(640, 480)*3 + 150).astype(np.uint8)
@@ -18,10 +18,16 @@ for i in range(100):
     frame.image_to_mblocks(x)
 en = time.time()
 print("Pure python:", en-st, "(100 iterations)") # 80 ms
-
 # Test cython implementation for 100 iterations
 st = time.time()
+for i in range(100):
+    proto_mpeg_computation.image_to_mblocks(x, 40, 30)
+en = time.time()
+print("Cython:", en-st, "(100 iterations)") # 80 ms
+print(type(proto_mpeg_computation.image_to_mblocks(x, 40, 30)))
+
 '''
+# Test cythonized encode operation
 
 x = np.rint(np.random.rand(3, 640, 480)*10 + 150).astype(np.uint8)
 y = np.rint(np.random.rand(640, 480, 3)*10 + 150).astype(np.uint8)
@@ -35,7 +41,7 @@ st = time.time()
 proto_mpeg_computation.image_to_blocks(x)
 en = time.time()
 print("Took", en-st, "seconds to convert to blocks with Cython")
-
+'''
 '''
 Encode and save a single image
 '''

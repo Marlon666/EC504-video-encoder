@@ -5,7 +5,10 @@ ctypedef unsigned char DTYPE_pixel
 
 
 
-cdef np.ndarray[DTYPE_pixel, ndim=3] image_to_mblocks(unsigned char[:, :] image_component, int v_mblocks, int h_mblocks):
+#cpdef image_to_mblocks(unsigned char[:, :] image_component, int v_mblocks, int h_mblocks):
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef image_to_mblocks(np.ndarray[DTYPE_pixel, ndim=2] image_component, int v_mblocks, int h_mblocks):
     """
     :param image_component: A SINGLE image component (for instance, 720x1080 red pixel component)
     :return: (x, 16, 16) array of macroblocks.
@@ -21,8 +24,10 @@ cdef np.ndarray[DTYPE_pixel, ndim=3] image_to_mblocks(unsigned char[:, :] image_
     #cdef int v_mblocks = image_component.shape[0] / 16
     #cdef int h_mblocks = image_component.shape[1] / 16
 
-    cdef np.ndarray[DTYPE_pixel, ndim=3] x = np.empty((v_mblocks*h_mblocks, 16, 16), dtype=np.uint8) # initializing at declaration seems to help a lot (as opposed to two separate steps)
+    # cdef np.ndarray[DTYPE_pixel, ndim=3] x = np.empty((v_mblocks*h_mblocks, 16, 16), dtype=np.uint8) # initializing at declaration seems to help a lot (as opposed to two separate steps)
 
+    # print(image_component.shape)
+    '''
     for j in range(h_mblocks):
         for i in range(v_mblocks):
             #x = np.append(x, [image_component[i * 16:(i + 1) * 16:, j * 16:(j + 1) * 16:]], axis=0)
@@ -32,9 +37,11 @@ cdef np.ndarray[DTYPE_pixel, ndim=3] image_to_mblocks(unsigned char[:, :] image_
             k += 1
 
     return x
+    '''
+    return [image_component[i * 16:(i + 1) * 16:, j * 16:(j + 1) * 16:] for i in range(0, v_mblocks) for j in range(0, h_mblocks)]
 
 
-cdef np.ndarray[DTYPE_pixel, ndim=3] subsample(unsigned char[:, :] mblock):
+cdef subsample(unsigned char[:, :] mblock):
     '''
     :param mblock: a (16,16) macroblock color component that we wish to average down to an (8x8)
     :return: (1,8,8) subsampled block
