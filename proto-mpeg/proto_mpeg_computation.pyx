@@ -139,10 +139,10 @@ cpdef image_to_blocks_c (DTYPE_pixel [:, :] c1, unsigned char [:, :] c2, unsigne
     for i in range(0, total_blocks, 6):
         #blocks_view[i*6:(i+1)*6, :, :] = 1
 
-        # which fucking macroblock are we on? sequentially, the answer is i, lol
+        # calculate the macroblock row and column
         # macroblocks can get obtained by slicing like c1[row*16: (row+1)*16, col*16: (col+1)*16]
-        row = i / h_mblocks
-        col = i % h_mblocks
+        row = i/6 / h_mblocks
+        col = i/6 % h_mblocks
 
         # blocks i, i+1, i+2, i+3 should be blocks from the c1 component. I should be able to slice directly into the appropriate block
         blocks_view[i    , :, :] = (c1[row*16: (row+1)*16, col*16: (col+1)*16])[:8, :8]
@@ -151,7 +151,7 @@ cpdef image_to_blocks_c (DTYPE_pixel [:, :] c1, unsigned char [:, :] c2, unsigne
         blocks_view[i + 3, :, :] = (c1[row*16: (row+1)*16, col*16: (col+1)*16])[8:, 8:]
 
         # macroblock for c1 is c1[row*16: (row+1)*16, col*16: (col+1)*16]
-        # print(np.asarray((c1[row*16: (row+1)*16, col*16: (col+1)*16])[8:, 8:]))
+        #print(np.asarray((c1[row*16: (row+1)*16, col*16: (col+1)*16])))
         # block i+4 from c2
         # block i+5 should be from c3
 
