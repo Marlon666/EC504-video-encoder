@@ -73,62 +73,6 @@ class frame:
         reconstructed_image = np.dstack((self.r, self.g, self.b))
         ec504viewer.view_single(reconstructed_image)
 
-    def image_to_mblocks(self, image_component):
-        """
-        :param image_component: A SINGLE image component (for instance, 720x1080 red pixel component)
-        :return: (x, 16, 16) array of macroblocks.
-         The number of elements, x, in the first axis depends on the size of the image
-         The second and third axes contain a 16x16 array (rows x cols) of pixel information
-        """
-        img_shape = np.shape(image_component)
-        if (img_shape[0] % 16 != 0 or img_shape[1] % 16 != 0):
-            raise Exception("Image dimensions", img_shape,
-                            "not divisible by macroblock size. Someone tell the author to handle this.")
-
-        v_mblocks = img_shape[0] // 16  # Note that // discards decimal pts. and returns an integer after divison
-        h_mblocks = img_shape[1] // 16
-
-        # Break the image into blocks
-        # This uses array slicing and list comprehension. Not very pretty, but it works.
-        x = image_component
-        x = [x[i * 16:(i + 1) * 16:, j * 16:(j + 1) * 16:] for i in range(0, v_mblocks) for j in range(0, h_mblocks)]
-        return x
-
-    def mblocks_to_blocks(self, r_mblock, g_mblock, b_mblock):
-        '''
-        :param r_mblock: 16x16 array of red pixels
-        :param g_mblock: 16x16 array of green pixels
-        :param b_mblock: 16x16 array of blue pixels
-        :return: (6, 8, 8) array of blocks that contain data for a SINGLE macroblock
-        R0 R1
-        R2 R3
-        G4
-        B5
-        '''
-
-        # Break the r_mblock into 4 blocks
-        blocks = [r_mblock[i * 8:(i + 1) * 8:, j * 8:(j + 1) * 8:] for i in range(0, 2) for j in range(0, 2)]
-
-        # Subsample the green and blue macroblocks and append them to the array
-        blocks = np.concatenate((blocks, self.subsample(g_mblock), self.subsample(b_mblock)), axis=0)
-
-        return blocks
-
-    def subsample(self, mblock):
-        '''
-        :param mblock: a (16,16) macroblock color component that we wish to average down to an (8x8)
-        :return: (1,8,8) subsampled block
-        From the inside out, this call function does the following:
-            The list comprehension grabs (4,4) subarrays one at a time from the mblock
-            We call np.mean on each (4,4) subarray
-            The list comprehension produces a flattened array of shape (64,)
-            The np.reshape turns the flattened array into shape (8,8)
-            Np.rint rounds all numbers to the closest integer and .astype(np.unint8) does the actual conversion to ints
-        '''
-        return [np.rint(np.reshape(
-            [np.mean(mblock[2 * i:2 * i + 2:, 2 * j:2 * j + 2:]) for i in range(0, 8) for j in range(0, 8)],
-            (8, 8))).astype(np.uint8)]
-
     def un_subsample(self, block):
         """
         :param block: an (8x8) block that we wish to blow back up to (16,16)
@@ -179,22 +123,6 @@ class frame:
         Convert the stored image into a sequence of 8x8 pixel blocks for encoding
         :return: (x, 8, 8) shaped array. x depends on dimensions of original image
         """
-        '''
-        # First create sequences of 16x16 pixel macroblocks
-        r_mblocks = self.image_to_mblocks(self.r)
-        g_mblocks = self.image_to_mblocks(self.g)
-        b_mblocks = self.image_to_mblocks(self.b)
-
-        # Now turn the macroblocks into a sequence of blocks
-        # Each call to mblocks_to_blocks turns 3 macroblocks (RBG) into the block representation of a single macroblock.
-        # Each mblocks_to_blocks call gives us a (6, 8, 8) shaped array
-        num_macroblocks = np.shape(r_mblocks)[0]
-        img_blocks = np.empty((0, 8, 8))
-        for i in range(0, num_macroblocks):
-            img_blocks = np.concatenate(
-                (img_blocks, self.mblocks_to_blocks(r_mblocks[i], g_mblocks[i], b_mblocks[i])), axis=0)
-        return img_blocks
-        '''
         return proto_mpeg_computation.image_to_blocks(self.r, self.g, self.b)
 
     def blocks_to_image(self, blocks):
