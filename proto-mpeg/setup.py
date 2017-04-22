@@ -8,7 +8,8 @@ extensions = [
               include_dirs=[numpy.get_include()]
               ),
     Extension('proto_mpeg_computation', ['proto_mpeg_computation.pyx'],
-              include_dirs=[numpy.get_include()]
+              include_dirs=[numpy.get_include()],
+              extra_compile_args=["-O3"],
               ),
 ]
 

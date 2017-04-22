@@ -1,14 +1,16 @@
 import numpy as np
 cimport numpy as np
 cimport cython
+#from libc.stdlib cimport malloc, free
+from cython.view cimport array as cvarray
 ctypedef unsigned char DTYPE_pixel
 
 
-
-#cpdef image_to_mblocks(unsigned char[:, :] image_component, int v_mblocks, int h_mblocks):
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cpdef image_to_mblocks(np.ndarray[DTYPE_pixel, ndim=2] image_component, int v_mblocks, int h_mblocks):
+cpdef image_to_mblocks(unsigned char[:, :] image_component, int v_mblocks, int h_mblocks):
+
+#cpdef image_to_mblocks(np.ndarray[DTYPE_pixel, ndim=2] image_component, int v_mblocks, int h_mblocks):
     """
     :param image_component: A SINGLE image component (for instance, 720x1080 red pixel component)
     :return: (x, 16, 16) array of macroblocks.
@@ -39,6 +41,7 @@ cpdef image_to_mblocks(np.ndarray[DTYPE_pixel, ndim=2] image_component, int v_mb
     return x
     '''
     return [image_component[i * 16:(i + 1) * 16:, j * 16:(j + 1) * 16:] for i in range(0, v_mblocks) for j in range(0, h_mblocks)]
+    #return np.fromiter((image_component[i * 16:(i + 1) * 16:, j * 16:(j + 1) * 16:] for i in range(0, v_mblocks) for j in range(0, h_mblocks)), dtype=np.uint8, count=v_mblocks*h_mblocks)
 
 
 cdef subsample(unsigned char[:, :] mblock):
@@ -56,7 +59,7 @@ cdef subsample(unsigned char[:, :] mblock):
         [np.mean(mblock[2 * i:2 * i + 2:, 2 * j:2 * j + 2:]) for i in range(0, 8) for j in range(0, 8)],
         (8, 8))).astype(np.uint8)]
 
-cdef mblocks_to_blocks(r_mblock, g_mblock, b_mblock):
+cdef mblocks_to_blocks(np.ndarray[DTYPE_pixel, ndim=2] r_mblock, np.ndarray[DTYPE_pixel, ndim=2] g_mblock, np.ndarray[DTYPE_pixel, ndim=2] b_mblock):
         '''
         :param r_mblock: 16x16 array of red pixels
         :param g_mblock: 16x16 array of green pixels
@@ -67,14 +70,16 @@ cdef mblocks_to_blocks(r_mblock, g_mblock, b_mblock):
         G4
         B5
         '''
+        cdef int i
+        cdef int j
 
         # Break the r_mblock into 4 blocks
-        blocks = [r_mblock[i * 8:(i + 1) * 8:, j * 8:(j + 1) * 8:] for i in range(0, 2) for j in range(0, 2)]
+        #blocks = [r_mblock[i * 8:(i + 1) * 8:, j * 8:(j + 1) * 8:] for i in range(0, 2) for j in range(0, 2)]
 
         # Subsample the green and blue macroblocks and append them to the array
-        blocks = np.concatenate((blocks, subsample(g_mblock), subsample(b_mblock)), axis=0)
+        #blocks = np.concatenate((blocks, subsample(g_mblock), subsample(b_mblock)), axis=0)
 
-        return blocks
+        return np.concatenate(([r_mblock[i * 8:(i + 1) * 8:, j * 8:(j + 1) * 8:] for i in range(0, 2) for j in range(0, 2)], subsample(g_mblock), subsample(b_mblock)), axis=0)
 
 cpdef np.ndarray[DTYPE_pixel, ndim=3] image_to_blocks(unsigned char[:, :, :] image):
 
@@ -87,10 +92,18 @@ cpdef np.ndarray[DTYPE_pixel, ndim=3] image_to_blocks(unsigned char[:, :, :] ima
     cdef np.ndarray[DTYPE_pixel, ndim = 3] blocks = np.empty((total_mblocks * 6, 8, 8), dtype=np.uint8)
 
     # Convert each component to macroblocks
-
-    cdef np.ndarray[DTYPE_pixel, ndim=3] r_mblocks = image_to_mblocks(image[0], v_mblocks, h_mblocks)
-    cdef np.ndarray[DTYPE_pixel, ndim=3] g_mblocks = image_to_mblocks(image[1], v_mblocks, h_mblocks)
-    cdef np.ndarray[DTYPE_pixel, ndim=3] b_mblocks = image_to_mblocks(image[2], v_mblocks, h_mblocks)
+    '''
+    r_mblocks = image_to_mblocks(image[0], v_mblocks, h_mblocks)
+    g_mblocks = image_to_mblocks(image[1], v_mblocks, h_mblocks)
+    b_mblocks = image_to_mblocks(image[2], v_mblocks, h_mblocks)
+    '''
+    cdef np.ndarray[DTYPE_pixel, ndim=3] r_mblocks = np.array(image_to_mblocks(image[0], v_mblocks, h_mblocks))
+    cdef np.ndarray[DTYPE_pixel, ndim=3] g_mblocks = np.array(image_to_mblocks(image[1], v_mblocks, h_mblocks))
+    cdef np.ndarray[DTYPE_pixel, ndim=3] b_mblocks = np.array(image_to_mblocks(image[2], v_mblocks, h_mblocks))
+    # print type(image_to_mblocks(image[0], v_mblocks, h_mblocks))
+    #cdef unsigned char[:, :, :] r_mblocks = image_to_mblocks(image[0], v_mblocks, h_mblocks)
+    #cdef unsigned char[:, :, :] g_mblocks = image_to_mblocks(image[1], v_mblocks, h_mblocks)
+    #cdef unsigned char[:, :, :] b_mblocks = image_to_mblocks(image[2], v_mblocks, h_mblocks)
 
     # For each set of macroblocks:
     for i in range(total_mblocks):
@@ -101,3 +114,45 @@ cpdef np.ndarray[DTYPE_pixel, ndim=3] image_to_blocks(unsigned char[:, :, :] ima
         blocks[i*6:(i+1)*6, :, :] = mblocks_to_blocks(r_mblocks[i], g_mblocks[i], b_mblocks[i])
 
     return blocks
+
+cpdef image_to_blocks_c (DTYPE_pixel [:, :] c1, unsigned char [:, :] c2, unsigned char [:, :] c3):
+    # Try to write a c-style function that converts the image to an array of blocks
+    #
+    cdef int v_mblocks = c1.shape[0] / 16
+    cdef int h_mblocks = c1.shape[1] / 16
+    cdef int total_mblocks = v_mblocks * h_mblocks
+    cdef int total_blocks = total_mblocks * 6
+    cdef int i, j, k
+    cdef int row, col
+    # allocate an array to store the blocks
+    blocks = cvarray(shape=(total_blocks, 8, 8), itemsize=sizeof(DTYPE_pixel), format="B")
+
+    # create a cython MemoryView of the output array
+    cdef DTYPE_pixel [:, :, :] blocks_view = blocks
+
+    '''
+    for i in range(7200):
+        for j in range(8):
+            for k in range(8):
+                blocks_view[i, j, k] = 1
+    '''
+    for i in range(0, total_blocks, 6):
+        #blocks_view[i*6:(i+1)*6, :, :] = 1
+
+        # which fucking macroblock are we on? sequentially, the answer is i, lol
+        # macroblocks can get obtained by slicing like c1[row*16: (row+1)*16, col*16: (col+1)*16]
+        row = i / h_mblocks
+        col = i % h_mblocks
+
+        # blocks i, i+1, i+2, i+3 should be blocks from the c1 component. I should be able to slice directly into the appropriate block
+        blocks_view[i    , :, :] = (c1[row*16: (row+1)*16, col*16: (col+1)*16])[:8, :8]
+        blocks_view[i + 1, :, :] = (c1[row*16: (row+1)*16, col*16: (col+1)*16])[:8, 8:]
+        blocks_view[i + 2, :, :] = (c1[row*16: (row+1)*16, col*16: (col+1)*16])[8:, :8]
+        blocks_view[i + 3, :, :] = (c1[row*16: (row+1)*16, col*16: (col+1)*16])[8:, 8:]
+
+        # macroblock for c1 is c1[row*16: (row+1)*16, col*16: (col+1)*16]
+        # print(np.asarray((c1[row*16: (row+1)*16, col*16: (col+1)*16])[8:, 8:]))
+        # block i+4 from c2
+        # block i+5 should be from c3
+
+    return np.asarray(blocks_view)
