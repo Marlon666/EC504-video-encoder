@@ -65,6 +65,7 @@ class frame:
             self.b = None
             self.v_mblocks = None
             self.h_mblocks = None
+
     def getFrame(self):
         reconstructed_image = np.dstack((self.r, self.g, self.b))
         return reconstructed_image
@@ -72,51 +73,6 @@ class frame:
     def show(self):
         reconstructed_image = np.dstack((self.r, self.g, self.b))
         ec504viewer.view_single(reconstructed_image)
-
-    def un_subsample(self, block):
-        """
-        :param block: an (8x8) block that we wish to blow back up to (16,16)
-        :return: a (16,16) macroblock color component
-        """
-        mblock = block
-        for i in reversed(range(0,8)):
-            mblock = np.insert(mblock, i, block[i], axis=0)
-        for i in reversed(range(0,8)):
-            mblock = np.insert(mblock, i, mblock[:,i], axis=1)
-        return mblock
-
-    def blocks_to_mblock(self, blocks):
-        """
-        :param blocks: (6, 8, 8) array of blocks that represent the data for a single macroblock:
-        R0 R1
-        R2 R3
-        G4
-        B5
-        Where the letters represent the color component and the numbers represent the location in the first axis.
-        :return: (3, 16, 16) array reconstructed R(0),G(1),B(2) macroblock. (axis is in parentheses)
-        """
-        # Build up red macroblock
-        (h_blocks, v_blocks) = (2,2)
-        r_mblock = np.vstack((
-            np.hstack((blocks[j * h_blocks + i] for i in range(0, h_blocks)))
-            for j in range(0, v_blocks)
-        ))
-        # Expand green and blue macroblocks
-        g_mblock = self.un_subsample(blocks[4])
-        b_mblock = self.un_subsample(blocks[5])
-
-        return [r_mblock, g_mblock, b_mblock]
-
-    def mblocks_to_image(self, mblocks, h_mblocks, v_mblocks):
-        """
-        :param mblocks: (x, 16, 16) array of macroblocks for a single color component that we want to turn back into an image
-
-        :return: (h, w) shaped array of image color components
-        """
-        return np.vstack((
-            np.hstack((mblocks[j * h_mblocks + i] for i in range(0, h_mblocks)))
-            for j in range(0, v_mblocks)
-        )).astype(np.uint8)
 
     def image_to_blocks(self):
         """
@@ -132,21 +88,9 @@ class frame:
         :param blocks: a sequence of blocks that represent a single image
         :return: tuple of (r,g,b) color components of the image
         """
-        # First, turn the blocks back into macroblocks
-        recovered_r_mblocks = np.empty((0, 16, 16))
-        recovered_g_mblocks = np.empty((0, 16, 16))
-        recovered_b_mblocks = np.empty((0, 16, 16))
-        num_macroblocks = np.shape(blocks)[0] // 6
-        for i in range(0, num_macroblocks):
-            [r, g, b] = self.blocks_to_mblock(blocks[i * 6:i * 6 + 7, :, :])
-            recovered_r_mblocks = np.concatenate((recovered_r_mblocks, [r]), axis=0)
-            recovered_g_mblocks = np.concatenate((recovered_g_mblocks, [g]), axis=0)
-            recovered_b_mblocks = np.concatenate((recovered_b_mblocks, [b]), axis=0)
-        # Second, turn the macroblocks back into an image
-        r = self.mblocks_to_image(recovered_r_mblocks, self.h_mblocks, self.v_mblocks)
-        g = self.mblocks_to_image(recovered_g_mblocks, self.h_mblocks, self.v_mblocks)
-        b = self.mblocks_to_image(recovered_b_mblocks, self.h_mblocks, self.v_mblocks)
-        return (r, g, b)
+
+        # TODO: Investigate why this function gets floats instead of uint8s from the decoder
+        return proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), self.v_mblocks, self.h_mblocks)
 
     def set_image(self, blocks):
         """
@@ -154,7 +98,10 @@ class frame:
         :param blocks: Sequence of blocks that represent a single image
         :return: None
         """
-        (self.r, self.g, self.b) = self.blocks_to_image(blocks)
+        #print("type seen by set_image function:", type(blocks[0, 0, 0]))
+        image = self.blocks_to_image(blocks)
+        (self.r, self.g, self.b) = (image[:, :, 0], image[:, :, 1], image[:, :, 2])
+        # (self.r, self.g, self.b) = self.blocks_to_image(blocks)
 
     def quantize_intra(self, F):
         return np.rint(F/quant_intra).astype(np.int)

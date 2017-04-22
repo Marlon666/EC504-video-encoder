@@ -23,8 +23,38 @@ print("Took", en-st, "seconds to convert to blocks with Cython")
 '''
 
 '''
+# Test blocks_to_image
+
+z = np.rint(np.random.rand(480, 640, 3)*10 + 145).astype(np.uint8)
+v_mblocks = np.shape(z[:, :, 0])[0] // 16
+h_mblocks = np.shape(z[:, :, 0])[1] // 16
+
+(c1, c2, c3) = (z[:, :, 0], z[:, :, 1], z[:, :, 1])
+blocks = proto_mpeg_computation.image_to_blocks(c1, c2, c3)
+
+# Test original python implementation
+frame = proto_mpeg.frame()
+frame.v_mblocks = v_mblocks
+frame.h_mblocks = h_mblocks
+
+st = time.time()
+frame.blocks_to_image(blocks)
+en = time.time()
+print("Image reconstruction took", en-st, "seconds with CPython")
+
+# Test cython
+st = time.time()
+reconstructed_image = proto_mpeg_computation.blocks_to_image(blocks, v_mblocks, h_mblocks)
+en = time.time()
+print("Image reconstruction took", en-st, "seconds with Cython")
+print(np.shape(reconstructed_image))
+'''
+
+'''
 Encode and save a single image
 '''
+
+st = time.time()
 
 # Get a single 640x480 image
 print("Reading image.")
@@ -44,6 +74,10 @@ output.append('0b' + codes.EOF)
 # Write the frame to file
 f = open('output.bin', 'wb')
 output.tofile(f)
+
+en = time.time()
+print("Took", en-st, "seconds to encode and write image")
+
 f.close()
 del frame
 
@@ -51,6 +85,8 @@ del frame
 '''
 Decode and show the image
 '''
+
+st = time.time()
 
 # Open a BitStream from the file
 f = open('output.bin', 'rb')
@@ -60,12 +96,15 @@ decoded_bits = BitStream(f)
 frame1bits = decoded_bits.readto('0b' + codes.EOF)[:-1*len(codes.EOF)]
 
 # Create a frame object from the proto_mpeg library
-frame = proto_mpeg.frame()
+frame = proto_mpeg_x.frame()
 
 # Decode the bits and reconstruct the image
 frame.decode_from_bits(frame1bits, 40, 30)
 
+en = time.time()
+print("Took", en-st, "seconds to read and decode image")
+
 # View the image
-frame.show()
+#frame.show()
 
 f.close()

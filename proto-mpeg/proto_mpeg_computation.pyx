@@ -58,7 +58,53 @@ cpdef image_to_blocks (DTYPE_pixel [:, :] c1, DTYPE_pixel [:, :] c2, DTYPE_pixel
     # Force numpy to create an ndarray object from our cython MemoryView. This avoids a copy.
     return np.asarray(blocks_view)
 
+@cython.boundscheck(False)
+@cython.wraparound(False)
 cpdef blocks_to_image(DTYPE_pixel[:, :, :] blocks, int v_mblocks, int h_mblocks):
     # Given an array of blocks like (x, 8, 8), reconstruct the original image
     # Return reconstructed in the form (image height, image width, 3)
-    pass
+
+    cdef int i, j, k, m
+    cdef int fb
+
+    # allocate cython array to store reconstructed image
+    img = cvarray(shape=(v_mblocks*16, h_mblocks*16, 3), itemsize=sizeof(DTYPE_pixel), format="B")
+
+    # create memoryview of the reconstructed image array
+    cdef DTYPE_pixel [:, :, :] img_view = img
+
+    # create temp memoryview for individual macroblocks
+    cdef DTYPE_pixel [:, :] tvc1
+    cdef DTYPE_pixel [:, :] tvc2
+    cdef DTYPE_pixel [:, :] tvc3
+
+    for i in range(v_mblocks):
+        for j in range(h_mblocks):
+            # This loop iterates over all macroblocks in the reconstructed image
+
+            # get the index of the first block for the current macroblock
+            # the sequential macroblock number is (i * h_mblocks + j)
+            # so the first block for this macroblock starts at 6 * (i * h_mblocks + j)
+            fb = 6 * (i * h_mblocks + j)
+
+            # get a view of the c1 macroblock in the array we will eventually return
+            tvc1 = img_view[i*16:(i+1)*16,j*16:(j+1)*16 , 0]
+
+            # reconstruct the c1 macroblock from four blocks
+            tvc1[:8, :8] = blocks[fb, :, :]
+            tvc1[:8, 8:] = blocks[fb+1, :, :]
+            tvc1[8:, :8] = blocks[fb+2, :, :]
+            tvc1[8:, 8:] = blocks[fb+3, :, :]
+
+            # get a view of the c2 and c3 macroblocks in the array we will eventually return
+            tvc2 = img_view[i*16:(i+1)*16,j*16:(j+1)*16 , 1]
+            tvc3 = img_view[i*16:(i+1)*16,j*16:(j+1)*16 , 2]
+
+            # reconstruct the c2 macroblock from block fb+4 by blowing it up to macroblock size
+            for k in range(8):
+                for m in range(8):
+                    tvc2[2*k:2*k+2, 2*m:2*m+2] = blocks[fb + 4, k , m]
+                    tvc3[2*k:2*k+2, 2*m:2*m+2] = blocks[fb + 5, k , m]
+
+    return np.asarray(img_view)
+
