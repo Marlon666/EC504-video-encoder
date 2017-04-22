@@ -4,6 +4,7 @@ cimport cython
 from cython.view cimport array as cvarray
 from libc.math cimport round
 ctypedef unsigned char DTYPE_pixel
+import scipy.fftpack as fft
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -108,3 +109,9 @@ cpdef blocks_to_image(DTYPE_pixel[:, :, :] blocks, int v_mblocks, int h_mblocks)
 
     return np.asarray(img_view)
 
+# Typed DCT functions. Not currently in use.
+cpdef dct(np.ndarray[DTYPE_pixel, ndim=2] f):
+    return fft.dct(fft.dct(f, axis=0, norm='ortho', type=2), axis=1, norm='ortho', type=2)
+
+cpdef idct(np.ndarray[double, ndim=2] F):
+    return fft.idct(fft.idct(F, axis=0, norm='ortho', type=2), axis=1, norm='ortho', type=2)
