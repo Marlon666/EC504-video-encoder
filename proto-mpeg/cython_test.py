@@ -7,31 +7,7 @@ import numpy as np
 import time
 
 '''
-# 1. Test image_to_mblocks
-
-x = np.rint(np.random.rand(640, 480)*3 + 150).astype(np.uint8)
-
-# Test pure python implementation for 100 iterations
-frame = proto_mpeg.frame()
-st = time.time()
-for i in range(100):
-    frame.image_to_mblocks(x)
-en = time.time()
-print("Pure python:", en-st, "(100 iterations)") # 80 ms
-# Test cython implementation for 100 iterations
-st = time.time()
-for i in range(100):
-    proto_mpeg_computation.image_to_mblocks(x, 40, 30)
-en = time.time()
-print("Cython:", en-st, "(100 iterations)") # 80 ms
-'''
-
-# Test cythonized encode operation
-
-x = np.arange(0, 256)
-x = np.reshape(x, (16, 16)).astype(np.uint8)
-print(x)
-#x = np.rint(np.random.rand(3, 640, 480)*10 + 150).astype(np.uint8)
+# Test image_to_blocks
 
 y = np.rint(np.random.rand(640, 480, 3)*10 + 150).astype(np.uint8)
 frame = proto_mpeg.frame(y)
@@ -41,22 +17,22 @@ en = time.time()
 print("Took", en-st, "seconds to convert to blocks with CPython")
 
 st = time.time()
-#proto_mpeg_computation.image_to_blocks_c(x[0], x[1], x[2])
-proto_mpeg_computation.image_to_blocks_c(x, x, x)
+proto_mpeg_computation.image_to_blocks_c(y[:, :, 0], y[:, :, 1], y[:, :, 2])
 en = time.time()
 print("Took", en-st, "seconds to convert to blocks with Cython")
+'''
 
 '''
 Encode and save a single image
 '''
-'''
+
 # Get a single 640x480 image
 print("Reading image.")
-image = proto_mpeg.get_jpegs('../testing/480p-assorted/',1)[0]
+image = proto_mpeg_x.get_jpegs('../testing/480p-assorted/',1)[0]
 
 # Create a frame object initialized with our image
 print("Preparing image for encoding.")
-frame = proto_mpeg.frame(image)
+frame = proto_mpeg_x.frame(image)
 
 # Retreive the binary encoding of the image
 output = frame.encode_to_bits()
@@ -70,12 +46,12 @@ f = open('output.bin', 'wb')
 output.tofile(f)
 f.close()
 del frame
-'''
+
 
 '''
 Decode and show the image
 '''
-'''
+
 # Open a BitStream from the file
 f = open('output.bin', 'rb')
 decoded_bits = BitStream(f)
@@ -90,7 +66,6 @@ frame = proto_mpeg.frame()
 frame.decode_from_bits(frame1bits, 40, 30)
 
 # View the image
-# frame.show()
+frame.show()
 
 f.close()
-'''

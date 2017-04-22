@@ -179,6 +179,7 @@ class frame:
         Convert the stored image into a sequence of 8x8 pixel blocks for encoding
         :return: (x, 8, 8) shaped array. x depends on dimensions of original image
         """
+        '''
         # First create sequences of 16x16 pixel macroblocks
         r_mblocks = self.image_to_mblocks(self.r)
         g_mblocks = self.image_to_mblocks(self.g)
@@ -193,6 +194,8 @@ class frame:
             img_blocks = np.concatenate(
                 (img_blocks, self.mblocks_to_blocks(r_mblocks[i], g_mblocks[i], b_mblocks[i])), axis=0)
         return img_blocks
+        '''
+        return proto_mpeg_computation.image_to_blocks(self.r, self.g, self.b)
 
     def blocks_to_image(self, blocks):
         """
