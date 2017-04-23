@@ -5,6 +5,24 @@ import huffman_mpeg as codes
 import proto_mpeg_computation
 import numpy as np
 import time
+from os import listdir
+
+'''
+Test multi-file encoding
+'''
+img_directory = '../testing/720p-10/'
+filenames = sorted(listdir(img_directory))
+#print(sorted(listdir(img_directory)))
+files = [img_directory + fname for fname in filenames]
+#print(files)
+
+proto_mpeg_x.encode_video(files[0:3], 'video.bin', 1)
+
+'''
+Test multi-file decoding
+'''
+proto_mpeg_x.decode_video('video.bin')
+
 
 '''
 # Test image_to_blocks
@@ -53,7 +71,7 @@ print(np.shape(reconstructed_image))
 '''
 Encode and save a single image
 '''
-
+'''
 st = time.time()
 
 # Get a single 640x480 image
@@ -80,12 +98,12 @@ print("Took", en-st, "seconds to encode and write image")
 
 f.close()
 del frame
-
+'''
 
 '''
 Decode and show the image
 '''
-
+'''
 st = time.time()
 
 # Open a BitStream from the file
@@ -108,3 +126,4 @@ print("Took", en-st, "seconds to read and decode image")
 #frame.show()
 
 f.close()
+'''
