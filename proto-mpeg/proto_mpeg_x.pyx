@@ -7,6 +7,7 @@ import huffman_mpeg
 from bitstring import BitArray, BitStream, Bits
 import ec504viewer
 import proto_mpeg_computation
+# import queue
 
 quant_intra=[[ 8, 16, 19, 22, 26, 27, 29, 34],
              [16, 16, 22, 24, 27, 29, 34, 37],
@@ -268,7 +269,7 @@ class frame:
         total_bits = len(bits)
         total_blocks = h_mblocks*v_mblocks*6 # Because there are 6 blocks to every macroblock
 
-        print("Beginning decoding for", total_blocks, "blocks.")
+        #print("Beginning decoding for", total_blocks, "blocks.")
 
         # This is the array we'll send to self.image_to_blocks after we've processed all bits
         blocks = np.empty((0, 8, 8))
@@ -337,9 +338,11 @@ class frame:
                     raise Exception("Attempted to read beyond end of bitstring during AC decoding.")
 
         # Reconstruct an image from our decoded blocks, and store it.
-        self.h_mblocks = h_mblocks
-        self.v_mblocks = v_mblocks
-        self.set_image(blocks)
+        #self.h_mblocks = h_mblocks
+        #self.v_mblocks = v_mblocks
+        #self.set_image(blocks)
+
+        return proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), v_mblocks, h_mblocks)
 
 def get_jpegs(directory, number):
     images = []
@@ -352,7 +355,7 @@ def get_jpegs(directory, number):
         i=i+1
     return images
 
-def encode_video(files, output_file, compression_level):
+def encode_video(files, output_file, compression_level): # queue):
     """
     Given a list of files, encode them into output_file with compression_level
     :param files: 
@@ -386,12 +389,18 @@ def encode_video(files, output_file, compression_level):
         print("File", i, "of", len(files), "encoded.")
         i += 1
 
-    # Store the dimensional info at the top of the file
+        # queue.put(100/len(files))
+
+
+    # WRITE HEADER
     # v_mblocks and h_mblocks will be encoded as 8-bit unsigned integers
     output.prepend('uint:8=' + str(img.h_mblocks))
     output.prepend('uint:8=' + str(img.v_mblocks))
+    # number of images written as 20-bit unsigned integer
+    output.prepend('uint:20=' + str(len(files)))
 
     output.tofile(f)
+    f.close()
 
 
 def decode_video(file):
@@ -406,12 +415,25 @@ def decode_video(file):
     except:
         raise Exception("Could not open input file", file, "for reading.")
 
-    decoded_bits = BitStream(f)
+    decoder_bits = BitStream(f)
 
-    v_mblocks = decoded_bits.read('uint:8')
-    h_mblocks = decoded_bits.read('uint:8')
+    # READ HEADER
+    num_imgs  = decoder_bits.read('uint:20')
+    v_mblocks = decoder_bits.read('uint:8')
+    h_mblocks = decoder_bits.read('uint:8')
 
-    while(decoded_bits.pos != len(decoded_bits)):
+    video = np.empty((v_mblocks*16, h_mblocks*16, 3, num_imgs), dtype=np.uint8)
 
-        this_image = decoded_bits.readto('0b' + huffman_mpeg.EOF)[:-1*len(huffman_mpeg.EOF)]
+    img = frame()
+
+    for i in range(num_imgs):
+
+        this_image_bits = decoder_bits.readto('0b' + huffman_mpeg.EOF)[:-1*len(huffman_mpeg.EOF)]
+        video[:, :, :, i] = img.decode_from_bits(this_image_bits, h_mblocks, v_mblocks)
+        print("decoded", i+1, "out of", num_imgs, "images")
+        print(decoder_bits.pos, len(decoder_bits))
+
+    f.close()
+
+    return video
 

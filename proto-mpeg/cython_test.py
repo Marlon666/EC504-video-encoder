@@ -6,6 +6,7 @@ import proto_mpeg_computation
 import numpy as np
 import time
 from os import listdir
+import ec504viewer
 
 '''
 Test multi-file encoding
@@ -21,8 +22,12 @@ proto_mpeg_x.encode_video(files[0:3], 'video.bin', 1)
 '''
 Test multi-file decoding
 '''
-proto_mpeg_x.decode_video('video.bin')
+video = proto_mpeg_x.decode_video('video.bin')
+print(np.shape(video))
 
+ec504viewer.view_single(video[:, :, :, 0].astype(np.uint8))
+ec504viewer.view_single(video[:, :, :, 1])
+ec504viewer.view_single(video[:, :, :, 2])
 
 '''
 # Test image_to_blocks
