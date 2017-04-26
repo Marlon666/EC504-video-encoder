@@ -8,9 +8,21 @@ import time
 from os import listdir
 import ec504viewer
 
+
+'''Decoder profiling'''
+'''
+f = open('output.bin', 'rb')
+decoded_bits = BitStream(f)
+st = time.time()
+proto_mpeg_computation.bitstream_test_3(decoded_bits)
+en = time.time()
+print("Reading entire file by bit took", en-st, "seconds.", "Average:", (en-st)/len(decoded_bits), "seconds per bit.")
+'''
+
 '''
 Test multi-file encoding
 '''
+
 img_directory = '../testing/720p-10/'
 filenames = sorted(listdir(img_directory))
 #print(sorted(listdir(img_directory)))
@@ -22,6 +34,7 @@ proto_mpeg_x.encode_video(files[0:3], 'video.bin', 1)
 '''
 Test multi-file decoding
 '''
+
 video = proto_mpeg_x.decode_video('video.bin')
 print(np.shape(video))
 
