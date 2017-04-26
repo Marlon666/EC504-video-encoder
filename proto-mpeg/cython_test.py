@@ -1,5 +1,5 @@
 import proto_mpeg_x
-import proto_mpeg
+# import proto_mpeg
 from bitstring import BitStream
 import huffman_mpeg as codes
 import proto_mpeg_computation
