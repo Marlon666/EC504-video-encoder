@@ -5,6 +5,7 @@ from cython.view cimport array as cvarray
 from libc.math cimport round
 ctypedef unsigned char DTYPE_pixel
 import scipy.fftpack as fft
+from bitstring import BitStream
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -115,3 +116,24 @@ cpdef dct(np.ndarray[DTYPE_pixel, ndim=2] f):
 
 cpdef idct(np.ndarray[double, ndim=2] F):
     return fft.idct(fft.idct(F, axis=0, norm='ortho', type=2), axis=1, norm='ortho', type=2)
+
+# Sandbox
+
+# Read entire bitstream one bit at a time
+# 1.35e-5 seconds per bit
+cpdef bitstream_test(bs):
+    length = len(bs)
+    while (bs.pos != length):
+        bs.read('bin:1')
+
+# Read bitstream 32 bits at a time
+# 4.94e-7 seconds per bit
+cpdef bitstream_test_2(bs):
+    while bs.pos <= len(bs)-32:
+        bs.read('bin:32')
+
+# Read bitstream 64 bits at a time
+#  seconds per bit
+cpdef bitstream_test_3(bs):
+    while bs.pos <= len(bs)-64:
+        bs.read('bin:64')

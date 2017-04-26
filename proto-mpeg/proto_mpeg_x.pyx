@@ -7,6 +7,7 @@ import huffman_mpeg
 from bitstring import BitArray, BitStream, Bits
 import ec504viewer
 import proto_mpeg_computation
+# import queue
 
 quant_intra=[[ 8, 16, 19, 22, 26, 27, 29, 34],
              [16, 16, 22, 24, 27, 29, 34, 37],
@@ -69,6 +70,14 @@ class frame:
     def getFrame(self):
         reconstructed_image = np.dstack((self.r, self.g, self.b))
         return reconstructed_image
+
+    def load_from_file(self, path):
+        image = skimage.io.imread(path)
+        self.r = image[:, :, 0]
+        self.g = image[:, :, 0]
+        self.b = image[:, :, 0]
+        self.v_mblocks = np.shape(self.r)[0] // 16
+        self.h_mblocks = np.shape(self.r)[1] // 16
         
     def show(self):
         reconstructed_image = np.dstack((self.r, self.g, self.b))
@@ -222,7 +231,7 @@ class frame:
         """
         img_blocks = self.image_to_blocks()
         total_blocks = np.shape(img_blocks)[0]
-        print("Beginning encoding for", total_blocks, "blocks.")
+        #print("Beginning encoding for", total_blocks, "blocks.")
 
         # Get the encoder table for converting (run, level) codes into bits
         encoder_table = huffman_mpeg.make_encoder_table()
@@ -260,7 +269,7 @@ class frame:
         total_bits = len(bits)
         total_blocks = h_mblocks*v_mblocks*6 # Because there are 6 blocks to every macroblock
 
-        print("Beginning decoding for", total_blocks, "blocks.")
+        #print("Beginning decoding for", total_blocks, "blocks.")
 
         # This is the array we'll send to self.image_to_blocks after we've processed all bits
         blocks = np.empty((0, 8, 8))
@@ -329,9 +338,11 @@ class frame:
                     raise Exception("Attempted to read beyond end of bitstring during AC decoding.")
 
         # Reconstruct an image from our decoded blocks, and store it.
-        self.h_mblocks = h_mblocks
-        self.v_mblocks = v_mblocks
-        self.set_image(blocks)
+        #self.h_mblocks = h_mblocks
+        #self.v_mblocks = v_mblocks
+        #self.set_image(blocks)
+
+        return proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), v_mblocks, h_mblocks)
 
 def get_jpegs(directory, number):
     images = []
@@ -343,3 +354,86 @@ def get_jpegs(directory, number):
             break
         i=i+1
     return images
+
+def encode_video(files, output_file, compression_level): # queue):
+    """
+    Given a list of files, encode them into output_file with compression_level
+    :param files: 
+    :param output_file: 
+    :param compression_level: 
+    :return: None
+    """
+
+    # Open output file
+    try:
+        f = open(output_file, 'wb')
+    except:
+        raise Exception("Could not open output file", output_file, "for writing.")
+
+    # Get a frame object
+    img = frame()
+
+    # Create output bit array
+    output = BitArray()
+
+    i = 1
+
+    for path in files:
+        # Load an image
+        img.load_from_file(path)
+        # Append the encoded bits to the output
+        output.append(img.encode_to_bits())
+        # Append an end of frame character
+        output.append('0b' + huffman_mpeg.EOF)
+
+        print("File", i, "of", len(files), "encoded.")
+        i += 1
+
+        # queue.put(100/len(files))
+
+
+    # WRITE HEADER
+    # v_mblocks and h_mblocks will be encoded as 8-bit unsigned integers
+    output.prepend('uint:8=' + str(img.h_mblocks))
+    output.prepend('uint:8=' + str(img.v_mblocks))
+    # number of images written as 20-bit unsigned integer
+    output.prepend('uint:20=' + str(len(files)))
+
+    output.tofile(f)
+    f.close()
+
+
+def decode_video(file):
+    """
+    :param file: 
+    :return: (height, width, 3, x) series of x images
+    """
+
+    # Open a BitStream from the file
+    try:
+        f = open(file, 'rb')
+    except:
+        raise Exception("Could not open input file", file, "for reading.")
+
+    decoder_bits = BitStream(f)
+
+    # READ HEADER
+    num_imgs  = decoder_bits.read('uint:20')
+    v_mblocks = decoder_bits.read('uint:8')
+    h_mblocks = decoder_bits.read('uint:8')
+
+    video = np.empty((v_mblocks*16, h_mblocks*16, 3, num_imgs), dtype=np.uint8)
+
+    img = frame()
+
+    for i in range(num_imgs):
+
+        this_image_bits = decoder_bits.readto('0b' + huffman_mpeg.EOF)[:-1*len(huffman_mpeg.EOF)]
+        video[:, :, :, i] = img.decode_from_bits(this_image_bits, h_mblocks, v_mblocks)
+        print("decoded", i+1, "out of", num_imgs, "images")
+        print(decoder_bits.pos, len(decoder_bits))
+
+    f.close()
+
+    return video
+
