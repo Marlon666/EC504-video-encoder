@@ -116,7 +116,14 @@ def encodeVideo(outname,files,mot_est='none',mot_clip=100,Ssize=7,QF=1):
 	print('Encode time for one frame is %.3f seconds'%((time.time()-start)/(len(images))))
 	
 def playVideo(fname,realTime=True,delay=1):
-	
+	'''
+	Plays the encoded file from fname
+	Inputs
+	fname(string): Path of the encoded binary file
+	realTime(boolean):	If True, show each frame after decoding
+						If Flase, first decode all frames than show time 
+	delay(float): time between showing consecutive frames. It is used only if realTime=True
+	'''
 	start=time.time()
 	f = open(fname, 'rb')
 	decoded_bits = BitStream(f)
