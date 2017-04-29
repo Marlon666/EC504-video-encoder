@@ -1,32 +1,28 @@
 import numpy as np
 from os import listdir
+import color_convert
 import skimage.io
 import matplotlib.pyplot as plt
-import dct_fast as dct
+import proto_mpeg_computation as dct
 import huffman_mpeg
-from bitstring import BitArray, BitStream, Bits
-import ec504viewer
+import huffman_mpeg as codes
+import motion as mot
+from bitstring import BitArray, BitStream, Bits, ReadError
 import proto_mpeg_computation
-# import queue
+import time
+import matplotlib as mpl
+# import queue commend
 
-quant_intra=[[ 8, 16, 19, 22, 26, 27, 29, 34],
+ycbcr=True
+
+quant_intra=np.array([[ 1, 16, 19, 22, 26, 27, 29, 34],
              [16, 16, 22, 24, 27, 29, 34, 37],
              [19, 22, 26, 27, 29, 34, 34, 38],
              [22, 22, 26, 27, 29, 34, 37, 40],
              [22, 26, 27, 29, 32, 35, 40, 48],
              [26, 27, 29, 32, 35, 40, 48, 58],
              [26, 27, 29, 34, 38, 46, 56, 69],
-             [27, 29, 35, 38, 46, 56, 69, 83]]
-
-# Zigzag order. Note that zigzag order != indicies.
-zz_order = [[ 0,  1,  5,  6, 14, 15, 27, 28],
-            [ 2,  4,  7, 13, 16, 26, 29, 42],
-            [ 3,  8, 12, 17, 25, 30, 41, 43],
-            [ 9, 11, 18, 24, 31, 40, 44, 53],
-            [10, 19, 23, 32, 39, 45, 52, 54],
-            [20, 22, 33, 38, 46, 51, 55, 60],
-            [21, 34, 37, 47, 50, 56, 59, 61],
-            [35, 36, 48, 49, 57, 58, 62, 63]]
+             [27, 29, 35, 38, 46, 56, 69, 83]])
 
 # This is an array of indices that we use to sample a flattened DCT array in zigzag order.
 zz_indices = [ 0,  1,  8, 16,  9,  2,  3, 10,
@@ -38,21 +34,12 @@ zz_indices = [ 0,  1,  8, 16,  9,  2,  3, 10,
                58, 59, 52, 45, 38, 31, 39, 46,
                53, 60, 61, 54, 47, 55, 62, 63]
 
-zz_reverse_indices = [ 0,  1,  5,  6, 14, 15, 27, 28,
-  2,  4,  7, 13, 16, 26, 29, 42,
-  3,  8, 12, 17, 25, 30, 41, 43,
-  9, 11, 18, 24, 31, 40, 44, 53,
- 10, 19, 23, 32, 39, 45, 52, 54,
- 20, 22, 33, 38, 46, 51, 55, 60,
- 21, 34, 37, 47, 50, 56, 59, 61,
- 35, 36, 48, 49, 57, 58, 62, 63]
-
-
 class frame:
-    def __init__(self, *image):
+    def __init__(self, *image, QF=1):
         '''
         :param image: RBG image of shape (height, width, 3)
         '''
+        self.QF=QF
         if len(image) == 1:
             data = image[0]
             self.r = data[:, :, 0]
@@ -74,14 +61,14 @@ class frame:
     def load_from_file(self, path):
         image = skimage.io.imread(path)
         self.r = image[:, :, 0]
-        self.g = image[:, :, 0]
-        self.b = image[:, :, 0]
+        self.g = image[:, :, 1]
+        self.b = image[:, :, 2]
         self.v_mblocks = np.shape(self.r)[0] // 16
         self.h_mblocks = np.shape(self.r)[1] // 16
         
     def show(self):
         reconstructed_image = np.dstack((self.r, self.g, self.b))
-        ec504viewer.view_single(reconstructed_image)
+        #ec504viewer.view_single(reconstructed_image)
 
     def image_to_blocks(self):
         """
@@ -113,10 +100,14 @@ class frame:
         # (self.r, self.g, self.b) = self.blocks_to_image(blocks)
 
     def quantize_intra(self, F):
-        return np.rint(F/quant_intra).astype(np.int)
+        quant_matrix=np.ceil(quant_intra*self.QF)
+        quant_matrix[quant_matrix>255]=255
+        return np.rint(F/quant_matrix).astype(np.int)
 
     def dequantize_intra(self, F):
-        return F*quant_intra
+        quant_matrix=np.ceil(quant_intra*self.QF)
+        quant_matrix[quant_matrix>255]=255
+        return F*quant_matrix
 
     def zigzag_from_block(self, F):
         """
@@ -245,12 +236,6 @@ class frame:
 
         for block in img_blocks:
 
-            # Give progress update
-            '''
-            if i in checkpoints:
-                print(int(i/total_blocks*100), '%')
-            '''
-
             # First, we create a zig-zag summary for the block after DCT and quantization
             zz = self.zigzag_from_block(self.quantize_intra(dct.dct(block)))
 
@@ -308,8 +293,10 @@ class frame:
                     decoded_zz_summary.append(data)
 
                     # Reconstruct a block from our completed zz summary, dequantize it, perform IDCT, store it
-                    blocks = np.append(blocks, [np.rint(
-                        dct.idct(self.dequantize_intra(self.zigzag_to_block(decoded_zz_summary)).astype(float))).astype(np.uint8)], axis=0)
+                    bl_recon = np.rint(dct.idct(self.dequantize_intra(self.zigzag_to_block(decoded_zz_summary)).astype(float)))
+                    bl_recon[bl_recon<0]=0
+                    bl_recon[bl_recon>255]=255
+                    blocks = np.append(blocks, [bl_recon.astype(np.uint8)], axis=0)
 
                     # Reset the zigzag summary so that the next thing we do is read a DC term
                     decoded_zz_summary = list()
@@ -341,7 +328,9 @@ class frame:
         #self.h_mblocks = h_mblocks
         #self.v_mblocks = v_mblocks
         #self.set_image(blocks)
-
+        img=proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), v_mblocks, h_mblocks)
+        if(ycbcr):
+            img=color_convert.ycbcr2rgb(img).astype(np.uint8)
         return proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), v_mblocks, h_mblocks)
 
 def get_jpegs(directory, number):
@@ -349,91 +338,213 @@ def get_jpegs(directory, number):
     i = 1
     for file in sorted(listdir(directory)):
         if file.endswith('.jpg'):
-            images.append(skimage.io.imread(directory + '/' + file))
+            img=skimage.io.imread(directory + '/' + file)
+            if(ycbcr):
+                img=color_convert.rgb2ycbcr(img.astype(float))
+            images.append(img)
         if i == number:
             break
         i=i+1
     return images
 
-def encode_video(files, output_file, compression_level): # queue):
+def convert2uint8(arr):
+    arr[arr<0]=0
+    arr[arr>255]=255
+    return arr.astype(np.uint8)
+def encodeMot(mot_vec,nbits):
+    print(mot_vec.shape)
+    out=BitArray()
+    mot_vec=mot_vec.reshape([-1])
+    for k in range(len(mot_vec)):
+        out.append('0b'+np.binary_repr(mot_vec[k],width=nbits))
+    print(len(out))
+    return out
+
+def decodeMot(mot_bin,nbits,w,l):
+    print(w*l*2)
+    print(len(mot_bin))
+    mot_vec = np.zeros(w*l*2)
+    for k in range(len(mot_vec)):
+        mot_vec[k]=mot_bin[k*nbits:(k+1)*nbits].uint
+    return mot_vec.reshape([w,l,2]).astype(int)
+
+def encodeVideo(outname,files,mot_est='none',mot_clip=100,Ssize=7,QF=1):
     """
-    Given a list of files, encode them into output_file with compression_level
-    :param files: 
-    :param output_file: 
-    :param compression_level: 
-    :return: None
+    Given list of files encode them into a single file
+    Inputs
+    outname(string):name of the output file
+    files(list): list of image directions to be encoded
+    mot_est(string): Algorithm to use in motion estimation. Chose from following three
+                        -'none'
+                        -'frame_difference'
+                        -'block_matching'
+    mot_clip(int): Value used for clipping the motion pixels
+    Ssize(int): Size of the search window for 'block_matching'. Probably we wont need to change it
+    QF(float): Compression factor
     """
 
-    # Open output file
-    try:
-        f = open(output_file, 'wb')
-    except:
-        raise Exception("Could not open output file", output_file, "for writing.")
+    # Assign an integer ID to each type of motion encoding, to be written in the file header
+    if(mot_est=='none'):
+        # No motion estimation. Only I-frames are encoded.
+        mot_code=0
+    elif(mot_est=='frame_difference'):
+        # Encode repetitions of one I frame and three P frames
+        mot_code=1
+    elif(mot_est=='block_matching'):
+        # Use block matching motion estimation
+        mot_code=2
+    else:
+        mot_code=0
+        print("Invalid motion coded provided. Defaulting to I-frame encoding.")
 
-    # Get a frame object
-    img = frame()
-
-    # Create output bit array
-    output = BitArray()
-
-    i = 1
-
+    start=time.time()
+    images = []
     for path in files:
-        # Load an image
-        img.load_from_file(path)
-        # Append the encoded bits to the output
-        output.append(img.encode_to_bits())
-        # Append an end of frame character
-        output.append('0b' + huffman_mpeg.EOF)
+        images.append(skimage.io.imread(path))
 
-        print("File", i, "of", len(files), "encoded.")
-        i += 1
+    output=BitArray()
+    # Create a frame object initialized with our image
+    print("Encoding image 1")
+    t=time.time()
+    fr = frame(images[0],QF=QF)
+    # Retreive the binary encoding of the image
+    output.append(fr.encode_to_bits())
+    # Append an end of frame character
+    output.append('0b' + codes.EOF)
+    print("%.1f seconds" % (time.time()-t))
 
-        # queue.put(100/len(files))
+    for k in range(1,len(images)):
+        # Create a frame object initialized with our image
+        print("Encoding image "+str(k+1))
+        t=time.time()
+        if(mot_est=='none' or np.mod(k,4)==0):
+            code=images[k]
+        else:
+            if(mot_est=='frame_difference'):
+                err=images[k].astype(int)-images[k-1].astype(int)
+            elif(mot_est=='block_matching'):
+                mot_vec,err = mot.blockMatching(images[k-1],images[k],Bsize=8,Ssize=Ssize)
+            err[err<-mot_clip]=-mot_clip
+            err[err>mot_clip]=mot_clip
+            code=convert2uint8(err+mot_clip)#.astype(np.uint8)
+        fr = frame(code,QF=QF)
+        # Retreive the binary encoding of the image
+        output.append(fr.encode_to_bits())
+        output.append('0b' + codes.EOF)
 
+        if(mot_est=='block_matching' and np.mod(k,4)!=0):
+            mot_vec = mot_vec+Ssize
+            nbits = int(np.ceil(np.log2(2*Ssize+1)))
+            mot_bin=encodeMot(mot_vec,nbits)
+            output.append(mot_bin)
+            output.append('0b' + codes.EOF)
+            # Append an end of frame character
+        print("%.1f seconds" % (time.time()-t))
 
-    # WRITE HEADER
+    # BUILD HEADER
+
     # v_mblocks and h_mblocks will be encoded as 8-bit unsigned integers
-    output.prepend('uint:8=' + str(img.h_mblocks))
-    output.prepend('uint:8=' + str(img.v_mblocks))
+    output.prepend('uint:8=' + str(fr.h_mblocks))
+    output.prepend('uint:8=' + str(fr.v_mblocks))
+
     # number of images written as 20-bit unsigned integer
     output.prepend('uint:20=' + str(len(files)))
 
-    output.tofile(f)
+    # include all motion encoding parameters
+    output.prepend('uint:2='+str(mot_code))
+    output.prepend('uint:8='+str(mot_clip))
+    output.prepend('uint:4='+str(Ssize))
+    output.prepend('float:32='+str(QF))
+
+    # Write file
+    with open(outname, 'wb') as f:
+        output.tofile(f)
+
+    print('Encode time for one frame is %.3f seconds'%((time.time()-start)/(len(images))))
+
+def playVideo(fname, realTime=True, delay=1):
+    ''' 
+    Plays the encoded file from fname
+    Inputs
+    fname(string): Path of the encoded binary file
+    realTime(boolean):	If True, show each frame after decoding
+        If Flase, first decode all frames than show time 
+    delay(float): time between showing consecutive frames. It is used only if realTime=True
+    '''
+    start=time.time()
+    f = open(fname, 'rb')
+    decoded_bits = BitStream(f)
+    QF=decoded_bits.read('float:32')
+    Ssize=decoded_bits.read('uint:4')
+    mot_clip=decoded_bits.read('uint:8')
+    mot_code=decoded_bits.read('uint:2')
+    num_imgs  = decoded_bits.read('uint:20')
+    v_mblocks = decoded_bits.read('uint:8')
+    h_mblocks = decoded_bits.read('uint:8')
+
+    # Configure viewer window
+    mpl.rcParams['toolbar'] = 'None'
+    fig, ax = plt.subplots(1)
+    fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
+    fig.canvas.set_window_title("EC504 Viewer")
+    im = ax.imshow(np.zeros((256, 256, 3)), extent=(0, 1, 1, 0))
+    ax.axis('tight')
+    ax.axis('off')
+    # The following command sets the window size to the appropriate aspect ratio
+    fig.set_size_inches(8, v_mblocks/h_mblocks*8, forward=True)
+    fig.show()
+
+    prev_image=mot_clip*np.ones([v_mblocks*16,h_mblocks*16,3]).astype(np.uint8)
+    frames=list()
+
+    for k in range(num_imgs):
+        # Read the stream up to the end of frame (EOF) character.
+        try:
+            framebits = decoded_bits.readto('0b' + codes.EOF)[:-1*len(codes.EOF)]
+        except:
+            print("Error reading file.")
+            return -1
+        print("Decoding image " + str(k+1))
+        t=time.time()
+        # Create a frame object from the proto_mpeg library
+        fr = frame(QF=QF)
+        # Decode the bits and reconstruct the image
+        code = fr.decode_from_bits(framebits, h_mblocks, v_mblocks)
+        if(mot_code==0 or np.mod(k,4)==0):
+            image=code
+            prev_image=image
+        elif(mot_code==1):
+            image=convert2uint8(prev_image.astype(int)+code.astype(int)-mot_clip)
+            prev_image=image
+        elif(mot_code==2):
+            if(k==0):
+                image=code
+            else:
+                nbits = int(np.ceil(np.log2(2*Ssize+1)))
+                motbits = decoded_bits.read(v_mblocks*h_mblocks*8*nbits)
+                tmp = decoded_bits.readto('0b' + codes.EOF)
+                mot_arr=decodeMot(motbits,nbits,v_mblocks*2, h_mblocks*2)-Ssize
+                prev_image_w=mot.wrap(prev_image,mot_arr)
+                image=convert2uint8(prev_image_w.astype(int)-code.astype(int)+mot_clip)
+            prev_image=image
+
+        print("%.1f seconds" % (time.time()-t))
+        if(realTime):
+            im.set_data(image)
+            im.axes.figure.canvas.draw()
+        else:
+            frames.append(image)
+        del fr
+        k+=1
     f.close()
+    print('Decode time for one frame is %.3f seconds'%((time.time()-start)/k))
 
-
-def decode_video(file):
-    """
-    :param file: 
-    :return: (height, width, 3, x) series of x images
-    """
-
-    # Open a BitStream from the file
-    try:
-        f = open(file, 'rb')
-    except:
-        raise Exception("Could not open input file", file, "for reading.")
-
-    decoder_bits = BitStream(f)
-
-    # READ HEADER
-    num_imgs  = decoder_bits.read('uint:20')
-    v_mblocks = decoder_bits.read('uint:8')
-    h_mblocks = decoder_bits.read('uint:8')
-
-    video = np.empty((v_mblocks*16, h_mblocks*16, 3, num_imgs), dtype=np.uint8)
-
-    img = frame()
-
-    for i in range(num_imgs):
-
-        this_image_bits = decoder_bits.readto('0b' + huffman_mpeg.EOF)[:-1*len(huffman_mpeg.EOF)]
-        video[:, :, :, i] = img.decode_from_bits(this_image_bits, h_mblocks, v_mblocks)
-        print("decoded", i+1, "out of", num_imgs, "images")
-        print(decoder_bits.pos, len(decoder_bits))
-
-    f.close()
-
-    return video
-
+    if not realTime:
+        while(True):
+            for image in frames:
+                im.set_data(image)
+                im.axes.figure.canvas.draw()
+                time.sleep(delay)
+            ans = input("Replay? (y/N): ")
+            if ans.lower() != 'y' and ans.lower() != 'yes':
+                break

@@ -1,6 +1,5 @@
 import numpy as np
 from os import listdir
-import color_convert
 import skimage.io
 import matplotlib.pyplot as plt
 import dct_fast as dct
@@ -10,17 +9,14 @@ import ec504viewer
 import proto_mpeg_computation
 # import queue
 
-ycbcr=True
-
-quant_intra=np.array([[ 1, 16, 19, 22, 26, 27, 29, 34],
+quant_intra=[[ 8, 16, 19, 22, 26, 27, 29, 34],
              [16, 16, 22, 24, 27, 29, 34, 37],
              [19, 22, 26, 27, 29, 34, 34, 38],
              [22, 22, 26, 27, 29, 34, 37, 40],
              [22, 26, 27, 29, 32, 35, 40, 48],
              [26, 27, 29, 32, 35, 40, 48, 58],
              [26, 27, 29, 34, 38, 46, 56, 69],
-             [27, 29, 35, 38, 46, 56, 69, 83]])
-
+             [27, 29, 35, 38, 46, 56, 69, 83]]
 
 # Zigzag order. Note that zigzag order != indicies.
 zz_order = [[ 0,  1,  5,  6, 14, 15, 27, 28],
@@ -53,11 +49,10 @@ zz_reverse_indices = [ 0,  1,  5,  6, 14, 15, 27, 28,
 
 
 class frame:
-    def __init__(self, *image,QF=.1):
+    def __init__(self, *image):
         '''
         :param image: RBG image of shape (height, width, 3)
         '''
-        self.QF=QF
         if len(image) == 1:
             data = image[0]
             self.r = data[:, :, 0]
@@ -79,8 +74,8 @@ class frame:
     def load_from_file(self, path):
         image = skimage.io.imread(path)
         self.r = image[:, :, 0]
-        self.g = image[:, :, 1]
-        self.b = image[:, :, 2]
+        self.g = image[:, :, 0]
+        self.b = image[:, :, 0]
         self.v_mblocks = np.shape(self.r)[0] // 16
         self.h_mblocks = np.shape(self.r)[1] // 16
         
@@ -118,14 +113,10 @@ class frame:
         # (self.r, self.g, self.b) = self.blocks_to_image(blocks)
 
     def quantize_intra(self, F):
-        quant_matrix=np.ceil(quant_intra*self.QF)
-        quant_matrix[quant_matrix>255]=255
-        return np.rint(F/quant_matrix).astype(np.int)
+        return np.rint(F/quant_intra).astype(np.int)
 
     def dequantize_intra(self, F):
-        quant_matrix=np.ceil(quant_intra*self.QF)
-        quant_matrix[quant_matrix>255]=255
-        return F*quant_matrix
+        return F*quant_intra
 
     def zigzag_from_block(self, F):
         """
@@ -317,10 +308,8 @@ class frame:
                     decoded_zz_summary.append(data)
 
                     # Reconstruct a block from our completed zz summary, dequantize it, perform IDCT, store it
-                    bl_recon = np.rint(dct.idct(self.dequantize_intra(self.zigzag_to_block(decoded_zz_summary)).astype(float)))
-                    bl_recon[bl_recon<0]=0
-                    bl_recon[bl_recon>255]=255
-                    blocks = np.append(blocks, [bl_recon.astype(np.uint8)], axis=0)
+                    blocks = np.append(blocks, [np.rint(
+                        dct.idct(self.dequantize_intra(self.zigzag_to_block(decoded_zz_summary)).astype(float))).astype(np.uint8)], axis=0)
 
                     # Reset the zigzag summary so that the next thing we do is read a DC term
                     decoded_zz_summary = list()
@@ -352,9 +341,7 @@ class frame:
         #self.h_mblocks = h_mblocks
         #self.v_mblocks = v_mblocks
         #self.set_image(blocks)
-        img=proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), v_mblocks, h_mblocks)
-        if(ycbcr):
-            img=color_convert.ycbcr2rgb(img).astype(np.uint8)
+
         return proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), v_mblocks, h_mblocks)
 
 def get_jpegs(directory, number):
@@ -362,10 +349,7 @@ def get_jpegs(directory, number):
     i = 1
     for file in sorted(listdir(directory)):
         if file.endswith('.jpg'):
-            img=skimage.io.imread(directory + '/' + file)
-            if(ycbcr):
-                img=color_convert.rgb2ycbcr(img.astype(float))
-            images.append(img)
+            images.append(skimage.io.imread(directory + '/' + file))
         if i == number:
             break
         i=i+1

@@ -8,6 +8,10 @@ import matplotlib.pyplot as plt
 import motion as mot
 import skimage.io
 
+'''
+NOTE: This code is out of date. It has been integrated with proto_mpeg_x.pyx. Use that.
+'''
+
 def convert2uint8(arr):
 	arr[arr<0]=0
 	arr[arr>255]=255

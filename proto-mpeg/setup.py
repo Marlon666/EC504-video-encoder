@@ -1,6 +1,7 @@
 from distutils.core import setup
 from distutils.extension import Extension
 from Cython.Build import cythonize
+from os import remove
 import numpy
 
 extensions = [
@@ -18,5 +19,9 @@ setup(
     #ext_modules = cythonize('dct.pyx', include_path=[numpy.get_include()]),
     ext_modules = cythonize(extensions)
 )
+
+remove("proto_mpeg_x.c")
+remove("proto_mpeg_computation.c")
+
 
 # Run this build process by doing: python3 setup.py build_ext --inplace

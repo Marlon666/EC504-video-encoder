@@ -4,7 +4,7 @@
 {
     "distutils": {
         "include_dirs": [
-            "/home/mtezcan/anaconda3/lib/python3.6/site-packages/numpy/core/include"
+            "/home/brian/.local/lib/python3.5/site-packages/numpy/core/include"
         ]
     },
     "module_name": "proto_mpeg_x"
@@ -735,24 +735,6 @@ static int __Pyx_ParseOptionalKeywords(PyObject *kwds, PyObject **argnames[],\
 static void __Pyx_RaiseArgtupleInvalid(const char* func_name, int exact,
     Py_ssize_t num_min, Py_ssize_t num_max, Py_ssize_t num_found);
 
-/* PyObjectSetAttrStr.proto */
-#if CYTHON_USE_TYPE_SLOTS
-#define __Pyx_PyObject_DelAttrStr(o,n) __Pyx_PyObject_SetAttrStr(o,n,NULL)
-static CYTHON_INLINE int __Pyx_PyObject_SetAttrStr(PyObject* obj, PyObject* attr_name, PyObject* value) {
-    PyTypeObject* tp = Py_TYPE(obj);
-    if (likely(tp->tp_setattro))
-        return tp->tp_setattro(obj, attr_name, value);
-#if PY_MAJOR_VERSION < 3
-    if (likely(tp->tp_setattr))
-        return tp->tp_setattr(obj, PyString_AS_STRING(attr_name), value);
-#endif
-    return PyObject_SetAttr(obj, attr_name, value);
-}
-#else
-#define __Pyx_PyObject_DelAttrStr(o,n)   PyObject_DelAttr(o,n)
-#define __Pyx_PyObject_SetAttrStr(o,n,v) PyObject_SetAttr(o,n,v)
-#endif
-
 /* GetItemInt.proto */
 #define __Pyx_GetItemInt(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck)\
     (__Pyx_fits_Py_ssize_t(i, type, is_signed) ?\
@@ -774,6 +756,24 @@ static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Tuple_Fast(PyObject *o, Py_ssize
 static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j);
 static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i,
                                                      int is_list, int wraparound, int boundscheck);
+
+/* PyObjectSetAttrStr.proto */
+#if CYTHON_USE_TYPE_SLOTS
+#define __Pyx_PyObject_DelAttrStr(o,n) __Pyx_PyObject_SetAttrStr(o,n,NULL)
+static CYTHON_INLINE int __Pyx_PyObject_SetAttrStr(PyObject* obj, PyObject* attr_name, PyObject* value) {
+    PyTypeObject* tp = Py_TYPE(obj);
+    if (likely(tp->tp_setattro))
+        return tp->tp_setattro(obj, attr_name, value);
+#if PY_MAJOR_VERSION < 3
+    if (likely(tp->tp_setattr))
+        return tp->tp_setattr(obj, PyString_AS_STRING(attr_name), value);
+#endif
+    return PyObject_SetAttr(obj, attr_name, value);
+}
+#else
+#define __Pyx_PyObject_DelAttrStr(o,n)   PyObject_DelAttr(o,n)
+#define __Pyx_PyObject_SetAttrStr(o,n,v) PyObject_SetAttr(o,n,v)
+#endif
 
 /* PyIntBinop.proto */
 #if !CYTHON_COMPILING_IN_PYPY
@@ -1105,7 +1105,6 @@ static const char __pyx_k_i[] = "i";
 static const char __pyx_k_j[] = "j";
 static const char __pyx_k_r[] = "r";
 static const char __pyx_k_0b[] = "0b";
-static const char __pyx_k_QF[] = "QF";
 static const char __pyx_k_io[] = "io";
 static const char __pyx_k_np[] = "np";
 static const char __pyx_k_of[] = "of";
@@ -1136,7 +1135,6 @@ static const char __pyx_k_Bits[] = "Bits";
 static const char __pyx_k_File[] = "File";
 static const char __pyx_k_axis[] = "axis";
 static const char __pyx_k_bits[] = "bits";
-static const char __pyx_k_ceil[] = "ceil";
 static const char __pyx_k_data[] = "data";
 static const char __pyx_k_file[] = "file";
 static const char __pyx_k_idct[] = "idct";
@@ -1150,7 +1148,6 @@ static const char __pyx_k_rint[] = "rint";
 static const char __pyx_k_self[] = "self";
 static const char __pyx_k_show[] = "show";
 static const char __pyx_k_test[] = "__test__";
-static const char __pyx_k_array[] = "array";
 static const char __pyx_k_block[] = "block";
 static const char __pyx_k_close[] = "close";
 static const char __pyx_k_coeff[] = "coeff";
@@ -1167,7 +1164,6 @@ static const char __pyx_k_range[] = "range";
 static const char __pyx_k_shape[] = "shape";
 static const char __pyx_k_uint8[] = "uint8";
 static const char __pyx_k_video[] = "video";
-static const char __pyx_k_ycbcr[] = "ycbcr";
 static const char __pyx_k_zeros[] = "zeros";
 static const char __pyx_k_append[] = "append";
 static const char __pyx_k_astype[] = "astype";
@@ -1197,7 +1193,6 @@ static const char __pyx_k_reshape[] = "reshape";
 static const char __pyx_k_skimage[] = "skimage";
 static const char __pyx_k_uint_20[] = "uint:20=";
 static const char __pyx_k_BitArray[] = "BitArray";
-static const char __pyx_k_bl_recon[] = "bl_recon";
 static const char __pyx_k_dct_fast[] = "dct_fast";
 static const char __pyx_k_endswith[] = "endswith";
 static const char __pyx_k_getFrame[] = "getFrame";
@@ -1214,12 +1209,10 @@ static const char __pyx_k_directory[] = "directory";
 static const char __pyx_k_get_jpegs[] = "get_jpegs";
 static const char __pyx_k_h_mblocks[] = "h_mblocks";
 static const char __pyx_k_metaclass[] = "__metaclass__";
-static const char __pyx_k_rgb2ycbcr[] = "rgb2ycbcr";
 static const char __pyx_k_run_level[] = "run_level";
 static const char __pyx_k_set_image[] = "set_image";
 static const char __pyx_k_uint_20_2[] = "uint:20";
 static const char __pyx_k_v_mblocks[] = "v_mblocks";
-static const char __pyx_k_ycbcr2rgb[] = "ycbcr2rgb";
 static const char __pyx_k_bit_string[] = "bit_string";
 static const char __pyx_k_frame_show[] = "frame.show";
 static const char __pyx_k_img_blocks[] = "img_blocks";
@@ -1241,9 +1234,7 @@ static const char __pyx_k_encoded_bits[] = "encoded_bits";
 static const char __pyx_k_frame___init[] = "frame.__init__";
 static const char __pyx_k_huffman_mpeg[] = "huffman_mpeg";
 static const char __pyx_k_proto_mpeg_x[] = "proto_mpeg_x";
-static const char __pyx_k_quant_matrix[] = "quant_matrix";
 static const char __pyx_k_total_blocks[] = "total_blocks";
-static const char __pyx_k_color_convert[] = "color_convert";
 static const char __pyx_k_decoder_table[] = "decoder_table";
 static const char __pyx_k_encoder_table[] = "encoder_table";
 static const char __pyx_k_encode_to_bits[] = "encode_to_bits";
@@ -1284,7 +1275,7 @@ static const char __pyx_k_Could_not_open_input_file[] = "Could not open input fi
 static const char __pyx_k_Could_not_open_output_file[] = "Could not open output file";
 static const char __pyx_k_does_not_fit_in_uint8_format[] = " does not fit in uint8 format";
 static const char __pyx_k_Attempted_to_read_beyond_end_of[] = "Attempted to read beyond end of bitstring during AC decoding.";
-static const char __pyx_k_home_mtezcan_Dropbox__CURRENT_F[] = "/home/mtezcan/Dropbox/_CURRENT FILES/Spring 17/EC 504/project_last/proto-mpeg-motion/proto_mpeg_x.pyx";
+static const char __pyx_k_home_brian_Documents_EC504_proj[] = "/home/brian/Documents/EC504/project/proto-mpeg-old/proto_mpeg_x.pyx";
 static const char __pyx_k_Attempted_to_encode_too_many_bit[] = "Attempted to encode too many bits from block\n";
 static PyObject *__pyx_kp_s_0b;
 static PyObject *__pyx_kp_s_0b0;
@@ -1303,13 +1294,11 @@ static PyObject *__pyx_n_s_EOF;
 static PyObject *__pyx_n_s_ESC;
 static PyObject *__pyx_n_s_F;
 static PyObject *__pyx_n_s_File;
-static PyObject *__pyx_n_s_QF;
 static PyObject *__pyx_n_s_Warning;
 static PyObject *__pyx_kp_s__39;
 static PyObject *__pyx_n_s__46;
 static PyObject *__pyx_n_s_abs;
 static PyObject *__pyx_n_s_append;
-static PyObject *__pyx_n_s_array;
 static PyObject *__pyx_n_s_astype;
 static PyObject *__pyx_n_s_axis;
 static PyObject *__pyx_n_s_b;
@@ -1318,14 +1307,11 @@ static PyObject *__pyx_n_s_bit_string;
 static PyObject *__pyx_n_s_bits;
 static PyObject *__pyx_n_s_bits_read;
 static PyObject *__pyx_n_s_bitstring;
-static PyObject *__pyx_n_s_bl_recon;
 static PyObject *__pyx_n_s_block;
 static PyObject *__pyx_n_s_blocks;
 static PyObject *__pyx_n_s_blocks_to_image;
-static PyObject *__pyx_n_s_ceil;
 static PyObject *__pyx_n_s_close;
 static PyObject *__pyx_n_s_coeff;
-static PyObject *__pyx_n_s_color_convert;
 static PyObject *__pyx_n_s_compression_level;
 static PyObject *__pyx_n_s_data;
 static PyObject *__pyx_n_s_dct;
@@ -1377,7 +1363,7 @@ static PyObject *__pyx_n_s_g;
 static PyObject *__pyx_n_s_getFrame;
 static PyObject *__pyx_n_s_get_jpegs;
 static PyObject *__pyx_n_s_h_mblocks;
-static PyObject *__pyx_kp_s_home_mtezcan_Dropbox__CURRENT_F;
+static PyObject *__pyx_kp_s_home_brian_Documents_EC504_proj;
 static PyObject *__pyx_n_s_huffman_mpeg;
 static PyObject *__pyx_n_s_i;
 static PyObject *__pyx_n_s_idct;
@@ -1429,7 +1415,6 @@ static PyObject *__pyx_n_s_proto_mpeg_computation;
 static PyObject *__pyx_n_s_proto_mpeg_x;
 static PyObject *__pyx_n_s_qualname;
 static PyObject *__pyx_n_s_quant_intra;
-static PyObject *__pyx_n_s_quant_matrix;
 static PyObject *__pyx_n_s_quantize_intra;
 static PyObject *__pyx_n_s_r;
 static PyObject *__pyx_n_s_range;
@@ -1438,7 +1423,6 @@ static PyObject *__pyx_n_s_read;
 static PyObject *__pyx_n_s_readto;
 static PyObject *__pyx_n_s_reconstructed_image;
 static PyObject *__pyx_n_s_reshape;
-static PyObject *__pyx_n_s_rgb2ycbcr;
 static PyObject *__pyx_n_s_rint;
 static PyObject *__pyx_n_s_run;
 static PyObject *__pyx_n_s_run_level;
@@ -1465,8 +1449,6 @@ static PyObject *__pyx_n_s_v_mblocks;
 static PyObject *__pyx_n_s_video;
 static PyObject *__pyx_n_s_view_single;
 static PyObject *__pyx_n_s_wb;
-static PyObject *__pyx_n_s_ycbcr;
-static PyObject *__pyx_n_s_ycbcr2rgb;
 static PyObject *__pyx_n_s_zero_count;
 static PyObject *__pyx_n_s_zeros;
 static PyObject *__pyx_n_s_zigzag_from_block;
@@ -1476,15 +1458,15 @@ static PyObject *__pyx_n_s_zz;
 static PyObject *__pyx_n_s_zz_indices;
 static PyObject *__pyx_n_s_zz_order;
 static PyObject *__pyx_n_s_zz_reverse_indices;
-static PyObject *__pyx_pf_12proto_mpeg_x_5frame___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_QF, PyObject *__pyx_v_image); /* proto */
+static PyObject *__pyx_pf_12proto_mpeg_x_5frame___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_image); /* proto */
 static PyObject *__pyx_pf_12proto_mpeg_x_5frame_2getFrame(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_12proto_mpeg_x_5frame_4load_from_file(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_path); /* proto */
 static PyObject *__pyx_pf_12proto_mpeg_x_5frame_6show(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_12proto_mpeg_x_5frame_8image_to_blocks(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_12proto_mpeg_x_5frame_10blocks_to_image(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_blocks); /* proto */
 static PyObject *__pyx_pf_12proto_mpeg_x_5frame_12set_image(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_blocks); /* proto */
-static PyObject *__pyx_pf_12proto_mpeg_x_5frame_14quantize_intra(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_F); /* proto */
-static PyObject *__pyx_pf_12proto_mpeg_x_5frame_16dequantize_intra(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_F); /* proto */
+static PyObject *__pyx_pf_12proto_mpeg_x_5frame_14quantize_intra(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_F); /* proto */
+static PyObject *__pyx_pf_12proto_mpeg_x_5frame_16dequantize_intra(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_F); /* proto */
 static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_F); /* proto */
 static PyObject *__pyx_pf_12proto_mpeg_x_5frame_20zigzag_to_block(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_zz); /* proto */
 static PyObject *__pyx_pf_12proto_mpeg_x_5frame_22zigzag_to_bits(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_encoder_table, PyObject *__pyx_v_zz); /* proto */
@@ -1493,7 +1475,6 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
 static PyObject *__pyx_pf_12proto_mpeg_x_get_jpegs(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_directory, PyObject *__pyx_v_number); /* proto */
 static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_files, PyObject *__pyx_v_output_file, CYTHON_UNUSED PyObject *__pyx_v_compression_level); /* proto */
 static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_file); /* proto */
-static PyObject *__pyx_float__1;
 static PyObject *__pyx_int_0;
 static PyObject *__pyx_int_1;
 static PyObject *__pyx_int_2;
@@ -1642,10 +1623,10 @@ static PyObject *__pyx_codeobj__76;
 static PyObject *__pyx_codeobj__78;
 static PyObject *__pyx_codeobj__80;
 
-/* "proto_mpeg_x.pyx":56
+/* "proto_mpeg_x.pyx":52
  * 
  * class frame:
- *     def __init__(self, *image,QF=.1):             # <<<<<<<<<<<<<<
+ *     def __init__(self, *image):             # <<<<<<<<<<<<<<
  *         '''
  *         :param image: RBG image of shape (height, width, 3)
  */
@@ -1656,7 +1637,6 @@ static char __pyx_doc_12proto_mpeg_x_5frame___init__[] = "\n        :param image
 static PyMethodDef __pyx_mdef_12proto_mpeg_x_5frame_1__init__ = {"__init__", (PyCFunction)__pyx_pw_12proto_mpeg_x_5frame_1__init__, METH_VARARGS|METH_KEYWORDS, __pyx_doc_12proto_mpeg_x_5frame___init__};
 static PyObject *__pyx_pw_12proto_mpeg_x_5frame_1__init__(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
-  PyObject *__pyx_v_QF = 0;
   PyObject *__pyx_v_image = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -1672,9 +1652,8 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_1__init__(PyObject *__pyx_self, 
     __pyx_v_image = __pyx_empty_tuple; __Pyx_INCREF(__pyx_empty_tuple);
   }
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_self,&__pyx_n_s_QF,0};
-    PyObject* values[2] = {0,0};
-    values[1] = ((PyObject *)((PyObject*)__pyx_float__1));
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_self,0};
+    PyObject* values[1] = {0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
@@ -1689,14 +1668,9 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_1__init__(PyObject *__pyx_self, 
         if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_self)) != 0)) kw_args--;
         else goto __pyx_L5_argtuple_error;
       }
-      if (kw_args == 1) {
-        const Py_ssize_t index = 1;
-        PyObject* value = PyDict_GetItem(__pyx_kwds, *__pyx_pyargnames[index]);
-        if (value) { values[index] = value; kw_args--; }
-      }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t used_pos_args = (pos_args < 1) ? pos_args : 1;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, used_pos_args, "__init__") < 0)) __PYX_ERR(0, 56, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, used_pos_args, "__init__") < 0)) __PYX_ERR(0, 52, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) < 1) {
       goto __pyx_L5_argtuple_error;
@@ -1704,18 +1678,17 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_1__init__(PyObject *__pyx_self, 
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
     }
     __pyx_v_self = values[0];
-    __pyx_v_QF = values[1];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 56, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 52, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_DECREF(__pyx_v_image); __pyx_v_image = 0;
   __Pyx_AddTraceback("proto_mpeg_x.frame.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_12proto_mpeg_x_5frame___init__(__pyx_self, __pyx_v_self, __pyx_v_QF, __pyx_v_image);
+  __pyx_r = __pyx_pf_12proto_mpeg_x_5frame___init__(__pyx_self, __pyx_v_self, __pyx_v_image);
 
   /* function exit code */
   __Pyx_XDECREF(__pyx_v_image);
@@ -1723,7 +1696,7 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_1__init__(PyObject *__pyx_self, 
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_12proto_mpeg_x_5frame___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_QF, PyObject *__pyx_v_image) {
+static PyObject *__pyx_pf_12proto_mpeg_x_5frame___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_image) {
   PyObject *__pyx_v_data = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -1736,87 +1709,78 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame___init__(CYTHON_UNUSED PyObject 
   PyObject *__pyx_t_7 = NULL;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "proto_mpeg_x.pyx":60
+  /* "proto_mpeg_x.pyx":56
  *         :param image: RBG image of shape (height, width, 3)
  *         '''
- *         self.QF=QF             # <<<<<<<<<<<<<<
- *         if len(image) == 1:
- *             data = image[0]
- */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_QF, __pyx_v_QF) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
-
-  /* "proto_mpeg_x.pyx":61
- *         '''
- *         self.QF=QF
  *         if len(image) == 1:             # <<<<<<<<<<<<<<
  *             data = image[0]
  *             self.r = data[:, :, 0]
  */
-  __pyx_t_1 = PyTuple_GET_SIZE(__pyx_v_image); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 61, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_GET_SIZE(__pyx_v_image); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 56, __pyx_L1_error)
   __pyx_t_2 = ((__pyx_t_1 == 1) != 0);
   if (__pyx_t_2) {
 
-    /* "proto_mpeg_x.pyx":62
- *         self.QF=QF
+    /* "proto_mpeg_x.pyx":57
+ *         '''
  *         if len(image) == 1:
  *             data = image[0]             # <<<<<<<<<<<<<<
  *             self.r = data[:, :, 0]
  *             self.g = data[:, :, 1]
  */
-    __pyx_t_3 = __Pyx_GetItemInt_Tuple(__pyx_v_image, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_GetItemInt_Tuple(__pyx_v_image, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 57, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_v_data = __pyx_t_3;
     __pyx_t_3 = 0;
 
-    /* "proto_mpeg_x.pyx":63
+    /* "proto_mpeg_x.pyx":58
  *         if len(image) == 1:
  *             data = image[0]
  *             self.r = data[:, :, 0]             # <<<<<<<<<<<<<<
  *             self.g = data[:, :, 1]
  *             self.b = data[:, :, 2]
  */
-    __pyx_t_3 = PyObject_GetItem(__pyx_v_data, __pyx_tuple__3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
+    __pyx_t_3 = PyObject_GetItem(__pyx_v_data, __pyx_tuple__3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_r, __pyx_t_3) < 0) __PYX_ERR(0, 63, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_r, __pyx_t_3) < 0) __PYX_ERR(0, 58, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "proto_mpeg_x.pyx":64
+    /* "proto_mpeg_x.pyx":59
  *             data = image[0]
  *             self.r = data[:, :, 0]
  *             self.g = data[:, :, 1]             # <<<<<<<<<<<<<<
  *             self.b = data[:, :, 2]
  *             self.v_mblocks = np.shape(self.r)[0] // 16
  */
-    __pyx_t_3 = PyObject_GetItem(__pyx_v_data, __pyx_tuple__6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 64, __pyx_L1_error)
+    __pyx_t_3 = PyObject_GetItem(__pyx_v_data, __pyx_tuple__6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 59, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_g, __pyx_t_3) < 0) __PYX_ERR(0, 64, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_g, __pyx_t_3) < 0) __PYX_ERR(0, 59, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "proto_mpeg_x.pyx":65
+    /* "proto_mpeg_x.pyx":60
  *             self.r = data[:, :, 0]
  *             self.g = data[:, :, 1]
  *             self.b = data[:, :, 2]             # <<<<<<<<<<<<<<
  *             self.v_mblocks = np.shape(self.r)[0] // 16
  *             self.h_mblocks = np.shape(self.r)[1] // 16
  */
-    __pyx_t_3 = PyObject_GetItem(__pyx_v_data, __pyx_tuple__9); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 65, __pyx_L1_error)
+    __pyx_t_3 = PyObject_GetItem(__pyx_v_data, __pyx_tuple__9); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 60, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_b, __pyx_t_3) < 0) __PYX_ERR(0, 65, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_b, __pyx_t_3) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "proto_mpeg_x.pyx":66
+    /* "proto_mpeg_x.pyx":61
  *             self.g = data[:, :, 1]
  *             self.b = data[:, :, 2]
  *             self.v_mblocks = np.shape(self.r)[0] // 16             # <<<<<<<<<<<<<<
  *             self.h_mblocks = np.shape(self.r)[1] // 16
  *         else:
  */
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 66, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_shape); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 66, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_shape); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_r); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 66, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_r); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_6 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_5))) {
@@ -1829,14 +1793,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame___init__(CYTHON_UNUSED PyObject 
       }
     }
     if (!__pyx_t_6) {
-      __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 66, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 61, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_3);
     } else {
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_5)) {
         PyObject *__pyx_temp[2] = {__pyx_t_6, __pyx_t_4};
-        __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 66, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 61, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -1845,47 +1809,47 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame___init__(CYTHON_UNUSED PyObject 
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
         PyObject *__pyx_temp[2] = {__pyx_t_6, __pyx_t_4};
-        __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 66, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 61, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else
       #endif
       {
-        __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 66, __pyx_L1_error)
+        __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 61, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_6); __pyx_t_6 = NULL;
         __Pyx_GIVEREF(__pyx_t_4);
         PyTuple_SET_ITEM(__pyx_t_7, 0+1, __pyx_t_4);
         __pyx_t_4 = 0;
-        __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_7, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 66, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_7, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 61, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       }
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_3, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 66, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_3, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyInt_FloorDivideObjC(__pyx_t_5, __pyx_int_16, 16, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 66, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_FloorDivideObjC(__pyx_t_5, __pyx_int_16, 16, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_v_mblocks, __pyx_t_3) < 0) __PYX_ERR(0, 66, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_v_mblocks, __pyx_t_3) < 0) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "proto_mpeg_x.pyx":67
+    /* "proto_mpeg_x.pyx":62
  *             self.b = data[:, :, 2]
  *             self.v_mblocks = np.shape(self.r)[0] // 16
  *             self.h_mblocks = np.shape(self.r)[1] // 16             # <<<<<<<<<<<<<<
  *         else:
  *             self.r = None
  */
-    __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 62, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_shape); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_shape); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 62, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_r); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_r); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 62, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_4 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_7))) {
@@ -1898,14 +1862,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame___init__(CYTHON_UNUSED PyObject 
       }
     }
     if (!__pyx_t_4) {
-      __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 67, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_GOTREF(__pyx_t_3);
     } else {
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_7)) {
         PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_5};
-        __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 67, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -1914,37 +1878,37 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame___init__(CYTHON_UNUSED PyObject 
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_7)) {
         PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_5};
-        __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 67, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       } else
       #endif
       {
-        __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 67, __pyx_L1_error)
+        __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 62, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
         __Pyx_GIVEREF(__pyx_t_5);
         PyTuple_SET_ITEM(__pyx_t_6, 0+1, __pyx_t_5);
         __pyx_t_5 = 0;
-        __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_6, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 67, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_6, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       }
     }
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_3, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_3, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 62, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyInt_FloorDivideObjC(__pyx_t_7, __pyx_int_16, 16, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_FloorDivideObjC(__pyx_t_7, __pyx_int_16, 16, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_h_mblocks, __pyx_t_3) < 0) __PYX_ERR(0, 67, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_h_mblocks, __pyx_t_3) < 0) __PYX_ERR(0, 62, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "proto_mpeg_x.pyx":61
+    /* "proto_mpeg_x.pyx":56
+ *         :param image: RBG image of shape (height, width, 3)
  *         '''
- *         self.QF=QF
  *         if len(image) == 1:             # <<<<<<<<<<<<<<
  *             data = image[0]
  *             self.r = data[:, :, 0]
@@ -1952,7 +1916,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame___init__(CYTHON_UNUSED PyObject 
     goto __pyx_L3;
   }
 
-  /* "proto_mpeg_x.pyx":69
+  /* "proto_mpeg_x.pyx":64
  *             self.h_mblocks = np.shape(self.r)[1] // 16
  *         else:
  *             self.r = None             # <<<<<<<<<<<<<<
@@ -1960,50 +1924,50 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame___init__(CYTHON_UNUSED PyObject 
  *             self.b = None
  */
   /*else*/ {
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_r, Py_None) < 0) __PYX_ERR(0, 69, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_r, Py_None) < 0) __PYX_ERR(0, 64, __pyx_L1_error)
 
-    /* "proto_mpeg_x.pyx":70
+    /* "proto_mpeg_x.pyx":65
  *         else:
  *             self.r = None
  *             self.g = None             # <<<<<<<<<<<<<<
  *             self.b = None
  *             self.v_mblocks = None
  */
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_g, Py_None) < 0) __PYX_ERR(0, 70, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_g, Py_None) < 0) __PYX_ERR(0, 65, __pyx_L1_error)
 
-    /* "proto_mpeg_x.pyx":71
+    /* "proto_mpeg_x.pyx":66
  *             self.r = None
  *             self.g = None
  *             self.b = None             # <<<<<<<<<<<<<<
  *             self.v_mblocks = None
  *             self.h_mblocks = None
  */
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_b, Py_None) < 0) __PYX_ERR(0, 71, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_b, Py_None) < 0) __PYX_ERR(0, 66, __pyx_L1_error)
 
-    /* "proto_mpeg_x.pyx":72
+    /* "proto_mpeg_x.pyx":67
  *             self.g = None
  *             self.b = None
  *             self.v_mblocks = None             # <<<<<<<<<<<<<<
  *             self.h_mblocks = None
  * 
  */
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_v_mblocks, Py_None) < 0) __PYX_ERR(0, 72, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_v_mblocks, Py_None) < 0) __PYX_ERR(0, 67, __pyx_L1_error)
 
-    /* "proto_mpeg_x.pyx":73
+    /* "proto_mpeg_x.pyx":68
  *             self.b = None
  *             self.v_mblocks = None
  *             self.h_mblocks = None             # <<<<<<<<<<<<<<
  * 
  *     def getFrame(self):
  */
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_h_mblocks, Py_None) < 0) __PYX_ERR(0, 73, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_h_mblocks, Py_None) < 0) __PYX_ERR(0, 68, __pyx_L1_error)
   }
   __pyx_L3:;
 
-  /* "proto_mpeg_x.pyx":56
+  /* "proto_mpeg_x.pyx":52
  * 
  * class frame:
- *     def __init__(self, *image,QF=.1):             # <<<<<<<<<<<<<<
+ *     def __init__(self, *image):             # <<<<<<<<<<<<<<
  *         '''
  *         :param image: RBG image of shape (height, width, 3)
  */
@@ -2026,7 +1990,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame___init__(CYTHON_UNUSED PyObject 
   return __pyx_r;
 }
 
-/* "proto_mpeg_x.pyx":75
+/* "proto_mpeg_x.pyx":70
  *             self.h_mblocks = None
  * 
  *     def getFrame(self):             # <<<<<<<<<<<<<<
@@ -2060,25 +2024,25 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_2getFrame(CYTHON_UNUSED PyObject
   PyObject *__pyx_t_6 = NULL;
   __Pyx_RefNannySetupContext("getFrame", 0);
 
-  /* "proto_mpeg_x.pyx":76
+  /* "proto_mpeg_x.pyx":71
  * 
  *     def getFrame(self):
  *         reconstructed_image = np.dstack((self.r, self.g, self.b))             # <<<<<<<<<<<<<<
  *         return reconstructed_image
  * 
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_dstack); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_dstack); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_r); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_r); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_g); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_g); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_b); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_b); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyTuple_New(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_6 = PyTuple_New(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_2);
@@ -2100,14 +2064,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_2getFrame(CYTHON_UNUSED PyObject
     }
   }
   if (!__pyx_t_5) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[2] = {__pyx_t_5, __pyx_t_6};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -2116,20 +2080,20 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_2getFrame(CYTHON_UNUSED PyObject
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[2] = {__pyx_t_5, __pyx_t_6};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     } else
     #endif
     {
-      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 76, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 71, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_5); __pyx_t_5 = NULL;
       __Pyx_GIVEREF(__pyx_t_6);
       PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_6);
       __pyx_t_6 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
@@ -2138,7 +2102,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_2getFrame(CYTHON_UNUSED PyObject
   __pyx_v_reconstructed_image = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":77
+  /* "proto_mpeg_x.pyx":72
  *     def getFrame(self):
  *         reconstructed_image = np.dstack((self.r, self.g, self.b))
  *         return reconstructed_image             # <<<<<<<<<<<<<<
@@ -2150,7 +2114,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_2getFrame(CYTHON_UNUSED PyObject
   __pyx_r = __pyx_v_reconstructed_image;
   goto __pyx_L0;
 
-  /* "proto_mpeg_x.pyx":75
+  /* "proto_mpeg_x.pyx":70
  *             self.h_mblocks = None
  * 
  *     def getFrame(self):             # <<<<<<<<<<<<<<
@@ -2175,7 +2139,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_2getFrame(CYTHON_UNUSED PyObject
   return __pyx_r;
 }
 
-/* "proto_mpeg_x.pyx":79
+/* "proto_mpeg_x.pyx":74
  *         return reconstructed_image
  * 
  *     def load_from_file(self, path):             # <<<<<<<<<<<<<<
@@ -2212,11 +2176,11 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_5load_from_file(PyObject *__pyx_
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_path)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("load_from_file", 1, 2, 2, 1); __PYX_ERR(0, 79, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("load_from_file", 1, 2, 2, 1); __PYX_ERR(0, 74, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "load_from_file") < 0)) __PYX_ERR(0, 79, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "load_from_file") < 0)) __PYX_ERR(0, 74, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -2229,7 +2193,7 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_5load_from_file(PyObject *__pyx_
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("load_from_file", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 79, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("load_from_file", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 74, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("proto_mpeg_x.frame.load_from_file", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2253,19 +2217,19 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_4load_from_file(CYTHON_UNUSED Py
   PyObject *__pyx_t_5 = NULL;
   __Pyx_RefNannySetupContext("load_from_file", 0);
 
-  /* "proto_mpeg_x.pyx":80
+  /* "proto_mpeg_x.pyx":75
  * 
  *     def load_from_file(self, path):
  *         image = skimage.io.imread(path)             # <<<<<<<<<<<<<<
  *         self.r = image[:, :, 0]
- *         self.g = image[:, :, 1]
+ *         self.g = image[:, :, 0]
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_skimage); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_skimage); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_io); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_io); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_imread); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_imread); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -2279,13 +2243,13 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_4load_from_file(CYTHON_UNUSED Py
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_path); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_path); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_path};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
@@ -2293,19 +2257,19 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_4load_from_file(CYTHON_UNUSED Py
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_path};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
     #endif
     {
-      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 80, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 75, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3); __pyx_t_3 = NULL;
       __Pyx_INCREF(__pyx_v_path);
       __Pyx_GIVEREF(__pyx_v_path);
       PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_v_path);
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
@@ -2314,55 +2278,55 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_4load_from_file(CYTHON_UNUSED Py
   __pyx_v_image = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":81
+  /* "proto_mpeg_x.pyx":76
  *     def load_from_file(self, path):
  *         image = skimage.io.imread(path)
  *         self.r = image[:, :, 0]             # <<<<<<<<<<<<<<
- *         self.g = image[:, :, 1]
- *         self.b = image[:, :, 2]
+ *         self.g = image[:, :, 0]
+ *         self.b = image[:, :, 0]
  */
-  __pyx_t_1 = PyObject_GetItem(__pyx_v_image, __pyx_tuple__12); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_image, __pyx_tuple__12); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_r, __pyx_t_1) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_r, __pyx_t_1) < 0) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":82
+  /* "proto_mpeg_x.pyx":77
  *         image = skimage.io.imread(path)
  *         self.r = image[:, :, 0]
- *         self.g = image[:, :, 1]             # <<<<<<<<<<<<<<
- *         self.b = image[:, :, 2]
+ *         self.g = image[:, :, 0]             # <<<<<<<<<<<<<<
+ *         self.b = image[:, :, 0]
  *         self.v_mblocks = np.shape(self.r)[0] // 16
  */
-  __pyx_t_1 = PyObject_GetItem(__pyx_v_image, __pyx_tuple__15); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_image, __pyx_tuple__15); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_g, __pyx_t_1) < 0) __PYX_ERR(0, 82, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_g, __pyx_t_1) < 0) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":83
+  /* "proto_mpeg_x.pyx":78
  *         self.r = image[:, :, 0]
- *         self.g = image[:, :, 1]
- *         self.b = image[:, :, 2]             # <<<<<<<<<<<<<<
+ *         self.g = image[:, :, 0]
+ *         self.b = image[:, :, 0]             # <<<<<<<<<<<<<<
  *         self.v_mblocks = np.shape(self.r)[0] // 16
  *         self.h_mblocks = np.shape(self.r)[1] // 16
  */
-  __pyx_t_1 = PyObject_GetItem(__pyx_v_image, __pyx_tuple__18); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_image, __pyx_tuple__18); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_b, __pyx_t_1) < 0) __PYX_ERR(0, 83, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_b, __pyx_t_1) < 0) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":84
- *         self.g = image[:, :, 1]
- *         self.b = image[:, :, 2]
+  /* "proto_mpeg_x.pyx":79
+ *         self.g = image[:, :, 0]
+ *         self.b = image[:, :, 0]
  *         self.v_mblocks = np.shape(self.r)[0] // 16             # <<<<<<<<<<<<<<
  *         self.h_mblocks = np.shape(self.r)[1] // 16
  * 
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 84, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_shape); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 84, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_shape); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_r); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 84, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_r); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -2375,14 +2339,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_4load_from_file(CYTHON_UNUSED Py
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 84, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_4)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_t_2};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 84, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -2391,47 +2355,47 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_4load_from_file(CYTHON_UNUSED Py
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_t_2};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 84, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     } else
     #endif
     {
-      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 84, __pyx_L1_error)
+      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 79, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __pyx_t_3 = NULL;
       __Pyx_GIVEREF(__pyx_t_2);
       PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 84, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 84, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyInt_FloorDivideObjC(__pyx_t_4, __pyx_int_16, 16, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 84, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_FloorDivideObjC(__pyx_t_4, __pyx_int_16, 16, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_v_mblocks, __pyx_t_1) < 0) __PYX_ERR(0, 84, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_v_mblocks, __pyx_t_1) < 0) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":85
- *         self.b = image[:, :, 2]
+  /* "proto_mpeg_x.pyx":80
+ *         self.b = image[:, :, 0]
  *         self.v_mblocks = np.shape(self.r)[0] // 16
  *         self.h_mblocks = np.shape(self.r)[1] // 16             # <<<<<<<<<<<<<<
  * 
  *     def show(self):
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_shape); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 85, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_shape); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_r); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_r); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_2 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_5))) {
@@ -2444,14 +2408,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_4load_from_file(CYTHON_UNUSED Py
     }
   }
   if (!__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_5)) {
       PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_t_4};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -2460,35 +2424,35 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_4load_from_file(CYTHON_UNUSED Py
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
       PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_t_4};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     } else
     #endif
     {
-      __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 85, __pyx_L1_error)
+      __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 80, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2); __pyx_t_2 = NULL;
       __Pyx_GIVEREF(__pyx_t_4);
       PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_4);
       __pyx_t_4 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_1, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 85, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_1, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyInt_FloorDivideObjC(__pyx_t_5, __pyx_int_16, 16, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_FloorDivideObjC(__pyx_t_5, __pyx_int_16, 16, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_h_mblocks, __pyx_t_1) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_h_mblocks, __pyx_t_1) < 0) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":79
+  /* "proto_mpeg_x.pyx":74
  *         return reconstructed_image
  * 
  *     def load_from_file(self, path):             # <<<<<<<<<<<<<<
@@ -2514,7 +2478,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_4load_from_file(CYTHON_UNUSED Py
   return __pyx_r;
 }
 
-/* "proto_mpeg_x.pyx":87
+/* "proto_mpeg_x.pyx":82
  *         self.h_mblocks = np.shape(self.r)[1] // 16
  * 
  *     def show(self):             # <<<<<<<<<<<<<<
@@ -2548,25 +2512,25 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_6show(CYTHON_UNUSED PyObject *__
   PyObject *__pyx_t_6 = NULL;
   __Pyx_RefNannySetupContext("show", 0);
 
-  /* "proto_mpeg_x.pyx":88
+  /* "proto_mpeg_x.pyx":83
  * 
  *     def show(self):
  *         reconstructed_image = np.dstack((self.r, self.g, self.b))             # <<<<<<<<<<<<<<
  *         ec504viewer.view_single(reconstructed_image)
  * 
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_dstack); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_dstack); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_r); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_r); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_g); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_g); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_b); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_b); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyTuple_New(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_6 = PyTuple_New(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_2);
@@ -2588,14 +2552,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_6show(CYTHON_UNUSED PyObject *__
     }
   }
   if (!__pyx_t_5) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[2] = {__pyx_t_5, __pyx_t_6};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -2604,20 +2568,20 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_6show(CYTHON_UNUSED PyObject *__
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[2] = {__pyx_t_5, __pyx_t_6};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     } else
     #endif
     {
-      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 88, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 83, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_5); __pyx_t_5 = NULL;
       __Pyx_GIVEREF(__pyx_t_6);
       PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_6);
       __pyx_t_6 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
@@ -2626,16 +2590,16 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_6show(CYTHON_UNUSED PyObject *__
   __pyx_v_reconstructed_image = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":89
+  /* "proto_mpeg_x.pyx":84
  *     def show(self):
  *         reconstructed_image = np.dstack((self.r, self.g, self.b))
  *         ec504viewer.view_single(reconstructed_image)             # <<<<<<<<<<<<<<
  * 
  *     def image_to_blocks(self):
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_ec504viewer); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_ec504viewer); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 84, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_view_single); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_view_single); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 84, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -2649,13 +2613,13 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_6show(CYTHON_UNUSED PyObject *__
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_reconstructed_image); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_reconstructed_image); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 84, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_4)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_reconstructed_image};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 84, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
@@ -2663,19 +2627,19 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_6show(CYTHON_UNUSED PyObject *__
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_reconstructed_image};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 84, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
     #endif
     {
-      __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 89, __pyx_L1_error)
+      __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 84, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3); __pyx_t_3 = NULL;
       __Pyx_INCREF(__pyx_v_reconstructed_image);
       __Pyx_GIVEREF(__pyx_v_reconstructed_image);
       PyTuple_SET_ITEM(__pyx_t_6, 0+1, __pyx_v_reconstructed_image);
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 84, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     }
@@ -2683,7 +2647,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_6show(CYTHON_UNUSED PyObject *__
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":87
+  /* "proto_mpeg_x.pyx":82
  *         self.h_mblocks = np.shape(self.r)[1] // 16
  * 
  *     def show(self):             # <<<<<<<<<<<<<<
@@ -2710,7 +2674,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_6show(CYTHON_UNUSED PyObject *__
   return __pyx_r;
 }
 
-/* "proto_mpeg_x.pyx":91
+/* "proto_mpeg_x.pyx":86
  *         ec504viewer.view_single(reconstructed_image)
  * 
  *     def image_to_blocks(self):             # <<<<<<<<<<<<<<
@@ -2746,7 +2710,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_8image_to_blocks(CYTHON_UNUSED P
   PyObject *__pyx_t_8 = NULL;
   __Pyx_RefNannySetupContext("image_to_blocks", 0);
 
-  /* "proto_mpeg_x.pyx":96
+  /* "proto_mpeg_x.pyx":91
  *         :return: (x, 8, 8) shaped array. x depends on dimensions of original image
  *         """
  *         return proto_mpeg_computation.image_to_blocks(self.r, self.g, self.b)             # <<<<<<<<<<<<<<
@@ -2754,16 +2718,16 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_8image_to_blocks(CYTHON_UNUSED P
  *     def blocks_to_image(self, blocks):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_proto_mpeg_computation); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_proto_mpeg_computation); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 91, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_image_to_blocks); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_image_to_blocks); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 91, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_r); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_r); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 91, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_g); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_g); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 91, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_b); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_b); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 91, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_6 = NULL;
   __pyx_t_7 = 0;
@@ -2780,7 +2744,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_8image_to_blocks(CYTHON_UNUSED P
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_6, __pyx_t_2, __pyx_t_4, __pyx_t_5};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 96, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 91, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -2791,7 +2755,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_8image_to_blocks(CYTHON_UNUSED P
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_6, __pyx_t_2, __pyx_t_4, __pyx_t_5};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 96, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_7, 3+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 91, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -2800,7 +2764,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_8image_to_blocks(CYTHON_UNUSED P
   } else
   #endif
   {
-    __pyx_t_8 = PyTuple_New(3+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 96, __pyx_L1_error)
+    __pyx_t_8 = PyTuple_New(3+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 91, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     if (__pyx_t_6) {
       __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -2814,7 +2778,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_8image_to_blocks(CYTHON_UNUSED P
     __pyx_t_2 = 0;
     __pyx_t_4 = 0;
     __pyx_t_5 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 96, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 91, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
@@ -2823,7 +2787,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_8image_to_blocks(CYTHON_UNUSED P
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "proto_mpeg_x.pyx":91
+  /* "proto_mpeg_x.pyx":86
  *         ec504viewer.view_single(reconstructed_image)
  * 
  *     def image_to_blocks(self):             # <<<<<<<<<<<<<<
@@ -2848,7 +2812,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_8image_to_blocks(CYTHON_UNUSED P
   return __pyx_r;
 }
 
-/* "proto_mpeg_x.pyx":98
+/* "proto_mpeg_x.pyx":93
  *         return proto_mpeg_computation.image_to_blocks(self.r, self.g, self.b)
  * 
  *     def blocks_to_image(self, blocks):             # <<<<<<<<<<<<<<
@@ -2886,11 +2850,11 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_11blocks_to_image(PyObject *__py
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_blocks)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("blocks_to_image", 1, 2, 2, 1); __PYX_ERR(0, 98, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("blocks_to_image", 1, 2, 2, 1); __PYX_ERR(0, 93, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "blocks_to_image") < 0)) __PYX_ERR(0, 98, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "blocks_to_image") < 0)) __PYX_ERR(0, 93, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -2903,7 +2867,7 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_11blocks_to_image(PyObject *__py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("blocks_to_image", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 98, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("blocks_to_image", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 93, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("proto_mpeg_x.frame.blocks_to_image", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2929,7 +2893,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_10blocks_to_image(CYTHON_UNUSED 
   int __pyx_t_8;
   __Pyx_RefNannySetupContext("blocks_to_image", 0);
 
-  /* "proto_mpeg_x.pyx":107
+  /* "proto_mpeg_x.pyx":102
  * 
  *         # TODO: Investigate why this function gets floats instead of uint8s from the decoder
  *         return proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), self.v_mblocks, self.h_mblocks)             # <<<<<<<<<<<<<<
@@ -2937,16 +2901,16 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_10blocks_to_image(CYTHON_UNUSED 
  *     def set_image(self, blocks):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_proto_mpeg_computation); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_proto_mpeg_computation); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_blocks_to_image); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_blocks_to_image); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_blocks, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_blocks, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_uint8); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_uint8); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
@@ -2960,14 +2924,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_10blocks_to_image(CYTHON_UNUSED 
     }
   }
   if (!__pyx_t_5) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_4)) {
       PyObject *__pyx_temp[2] = {__pyx_t_5, __pyx_t_6};
-      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -2976,28 +2940,28 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_10blocks_to_image(CYTHON_UNUSED 
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
       PyObject *__pyx_temp[2] = {__pyx_t_5, __pyx_t_6};
-      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     } else
     #endif
     {
-      __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 107, __pyx_L1_error)
+      __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 102, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
       __Pyx_GIVEREF(__pyx_t_6);
       PyTuple_SET_ITEM(__pyx_t_7, 0+1, __pyx_t_6);
       __pyx_t_6 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     }
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_v_mblocks); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_v_mblocks); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_h_mblocks); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_h_mblocks); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __pyx_t_6 = NULL;
   __pyx_t_8 = 0;
@@ -3014,7 +2978,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_10blocks_to_image(CYTHON_UNUSED 
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_6, __pyx_t_2, __pyx_t_4, __pyx_t_7};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 107, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 102, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -3025,7 +2989,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_10blocks_to_image(CYTHON_UNUSED 
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_6, __pyx_t_2, __pyx_t_4, __pyx_t_7};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 107, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 102, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -3034,7 +2998,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_10blocks_to_image(CYTHON_UNUSED 
   } else
   #endif
   {
-    __pyx_t_5 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 107, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 102, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     if (__pyx_t_6) {
       __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -3048,7 +3012,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_10blocks_to_image(CYTHON_UNUSED 
     __pyx_t_2 = 0;
     __pyx_t_4 = 0;
     __pyx_t_7 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 107, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 102, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
@@ -3057,7 +3021,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_10blocks_to_image(CYTHON_UNUSED 
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "proto_mpeg_x.pyx":98
+  /* "proto_mpeg_x.pyx":93
  *         return proto_mpeg_computation.image_to_blocks(self.r, self.g, self.b)
  * 
  *     def blocks_to_image(self, blocks):             # <<<<<<<<<<<<<<
@@ -3082,7 +3046,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_10blocks_to_image(CYTHON_UNUSED 
   return __pyx_r;
 }
 
-/* "proto_mpeg_x.pyx":109
+/* "proto_mpeg_x.pyx":104
  *         return proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), self.v_mblocks, self.h_mblocks)
  * 
  *     def set_image(self, blocks):             # <<<<<<<<<<<<<<
@@ -3120,11 +3084,11 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_13set_image(PyObject *__pyx_self
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_blocks)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("set_image", 1, 2, 2, 1); __PYX_ERR(0, 109, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("set_image", 1, 2, 2, 1); __PYX_ERR(0, 104, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "set_image") < 0)) __PYX_ERR(0, 109, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "set_image") < 0)) __PYX_ERR(0, 104, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -3137,7 +3101,7 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_13set_image(PyObject *__pyx_self
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("set_image", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 109, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("set_image", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 104, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("proto_mpeg_x.frame.set_image", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3160,14 +3124,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_12set_image(CYTHON_UNUSED PyObje
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("set_image", 0);
 
-  /* "proto_mpeg_x.pyx":116
+  /* "proto_mpeg_x.pyx":111
  *         """
  *         #print("type seen by set_image function:", type(blocks[0, 0, 0]))
  *         image = self.blocks_to_image(blocks)             # <<<<<<<<<<<<<<
  *         (self.r, self.g, self.b) = (image[:, :, 0], image[:, :, 1], image[:, :, 2])
  *         # (self.r, self.g, self.b) = self.blocks_to_image(blocks)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_blocks_to_image); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_blocks_to_image); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -3180,13 +3144,13 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_12set_image(CYTHON_UNUSED PyObje
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_blocks); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_blocks); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_blocks};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
@@ -3194,19 +3158,19 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_12set_image(CYTHON_UNUSED PyObje
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_blocks};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
     #endif
     {
-      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 111, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3); __pyx_t_3 = NULL;
       __Pyx_INCREF(__pyx_v_blocks);
       __Pyx_GIVEREF(__pyx_v_blocks);
       PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_v_blocks);
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
@@ -3215,27 +3179,27 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_12set_image(CYTHON_UNUSED PyObje
   __pyx_v_image = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":117
+  /* "proto_mpeg_x.pyx":112
  *         #print("type seen by set_image function:", type(blocks[0, 0, 0]))
  *         image = self.blocks_to_image(blocks)
  *         (self.r, self.g, self.b) = (image[:, :, 0], image[:, :, 1], image[:, :, 2])             # <<<<<<<<<<<<<<
  *         # (self.r, self.g, self.b) = self.blocks_to_image(blocks)
  * 
  */
-  __pyx_t_1 = PyObject_GetItem(__pyx_v_image, __pyx_tuple__21); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_image, __pyx_tuple__21); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_GetItem(__pyx_v_image, __pyx_tuple__24); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_t_2 = PyObject_GetItem(__pyx_v_image, __pyx_tuple__24); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = PyObject_GetItem(__pyx_v_image, __pyx_tuple__27); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_t_4 = PyObject_GetItem(__pyx_v_image, __pyx_tuple__27); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_r, __pyx_t_1) < 0) __PYX_ERR(0, 117, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_r, __pyx_t_1) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_g, __pyx_t_2) < 0) __PYX_ERR(0, 117, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_g, __pyx_t_2) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_b, __pyx_t_4) < 0) __PYX_ERR(0, 117, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_b, __pyx_t_4) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "proto_mpeg_x.pyx":109
+  /* "proto_mpeg_x.pyx":104
  *         return proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), self.v_mblocks, self.h_mblocks)
  * 
  *     def set_image(self, blocks):             # <<<<<<<<<<<<<<
@@ -3260,19 +3224,19 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_12set_image(CYTHON_UNUSED PyObje
   return __pyx_r;
 }
 
-/* "proto_mpeg_x.pyx":120
+/* "proto_mpeg_x.pyx":115
  *         # (self.r, self.g, self.b) = self.blocks_to_image(blocks)
  * 
  *     def quantize_intra(self, F):             # <<<<<<<<<<<<<<
- *         quant_matrix=np.ceil(quant_intra*self.QF)
- *         quant_matrix[quant_matrix>255]=255
+ *         return np.rint(F/quant_intra).astype(np.int)
+ * 
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_12proto_mpeg_x_5frame_15quantize_intra(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_12proto_mpeg_x_5frame_15quantize_intra = {"quantize_intra", (PyCFunction)__pyx_pw_12proto_mpeg_x_5frame_15quantize_intra, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_12proto_mpeg_x_5frame_15quantize_intra(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v_self = 0;
+  CYTHON_UNUSED PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_F = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -3297,11 +3261,11 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_15quantize_intra(PyObject *__pyx
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_F)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("quantize_intra", 1, 2, 2, 1); __PYX_ERR(0, 120, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("quantize_intra", 1, 2, 2, 1); __PYX_ERR(0, 115, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "quantize_intra") < 0)) __PYX_ERR(0, 120, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "quantize_intra") < 0)) __PYX_ERR(0, 115, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -3314,7 +3278,7 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_15quantize_intra(PyObject *__pyx
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("quantize_intra", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 120, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("quantize_intra", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 115, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("proto_mpeg_x.frame.quantize_intra", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3327,8 +3291,7 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_15quantize_intra(PyObject *__pyx
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_12proto_mpeg_x_5frame_14quantize_intra(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_F) {
-  PyObject *__pyx_v_quant_matrix = NULL;
+static PyObject *__pyx_pf_12proto_mpeg_x_5frame_14quantize_intra(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_F) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3339,211 +3302,134 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_14quantize_intra(CYTHON_UNUSED P
   PyObject *__pyx_t_6 = NULL;
   __Pyx_RefNannySetupContext("quantize_intra", 0);
 
-  /* "proto_mpeg_x.pyx":121
+  /* "proto_mpeg_x.pyx":116
  * 
  *     def quantize_intra(self, F):
- *         quant_matrix=np.ceil(quant_intra*self.QF)             # <<<<<<<<<<<<<<
- *         quant_matrix[quant_matrix>255]=255
- *         return np.rint(F/quant_matrix).astype(np.int)
- */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 121, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_ceil); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 121, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_quant_intra); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 121, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_QF); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 121, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyNumber_Multiply(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 121, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_4)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_4);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-    }
-  }
-  if (!__pyx_t_4) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_GOTREF(__pyx_t_1);
-  } else {
-    #if CYTHON_FAST_PYCALL
-    if (PyFunction_Check(__pyx_t_3)) {
-      PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_5};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_GOTREF(__pyx_t_1);
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    } else
-    #endif
-    #if CYTHON_FAST_PYCCALL
-    if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
-      PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_5};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_GOTREF(__pyx_t_1);
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    } else
-    #endif
-    {
-      __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 121, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4); __pyx_t_4 = NULL;
-      __Pyx_GIVEREF(__pyx_t_5);
-      PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_5);
-      __pyx_t_5 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    }
-  }
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_v_quant_matrix = __pyx_t_1;
-  __pyx_t_1 = 0;
-
-  /* "proto_mpeg_x.pyx":122
- *     def quantize_intra(self, F):
- *         quant_matrix=np.ceil(quant_intra*self.QF)
- *         quant_matrix[quant_matrix>255]=255             # <<<<<<<<<<<<<<
- *         return np.rint(F/quant_matrix).astype(np.int)
- * 
- */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_quant_matrix, __pyx_int_255, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
-  if (unlikely(PyObject_SetItem(__pyx_v_quant_matrix, __pyx_t_1, __pyx_int_255) < 0)) __PYX_ERR(0, 122, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "proto_mpeg_x.pyx":123
- *         quant_matrix=np.ceil(quant_intra*self.QF)
- *         quant_matrix[quant_matrix>255]=255
- *         return np.rint(F/quant_matrix).astype(np.int)             # <<<<<<<<<<<<<<
+ *         return np.rint(F/quant_intra).astype(np.int)             # <<<<<<<<<<<<<<
  * 
  *     def dequantize_intra(self, F):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_rint); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 123, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyNumber_Divide(__pyx_v_F, __pyx_v_quant_matrix); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_5))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_5);
-    if (likely(__pyx_t_4)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
-      __Pyx_INCREF(__pyx_t_4);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_5, function);
-    }
-  }
-  if (!__pyx_t_4) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_GOTREF(__pyx_t_3);
-  } else {
-    #if CYTHON_FAST_PYCALL
-    if (PyFunction_Check(__pyx_t_5)) {
-      PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_2};
-      __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_GOTREF(__pyx_t_3);
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    } else
-    #endif
-    #if CYTHON_FAST_PYCCALL
-    if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
-      PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_2};
-      __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_GOTREF(__pyx_t_3);
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    } else
-    #endif
-    {
-      __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 123, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_6);
-      __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
-      __Pyx_GIVEREF(__pyx_t_2);
-      PyTuple_SET_ITEM(__pyx_t_6, 0+1, __pyx_t_2);
-      __pyx_t_2 = 0;
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_6, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    }
-  }
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 123, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 123, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_rint); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_quant_intra); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_5 = __Pyx_PyNumber_Divide(__pyx_v_F, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_5);
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
     if (likely(__pyx_t_3)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
       __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_5, function);
+      __Pyx_DECREF_SET(__pyx_t_4, function);
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_GOTREF(__pyx_t_2);
+  } else {
+    #if CYTHON_FAST_PYCALL
+    if (PyFunction_Check(__pyx_t_4)) {
+      PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_t_5};
+      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
+      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    } else
+    #endif
+    #if CYTHON_FAST_PYCCALL
+    if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
+      PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_t_5};
+      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
+      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    } else
+    #endif
+    {
+      __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 116, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3); __pyx_t_3 = NULL;
+      __Pyx_GIVEREF(__pyx_t_5);
+      PyTuple_SET_ITEM(__pyx_t_6, 0+1, __pyx_t_5);
+      __pyx_t_5 = 0;
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    }
+  }
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_int); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_4);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_4, function);
+    }
+  }
+  if (!__pyx_t_2) {
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
-    if (PyFunction_Check(__pyx_t_5)) {
-      PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_t_6};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (PyFunction_Check(__pyx_t_4)) {
+      PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_t_6};
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
+      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     } else
     #endif
     #if CYTHON_FAST_PYCCALL
-    if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
-      PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_t_6};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
+      PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_t_6};
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
+      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     } else
     #endif
     {
-      __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3); __pyx_t_3 = NULL;
+      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 116, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_5);
+      __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2); __pyx_t_2 = NULL;
       __Pyx_GIVEREF(__pyx_t_6);
-      PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_6);
+      PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_6);
       __pyx_t_6 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
   }
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "proto_mpeg_x.pyx":120
+  /* "proto_mpeg_x.pyx":115
  *         # (self.r, self.g, self.b) = self.blocks_to_image(blocks)
  * 
  *     def quantize_intra(self, F):             # <<<<<<<<<<<<<<
- *         quant_matrix=np.ceil(quant_intra*self.QF)
- *         quant_matrix[quant_matrix>255]=255
+ *         return np.rint(F/quant_intra).astype(np.int)
+ * 
  */
 
   /* function exit code */
@@ -3557,25 +3443,24 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_14quantize_intra(CYTHON_UNUSED P
   __Pyx_AddTraceback("proto_mpeg_x.frame.quantize_intra", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_quant_matrix);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "proto_mpeg_x.pyx":125
- *         return np.rint(F/quant_matrix).astype(np.int)
+/* "proto_mpeg_x.pyx":118
+ *         return np.rint(F/quant_intra).astype(np.int)
  * 
  *     def dequantize_intra(self, F):             # <<<<<<<<<<<<<<
- *         quant_matrix=np.ceil(quant_intra*self.QF)
- *         quant_matrix[quant_matrix>255]=255
+ *         return F*quant_intra
+ * 
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_12proto_mpeg_x_5frame_17dequantize_intra(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_12proto_mpeg_x_5frame_17dequantize_intra = {"dequantize_intra", (PyCFunction)__pyx_pw_12proto_mpeg_x_5frame_17dequantize_intra, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_12proto_mpeg_x_5frame_17dequantize_intra(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v_self = 0;
+  CYTHON_UNUSED PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_F = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -3600,11 +3485,11 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_17dequantize_intra(PyObject *__p
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_F)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("dequantize_intra", 1, 2, 2, 1); __PYX_ERR(0, 125, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("dequantize_intra", 1, 2, 2, 1); __PYX_ERR(0, 118, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "dequantize_intra") < 0)) __PYX_ERR(0, 125, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "dequantize_intra") < 0)) __PYX_ERR(0, 118, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -3617,7 +3502,7 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_17dequantize_intra(PyObject *__p
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("dequantize_intra", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 125, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("dequantize_intra", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 118, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("proto_mpeg_x.frame.dequantize_intra", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3630,137 +3515,52 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_17dequantize_intra(PyObject *__p
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_12proto_mpeg_x_5frame_16dequantize_intra(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_F) {
-  PyObject *__pyx_v_quant_matrix = NULL;
+static PyObject *__pyx_pf_12proto_mpeg_x_5frame_16dequantize_intra(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_F) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  PyObject *__pyx_t_5 = NULL;
   __Pyx_RefNannySetupContext("dequantize_intra", 0);
 
-  /* "proto_mpeg_x.pyx":126
+  /* "proto_mpeg_x.pyx":119
  * 
  *     def dequantize_intra(self, F):
- *         quant_matrix=np.ceil(quant_intra*self.QF)             # <<<<<<<<<<<<<<
- *         quant_matrix[quant_matrix>255]=255
- *         return F*quant_matrix
- */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_ceil); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 126, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_quant_intra); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_QF); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 126, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyNumber_Multiply(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 126, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_4)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_4);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-    }
-  }
-  if (!__pyx_t_4) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 126, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_GOTREF(__pyx_t_1);
-  } else {
-    #if CYTHON_FAST_PYCALL
-    if (PyFunction_Check(__pyx_t_3)) {
-      PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_5};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 126, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_GOTREF(__pyx_t_1);
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    } else
-    #endif
-    #if CYTHON_FAST_PYCCALL
-    if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
-      PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_5};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 126, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_GOTREF(__pyx_t_1);
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    } else
-    #endif
-    {
-      __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4); __pyx_t_4 = NULL;
-      __Pyx_GIVEREF(__pyx_t_5);
-      PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_5);
-      __pyx_t_5 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 126, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    }
-  }
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_v_quant_matrix = __pyx_t_1;
-  __pyx_t_1 = 0;
-
-  /* "proto_mpeg_x.pyx":127
- *     def dequantize_intra(self, F):
- *         quant_matrix=np.ceil(quant_intra*self.QF)
- *         quant_matrix[quant_matrix>255]=255             # <<<<<<<<<<<<<<
- *         return F*quant_matrix
- * 
- */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_quant_matrix, __pyx_int_255, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 127, __pyx_L1_error)
-  if (unlikely(PyObject_SetItem(__pyx_v_quant_matrix, __pyx_t_1, __pyx_int_255) < 0)) __PYX_ERR(0, 127, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "proto_mpeg_x.pyx":128
- *         quant_matrix=np.ceil(quant_intra*self.QF)
- *         quant_matrix[quant_matrix>255]=255
- *         return F*quant_matrix             # <<<<<<<<<<<<<<
+ *         return F*quant_intra             # <<<<<<<<<<<<<<
  * 
  *     def zigzag_from_block(self, F):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyNumber_Multiply(__pyx_v_F, __pyx_v_quant_matrix); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_quant_intra); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
+  __pyx_t_2 = PyNumber_Multiply(__pyx_v_F, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 119, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "proto_mpeg_x.pyx":125
- *         return np.rint(F/quant_matrix).astype(np.int)
+  /* "proto_mpeg_x.pyx":118
+ *         return np.rint(F/quant_intra).astype(np.int)
  * 
  *     def dequantize_intra(self, F):             # <<<<<<<<<<<<<<
- *         quant_matrix=np.ceil(quant_intra*self.QF)
- *         quant_matrix[quant_matrix>255]=255
+ *         return F*quant_intra
+ * 
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_5);
   __Pyx_AddTraceback("proto_mpeg_x.frame.dequantize_intra", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_quant_matrix);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "proto_mpeg_x.pyx":130
- *         return F*quant_matrix
+/* "proto_mpeg_x.pyx":121
+ *         return F*quant_intra
  * 
  *     def zigzag_from_block(self, F):             # <<<<<<<<<<<<<<
  *         """
@@ -3797,11 +3597,11 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_19zigzag_from_block(PyObject *__
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_F)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("zigzag_from_block", 1, 2, 2, 1); __PYX_ERR(0, 130, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("zigzag_from_block", 1, 2, 2, 1); __PYX_ERR(0, 121, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "zigzag_from_block") < 0)) __PYX_ERR(0, 130, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "zigzag_from_block") < 0)) __PYX_ERR(0, 121, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -3814,7 +3614,7 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_19zigzag_from_block(PyObject *__
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("zigzag_from_block", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 130, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("zigzag_from_block", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 121, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("proto_mpeg_x.frame.zigzag_from_block", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3851,14 +3651,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
   __Pyx_RefNannySetupContext("zigzag_from_block", 0);
   __Pyx_INCREF(__pyx_v_F);
 
-  /* "proto_mpeg_x.pyx":138
+  /* "proto_mpeg_x.pyx":129
  * 
  *         # First, we flatten the DCT array
  *         F = F.flatten()             # <<<<<<<<<<<<<<
  * 
  *         # Create a blank encoder string
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_F, __pyx_n_s_flatten); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_F, __pyx_n_s_flatten); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 129, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -3871,92 +3671,92 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
     }
   }
   if (__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 129, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 129, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF_SET(__pyx_v_F, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":141
+  /* "proto_mpeg_x.pyx":132
  * 
  *         # Create a blank encoder string
  *         encoder_string = list()             # <<<<<<<<<<<<<<
  * 
  *         # Insert the DC value
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_encoder_string = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":144
+  /* "proto_mpeg_x.pyx":135
  * 
  *         # Insert the DC value
  *         if F[0] < 0 or F[0] > 255:             # <<<<<<<<<<<<<<
  *             raise Warning("DC term " + str(F[0]) + " does not fit in uint8 format")
  *         encoder_string.append('uint:8=' + str(F[0]))
  */
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_F, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_F, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_int_0, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_int_0, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (!__pyx_t_5) {
   } else {
     __pyx_t_4 = __pyx_t_5;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_F, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_F, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_int_255, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_int_255, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_4 = __pyx_t_5;
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_4) {
 
-    /* "proto_mpeg_x.pyx":145
+    /* "proto_mpeg_x.pyx":136
  *         # Insert the DC value
  *         if F[0] < 0 or F[0] > 255:
  *             raise Warning("DC term " + str(F[0]) + " does not fit in uint8 format")             # <<<<<<<<<<<<<<
  *         encoder_string.append('uint:8=' + str(F[0]))
  * 
  */
-    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_F, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 145, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_F, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 145, __pyx_L1_error)
+    __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
     __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 145, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyNumber_Add(__pyx_kp_s_DC_term, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 145, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Add(__pyx_kp_s_DC_term, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Add(__pyx_t_2, __pyx_kp_s_does_not_fit_in_uint8_format); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 145, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Add(__pyx_t_2, __pyx_kp_s_does_not_fit_in_uint8_format); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 145, __pyx_L1_error)
+    __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
     __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_Warning, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 145, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_Warning, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 145, __pyx_L1_error)
+    __PYX_ERR(0, 136, __pyx_L1_error)
 
-    /* "proto_mpeg_x.pyx":144
+    /* "proto_mpeg_x.pyx":135
  * 
  *         # Insert the DC value
  *         if F[0] < 0 or F[0] > 255:             # <<<<<<<<<<<<<<
@@ -3965,30 +3765,30 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
  */
   }
 
-  /* "proto_mpeg_x.pyx":146
+  /* "proto_mpeg_x.pyx":137
  *         if F[0] < 0 or F[0] > 255:
  *             raise Warning("DC term " + str(F[0]) + " does not fit in uint8 format")
  *         encoder_string.append('uint:8=' + str(F[0]))             # <<<<<<<<<<<<<<
  * 
  *         # Insert a series of AC DCT coefficients in run/level format
  */
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_F, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_F, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Add(__pyx_kp_s_uint_8, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Add(__pyx_kp_s_uint_8, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_encoder_string, __pyx_t_2); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_encoder_string, __pyx_t_2); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "proto_mpeg_x.pyx":149
+  /* "proto_mpeg_x.pyx":140
  * 
  *         # Insert a series of AC DCT coefficients in run/level format
  *         zero_count = 0             # <<<<<<<<<<<<<<
@@ -3998,25 +3798,25 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
   __Pyx_INCREF(__pyx_int_0);
   __pyx_v_zero_count = __pyx_int_0;
 
-  /* "proto_mpeg_x.pyx":150
+  /* "proto_mpeg_x.pyx":141
  *         # Insert a series of AC DCT coefficients in run/level format
  *         zero_count = 0
  *         for i in zz_indices[1:]:             # <<<<<<<<<<<<<<
  *             coeff = F[i]
  *             if coeff == 0:
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_zz_indices); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_zz_indices); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_t_2, 1, 0, NULL, NULL, &__pyx_slice__28, 1, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_t_2, 1, 0, NULL, NULL, &__pyx_slice__28, 1, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
     __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_7 = 0;
     __pyx_t_8 = NULL;
   } else {
-    __pyx_t_7 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
+    __pyx_t_7 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_8 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 150, __pyx_L1_error)
+    __pyx_t_8 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 141, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
@@ -4024,17 +3824,17 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
       if (likely(PyList_CheckExact(__pyx_t_2))) {
         if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 150, __pyx_L1_error)
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 141, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       } else {
         if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 150, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 141, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       }
@@ -4044,7 +3844,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 150, __pyx_L1_error)
+          else __PYX_ERR(0, 141, __pyx_L1_error)
         }
         break;
       }
@@ -4053,44 +3853,44 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
     __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "proto_mpeg_x.pyx":151
+    /* "proto_mpeg_x.pyx":142
  *         zero_count = 0
  *         for i in zz_indices[1:]:
  *             coeff = F[i]             # <<<<<<<<<<<<<<
  *             if coeff == 0:
  *                 zero_count = zero_count + 1
  */
-    __pyx_t_1 = PyObject_GetItem(__pyx_v_F, __pyx_v_i); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 151, __pyx_L1_error)
+    __pyx_t_1 = PyObject_GetItem(__pyx_v_F, __pyx_v_i); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 142, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_XDECREF_SET(__pyx_v_coeff, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "proto_mpeg_x.pyx":152
+    /* "proto_mpeg_x.pyx":143
  *         for i in zz_indices[1:]:
  *             coeff = F[i]
  *             if coeff == 0:             # <<<<<<<<<<<<<<
  *                 zero_count = zero_count + 1
  *             else:
  */
-    __pyx_t_1 = __Pyx_PyInt_EqObjC(__pyx_v_coeff, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 152, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyInt_EqObjC(__pyx_v_coeff, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 143, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 152, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 143, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (__pyx_t_4) {
 
-      /* "proto_mpeg_x.pyx":153
+      /* "proto_mpeg_x.pyx":144
  *             coeff = F[i]
  *             if coeff == 0:
  *                 zero_count = zero_count + 1             # <<<<<<<<<<<<<<
  *             else:
  *                 encoder_string.append((zero_count, coeff))
  */
-      __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_zero_count, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 153, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_zero_count, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 144, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF_SET(__pyx_v_zero_count, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "proto_mpeg_x.pyx":152
+      /* "proto_mpeg_x.pyx":143
  *         for i in zz_indices[1:]:
  *             coeff = F[i]
  *             if coeff == 0:             # <<<<<<<<<<<<<<
@@ -4100,7 +3900,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
       goto __pyx_L8;
     }
 
-    /* "proto_mpeg_x.pyx":155
+    /* "proto_mpeg_x.pyx":146
  *                 zero_count = zero_count + 1
  *             else:
  *                 encoder_string.append((zero_count, coeff))             # <<<<<<<<<<<<<<
@@ -4108,7 +3908,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
  *         # Finally, append an EOB and return the result
  */
     /*else*/ {
-      __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 155, __pyx_L1_error)
+      __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_INCREF(__pyx_v_zero_count);
       __Pyx_GIVEREF(__pyx_v_zero_count);
@@ -4116,10 +3916,10 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
       __Pyx_INCREF(__pyx_v_coeff);
       __Pyx_GIVEREF(__pyx_v_coeff);
       PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_coeff);
-      __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_encoder_string, __pyx_t_1); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 155, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_encoder_string, __pyx_t_1); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 146, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "proto_mpeg_x.pyx":156
+      /* "proto_mpeg_x.pyx":147
  *             else:
  *                 encoder_string.append((zero_count, coeff))
  *                 zero_count = 0             # <<<<<<<<<<<<<<
@@ -4131,7 +3931,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
     }
     __pyx_L8:;
 
-    /* "proto_mpeg_x.pyx":150
+    /* "proto_mpeg_x.pyx":141
  *         # Insert a series of AC DCT coefficients in run/level format
  *         zero_count = 0
  *         for i in zz_indices[1:]:             # <<<<<<<<<<<<<<
@@ -4141,16 +3941,16 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "proto_mpeg_x.pyx":158
+  /* "proto_mpeg_x.pyx":149
  *                 zero_count = 0
  *         # Finally, append an EOB and return the result
  *         encoder_string.append('EOB')             # <<<<<<<<<<<<<<
  * 
  *         # ERROR CHECKING - DISABLE WHEN POSSIBLE
  */
-  __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_encoder_string, __pyx_n_s_EOB); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 158, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_encoder_string, __pyx_n_s_EOB); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 149, __pyx_L1_error)
 
-  /* "proto_mpeg_x.pyx":161
+  /* "proto_mpeg_x.pyx":152
  * 
  *         # ERROR CHECKING - DISABLE WHEN POSSIBLE
  *         min_length = 1  # set to 1 for DC term             # <<<<<<<<<<<<<<
@@ -4160,23 +3960,23 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
   __Pyx_INCREF(__pyx_int_1);
   __pyx_v_min_length = __pyx_int_1;
 
-  /* "proto_mpeg_x.pyx":162
+  /* "proto_mpeg_x.pyx":153
  *         # ERROR CHECKING - DISABLE WHEN POSSIBLE
  *         min_length = 1  # set to 1 for DC term
  *         for (run, level) in encoder_string[1:-1]:             # <<<<<<<<<<<<<<
  *             #print(run, level)
  *             min_length = min_length + run + 1
  */
-  __pyx_t_2 = __Pyx_PyList_GetSlice(__pyx_v_encoder_string, 1, -1L); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 162, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyList_GetSlice(__pyx_v_encoder_string, 1, -1L); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 153, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_1 = __pyx_t_2; __Pyx_INCREF(__pyx_t_1); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   for (;;) {
     if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_1)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_7); __Pyx_INCREF(__pyx_t_2); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 162, __pyx_L1_error)
+    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_7); __Pyx_INCREF(__pyx_t_2); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 153, __pyx_L1_error)
     #else
-    __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 162, __pyx_L1_error)
+    __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 153, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     #endif
     if ((likely(PyTuple_CheckExact(__pyx_t_2))) || (PyList_CheckExact(__pyx_t_2))) {
@@ -4189,7 +3989,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 162, __pyx_L1_error)
+        __PYX_ERR(0, 153, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -4202,15 +4002,15 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
       __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_9);
       #else
-      __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 162, __pyx_L1_error)
+      __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 153, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_9 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 162, __pyx_L1_error)
+      __pyx_t_9 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 153, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
       #endif
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_10 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 162, __pyx_L1_error)
+      __pyx_t_10 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 153, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_11 = Py_TYPE(__pyx_t_10)->tp_iternext;
@@ -4218,7 +4018,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
       __Pyx_GOTREF(__pyx_t_3);
       index = 1; __pyx_t_9 = __pyx_t_11(__pyx_t_10); if (unlikely(!__pyx_t_9)) goto __pyx_L11_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_9);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_11(__pyx_t_10), 2) < 0) __PYX_ERR(0, 162, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_11(__pyx_t_10), 2) < 0) __PYX_ERR(0, 153, __pyx_L1_error)
       __pyx_t_11 = NULL;
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       goto __pyx_L12_unpacking_done;
@@ -4226,7 +4026,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       __pyx_t_11 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 162, __pyx_L1_error)
+      __PYX_ERR(0, 153, __pyx_L1_error)
       __pyx_L12_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_run, __pyx_t_3);
@@ -4234,22 +4034,22 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
     __Pyx_XDECREF_SET(__pyx_v_level, __pyx_t_9);
     __pyx_t_9 = 0;
 
-    /* "proto_mpeg_x.pyx":164
+    /* "proto_mpeg_x.pyx":155
  *         for (run, level) in encoder_string[1:-1]:
  *             #print(run, level)
  *             min_length = min_length + run + 1             # <<<<<<<<<<<<<<
  *         if min_length > 64:
  *             raise Exception("Attempted to encode too many bits from block\n", F, "\ninto a zigzag of\n", encoder_string)
  */
-    __pyx_t_2 = PyNumber_Add(__pyx_v_min_length, __pyx_v_run); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 164, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Add(__pyx_v_min_length, __pyx_v_run); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 155, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_9 = __Pyx_PyInt_AddObjC(__pyx_t_2, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 164, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyInt_AddObjC(__pyx_t_2, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 155, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF_SET(__pyx_v_min_length, __pyx_t_9);
     __pyx_t_9 = 0;
 
-    /* "proto_mpeg_x.pyx":162
+    /* "proto_mpeg_x.pyx":153
  *         # ERROR CHECKING - DISABLE WHEN POSSIBLE
  *         min_length = 1  # set to 1 for DC term
  *         for (run, level) in encoder_string[1:-1]:             # <<<<<<<<<<<<<<
@@ -4259,26 +4059,26 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":165
+  /* "proto_mpeg_x.pyx":156
  *             #print(run, level)
  *             min_length = min_length + run + 1
  *         if min_length > 64:             # <<<<<<<<<<<<<<
  *             raise Exception("Attempted to encode too many bits from block\n", F, "\ninto a zigzag of\n", encoder_string)
  *         # END ERROR CHECKING
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_min_length, __pyx_int_64, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 165, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 165, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_min_length, __pyx_int_64, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 156, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_4) {
 
-    /* "proto_mpeg_x.pyx":166
+    /* "proto_mpeg_x.pyx":157
  *             min_length = min_length + run + 1
  *         if min_length > 64:
  *             raise Exception("Attempted to encode too many bits from block\n", F, "\ninto a zigzag of\n", encoder_string)             # <<<<<<<<<<<<<<
  *         # END ERROR CHECKING
  * 
  */
-    __pyx_t_1 = PyTuple_New(4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 166, __pyx_L1_error)
+    __pyx_t_1 = PyTuple_New(4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 157, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_INCREF(__pyx_kp_s_Attempted_to_encode_too_many_bit);
     __Pyx_GIVEREF(__pyx_kp_s_Attempted_to_encode_too_many_bit);
@@ -4292,14 +4092,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
     __Pyx_INCREF(__pyx_v_encoder_string);
     __Pyx_GIVEREF(__pyx_v_encoder_string);
     PyTuple_SET_ITEM(__pyx_t_1, 3, __pyx_v_encoder_string);
-    __pyx_t_9 = __Pyx_PyObject_Call(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])), __pyx_t_1, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 166, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_Call(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])), __pyx_t_1, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 157, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_Raise(__pyx_t_9, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __PYX_ERR(0, 166, __pyx_L1_error)
+    __PYX_ERR(0, 157, __pyx_L1_error)
 
-    /* "proto_mpeg_x.pyx":165
+    /* "proto_mpeg_x.pyx":156
  *             #print(run, level)
  *             min_length = min_length + run + 1
  *         if min_length > 64:             # <<<<<<<<<<<<<<
@@ -4308,7 +4108,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
  */
   }
 
-  /* "proto_mpeg_x.pyx":169
+  /* "proto_mpeg_x.pyx":160
  *         # END ERROR CHECKING
  * 
  *         return encoder_string             # <<<<<<<<<<<<<<
@@ -4320,8 +4120,8 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
   __pyx_r = __pyx_v_encoder_string;
   goto __pyx_L0;
 
-  /* "proto_mpeg_x.pyx":130
- *         return F*quant_matrix
+  /* "proto_mpeg_x.pyx":121
+ *         return F*quant_intra
  * 
  *     def zigzag_from_block(self, F):             # <<<<<<<<<<<<<<
  *         """
@@ -4351,7 +4151,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_18zigzag_from_block(CYTHON_UNUSE
   return __pyx_r;
 }
 
-/* "proto_mpeg_x.pyx":171
+/* "proto_mpeg_x.pyx":162
  *         return encoder_string
  * 
  *     def zigzag_to_block(self, zz):             # <<<<<<<<<<<<<<
@@ -4389,11 +4189,11 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_21zigzag_to_block(PyObject *__py
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_zz)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("zigzag_to_block", 1, 2, 2, 1); __PYX_ERR(0, 171, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("zigzag_to_block", 1, 2, 2, 1); __PYX_ERR(0, 162, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "zigzag_to_block") < 0)) __PYX_ERR(0, 171, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "zigzag_to_block") < 0)) __PYX_ERR(0, 162, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4406,7 +4206,7 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_21zigzag_to_block(PyObject *__py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("zigzag_to_block", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 171, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("zigzag_to_block", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 162, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("proto_mpeg_x.frame.zigzag_to_block", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -4437,37 +4237,37 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_20zigzag_to_block(CYTHON_UNUSED 
   PyObject *__pyx_t_8 = NULL;
   __Pyx_RefNannySetupContext("zigzag_to_block", 0);
 
-  /* "proto_mpeg_x.pyx":177
+  /* "proto_mpeg_x.pyx":168
  *         """
  *         # Create a flattened array to reconstruct the data
  *         block = np.zeros((64,))             # <<<<<<<<<<<<<<
  * 
  *         # Insert the DC term
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 177, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 177, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__30, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 177, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__30, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_block = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":180
+  /* "proto_mpeg_x.pyx":171
  * 
  *         # Insert the DC term
  *         block[0] = zz[0]             # <<<<<<<<<<<<<<
  * 
  *         # Insert the AC terms
  */
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_zz, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 180, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_zz, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 171, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely(__Pyx_SetItemInt(__pyx_v_block, 0, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1) < 0)) __PYX_ERR(0, 180, __pyx_L1_error)
+  if (unlikely(__Pyx_SetItemInt(__pyx_v_block, 0, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1) < 0)) __PYX_ERR(0, 171, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":183
+  /* "proto_mpeg_x.pyx":174
  * 
  *         # Insert the AC terms
  *         index = 0             # <<<<<<<<<<<<<<
@@ -4477,80 +4277,80 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_20zigzag_to_block(CYTHON_UNUSED 
   __Pyx_INCREF(__pyx_int_0);
   __pyx_v_index = __pyx_int_0;
 
-  /* "proto_mpeg_x.pyx":184
+  /* "proto_mpeg_x.pyx":175
  *         # Insert the AC terms
  *         index = 0
  *         for i in range(1, len(zz)-1):             # <<<<<<<<<<<<<<
  *             # print("processing run, level", zz[i])
  *             run = zz[i][0]
  */
-  __pyx_t_3 = PyObject_Length(__pyx_v_zz); if (unlikely(__pyx_t_3 == -1)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __pyx_t_3 = PyObject_Length(__pyx_v_zz); if (unlikely(__pyx_t_3 == -1)) __PYX_ERR(0, 175, __pyx_L1_error)
   __pyx_t_4 = (__pyx_t_3 - 1);
   for (__pyx_t_3 = 1; __pyx_t_3 < __pyx_t_4; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "proto_mpeg_x.pyx":186
+    /* "proto_mpeg_x.pyx":177
  *         for i in range(1, len(zz)-1):
  *             # print("processing run, level", zz[i])
  *             run = zz[i][0]             # <<<<<<<<<<<<<<
  *             level = zz[i][1]
  *             index = index + run + 1
  */
-    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_zz, __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 186, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_zz, __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 177, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 186, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 177, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_XDECREF_SET(__pyx_v_run, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "proto_mpeg_x.pyx":187
+    /* "proto_mpeg_x.pyx":178
  *             # print("processing run, level", zz[i])
  *             run = zz[i][0]
  *             level = zz[i][1]             # <<<<<<<<<<<<<<
  *             index = index + run + 1
  *             # print("base index is", index)
  */
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_zz, __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 1, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 187, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_zz, __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 1, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 178, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 187, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 178, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_XDECREF_SET(__pyx_v_level, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "proto_mpeg_x.pyx":188
+    /* "proto_mpeg_x.pyx":179
  *             run = zz[i][0]
  *             level = zz[i][1]
  *             index = index + run + 1             # <<<<<<<<<<<<<<
  *             # print("base index is", index)
  *             # print("zz_index is", zz_indices[index])
  */
-    __pyx_t_1 = PyNumber_Add(__pyx_v_index, __pyx_v_run); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 188, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Add(__pyx_v_index, __pyx_v_run); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 179, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 188, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 179, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF_SET(__pyx_v_index, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "proto_mpeg_x.pyx":192
+    /* "proto_mpeg_x.pyx":183
  *             # print("zz_index is", zz_indices[index])
  * 
  *             block[zz_indices[index]] = level             # <<<<<<<<<<<<<<
  *             # print("block is now after insert:\n", block)
  *             #block[index] = level
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_zz_indices); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 192, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_zz_indices); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 183, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = PyObject_GetItem(__pyx_t_2, __pyx_v_index); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 192, __pyx_L1_error)
+    __pyx_t_1 = PyObject_GetItem(__pyx_t_2, __pyx_v_index); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 183, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(PyObject_SetItem(__pyx_v_block, __pyx_t_1, __pyx_v_level) < 0)) __PYX_ERR(0, 192, __pyx_L1_error)
+    if (unlikely(PyObject_SetItem(__pyx_v_block, __pyx_t_1, __pyx_v_level) < 0)) __PYX_ERR(0, 183, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "proto_mpeg_x.pyx":197
+  /* "proto_mpeg_x.pyx":188
  * 
  *         # Turn back into a 2d array and return
  *         return np.reshape(block, (8,8)).astype(np.int)             # <<<<<<<<<<<<<<
@@ -4558,9 +4358,9 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_20zigzag_to_block(CYTHON_UNUSED 
  *     def zigzag_to_bits(self, encoder_table, zz):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 188, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_reshape); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_reshape); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 188, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
@@ -4578,7 +4378,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_20zigzag_to_block(CYTHON_UNUSED 
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_v_block, __pyx_tuple__31};
-    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 197, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 188, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else
@@ -4586,13 +4386,13 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_20zigzag_to_block(CYTHON_UNUSED 
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_v_block, __pyx_tuple__31};
-    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 197, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 188, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else
   #endif
   {
-    __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 197, __pyx_L1_error)
+    __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 188, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     if (__pyx_t_5) {
       __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -4603,17 +4403,17 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_20zigzag_to_block(CYTHON_UNUSED 
     __Pyx_INCREF(__pyx_tuple__31);
     __Pyx_GIVEREF(__pyx_tuple__31);
     PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_tuple__31);
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 197, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 188, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 188, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 188, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_int); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_int); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 188, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -4627,14 +4427,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_20zigzag_to_block(CYTHON_UNUSED 
     }
   }
   if (!__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 188, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_6)) {
       PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_t_8};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 188, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -4643,20 +4443,20 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_20zigzag_to_block(CYTHON_UNUSED 
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
       PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_t_8};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 188, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     } else
     #endif
     {
-      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 197, __pyx_L1_error)
+      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 188, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2); __pyx_t_2 = NULL;
       __Pyx_GIVEREF(__pyx_t_8);
       PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_8);
       __pyx_t_8 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 188, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
@@ -4666,7 +4466,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_20zigzag_to_block(CYTHON_UNUSED 
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "proto_mpeg_x.pyx":171
+  /* "proto_mpeg_x.pyx":162
  *         return encoder_string
  * 
  *     def zigzag_to_block(self, zz):             # <<<<<<<<<<<<<<
@@ -4693,7 +4493,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_20zigzag_to_block(CYTHON_UNUSED 
   return __pyx_r;
 }
 
-/* "proto_mpeg_x.pyx":199
+/* "proto_mpeg_x.pyx":190
  *         return np.reshape(block, (8,8)).astype(np.int)
  * 
  *     def zigzag_to_bits(self, encoder_table, zz):             # <<<<<<<<<<<<<<
@@ -4732,16 +4532,16 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_23zigzag_to_bits(PyObject *__pyx
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_encoder_table)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("zigzag_to_bits", 1, 3, 3, 1); __PYX_ERR(0, 199, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("zigzag_to_bits", 1, 3, 3, 1); __PYX_ERR(0, 190, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_zz)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("zigzag_to_bits", 1, 3, 3, 2); __PYX_ERR(0, 199, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("zigzag_to_bits", 1, 3, 3, 2); __PYX_ERR(0, 190, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "zigzag_to_bits") < 0)) __PYX_ERR(0, 199, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "zigzag_to_bits") < 0)) __PYX_ERR(0, 190, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -4756,7 +4556,7 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_23zigzag_to_bits(PyObject *__pyx
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("zigzag_to_bits", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 199, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("zigzag_to_bits", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 190, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("proto_mpeg_x.frame.zigzag_to_bits", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -4790,16 +4590,16 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_22zigzag_to_bits(CYTHON_UNUSED P
   int __pyx_t_10;
   __Pyx_RefNannySetupContext("zigzag_to_bits", 0);
 
-  /* "proto_mpeg_x.pyx":202
+  /* "proto_mpeg_x.pyx":193
  * 
  *         # Encode the DC term into a BitArray
  *         encoded_bits = BitArray(zz[0])             # <<<<<<<<<<<<<<
  * 
  *         # Encode the AC terms
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_BitArray); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 202, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_BitArray); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 193, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_zz, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 202, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_zz, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 193, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -4812,14 +4612,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_22zigzag_to_bits(CYTHON_UNUSED P
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 202, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 193, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_3};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 202, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 193, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -4828,20 +4628,20 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_22zigzag_to_bits(CYTHON_UNUSED P
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_3};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 202, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 193, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     } else
     #endif
     {
-      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 202, __pyx_L1_error)
+      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 193, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
       __Pyx_GIVEREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_3);
       __pyx_t_3 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 202, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 193, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
@@ -4850,40 +4650,40 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_22zigzag_to_bits(CYTHON_UNUSED P
   __pyx_v_encoded_bits = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":205
+  /* "proto_mpeg_x.pyx":196
  * 
  *         # Encode the AC terms
  *         for i in range(1, len(zz) - 1):             # <<<<<<<<<<<<<<
  *             run_level = zz[i]
  *             run_level_positive = tuple(map(abs, run_level))
  */
-  __pyx_t_6 = PyObject_Length(__pyx_v_zz); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 205, __pyx_L1_error)
+  __pyx_t_6 = PyObject_Length(__pyx_v_zz); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 196, __pyx_L1_error)
   __pyx_t_7 = (__pyx_t_6 - 1);
   for (__pyx_t_6 = 1; __pyx_t_6 < __pyx_t_7; __pyx_t_6+=1) {
     __pyx_v_i = __pyx_t_6;
 
-    /* "proto_mpeg_x.pyx":206
+    /* "proto_mpeg_x.pyx":197
  *         # Encode the AC terms
  *         for i in range(1, len(zz) - 1):
  *             run_level = zz[i]             # <<<<<<<<<<<<<<
  *             run_level_positive = tuple(map(abs, run_level))
  * 
  */
-    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_zz, __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 206, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_zz, __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_XDECREF_SET(__pyx_v_run_level, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "proto_mpeg_x.pyx":207
+    /* "proto_mpeg_x.pyx":198
  *         for i in range(1, len(zz) - 1):
  *             run_level = zz[i]
  *             run_level_positive = tuple(map(abs, run_level))             # <<<<<<<<<<<<<<
  * 
  *             if run_level_positive in encoder_table:
  */
-    __pyx_t_1 = __Pyx_GetBuiltinName(__pyx_n_s_abs); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetBuiltinName(__pyx_n_s_abs); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 198, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 207, __pyx_L1_error)
+    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 198, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
@@ -4891,63 +4691,63 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_22zigzag_to_bits(CYTHON_UNUSED P
     __Pyx_GIVEREF(__pyx_v_run_level);
     PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_v_run_level);
     __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_map, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_map, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 198, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PySequence_Tuple(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 207, __pyx_L1_error)
+    __pyx_t_2 = PySequence_Tuple(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 198, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_XDECREF_SET(__pyx_v_run_level_positive, ((PyObject*)__pyx_t_2));
     __pyx_t_2 = 0;
 
-    /* "proto_mpeg_x.pyx":209
+    /* "proto_mpeg_x.pyx":200
  *             run_level_positive = tuple(map(abs, run_level))
  * 
  *             if run_level_positive in encoder_table:             # <<<<<<<<<<<<<<
  *                 # Note only positive levels are stored in encoder table.
  *                 encoded_bits.append(encoder_table[run_level_positive])
  */
-    __pyx_t_8 = (__Pyx_PySequence_ContainsTF(__pyx_v_run_level_positive, __pyx_v_encoder_table, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 209, __pyx_L1_error)
+    __pyx_t_8 = (__Pyx_PySequence_ContainsTF(__pyx_v_run_level_positive, __pyx_v_encoder_table, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 200, __pyx_L1_error)
     __pyx_t_9 = (__pyx_t_8 != 0);
     if (__pyx_t_9) {
 
-      /* "proto_mpeg_x.pyx":211
+      /* "proto_mpeg_x.pyx":202
  *             if run_level_positive in encoder_table:
  *                 # Note only positive levels are stored in encoder table.
  *                 encoded_bits.append(encoder_table[run_level_positive])             # <<<<<<<<<<<<<<
  *                 # Check to see if the level is negative, write appropriate sign bit.
  *                 if run_level[1] < 0:
  */
-      __pyx_t_2 = PyObject_GetItem(__pyx_v_encoder_table, __pyx_v_run_level_positive); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 211, __pyx_L1_error)
+      __pyx_t_2 = PyObject_GetItem(__pyx_v_encoder_table, __pyx_v_run_level_positive); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 202, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_10 = __Pyx_PyObject_Append(__pyx_v_encoded_bits, __pyx_t_2); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 211, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_Append(__pyx_v_encoded_bits, __pyx_t_2); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 202, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "proto_mpeg_x.pyx":213
+      /* "proto_mpeg_x.pyx":204
  *                 encoded_bits.append(encoder_table[run_level_positive])
  *                 # Check to see if the level is negative, write appropriate sign bit.
  *                 if run_level[1] < 0:             # <<<<<<<<<<<<<<
  *                     # Level is negative, so we will write a sign bit of 1
  *                     encoded_bits.append('0b1')
  */
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_run_level, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 213, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_run_level, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 204, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_int_0, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
+      __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_int_0, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 204, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 213, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 204, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       if (__pyx_t_9) {
 
-        /* "proto_mpeg_x.pyx":215
+        /* "proto_mpeg_x.pyx":206
  *                 if run_level[1] < 0:
  *                     # Level is negative, so we will write a sign bit of 1
  *                     encoded_bits.append('0b1')             # <<<<<<<<<<<<<<
  *                 else:
  *                     # Level is positive, so we will write a sign bit of 0
  */
-        __pyx_t_10 = __Pyx_PyObject_Append(__pyx_v_encoded_bits, __pyx_kp_s_0b1); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 215, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyObject_Append(__pyx_v_encoded_bits, __pyx_kp_s_0b1); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 206, __pyx_L1_error)
 
-        /* "proto_mpeg_x.pyx":213
+        /* "proto_mpeg_x.pyx":204
  *                 encoded_bits.append(encoder_table[run_level_positive])
  *                 # Check to see if the level is negative, write appropriate sign bit.
  *                 if run_level[1] < 0:             # <<<<<<<<<<<<<<
@@ -4957,7 +4757,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_22zigzag_to_bits(CYTHON_UNUSED P
         goto __pyx_L6;
       }
 
-      /* "proto_mpeg_x.pyx":218
+      /* "proto_mpeg_x.pyx":209
  *                 else:
  *                     # Level is positive, so we will write a sign bit of 0
  *                     encoded_bits.append('0b0')             # <<<<<<<<<<<<<<
@@ -4965,11 +4765,11 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_22zigzag_to_bits(CYTHON_UNUSED P
  *                 # The run_level combo was not fond in the encoder table. We will do the following:
  */
       /*else*/ {
-        __pyx_t_10 = __Pyx_PyObject_Append(__pyx_v_encoded_bits, __pyx_kp_s_0b0); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 218, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyObject_Append(__pyx_v_encoded_bits, __pyx_kp_s_0b0); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 209, __pyx_L1_error)
       }
       __pyx_L6:;
 
-      /* "proto_mpeg_x.pyx":209
+      /* "proto_mpeg_x.pyx":200
  *             run_level_positive = tuple(map(abs, run_level))
  * 
  *             if run_level_positive in encoder_table:             # <<<<<<<<<<<<<<
@@ -4979,7 +4779,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_22zigzag_to_bits(CYTHON_UNUSED P
       goto __pyx_L5;
     }
 
-    /* "proto_mpeg_x.pyx":224
+    /* "proto_mpeg_x.pyx":215
  *                 # ii) encode a 6-bit unsigned integer for the run, which is at most 62
  *                 # iii) encode a 16-bit signed integer for the level
  *                 encoded_bits.append(encoder_table['ESC'])             # <<<<<<<<<<<<<<
@@ -4987,91 +4787,91 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_22zigzag_to_bits(CYTHON_UNUSED P
  *                 level = 'int:16=' + str(run_level[1])
  */
     /*else*/ {
-      __pyx_t_1 = PyObject_GetItem(__pyx_v_encoder_table, __pyx_n_s_ESC); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 224, __pyx_L1_error)
+      __pyx_t_1 = PyObject_GetItem(__pyx_v_encoder_table, __pyx_n_s_ESC); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_10 = __Pyx_PyObject_Append(__pyx_v_encoded_bits, __pyx_t_1); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 224, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_Append(__pyx_v_encoded_bits, __pyx_t_1); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 215, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "proto_mpeg_x.pyx":225
+      /* "proto_mpeg_x.pyx":216
  *                 # iii) encode a 16-bit signed integer for the level
  *                 encoded_bits.append(encoder_table['ESC'])
  *                 run = 'uint:6=' + str(run_level[0])             # <<<<<<<<<<<<<<
  *                 level = 'int:16=' + str(run_level[1])
  *                 encoded_bits.append(run)
  */
-      __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_run_level, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 225, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_run_level, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 216, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 225, __pyx_L1_error)
+      __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 216, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_1);
       PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
       __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 225, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 216, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyNumber_Add(__pyx_kp_s_uint_6, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 225, __pyx_L1_error)
+      __pyx_t_2 = PyNumber_Add(__pyx_kp_s_uint_6, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 216, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_XDECREF_SET(__pyx_v_run, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "proto_mpeg_x.pyx":226
+      /* "proto_mpeg_x.pyx":217
  *                 encoded_bits.append(encoder_table['ESC'])
  *                 run = 'uint:6=' + str(run_level[0])
  *                 level = 'int:16=' + str(run_level[1])             # <<<<<<<<<<<<<<
  *                 encoded_bits.append(run)
  *                 encoded_bits.append(level)
  */
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_run_level, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 226, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_run_level, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 217, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 226, __pyx_L1_error)
+      __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 217, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_GIVEREF(__pyx_t_2);
       PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 226, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 217, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = PyNumber_Add(__pyx_kp_s_int_16, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 226, __pyx_L1_error)
+      __pyx_t_1 = PyNumber_Add(__pyx_kp_s_int_16, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 217, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_XDECREF_SET(__pyx_v_level, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "proto_mpeg_x.pyx":227
+      /* "proto_mpeg_x.pyx":218
  *                 run = 'uint:6=' + str(run_level[0])
  *                 level = 'int:16=' + str(run_level[1])
  *                 encoded_bits.append(run)             # <<<<<<<<<<<<<<
  *                 encoded_bits.append(level)
  * 
  */
-      __pyx_t_10 = __Pyx_PyObject_Append(__pyx_v_encoded_bits, __pyx_v_run); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 227, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_Append(__pyx_v_encoded_bits, __pyx_v_run); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 218, __pyx_L1_error)
 
-      /* "proto_mpeg_x.pyx":228
+      /* "proto_mpeg_x.pyx":219
  *                 level = 'int:16=' + str(run_level[1])
  *                 encoded_bits.append(run)
  *                 encoded_bits.append(level)             # <<<<<<<<<<<<<<
  * 
  *         # Encode the EOB term
  */
-      __pyx_t_10 = __Pyx_PyObject_Append(__pyx_v_encoded_bits, __pyx_v_level); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 228, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_Append(__pyx_v_encoded_bits, __pyx_v_level); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 219, __pyx_L1_error)
     }
     __pyx_L5:;
   }
 
-  /* "proto_mpeg_x.pyx":231
+  /* "proto_mpeg_x.pyx":222
  * 
  *         # Encode the EOB term
  *         encoded_bits.append(encoder_table['EOB'])             # <<<<<<<<<<<<<<
  * 
  *         return encoded_bits
  */
-  __pyx_t_1 = PyObject_GetItem(__pyx_v_encoder_table, __pyx_n_s_EOB); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 231, __pyx_L1_error)
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_encoder_table, __pyx_n_s_EOB); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_10 = __Pyx_PyObject_Append(__pyx_v_encoded_bits, __pyx_t_1); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 231, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_Append(__pyx_v_encoded_bits, __pyx_t_1); if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":233
+  /* "proto_mpeg_x.pyx":224
  *         encoded_bits.append(encoder_table['EOB'])
  * 
  *         return encoded_bits             # <<<<<<<<<<<<<<
@@ -5083,7 +4883,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_22zigzag_to_bits(CYTHON_UNUSED P
   __pyx_r = __pyx_v_encoded_bits;
   goto __pyx_L0;
 
-  /* "proto_mpeg_x.pyx":199
+  /* "proto_mpeg_x.pyx":190
  *         return np.reshape(block, (8,8)).astype(np.int)
  * 
  *     def zigzag_to_bits(self, encoder_table, zz):             # <<<<<<<<<<<<<<
@@ -5111,7 +4911,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_22zigzag_to_bits(CYTHON_UNUSED P
   return __pyx_r;
 }
 
-/* "proto_mpeg_x.pyx":235
+/* "proto_mpeg_x.pyx":226
  *         return encoded_bits
  * 
  *     def encode_to_bits(self):             # <<<<<<<<<<<<<<
@@ -5159,14 +4959,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
   int __pyx_t_13;
   __Pyx_RefNannySetupContext("encode_to_bits", 0);
 
-  /* "proto_mpeg_x.pyx":241
+  /* "proto_mpeg_x.pyx":232
  *         :return: BitArray representation
  *         """
  *         img_blocks = self.image_to_blocks()             # <<<<<<<<<<<<<<
  *         total_blocks = np.shape(img_blocks)[0]
  *         #print("Beginning encoding for", total_blocks, "blocks.")
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_image_to_blocks); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 241, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_image_to_blocks); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -5179,26 +4979,26 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
     }
   }
   if (__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 241, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 232, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 241, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 232, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_img_blocks = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":242
+  /* "proto_mpeg_x.pyx":233
  *         """
  *         img_blocks = self.image_to_blocks()
  *         total_blocks = np.shape(img_blocks)[0]             # <<<<<<<<<<<<<<
  *         #print("Beginning encoding for", total_blocks, "blocks.")
  * 
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 242, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 233, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_shape); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 242, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_shape); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 233, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -5212,13 +5012,13 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
     }
   }
   if (!__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_img_blocks); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 242, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_img_blocks); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 233, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_v_img_blocks};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 242, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 233, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
@@ -5226,40 +5026,40 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_v_img_blocks};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 242, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 233, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
     #endif
     {
-      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 242, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 233, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2); __pyx_t_2 = NULL;
       __Pyx_INCREF(__pyx_v_img_blocks);
       __Pyx_GIVEREF(__pyx_v_img_blocks);
       PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_v_img_blocks);
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 242, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 233, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 242, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 233, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_total_blocks = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "proto_mpeg_x.pyx":246
+  /* "proto_mpeg_x.pyx":237
  * 
  *         # Get the encoder table for converting (run, level) codes into bits
  *         encoder_table = huffman_mpeg.make_encoder_table()             # <<<<<<<<<<<<<<
  * 
  *         # Create a BitArray that will hold all encoded bits
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_huffman_mpeg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 246, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_huffman_mpeg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 237, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_make_encoder_table); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 246, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_make_encoder_table); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 237, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = NULL;
@@ -5273,24 +5073,24 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
     }
   }
   if (__pyx_t_1) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 246, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 237, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 246, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 237, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_encoder_table = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "proto_mpeg_x.pyx":249
+  /* "proto_mpeg_x.pyx":240
  * 
  *         # Create a BitArray that will hold all encoded bits
  *         output = BitArray()             # <<<<<<<<<<<<<<
  * 
  *         # Counter and checkpoints used to provide % complete
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_BitArray); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 249, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_BitArray); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 240, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_1 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -5303,17 +5103,17 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
     }
   }
   if (__pyx_t_1) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 249, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 240, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 249, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 240, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_output = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "proto_mpeg_x.pyx":252
+  /* "proto_mpeg_x.pyx":243
  * 
  *         # Counter and checkpoints used to provide % complete
  *         i = 0             # <<<<<<<<<<<<<<
@@ -5323,7 +5123,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
   __Pyx_INCREF(__pyx_int_0);
   __pyx_v_i = __pyx_int_0;
 
-  /* "proto_mpeg_x.pyx":255
+  /* "proto_mpeg_x.pyx":246
  *         #checkpoints = set(np.rint(np.linspace(0, total_blocks, 11, endpoint=True)))
  * 
  *         for block in img_blocks:             # <<<<<<<<<<<<<<
@@ -5334,26 +5134,26 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
     __pyx_t_3 = __pyx_v_img_blocks; __Pyx_INCREF(__pyx_t_3); __pyx_t_5 = 0;
     __pyx_t_6 = NULL;
   } else {
-    __pyx_t_5 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_img_blocks); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 255, __pyx_L1_error)
+    __pyx_t_5 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_img_blocks); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 246, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_6 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 255, __pyx_L1_error)
+    __pyx_t_6 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 246, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_6)) {
       if (likely(PyList_CheckExact(__pyx_t_3))) {
         if (__pyx_t_5 >= PyList_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_5); __Pyx_INCREF(__pyx_t_4); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 255, __pyx_L1_error)
+        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_5); __Pyx_INCREF(__pyx_t_4); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 246, __pyx_L1_error)
         #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_3, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 255, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_3, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 246, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
       } else {
         if (__pyx_t_5 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_5); __Pyx_INCREF(__pyx_t_4); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 255, __pyx_L1_error)
+        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_5); __Pyx_INCREF(__pyx_t_4); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 246, __pyx_L1_error)
         #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_3, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 255, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_3, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 246, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
       }
@@ -5363,7 +5163,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 255, __pyx_L1_error)
+          else __PYX_ERR(0, 246, __pyx_L1_error)
         }
         break;
       }
@@ -5372,20 +5172,20 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
     __Pyx_XDECREF_SET(__pyx_v_block, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "proto_mpeg_x.pyx":264
+    /* "proto_mpeg_x.pyx":255
  * 
  *             # First, we create a zig-zag summary for the block after DCT and quantization
  *             zz = self.zigzag_from_block(self.quantize_intra(dct.dct(block)))             # <<<<<<<<<<<<<<
  * 
  *             # Then, we convert that zig-zag summary into a stream of bits
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_zigzag_from_block); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 264, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_zigzag_from_block); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 255, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_quantize_intra); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 264, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_quantize_intra); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 255, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_9 = __Pyx_GetModuleGlobalName(__pyx_n_s_dct); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 264, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_GetModuleGlobalName(__pyx_n_s_dct); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 255, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_dct); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 264, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_dct); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 255, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __pyx_t_9 = NULL;
@@ -5399,13 +5199,13 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
       }
     }
     if (!__pyx_t_9) {
-      __pyx_t_8 = __Pyx_PyObject_CallOneArg(__pyx_t_10, __pyx_v_block); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 264, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyObject_CallOneArg(__pyx_t_10, __pyx_v_block); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 255, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
     } else {
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_10)) {
         PyObject *__pyx_temp[2] = {__pyx_t_9, __pyx_v_block};
-        __pyx_t_8 = __Pyx_PyFunction_FastCall(__pyx_t_10, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 264, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_PyFunction_FastCall(__pyx_t_10, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 255, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
         __Pyx_GOTREF(__pyx_t_8);
       } else
@@ -5413,19 +5213,19 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_10)) {
         PyObject *__pyx_temp[2] = {__pyx_t_9, __pyx_v_block};
-        __pyx_t_8 = __Pyx_PyCFunction_FastCall(__pyx_t_10, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 264, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_PyCFunction_FastCall(__pyx_t_10, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 255, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
         __Pyx_GOTREF(__pyx_t_8);
       } else
       #endif
       {
-        __pyx_t_11 = PyTuple_New(1+1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 264, __pyx_L1_error)
+        __pyx_t_11 = PyTuple_New(1+1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 255, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_11);
         __Pyx_GIVEREF(__pyx_t_9); PyTuple_SET_ITEM(__pyx_t_11, 0, __pyx_t_9); __pyx_t_9 = NULL;
         __Pyx_INCREF(__pyx_v_block);
         __Pyx_GIVEREF(__pyx_v_block);
         PyTuple_SET_ITEM(__pyx_t_11, 0+1, __pyx_v_block);
-        __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_11, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 264, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_11, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 255, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
       }
@@ -5442,14 +5242,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
       }
     }
     if (!__pyx_t_10) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 264, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 255, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else {
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_7)) {
         PyObject *__pyx_temp[2] = {__pyx_t_10, __pyx_t_8};
-        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 264, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 255, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -5458,20 +5258,20 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_7)) {
         PyObject *__pyx_temp[2] = {__pyx_t_10, __pyx_t_8};
-        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 264, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 255, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       } else
       #endif
       {
-        __pyx_t_11 = PyTuple_New(1+1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 264, __pyx_L1_error)
+        __pyx_t_11 = PyTuple_New(1+1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 255, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_11);
         __Pyx_GIVEREF(__pyx_t_10); PyTuple_SET_ITEM(__pyx_t_11, 0, __pyx_t_10); __pyx_t_10 = NULL;
         __Pyx_GIVEREF(__pyx_t_8);
         PyTuple_SET_ITEM(__pyx_t_11, 0+1, __pyx_t_8);
         __pyx_t_8 = 0;
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_11, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 264, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_11, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 255, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
       }
@@ -5488,14 +5288,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
       }
     }
     if (!__pyx_t_7) {
-      __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 264, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 255, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_4);
     } else {
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_1)) {
         PyObject *__pyx_temp[2] = {__pyx_t_7, __pyx_t_2};
-        __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 264, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 255, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -5504,20 +5304,20 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
         PyObject *__pyx_temp[2] = {__pyx_t_7, __pyx_t_2};
-        __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 264, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 255, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       } else
       #endif
       {
-        __pyx_t_11 = PyTuple_New(1+1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 264, __pyx_L1_error)
+        __pyx_t_11 = PyTuple_New(1+1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 255, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_11);
         __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_11, 0, __pyx_t_7); __pyx_t_7 = NULL;
         __Pyx_GIVEREF(__pyx_t_2);
         PyTuple_SET_ITEM(__pyx_t_11, 0+1, __pyx_t_2);
         __pyx_t_2 = 0;
-        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_11, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 264, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_11, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 255, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
       }
@@ -5526,14 +5326,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
     __Pyx_XDECREF_SET(__pyx_v_zz, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "proto_mpeg_x.pyx":267
+    /* "proto_mpeg_x.pyx":258
  * 
  *             # Then, we convert that zig-zag summary into a stream of bits
  *             output.append(self.zigzag_to_bits(encoder_table, zz))             # <<<<<<<<<<<<<<
  * 
  *             i = i + 1
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_zigzag_to_bits); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 267, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_zigzag_to_bits); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 258, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_11 = NULL;
     __pyx_t_12 = 0;
@@ -5550,7 +5350,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_1)) {
       PyObject *__pyx_temp[3] = {__pyx_t_11, __pyx_v_encoder_table, __pyx_v_zz};
-      __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_12, 2+__pyx_t_12); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 267, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_12, 2+__pyx_t_12); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 258, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
       __Pyx_GOTREF(__pyx_t_4);
     } else
@@ -5558,13 +5358,13 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
       PyObject *__pyx_temp[3] = {__pyx_t_11, __pyx_v_encoder_table, __pyx_v_zz};
-      __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_12, 2+__pyx_t_12); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 267, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_12, 2+__pyx_t_12); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 258, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
       __Pyx_GOTREF(__pyx_t_4);
     } else
     #endif
     {
-      __pyx_t_2 = PyTuple_New(2+__pyx_t_12); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 267, __pyx_L1_error)
+      __pyx_t_2 = PyTuple_New(2+__pyx_t_12); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 258, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       if (__pyx_t_11) {
         __Pyx_GIVEREF(__pyx_t_11); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_11); __pyx_t_11 = NULL;
@@ -5575,27 +5375,27 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
       __Pyx_INCREF(__pyx_v_zz);
       __Pyx_GIVEREF(__pyx_v_zz);
       PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_12, __pyx_v_zz);
-      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 267, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 258, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_13 = __Pyx_PyObject_Append(__pyx_v_output, __pyx_t_4); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 267, __pyx_L1_error)
+    __pyx_t_13 = __Pyx_PyObject_Append(__pyx_v_output, __pyx_t_4); if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 258, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "proto_mpeg_x.pyx":269
+    /* "proto_mpeg_x.pyx":260
  *             output.append(self.zigzag_to_bits(encoder_table, zz))
  * 
  *             i = i + 1             # <<<<<<<<<<<<<<
  * 
  *         return output
  */
-    __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_v_i, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 269, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_v_i, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 260, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF_SET(__pyx_v_i, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "proto_mpeg_x.pyx":255
+    /* "proto_mpeg_x.pyx":246
  *         #checkpoints = set(np.rint(np.linspace(0, total_blocks, 11, endpoint=True)))
  * 
  *         for block in img_blocks:             # <<<<<<<<<<<<<<
@@ -5605,7 +5405,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "proto_mpeg_x.pyx":271
+  /* "proto_mpeg_x.pyx":262
  *             i = i + 1
  * 
  *         return output             # <<<<<<<<<<<<<<
@@ -5617,7 +5417,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
   __pyx_r = __pyx_v_output;
   goto __pyx_L0;
 
-  /* "proto_mpeg_x.pyx":235
+  /* "proto_mpeg_x.pyx":226
  *         return encoded_bits
  * 
  *     def encode_to_bits(self):             # <<<<<<<<<<<<<<
@@ -5651,7 +5451,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_24encode_to_bits(CYTHON_UNUSED P
   return __pyx_r;
 }
 
-/* "proto_mpeg_x.pyx":273
+/* "proto_mpeg_x.pyx":264
  *         return output
  * 
  *     def decode_from_bits(self, bits, h_mblocks, v_mblocks):             # <<<<<<<<<<<<<<
@@ -5692,21 +5492,21 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_27decode_from_bits(PyObject *__p
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_bits)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("decode_from_bits", 1, 4, 4, 1); __PYX_ERR(0, 273, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("decode_from_bits", 1, 4, 4, 1); __PYX_ERR(0, 264, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_h_mblocks)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("decode_from_bits", 1, 4, 4, 2); __PYX_ERR(0, 273, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("decode_from_bits", 1, 4, 4, 2); __PYX_ERR(0, 264, __pyx_L3_error)
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_v_mblocks)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("decode_from_bits", 1, 4, 4, 3); __PYX_ERR(0, 273, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("decode_from_bits", 1, 4, 4, 3); __PYX_ERR(0, 264, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "decode_from_bits") < 0)) __PYX_ERR(0, 273, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "decode_from_bits") < 0)) __PYX_ERR(0, 264, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
       goto __pyx_L5_argtuple_error;
@@ -5723,7 +5523,7 @@ static PyObject *__pyx_pw_12proto_mpeg_x_5frame_27decode_from_bits(PyObject *__p
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("decode_from_bits", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 273, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("decode_from_bits", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 264, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("proto_mpeg_x.frame.decode_from_bits", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -5748,9 +5548,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
   PyObject *__pyx_v_data = NULL;
   PyObject *__pyx_v_run = NULL;
   PyObject *__pyx_v_level = NULL;
-  PyObject *__pyx_v_bl_recon = NULL;
   PyObject *__pyx_v_bits_read = NULL;
-  PyObject *__pyx_v_img = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5768,19 +5566,21 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
   PyObject *__pyx_t_13 = NULL;
   PyObject *__pyx_t_14 = NULL;
   PyObject *__pyx_t_15 = NULL;
-  int __pyx_t_16;
+  PyObject *__pyx_t_16 = NULL;
+  PyObject *__pyx_t_17 = NULL;
+  int __pyx_t_18;
   __Pyx_RefNannySetupContext("decode_from_bits", 0);
 
-  /* "proto_mpeg_x.pyx":276
+  /* "proto_mpeg_x.pyx":267
  * 
  *         # Get the decoder table for converting Bits into (run, level)
  *         decoder_table = huffman_mpeg.make_decoder_table()             # <<<<<<<<<<<<<<
  * 
  *         total_bits = len(bits)
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_huffman_mpeg); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 276, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_huffman_mpeg); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 267, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_make_decoder_table); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 276, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_make_decoder_table); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 267, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -5794,72 +5594,72 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
     }
   }
   if (__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 276, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 267, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 276, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 267, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_decoder_table = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":278
+  /* "proto_mpeg_x.pyx":269
  *         decoder_table = huffman_mpeg.make_decoder_table()
  * 
  *         total_bits = len(bits)             # <<<<<<<<<<<<<<
  *         total_blocks = h_mblocks*v_mblocks*6 # Because there are 6 blocks to every macroblock
  * 
  */
-  __pyx_t_4 = PyObject_Length(__pyx_v_bits); if (unlikely(__pyx_t_4 == -1)) __PYX_ERR(0, 278, __pyx_L1_error)
+  __pyx_t_4 = PyObject_Length(__pyx_v_bits); if (unlikely(__pyx_t_4 == -1)) __PYX_ERR(0, 269, __pyx_L1_error)
   __pyx_v_total_bits = __pyx_t_4;
 
-  /* "proto_mpeg_x.pyx":279
+  /* "proto_mpeg_x.pyx":270
  * 
  *         total_bits = len(bits)
  *         total_blocks = h_mblocks*v_mblocks*6 # Because there are 6 blocks to every macroblock             # <<<<<<<<<<<<<<
  * 
  *         #print("Beginning decoding for", total_blocks, "blocks.")
  */
-  __pyx_t_1 = PyNumber_Multiply(__pyx_v_h_mblocks, __pyx_v_v_mblocks); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 279, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(__pyx_v_h_mblocks, __pyx_v_v_mblocks); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 270, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyNumber_Multiply(__pyx_t_1, __pyx_int_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 279, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Multiply(__pyx_t_1, __pyx_int_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 270, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_total_blocks = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "proto_mpeg_x.pyx":284
+  /* "proto_mpeg_x.pyx":275
  * 
  *         # This is the array we'll send to self.image_to_blocks after we've processed all bits
  *         blocks = np.empty((0, 8, 8))             # <<<<<<<<<<<<<<
  * 
  *         # As we decode bits, we will use this list to summarize one 8x8 block at a time.
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 284, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 275, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 275, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__33, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 284, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__33, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 275, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_blocks = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "proto_mpeg_x.pyx":287
+  /* "proto_mpeg_x.pyx":278
  * 
  *         # As we decode bits, we will use this list to summarize one 8x8 block at a time.
  *         decoded_zz_summary = list()             # <<<<<<<<<<<<<<
  * 
  *         # Counter and checkpoints used to provide % complete
  */
-  __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 287, __pyx_L1_error)
+  __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 278, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_decoded_zz_summary = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "proto_mpeg_x.pyx":290
+  /* "proto_mpeg_x.pyx":281
  * 
  *         # Counter and checkpoints used to provide % complete
  *         j = 0             # <<<<<<<<<<<<<<
@@ -5868,7 +5668,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
  */
   __pyx_v_j = 0;
 
-  /* "proto_mpeg_x.pyx":294
+  /* "proto_mpeg_x.pyx":285
  * 
  *         # Loop through remainder of data, until we reach the end
  *         i = 1             # <<<<<<<<<<<<<<
@@ -5878,7 +5678,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
   __Pyx_INCREF(__pyx_int_1);
   __pyx_v_i = __pyx_int_1;
 
-  /* "proto_mpeg_x.pyx":295
+  /* "proto_mpeg_x.pyx":286
  *         # Loop through remainder of data, until we reach the end
  *         i = 1
  *         while (bits.pos != total_bits):             # <<<<<<<<<<<<<<
@@ -5886,44 +5686,44 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
  *             if len(decoded_zz_summary) == 0:
  */
   while (1) {
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_bits, __pyx_n_s_pos); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 295, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_bits, __pyx_n_s_pos); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 286, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_total_bits); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
+    __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_total_bits); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 286, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_3, __pyx_t_1, Py_NE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 295, __pyx_L1_error)
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_3, __pyx_t_1, Py_NE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 286, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 295, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 286, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if (!__pyx_t_5) break;
 
-    /* "proto_mpeg_x.pyx":297
+    /* "proto_mpeg_x.pyx":288
  *         while (bits.pos != total_bits):
  *             # If the zigzag summary is empty, we first need to read a DC term
  *             if len(decoded_zz_summary) == 0:             # <<<<<<<<<<<<<<
  *                 decoded_zz_summary.append(bits.read('uint:8'))
  *             # Note: i is the number of bits to peek/read, beginning at decoded_bits.pos
  */
-    __pyx_t_4 = PyList_GET_SIZE(__pyx_v_decoded_zz_summary); if (unlikely(__pyx_t_4 == -1)) __PYX_ERR(0, 297, __pyx_L1_error)
+    __pyx_t_4 = PyList_GET_SIZE(__pyx_v_decoded_zz_summary); if (unlikely(__pyx_t_4 == -1)) __PYX_ERR(0, 288, __pyx_L1_error)
     __pyx_t_5 = ((__pyx_t_4 == 0) != 0);
     if (__pyx_t_5) {
 
-      /* "proto_mpeg_x.pyx":298
+      /* "proto_mpeg_x.pyx":289
  *             # If the zigzag summary is empty, we first need to read a DC term
  *             if len(decoded_zz_summary) == 0:
  *                 decoded_zz_summary.append(bits.read('uint:8'))             # <<<<<<<<<<<<<<
  *             # Note: i is the number of bits to peek/read, beginning at decoded_bits.pos
  *             bit_string = Bits('0b' + bits.peek('bin:' + str(i)))
  */
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_bits, __pyx_n_s_read); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 298, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_bits, __pyx_n_s_read); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 289, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__34, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 298, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__34, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 289, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_decoded_zz_summary, __pyx_t_1); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 298, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_decoded_zz_summary, __pyx_t_1); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 289, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "proto_mpeg_x.pyx":297
+      /* "proto_mpeg_x.pyx":288
  *         while (bits.pos != total_bits):
  *             # If the zigzag summary is empty, we first need to read a DC term
  *             if len(decoded_zz_summary) == 0:             # <<<<<<<<<<<<<<
@@ -5932,26 +5732,26 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
  */
     }
 
-    /* "proto_mpeg_x.pyx":300
+    /* "proto_mpeg_x.pyx":291
  *                 decoded_zz_summary.append(bits.read('uint:8'))
  *             # Note: i is the number of bits to peek/read, beginning at decoded_bits.pos
  *             bit_string = Bits('0b' + bits.peek('bin:' + str(i)))             # <<<<<<<<<<<<<<
  *             # print("Testing bit string:", bit_string.bin)
  *             if bit_string in decoder_table:
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_Bits); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 300, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_Bits); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 291, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_bits, __pyx_n_s_peek); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 300, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_bits, __pyx_n_s_peek); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 291, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_8 = PyTuple_New(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 300, __pyx_L1_error)
+    __pyx_t_8 = PyTuple_New(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 291, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_INCREF(__pyx_v_i);
     __Pyx_GIVEREF(__pyx_v_i);
     PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_v_i);
-    __pyx_t_9 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_8, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 300, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_8, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 291, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = PyNumber_Add(__pyx_kp_s_bin, __pyx_t_9); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 300, __pyx_L1_error)
+    __pyx_t_8 = PyNumber_Add(__pyx_kp_s_bin, __pyx_t_9); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 291, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __pyx_t_9 = NULL;
@@ -5965,14 +5765,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
       }
     }
     if (!__pyx_t_9) {
-      __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 300, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 291, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_GOTREF(__pyx_t_3);
     } else {
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_7)) {
         PyObject *__pyx_temp[2] = {__pyx_t_9, __pyx_t_8};
-        __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 300, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 291, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -5981,26 +5781,26 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_7)) {
         PyObject *__pyx_temp[2] = {__pyx_t_9, __pyx_t_8};
-        __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 300, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 291, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       } else
       #endif
       {
-        __pyx_t_10 = PyTuple_New(1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 300, __pyx_L1_error)
+        __pyx_t_10 = PyTuple_New(1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 291, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_GIVEREF(__pyx_t_9); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_9); __pyx_t_9 = NULL;
         __Pyx_GIVEREF(__pyx_t_8);
         PyTuple_SET_ITEM(__pyx_t_10, 0+1, __pyx_t_8);
         __pyx_t_8 = 0;
-        __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_10, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 300, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_10, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 291, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       }
     }
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = PyNumber_Add(__pyx_kp_s_0b, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 300, __pyx_L1_error)
+    __pyx_t_7 = PyNumber_Add(__pyx_kp_s_0b, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 291, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_3 = NULL;
@@ -6014,14 +5814,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
       }
     }
     if (!__pyx_t_3) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 300, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 291, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else {
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_2)) {
         PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_t_7};
-        __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 300, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 291, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -6030,20 +5830,20 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
         PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_t_7};
-        __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 300, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 291, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       } else
       #endif
       {
-        __pyx_t_10 = PyTuple_New(1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 300, __pyx_L1_error)
+        __pyx_t_10 = PyTuple_New(1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 291, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_3); __pyx_t_3 = NULL;
         __Pyx_GIVEREF(__pyx_t_7);
         PyTuple_SET_ITEM(__pyx_t_10, 0+1, __pyx_t_7);
         __pyx_t_7 = 0;
-        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 300, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 291, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       }
@@ -6052,57 +5852,57 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
     __Pyx_XDECREF_SET(__pyx_v_bit_string, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "proto_mpeg_x.pyx":302
+    /* "proto_mpeg_x.pyx":293
  *             bit_string = Bits('0b' + bits.peek('bin:' + str(i)))
  *             # print("Testing bit string:", bit_string.bin)
  *             if bit_string in decoder_table:             # <<<<<<<<<<<<<<
  *                 data = decoder_table[bit_string]
  *                 # print("Found", data, "in decoder table with data =", data)
  */
-    __pyx_t_5 = (__Pyx_PySequence_ContainsTF(__pyx_v_bit_string, __pyx_v_decoder_table, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 302, __pyx_L1_error)
+    __pyx_t_5 = (__Pyx_PySequence_ContainsTF(__pyx_v_bit_string, __pyx_v_decoder_table, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 293, __pyx_L1_error)
     __pyx_t_11 = (__pyx_t_5 != 0);
     if (__pyx_t_11) {
 
-      /* "proto_mpeg_x.pyx":303
+      /* "proto_mpeg_x.pyx":294
  *             # print("Testing bit string:", bit_string.bin)
  *             if bit_string in decoder_table:
  *                 data = decoder_table[bit_string]             # <<<<<<<<<<<<<<
  *                 # print("Found", data, "in decoder table with data =", data)
  *                 if data == 'ESC':
  */
-      __pyx_t_1 = PyObject_GetItem(__pyx_v_decoder_table, __pyx_v_bit_string); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 303, __pyx_L1_error)
+      __pyx_t_1 = PyObject_GetItem(__pyx_v_decoder_table, __pyx_v_bit_string); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_XDECREF_SET(__pyx_v_data, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "proto_mpeg_x.pyx":305
+      /* "proto_mpeg_x.pyx":296
  *                 data = decoder_table[bit_string]
  *                 # print("Found", data, "in decoder table with data =", data)
  *                 if data == 'ESC':             # <<<<<<<<<<<<<<
  *                     # A 6-bit run and a 16-bit signed int is stored immediately after this ESC charater
  *                     # throw away the escape character
  */
-      __pyx_t_11 = (__Pyx_PyString_Equals(__pyx_v_data, __pyx_n_s_ESC, Py_EQ)); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 305, __pyx_L1_error)
+      __pyx_t_11 = (__Pyx_PyString_Equals(__pyx_v_data, __pyx_n_s_ESC, Py_EQ)); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 296, __pyx_L1_error)
       if (__pyx_t_11) {
 
-        /* "proto_mpeg_x.pyx":308
+        /* "proto_mpeg_x.pyx":299
  *                     # A 6-bit run and a 16-bit signed int is stored immediately after this ESC charater
  *                     # throw away the escape character
  *                     bits.read('bin:' + str(i))             # <<<<<<<<<<<<<<
  *                     # read the run (6 bit unsigned int) and the level (16-bit signed int)
  *                     run = bits.read('uint:6')
  */
-        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_bits, __pyx_n_s_read); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 308, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_bits, __pyx_n_s_read); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 299, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_10 = PyTuple_New(1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 308, __pyx_L1_error)
+        __pyx_t_10 = PyTuple_New(1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 299, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_INCREF(__pyx_v_i);
         __Pyx_GIVEREF(__pyx_v_i);
         PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_v_i);
-        __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_10, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 308, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_10, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 299, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-        __pyx_t_10 = PyNumber_Add(__pyx_kp_s_bin, __pyx_t_7); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 308, __pyx_L1_error)
+        __pyx_t_10 = PyNumber_Add(__pyx_kp_s_bin, __pyx_t_7); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 299, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         __pyx_t_7 = NULL;
@@ -6116,14 +5916,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
           }
         }
         if (!__pyx_t_7) {
-          __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_10); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 308, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_10); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 299, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
           __Pyx_GOTREF(__pyx_t_1);
         } else {
           #if CYTHON_FAST_PYCALL
           if (PyFunction_Check(__pyx_t_2)) {
             PyObject *__pyx_temp[2] = {__pyx_t_7, __pyx_t_10};
-            __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 308, __pyx_L1_error)
+            __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 299, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
@@ -6132,20 +5932,20 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
           #if CYTHON_FAST_PYCCALL
           if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
             PyObject *__pyx_temp[2] = {__pyx_t_7, __pyx_t_10};
-            __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 308, __pyx_L1_error)
+            __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 299, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
           } else
           #endif
           {
-            __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 308, __pyx_L1_error)
+            __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 299, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_3);
             __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_7); __pyx_t_7 = NULL;
             __Pyx_GIVEREF(__pyx_t_10);
             PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_10);
             __pyx_t_10 = 0;
-            __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 308, __pyx_L1_error)
+            __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 299, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           }
@@ -6153,44 +5953,44 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-        /* "proto_mpeg_x.pyx":310
+        /* "proto_mpeg_x.pyx":301
  *                     bits.read('bin:' + str(i))
  *                     # read the run (6 bit unsigned int) and the level (16-bit signed int)
  *                     run = bits.read('uint:6')             # <<<<<<<<<<<<<<
  *                     level = bits.read('int:16')
  *                     decoded_zz_summary.append((run, level))
  */
-        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_bits, __pyx_n_s_read); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 310, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_bits, __pyx_n_s_read); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__35, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 310, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__35, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 301, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_XDECREF_SET(__pyx_v_run, __pyx_t_2);
         __pyx_t_2 = 0;
 
-        /* "proto_mpeg_x.pyx":311
+        /* "proto_mpeg_x.pyx":302
  *                     # read the run (6 bit unsigned int) and the level (16-bit signed int)
  *                     run = bits.read('uint:6')
  *                     level = bits.read('int:16')             # <<<<<<<<<<<<<<
  *                     decoded_zz_summary.append((run, level))
  *                     # print("Handled escape character and appended run, level", (run, level))
  */
-        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_bits, __pyx_n_s_read); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 311, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_bits, __pyx_n_s_read); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 302, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__36, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 311, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__36, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 302, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_XDECREF_SET(__pyx_v_level, __pyx_t_1);
         __pyx_t_1 = 0;
 
-        /* "proto_mpeg_x.pyx":312
+        /* "proto_mpeg_x.pyx":303
  *                     run = bits.read('uint:6')
  *                     level = bits.read('int:16')
  *                     decoded_zz_summary.append((run, level))             # <<<<<<<<<<<<<<
  *                     # print("Handled escape character and appended run, level", (run, level))
  *                 elif data == 'EOB':
  */
-        __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 303, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_INCREF(__pyx_v_run);
         __Pyx_GIVEREF(__pyx_v_run);
@@ -6198,10 +5998,10 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
         __Pyx_INCREF(__pyx_v_level);
         __Pyx_GIVEREF(__pyx_v_level);
         PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_level);
-        __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_decoded_zz_summary, __pyx_t_1); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 312, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_decoded_zz_summary, __pyx_t_1); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 303, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-        /* "proto_mpeg_x.pyx":305
+        /* "proto_mpeg_x.pyx":296
  *                 data = decoder_table[bit_string]
  *                 # print("Found", data, "in decoder table with data =", data)
  *                 if data == 'ESC':             # <<<<<<<<<<<<<<
@@ -6211,34 +6011,34 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
         goto __pyx_L7;
       }
 
-      /* "proto_mpeg_x.pyx":314
+      /* "proto_mpeg_x.pyx":305
  *                     decoded_zz_summary.append((run, level))
  *                     # print("Handled escape character and appended run, level", (run, level))
  *                 elif data == 'EOB':             # <<<<<<<<<<<<<<
  *                     # Throw away the EOB character, then append an EOB to our decoded zigzag summary of a single block
  *                     bits.read('bin:' + str(i))
  */
-      __pyx_t_11 = (__Pyx_PyString_Equals(__pyx_v_data, __pyx_n_s_EOB, Py_EQ)); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 314, __pyx_L1_error)
+      __pyx_t_11 = (__Pyx_PyString_Equals(__pyx_v_data, __pyx_n_s_EOB, Py_EQ)); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 305, __pyx_L1_error)
       if (__pyx_t_11) {
 
-        /* "proto_mpeg_x.pyx":316
+        /* "proto_mpeg_x.pyx":307
  *                 elif data == 'EOB':
  *                     # Throw away the EOB character, then append an EOB to our decoded zigzag summary of a single block
  *                     bits.read('bin:' + str(i))             # <<<<<<<<<<<<<<
  *                     decoded_zz_summary.append(data)
  * 
  */
-        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_bits, __pyx_n_s_read); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 316, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_bits, __pyx_n_s_read); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 307, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 316, __pyx_L1_error)
+        __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 307, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_v_i);
         __Pyx_GIVEREF(__pyx_v_i);
         PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_i);
-        __pyx_t_10 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 316, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 307, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_3 = PyNumber_Add(__pyx_kp_s_bin, __pyx_t_10); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 316, __pyx_L1_error)
+        __pyx_t_3 = PyNumber_Add(__pyx_kp_s_bin, __pyx_t_10); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 307, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         __pyx_t_10 = NULL;
@@ -6252,14 +6052,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
           }
         }
         if (!__pyx_t_10) {
-          __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 316, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 307, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           __Pyx_GOTREF(__pyx_t_1);
         } else {
           #if CYTHON_FAST_PYCALL
           if (PyFunction_Check(__pyx_t_2)) {
             PyObject *__pyx_temp[2] = {__pyx_t_10, __pyx_t_3};
-            __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 316, __pyx_L1_error)
+            __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 307, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -6268,20 +6068,20 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
           #if CYTHON_FAST_PYCCALL
           if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
             PyObject *__pyx_temp[2] = {__pyx_t_10, __pyx_t_3};
-            __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 316, __pyx_L1_error)
+            __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 307, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           } else
           #endif
           {
-            __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 316, __pyx_L1_error)
+            __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 307, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_7);
             __Pyx_GIVEREF(__pyx_t_10); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_10); __pyx_t_10 = NULL;
             __Pyx_GIVEREF(__pyx_t_3);
             PyTuple_SET_ITEM(__pyx_t_7, 0+1, __pyx_t_3);
             __pyx_t_3 = 0;
-            __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 316, __pyx_L1_error)
+            __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 307, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
           }
@@ -6289,81 +6089,202 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-        /* "proto_mpeg_x.pyx":317
+        /* "proto_mpeg_x.pyx":308
  *                     # Throw away the EOB character, then append an EOB to our decoded zigzag summary of a single block
  *                     bits.read('bin:' + str(i))
  *                     decoded_zz_summary.append(data)             # <<<<<<<<<<<<<<
  * 
  *                     # Reconstruct a block from our completed zz summary, dequantize it, perform IDCT, store it
  */
-        __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_decoded_zz_summary, __pyx_v_data); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 317, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_decoded_zz_summary, __pyx_v_data); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 308, __pyx_L1_error)
 
-        /* "proto_mpeg_x.pyx":320
+        /* "proto_mpeg_x.pyx":311
  * 
  *                     # Reconstruct a block from our completed zz summary, dequantize it, perform IDCT, store it
- *                     bl_recon = np.rint(dct.idct(self.dequantize_intra(self.zigzag_to_block(decoded_zz_summary)).astype(float)))             # <<<<<<<<<<<<<<
- *                     bl_recon[bl_recon<0]=0
- *                     bl_recon[bl_recon>255]=255
+ *                     blocks = np.append(blocks, [np.rint(             # <<<<<<<<<<<<<<
+ *                         dct.idct(self.dequantize_intra(self.zigzag_to_block(decoded_zz_summary)).astype(float))).astype(np.uint8)], axis=0)
+ * 
  */
-        __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 320, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 311, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_append); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 311, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_rint); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 320, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_7);
-        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_dct); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 320, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+        /* "proto_mpeg_x.pyx":312
+ *                     # Reconstruct a block from our completed zz summary, dequantize it, perform IDCT, store it
+ *                     blocks = np.append(blocks, [np.rint(
+ *                         dct.idct(self.dequantize_intra(self.zigzag_to_block(decoded_zz_summary)).astype(float))).astype(np.uint8)], axis=0)             # <<<<<<<<<<<<<<
+ * 
+ *                     # Reset the zigzag summary so that the next thing we do is read a DC term
+ */
+        __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 311, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_idct); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 320, __pyx_L1_error)
+
+        /* "proto_mpeg_x.pyx":311
+ * 
+ *                     # Reconstruct a block from our completed zz summary, dequantize it, perform IDCT, store it
+ *                     blocks = np.append(blocks, [np.rint(             # <<<<<<<<<<<<<<
+ *                         dct.idct(self.dequantize_intra(self.zigzag_to_block(decoded_zz_summary)).astype(float))).astype(np.uint8)], axis=0)
+ * 
+ */
+        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_rint); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 311, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_dequantize_intra); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 320, __pyx_L1_error)
+
+        /* "proto_mpeg_x.pyx":312
+ *                     # Reconstruct a block from our completed zz summary, dequantize it, perform IDCT, store it
+ *                     blocks = np.append(blocks, [np.rint(
+ *                         dct.idct(self.dequantize_intra(self.zigzag_to_block(decoded_zz_summary)).astype(float))).astype(np.uint8)], axis=0)             # <<<<<<<<<<<<<<
+ * 
+ *                     # Reset the zigzag summary so that the next thing we do is read a DC term
+ */
+        __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_dct); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 312, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_8);
+        __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_idct); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 312, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
-        __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_zigzag_to_block); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 320, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+        __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_dequantize_intra); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 312, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_13);
-        __pyx_t_14 = NULL;
+        __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_zigzag_to_block); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 312, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_15);
+        __pyx_t_16 = NULL;
+        if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_15))) {
+          __pyx_t_16 = PyMethod_GET_SELF(__pyx_t_15);
+          if (likely(__pyx_t_16)) {
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_15);
+            __Pyx_INCREF(__pyx_t_16);
+            __Pyx_INCREF(function);
+            __Pyx_DECREF_SET(__pyx_t_15, function);
+          }
+        }
+        if (!__pyx_t_16) {
+          __pyx_t_14 = __Pyx_PyObject_CallOneArg(__pyx_t_15, __pyx_v_decoded_zz_summary); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 312, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_14);
+        } else {
+          #if CYTHON_FAST_PYCALL
+          if (PyFunction_Check(__pyx_t_15)) {
+            PyObject *__pyx_temp[2] = {__pyx_t_16, __pyx_v_decoded_zz_summary};
+            __pyx_t_14 = __Pyx_PyFunction_FastCall(__pyx_t_15, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 312, __pyx_L1_error)
+            __Pyx_XDECREF(__pyx_t_16); __pyx_t_16 = 0;
+            __Pyx_GOTREF(__pyx_t_14);
+          } else
+          #endif
+          #if CYTHON_FAST_PYCCALL
+          if (__Pyx_PyFastCFunction_Check(__pyx_t_15)) {
+            PyObject *__pyx_temp[2] = {__pyx_t_16, __pyx_v_decoded_zz_summary};
+            __pyx_t_14 = __Pyx_PyCFunction_FastCall(__pyx_t_15, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 312, __pyx_L1_error)
+            __Pyx_XDECREF(__pyx_t_16); __pyx_t_16 = 0;
+            __Pyx_GOTREF(__pyx_t_14);
+          } else
+          #endif
+          {
+            __pyx_t_17 = PyTuple_New(1+1); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 312, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_17);
+            __Pyx_GIVEREF(__pyx_t_16); PyTuple_SET_ITEM(__pyx_t_17, 0, __pyx_t_16); __pyx_t_16 = NULL;
+            __Pyx_INCREF(__pyx_v_decoded_zz_summary);
+            __Pyx_GIVEREF(__pyx_v_decoded_zz_summary);
+            PyTuple_SET_ITEM(__pyx_t_17, 0+1, __pyx_v_decoded_zz_summary);
+            __pyx_t_14 = __Pyx_PyObject_Call(__pyx_t_15, __pyx_t_17, NULL); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 312, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_14);
+            __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
+          }
+        }
+        __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
+        __pyx_t_15 = NULL;
         if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_13))) {
-          __pyx_t_14 = PyMethod_GET_SELF(__pyx_t_13);
-          if (likely(__pyx_t_14)) {
+          __pyx_t_15 = PyMethod_GET_SELF(__pyx_t_13);
+          if (likely(__pyx_t_15)) {
             PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_13);
-            __Pyx_INCREF(__pyx_t_14);
+            __Pyx_INCREF(__pyx_t_15);
             __Pyx_INCREF(function);
             __Pyx_DECREF_SET(__pyx_t_13, function);
           }
         }
-        if (!__pyx_t_14) {
-          __pyx_t_12 = __Pyx_PyObject_CallOneArg(__pyx_t_13, __pyx_v_decoded_zz_summary); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 320, __pyx_L1_error)
+        if (!__pyx_t_15) {
+          __pyx_t_12 = __Pyx_PyObject_CallOneArg(__pyx_t_13, __pyx_t_14); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 312, __pyx_L1_error)
+          __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
           __Pyx_GOTREF(__pyx_t_12);
         } else {
           #if CYTHON_FAST_PYCALL
           if (PyFunction_Check(__pyx_t_13)) {
-            PyObject *__pyx_temp[2] = {__pyx_t_14, __pyx_v_decoded_zz_summary};
-            __pyx_t_12 = __Pyx_PyFunction_FastCall(__pyx_t_13, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 320, __pyx_L1_error)
-            __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
+            PyObject *__pyx_temp[2] = {__pyx_t_15, __pyx_t_14};
+            __pyx_t_12 = __Pyx_PyFunction_FastCall(__pyx_t_13, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 312, __pyx_L1_error)
+            __Pyx_XDECREF(__pyx_t_15); __pyx_t_15 = 0;
             __Pyx_GOTREF(__pyx_t_12);
+            __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
           } else
           #endif
           #if CYTHON_FAST_PYCCALL
           if (__Pyx_PyFastCFunction_Check(__pyx_t_13)) {
-            PyObject *__pyx_temp[2] = {__pyx_t_14, __pyx_v_decoded_zz_summary};
-            __pyx_t_12 = __Pyx_PyCFunction_FastCall(__pyx_t_13, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 320, __pyx_L1_error)
-            __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
+            PyObject *__pyx_temp[2] = {__pyx_t_15, __pyx_t_14};
+            __pyx_t_12 = __Pyx_PyCFunction_FastCall(__pyx_t_13, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 312, __pyx_L1_error)
+            __Pyx_XDECREF(__pyx_t_15); __pyx_t_15 = 0;
             __Pyx_GOTREF(__pyx_t_12);
+            __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
           } else
           #endif
           {
-            __pyx_t_15 = PyTuple_New(1+1); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 320, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_15);
-            __Pyx_GIVEREF(__pyx_t_14); PyTuple_SET_ITEM(__pyx_t_15, 0, __pyx_t_14); __pyx_t_14 = NULL;
-            __Pyx_INCREF(__pyx_v_decoded_zz_summary);
-            __Pyx_GIVEREF(__pyx_v_decoded_zz_summary);
-            PyTuple_SET_ITEM(__pyx_t_15, 0+1, __pyx_v_decoded_zz_summary);
-            __pyx_t_12 = __Pyx_PyObject_Call(__pyx_t_13, __pyx_t_15, NULL); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 320, __pyx_L1_error)
+            __pyx_t_17 = PyTuple_New(1+1); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 312, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_17);
+            __Pyx_GIVEREF(__pyx_t_15); PyTuple_SET_ITEM(__pyx_t_17, 0, __pyx_t_15); __pyx_t_15 = NULL;
+            __Pyx_GIVEREF(__pyx_t_14);
+            PyTuple_SET_ITEM(__pyx_t_17, 0+1, __pyx_t_14);
+            __pyx_t_14 = 0;
+            __pyx_t_12 = __Pyx_PyObject_Call(__pyx_t_13, __pyx_t_17, NULL); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 312, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_12);
-            __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
+            __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
+          }
+        }
+        __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+        __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_astype); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 312, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_13);
+        __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+        __pyx_t_12 = NULL;
+        if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_13))) {
+          __pyx_t_12 = PyMethod_GET_SELF(__pyx_t_13);
+          if (likely(__pyx_t_12)) {
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_13);
+            __Pyx_INCREF(__pyx_t_12);
+            __Pyx_INCREF(function);
+            __Pyx_DECREF_SET(__pyx_t_13, function);
+          }
+        }
+        if (!__pyx_t_12) {
+          __pyx_t_8 = __Pyx_PyObject_CallOneArg(__pyx_t_13, ((PyObject *)(&PyFloat_Type))); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 312, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_8);
+        } else {
+          #if CYTHON_FAST_PYCALL
+          if (PyFunction_Check(__pyx_t_13)) {
+            PyObject *__pyx_temp[2] = {__pyx_t_12, ((PyObject *)(&PyFloat_Type))};
+            __pyx_t_8 = __Pyx_PyFunction_FastCall(__pyx_t_13, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 312, __pyx_L1_error)
+            __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
+            __Pyx_GOTREF(__pyx_t_8);
+          } else
+          #endif
+          #if CYTHON_FAST_PYCCALL
+          if (__Pyx_PyFastCFunction_Check(__pyx_t_13)) {
+            PyObject *__pyx_temp[2] = {__pyx_t_12, ((PyObject *)(&PyFloat_Type))};
+            __pyx_t_8 = __Pyx_PyCFunction_FastCall(__pyx_t_13, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 312, __pyx_L1_error)
+            __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
+            __Pyx_GOTREF(__pyx_t_8);
+          } else
+          #endif
+          {
+            __pyx_t_17 = PyTuple_New(1+1); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 312, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_17);
+            __Pyx_GIVEREF(__pyx_t_12); PyTuple_SET_ITEM(__pyx_t_17, 0, __pyx_t_12); __pyx_t_12 = NULL;
+            __Pyx_INCREF(((PyObject *)(&PyFloat_Type)));
+            __Pyx_GIVEREF(((PyObject *)(&PyFloat_Type)));
+            PyTuple_SET_ITEM(__pyx_t_17, 0+1, ((PyObject *)(&PyFloat_Type)));
+            __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_13, __pyx_t_17, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 312, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_8);
+            __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
           }
         }
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
         __pyx_t_13 = NULL;
-        if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_9))) {
+        if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_9))) {
           __pyx_t_13 = PyMethod_GET_SELF(__pyx_t_9);
           if (likely(__pyx_t_13)) {
             PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_9);
@@ -6373,84 +6294,38 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
           }
         }
         if (!__pyx_t_13) {
-          __pyx_t_8 = __Pyx_PyObject_CallOneArg(__pyx_t_9, __pyx_t_12); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 320, __pyx_L1_error)
-          __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-          __Pyx_GOTREF(__pyx_t_8);
-        } else {
-          #if CYTHON_FAST_PYCALL
-          if (PyFunction_Check(__pyx_t_9)) {
-            PyObject *__pyx_temp[2] = {__pyx_t_13, __pyx_t_12};
-            __pyx_t_8 = __Pyx_PyFunction_FastCall(__pyx_t_9, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 320, __pyx_L1_error)
-            __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
-            __Pyx_GOTREF(__pyx_t_8);
-            __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-          } else
-          #endif
-          #if CYTHON_FAST_PYCCALL
-          if (__Pyx_PyFastCFunction_Check(__pyx_t_9)) {
-            PyObject *__pyx_temp[2] = {__pyx_t_13, __pyx_t_12};
-            __pyx_t_8 = __Pyx_PyCFunction_FastCall(__pyx_t_9, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 320, __pyx_L1_error)
-            __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
-            __Pyx_GOTREF(__pyx_t_8);
-            __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-          } else
-          #endif
-          {
-            __pyx_t_15 = PyTuple_New(1+1); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 320, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_15);
-            __Pyx_GIVEREF(__pyx_t_13); PyTuple_SET_ITEM(__pyx_t_15, 0, __pyx_t_13); __pyx_t_13 = NULL;
-            __Pyx_GIVEREF(__pyx_t_12);
-            PyTuple_SET_ITEM(__pyx_t_15, 0+1, __pyx_t_12);
-            __pyx_t_12 = 0;
-            __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_15, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 320, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_8);
-            __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-          }
-        }
-        __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-        __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_astype); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 320, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_9);
-        __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-        __pyx_t_8 = NULL;
-        if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_9))) {
-          __pyx_t_8 = PyMethod_GET_SELF(__pyx_t_9);
-          if (likely(__pyx_t_8)) {
-            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_9);
-            __Pyx_INCREF(__pyx_t_8);
-            __Pyx_INCREF(function);
-            __Pyx_DECREF_SET(__pyx_t_9, function);
-          }
-        }
-        if (!__pyx_t_8) {
-          __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_9, ((PyObject *)(&PyFloat_Type))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 320, __pyx_L1_error)
+          __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_9, __pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 312, __pyx_L1_error)
+          __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           __Pyx_GOTREF(__pyx_t_3);
         } else {
           #if CYTHON_FAST_PYCALL
           if (PyFunction_Check(__pyx_t_9)) {
-            PyObject *__pyx_temp[2] = {__pyx_t_8, ((PyObject *)(&PyFloat_Type))};
-            __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_9, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 320, __pyx_L1_error)
-            __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
+            PyObject *__pyx_temp[2] = {__pyx_t_13, __pyx_t_8};
+            __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_9, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 312, __pyx_L1_error)
+            __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
             __Pyx_GOTREF(__pyx_t_3);
+            __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           } else
           #endif
           #if CYTHON_FAST_PYCCALL
           if (__Pyx_PyFastCFunction_Check(__pyx_t_9)) {
-            PyObject *__pyx_temp[2] = {__pyx_t_8, ((PyObject *)(&PyFloat_Type))};
-            __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_9, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 320, __pyx_L1_error)
-            __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
+            PyObject *__pyx_temp[2] = {__pyx_t_13, __pyx_t_8};
+            __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_9, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 312, __pyx_L1_error)
+            __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
             __Pyx_GOTREF(__pyx_t_3);
+            __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           } else
           #endif
           {
-            __pyx_t_15 = PyTuple_New(1+1); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 320, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_15);
-            __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_15, 0, __pyx_t_8); __pyx_t_8 = NULL;
-            __Pyx_INCREF(((PyObject *)(&PyFloat_Type)));
-            __Pyx_GIVEREF(((PyObject *)(&PyFloat_Type)));
-            PyTuple_SET_ITEM(__pyx_t_15, 0+1, ((PyObject *)(&PyFloat_Type)));
-            __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_15, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 320, __pyx_L1_error)
+            __pyx_t_17 = PyTuple_New(1+1); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 312, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_17);
+            __Pyx_GIVEREF(__pyx_t_13); PyTuple_SET_ITEM(__pyx_t_17, 0, __pyx_t_13); __pyx_t_13 = NULL;
+            __Pyx_GIVEREF(__pyx_t_8);
+            PyTuple_SET_ITEM(__pyx_t_17, 0+1, __pyx_t_8);
+            __pyx_t_8 = 0;
+            __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_17, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 312, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_3);
-            __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
+            __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
           }
         }
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
@@ -6465,214 +6340,156 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
           }
         }
         if (!__pyx_t_9) {
-          __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_10, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 320, __pyx_L1_error)
+          __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_10, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 311, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __Pyx_GOTREF(__pyx_t_2);
+          __Pyx_GOTREF(__pyx_t_7);
         } else {
           #if CYTHON_FAST_PYCALL
           if (PyFunction_Check(__pyx_t_10)) {
             PyObject *__pyx_temp[2] = {__pyx_t_9, __pyx_t_3};
-            __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_10, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 320, __pyx_L1_error)
+            __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_10, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 311, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-            __Pyx_GOTREF(__pyx_t_2);
+            __Pyx_GOTREF(__pyx_t_7);
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           } else
           #endif
           #if CYTHON_FAST_PYCCALL
           if (__Pyx_PyFastCFunction_Check(__pyx_t_10)) {
             PyObject *__pyx_temp[2] = {__pyx_t_9, __pyx_t_3};
-            __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_10, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 320, __pyx_L1_error)
+            __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_10, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 311, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-            __Pyx_GOTREF(__pyx_t_2);
+            __Pyx_GOTREF(__pyx_t_7);
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           } else
           #endif
           {
-            __pyx_t_15 = PyTuple_New(1+1); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 320, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_15);
-            __Pyx_GIVEREF(__pyx_t_9); PyTuple_SET_ITEM(__pyx_t_15, 0, __pyx_t_9); __pyx_t_9 = NULL;
+            __pyx_t_17 = PyTuple_New(1+1); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 311, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_17);
+            __Pyx_GIVEREF(__pyx_t_9); PyTuple_SET_ITEM(__pyx_t_17, 0, __pyx_t_9); __pyx_t_9 = NULL;
             __Pyx_GIVEREF(__pyx_t_3);
-            PyTuple_SET_ITEM(__pyx_t_15, 0+1, __pyx_t_3);
+            PyTuple_SET_ITEM(__pyx_t_17, 0+1, __pyx_t_3);
             __pyx_t_3 = 0;
-            __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_15, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 320, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_2);
-            __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
+            __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_17, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 311, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_7);
+            __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
           }
         }
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-        __pyx_t_10 = NULL;
-        if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_7))) {
-          __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_7);
-          if (likely(__pyx_t_10)) {
-            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_7);
-            __Pyx_INCREF(__pyx_t_10);
-            __Pyx_INCREF(function);
-            __Pyx_DECREF_SET(__pyx_t_7, function);
-          }
-        }
-        if (!__pyx_t_10) {
-          __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 320, __pyx_L1_error)
-          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-          __Pyx_GOTREF(__pyx_t_1);
-        } else {
-          #if CYTHON_FAST_PYCALL
-          if (PyFunction_Check(__pyx_t_7)) {
-            PyObject *__pyx_temp[2] = {__pyx_t_10, __pyx_t_2};
-            __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 320, __pyx_L1_error)
-            __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-            __Pyx_GOTREF(__pyx_t_1);
-            __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-          } else
-          #endif
-          #if CYTHON_FAST_PYCCALL
-          if (__Pyx_PyFastCFunction_Check(__pyx_t_7)) {
-            PyObject *__pyx_temp[2] = {__pyx_t_10, __pyx_t_2};
-            __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 320, __pyx_L1_error)
-            __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-            __Pyx_GOTREF(__pyx_t_1);
-            __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-          } else
-          #endif
-          {
-            __pyx_t_15 = PyTuple_New(1+1); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 320, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_15);
-            __Pyx_GIVEREF(__pyx_t_10); PyTuple_SET_ITEM(__pyx_t_15, 0, __pyx_t_10); __pyx_t_10 = NULL;
-            __Pyx_GIVEREF(__pyx_t_2);
-            PyTuple_SET_ITEM(__pyx_t_15, 0+1, __pyx_t_2);
-            __pyx_t_2 = 0;
-            __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_15, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 320, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_1);
-            __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-          }
-        }
-        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-        __Pyx_XDECREF_SET(__pyx_v_bl_recon, __pyx_t_1);
-        __pyx_t_1 = 0;
-
-        /* "proto_mpeg_x.pyx":321
- *                     # Reconstruct a block from our completed zz summary, dequantize it, perform IDCT, store it
- *                     bl_recon = np.rint(dct.idct(self.dequantize_intra(self.zigzag_to_block(decoded_zz_summary)).astype(float)))
- *                     bl_recon[bl_recon<0]=0             # <<<<<<<<<<<<<<
- *                     bl_recon[bl_recon>255]=255
- *                     blocks = np.append(blocks, [bl_recon.astype(np.uint8)], axis=0)
- */
-        __pyx_t_1 = PyObject_RichCompare(__pyx_v_bl_recon, __pyx_int_0, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
-        if (unlikely(PyObject_SetItem(__pyx_v_bl_recon, __pyx_t_1, __pyx_int_0) < 0)) __PYX_ERR(0, 321, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-        /* "proto_mpeg_x.pyx":322
- *                     bl_recon = np.rint(dct.idct(self.dequantize_intra(self.zigzag_to_block(decoded_zz_summary)).astype(float)))
- *                     bl_recon[bl_recon<0]=0
- *                     bl_recon[bl_recon>255]=255             # <<<<<<<<<<<<<<
- *                     blocks = np.append(blocks, [bl_recon.astype(np.uint8)], axis=0)
- * 
- */
-        __pyx_t_1 = PyObject_RichCompare(__pyx_v_bl_recon, __pyx_int_255, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 322, __pyx_L1_error)
-        if (unlikely(PyObject_SetItem(__pyx_v_bl_recon, __pyx_t_1, __pyx_int_255) < 0)) __PYX_ERR(0, 322, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-        /* "proto_mpeg_x.pyx":323
- *                     bl_recon[bl_recon<0]=0
- *                     bl_recon[bl_recon>255]=255
- *                     blocks = np.append(blocks, [bl_recon.astype(np.uint8)], axis=0)             # <<<<<<<<<<<<<<
- * 
- *                     # Reset the zigzag summary so that the next thing we do is read a DC term
- */
-        __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_append); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 323, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_7);
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_v_bl_recon, __pyx_n_s_astype); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 323, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_15);
-        __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 323, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_uint8); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 323, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_astype); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 312, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
-        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __pyx_t_2 = NULL;
-        if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_15))) {
-          __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_15);
-          if (likely(__pyx_t_2)) {
-            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_15);
-            __Pyx_INCREF(__pyx_t_2);
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 312, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __pyx_t_17 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_uint8); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 312, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_17);
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        __pyx_t_7 = NULL;
+        if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_10))) {
+          __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_10);
+          if (likely(__pyx_t_7)) {
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_10);
+            __Pyx_INCREF(__pyx_t_7);
             __Pyx_INCREF(function);
-            __Pyx_DECREF_SET(__pyx_t_15, function);
+            __Pyx_DECREF_SET(__pyx_t_10, function);
           }
         }
-        if (!__pyx_t_2) {
-          __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_15, __pyx_t_10); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
-          __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+        if (!__pyx_t_7) {
+          __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_10, __pyx_t_17); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
+          __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
           __Pyx_GOTREF(__pyx_t_1);
         } else {
           #if CYTHON_FAST_PYCALL
-          if (PyFunction_Check(__pyx_t_15)) {
-            PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_t_10};
-            __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_15, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
-            __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+          if (PyFunction_Check(__pyx_t_10)) {
+            PyObject *__pyx_temp[2] = {__pyx_t_7, __pyx_t_17};
+            __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_10, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
+            __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
             __Pyx_GOTREF(__pyx_t_1);
-            __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+            __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
           } else
           #endif
           #if CYTHON_FAST_PYCCALL
-          if (__Pyx_PyFastCFunction_Check(__pyx_t_15)) {
-            PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_t_10};
-            __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_15, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
-            __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+          if (__Pyx_PyFastCFunction_Check(__pyx_t_10)) {
+            PyObject *__pyx_temp[2] = {__pyx_t_7, __pyx_t_17};
+            __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_10, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
+            __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
             __Pyx_GOTREF(__pyx_t_1);
-            __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+            __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
           } else
           #endif
           {
-            __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 323, __pyx_L1_error)
+            __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 312, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_3);
-            __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2); __pyx_t_2 = NULL;
-            __Pyx_GIVEREF(__pyx_t_10);
-            PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_10);
-            __pyx_t_10 = 0;
-            __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_15, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
+            __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_7); __pyx_t_7 = NULL;
+            __Pyx_GIVEREF(__pyx_t_17);
+            PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_17);
+            __pyx_t_17 = 0;
+            __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           }
         }
-        __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-        __pyx_t_15 = PyList_New(1); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 323, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_15);
+        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+
+        /* "proto_mpeg_x.pyx":311
+ * 
+ *                     # Reconstruct a block from our completed zz summary, dequantize it, perform IDCT, store it
+ *                     blocks = np.append(blocks, [np.rint(             # <<<<<<<<<<<<<<
+ *                         dct.idct(self.dequantize_intra(self.zigzag_to_block(decoded_zz_summary)).astype(float))).astype(np.uint8)], axis=0)
+ * 
+ */
+        __pyx_t_10 = PyList_New(1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 311, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_10);
         __Pyx_GIVEREF(__pyx_t_1);
-        PyList_SET_ITEM(__pyx_t_15, 0, __pyx_t_1);
+        PyList_SET_ITEM(__pyx_t_10, 0, __pyx_t_1);
         __pyx_t_1 = 0;
-        __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 311, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_INCREF(__pyx_v_blocks);
         __Pyx_GIVEREF(__pyx_v_blocks);
         PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_blocks);
-        __Pyx_GIVEREF(__pyx_t_15);
-        PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_15);
-        __pyx_t_15 = 0;
-        __pyx_t_15 = PyDict_New(); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 323, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_15);
-        if (PyDict_SetItem(__pyx_t_15, __pyx_n_s_axis, __pyx_int_0) < 0) __PYX_ERR(0, 323, __pyx_L1_error)
-        __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_1, __pyx_t_15); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 323, __pyx_L1_error)
+        __Pyx_GIVEREF(__pyx_t_10);
+        PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_10);
+        __pyx_t_10 = 0;
+
+        /* "proto_mpeg_x.pyx":312
+ *                     # Reconstruct a block from our completed zz summary, dequantize it, perform IDCT, store it
+ *                     blocks = np.append(blocks, [np.rint(
+ *                         dct.idct(self.dequantize_intra(self.zigzag_to_block(decoded_zz_summary)).astype(float))).astype(np.uint8)], axis=0)             # <<<<<<<<<<<<<<
+ * 
+ *                     # Reset the zigzag summary so that the next thing we do is read a DC term
+ */
+        __pyx_t_10 = PyDict_New(); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 312, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_10);
+        if (PyDict_SetItem(__pyx_t_10, __pyx_n_s_axis, __pyx_int_0) < 0) __PYX_ERR(0, 312, __pyx_L1_error)
+
+        /* "proto_mpeg_x.pyx":311
+ * 
+ *                     # Reconstruct a block from our completed zz summary, dequantize it, perform IDCT, store it
+ *                     blocks = np.append(blocks, [np.rint(             # <<<<<<<<<<<<<<
+ *                         dct.idct(self.dequantize_intra(self.zigzag_to_block(decoded_zz_summary)).astype(float))).astype(np.uint8)], axis=0)
+ * 
+ */
+        __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, __pyx_t_10); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 311, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
+        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_DECREF_SET(__pyx_v_blocks, __pyx_t_3);
         __pyx_t_3 = 0;
 
-        /* "proto_mpeg_x.pyx":326
+        /* "proto_mpeg_x.pyx":315
  * 
  *                     # Reset the zigzag summary so that the next thing we do is read a DC term
  *                     decoded_zz_summary = list()             # <<<<<<<<<<<<<<
  * 
  *                     # Give a progress update
  */
-        __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 326, __pyx_L1_error)
+        __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 315, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF_SET(__pyx_v_decoded_zz_summary, ((PyObject*)__pyx_t_3));
         __pyx_t_3 = 0;
 
-        /* "proto_mpeg_x.pyx":314
+        /* "proto_mpeg_x.pyx":305
  *                     decoded_zz_summary.append((run, level))
  *                     # print("Handled escape character and appended run, level", (run, level))
  *                 elif data == 'EOB':             # <<<<<<<<<<<<<<
@@ -6682,7 +6499,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
         goto __pyx_L7;
       }
 
-      /* "proto_mpeg_x.pyx":336
+      /* "proto_mpeg_x.pyx":325
  *                 else:
  *                     # We have a run, level pair. We read i + 1 bits so that we grab the trailing sign bit.
  *                     bits_read = bits.read('bin:' + str(i + 1))             # <<<<<<<<<<<<<<
@@ -6690,109 +6507,109 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
  *                     if bits_read[-1] == '1':
  */
       /*else*/ {
-        __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_v_bits, __pyx_n_s_read); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 336, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_15);
-        __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_i, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 336, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_bits, __pyx_n_s_read); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 325, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_10);
+        __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_i, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 325, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 336, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_7);
+        __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 325, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
         __Pyx_GIVEREF(__pyx_t_1);
-        PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_1);
+        PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
         __pyx_t_1 = 0;
-        __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 336, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 325, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-        __pyx_t_7 = PyNumber_Add(__pyx_kp_s_bin, __pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 336, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_7);
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __pyx_t_2 = PyNumber_Add(__pyx_kp_s_bin, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 325, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __pyx_t_1 = NULL;
-        if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_15))) {
-          __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_15);
+        if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_10))) {
+          __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_10);
           if (likely(__pyx_t_1)) {
-            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_15);
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_10);
             __Pyx_INCREF(__pyx_t_1);
             __Pyx_INCREF(function);
-            __Pyx_DECREF_SET(__pyx_t_15, function);
+            __Pyx_DECREF_SET(__pyx_t_10, function);
           }
         }
         if (!__pyx_t_1) {
-          __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_15, __pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 336, __pyx_L1_error)
-          __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+          __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_10, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 325, __pyx_L1_error)
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_GOTREF(__pyx_t_3);
         } else {
           #if CYTHON_FAST_PYCALL
-          if (PyFunction_Check(__pyx_t_15)) {
-            PyObject *__pyx_temp[2] = {__pyx_t_1, __pyx_t_7};
-            __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_15, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 336, __pyx_L1_error)
+          if (PyFunction_Check(__pyx_t_10)) {
+            PyObject *__pyx_temp[2] = {__pyx_t_1, __pyx_t_2};
+            __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_10, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 325, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
             __Pyx_GOTREF(__pyx_t_3);
-            __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+            __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           } else
           #endif
           #if CYTHON_FAST_PYCCALL
-          if (__Pyx_PyFastCFunction_Check(__pyx_t_15)) {
-            PyObject *__pyx_temp[2] = {__pyx_t_1, __pyx_t_7};
-            __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_15, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 336, __pyx_L1_error)
+          if (__Pyx_PyFastCFunction_Check(__pyx_t_10)) {
+            PyObject *__pyx_temp[2] = {__pyx_t_1, __pyx_t_2};
+            __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_10, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 325, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
             __Pyx_GOTREF(__pyx_t_3);
-            __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+            __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           } else
           #endif
           {
-            __pyx_t_10 = PyTuple_New(1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 336, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_10);
-            __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_1); __pyx_t_1 = NULL;
-            __Pyx_GIVEREF(__pyx_t_7);
-            PyTuple_SET_ITEM(__pyx_t_10, 0+1, __pyx_t_7);
-            __pyx_t_7 = 0;
-            __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_15, __pyx_t_10, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 336, __pyx_L1_error)
+            __pyx_t_17 = PyTuple_New(1+1); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 325, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_17);
+            __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_17, 0, __pyx_t_1); __pyx_t_1 = NULL;
+            __Pyx_GIVEREF(__pyx_t_2);
+            PyTuple_SET_ITEM(__pyx_t_17, 0+1, __pyx_t_2);
+            __pyx_t_2 = 0;
+            __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_17, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 325, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_3);
-            __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+            __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
           }
         }
-        __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
+        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_XDECREF_SET(__pyx_v_bits_read, __pyx_t_3);
         __pyx_t_3 = 0;
 
-        /* "proto_mpeg_x.pyx":338
+        /* "proto_mpeg_x.pyx":327
  *                     bits_read = bits.read('bin:' + str(i + 1))
  *                     # print("Read bits", bits_read)
  *                     if bits_read[-1] == '1':             # <<<<<<<<<<<<<<
  *                         # Sign bit is negative
  *                         data = (data[0], data[1] * -1)
  */
-        __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_bits_read, -1L, long, 1, __Pyx_PyInt_From_long, 0, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 338, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_bits_read, -1L, long, 1, __Pyx_PyInt_From_long, 0, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 327, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_11 = (__Pyx_PyString_Equals(__pyx_t_3, __pyx_kp_s_1, Py_EQ)); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 338, __pyx_L1_error)
+        __pyx_t_11 = (__Pyx_PyString_Equals(__pyx_t_3, __pyx_kp_s_1, Py_EQ)); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 327, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         if (__pyx_t_11) {
 
-          /* "proto_mpeg_x.pyx":340
+          /* "proto_mpeg_x.pyx":329
  *                     if bits_read[-1] == '1':
  *                         # Sign bit is negative
  *                         data = (data[0], data[1] * -1)             # <<<<<<<<<<<<<<
  *                     decoded_zz_summary.append(data)
  *                 # In all cases, we do a read and need to reset the peek distance
  */
-          __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_data, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 340, __pyx_L1_error)
+          __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_data, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 329, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_15 = __Pyx_GetItemInt(__pyx_v_data, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 340, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_15);
-          __pyx_t_10 = PyNumber_Multiply(__pyx_t_15, __pyx_int_neg_1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 340, __pyx_L1_error)
+          __pyx_t_10 = __Pyx_GetItemInt(__pyx_v_data, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 329, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_10);
-          __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-          __pyx_t_15 = PyTuple_New(2); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 340, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_15);
+          __pyx_t_17 = PyNumber_Multiply(__pyx_t_10, __pyx_int_neg_1); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 329, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_17);
+          __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+          __pyx_t_10 = PyTuple_New(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 329, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_10);
           __Pyx_GIVEREF(__pyx_t_3);
-          PyTuple_SET_ITEM(__pyx_t_15, 0, __pyx_t_3);
-          __Pyx_GIVEREF(__pyx_t_10);
-          PyTuple_SET_ITEM(__pyx_t_15, 1, __pyx_t_10);
+          PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_3);
+          __Pyx_GIVEREF(__pyx_t_17);
+          PyTuple_SET_ITEM(__pyx_t_10, 1, __pyx_t_17);
           __pyx_t_3 = 0;
+          __pyx_t_17 = 0;
+          __Pyx_DECREF_SET(__pyx_v_data, __pyx_t_10);
           __pyx_t_10 = 0;
-          __Pyx_DECREF_SET(__pyx_v_data, __pyx_t_15);
-          __pyx_t_15 = 0;
 
-          /* "proto_mpeg_x.pyx":338
+          /* "proto_mpeg_x.pyx":327
  *                     bits_read = bits.read('bin:' + str(i + 1))
  *                     # print("Read bits", bits_read)
  *                     if bits_read[-1] == '1':             # <<<<<<<<<<<<<<
@@ -6801,18 +6618,18 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
  */
         }
 
-        /* "proto_mpeg_x.pyx":341
+        /* "proto_mpeg_x.pyx":330
  *                         # Sign bit is negative
  *                         data = (data[0], data[1] * -1)
  *                     decoded_zz_summary.append(data)             # <<<<<<<<<<<<<<
  *                 # In all cases, we do a read and need to reset the peek distance
  *                 i = 1
  */
-        __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_decoded_zz_summary, __pyx_v_data); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 341, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_decoded_zz_summary, __pyx_v_data); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 330, __pyx_L1_error)
       }
       __pyx_L7:;
 
-      /* "proto_mpeg_x.pyx":343
+      /* "proto_mpeg_x.pyx":332
  *                     decoded_zz_summary.append(data)
  *                 # In all cases, we do a read and need to reset the peek distance
  *                 i = 1             # <<<<<<<<<<<<<<
@@ -6822,7 +6639,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
       __Pyx_INCREF(__pyx_int_1);
       __Pyx_DECREF_SET(__pyx_v_i, __pyx_int_1);
 
-      /* "proto_mpeg_x.pyx":302
+      /* "proto_mpeg_x.pyx":293
  *             bit_string = Bits('0b' + bits.peek('bin:' + str(i)))
  *             # print("Testing bit string:", bit_string.bin)
  *             if bit_string in decoder_table:             # <<<<<<<<<<<<<<
@@ -6832,7 +6649,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
       goto __pyx_L6;
     }
 
-    /* "proto_mpeg_x.pyx":346
+    /* "proto_mpeg_x.pyx":335
  *             else:
  *                 # The bits we've peeked at don't match anything in the decoder table. Include one more bit in the search.
  *                 i = i + 1             # <<<<<<<<<<<<<<
@@ -6840,47 +6657,47 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
  *                 if i + bits.pos > len(bits):
  */
     /*else*/ {
-      __pyx_t_15 = __Pyx_PyInt_AddObjC(__pyx_v_i, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 346, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_15);
-      __Pyx_DECREF_SET(__pyx_v_i, __pyx_t_15);
-      __pyx_t_15 = 0;
+      __pyx_t_10 = __Pyx_PyInt_AddObjC(__pyx_v_i, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 335, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_10);
+      __Pyx_DECREF_SET(__pyx_v_i, __pyx_t_10);
+      __pyx_t_10 = 0;
 
-      /* "proto_mpeg_x.pyx":348
+      /* "proto_mpeg_x.pyx":337
  *                 i = i + 1
  *                 # print("Length and position:", len(decoded_bits), decoded_bits.pos)
  *                 if i + bits.pos > len(bits):             # <<<<<<<<<<<<<<
  *                     raise Exception("Attempted to read beyond end of bitstring during AC decoding.")
  * 
  */
-      __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_v_bits, __pyx_n_s_pos); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 348, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_15);
-      __pyx_t_10 = PyNumber_Add(__pyx_v_i, __pyx_t_15); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 348, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_bits, __pyx_n_s_pos); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 337, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
-      __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-      __pyx_t_4 = PyObject_Length(__pyx_v_bits); if (unlikely(__pyx_t_4 == -1)) __PYX_ERR(0, 348, __pyx_L1_error)
-      __pyx_t_15 = PyInt_FromSsize_t(__pyx_t_4); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 348, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_15);
-      __pyx_t_3 = PyObject_RichCompare(__pyx_t_10, __pyx_t_15, Py_GT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 348, __pyx_L1_error)
+      __pyx_t_17 = PyNumber_Add(__pyx_v_i, __pyx_t_10); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 337, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_17);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-      __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 348, __pyx_L1_error)
+      __pyx_t_4 = PyObject_Length(__pyx_v_bits); if (unlikely(__pyx_t_4 == -1)) __PYX_ERR(0, 337, __pyx_L1_error)
+      __pyx_t_10 = PyInt_FromSsize_t(__pyx_t_4); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 337, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_10);
+      __pyx_t_3 = PyObject_RichCompare(__pyx_t_17, __pyx_t_10, Py_GT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 337, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
+      __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+      __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 337, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       if (__pyx_t_11) {
 
-        /* "proto_mpeg_x.pyx":349
+        /* "proto_mpeg_x.pyx":338
  *                 # print("Length and position:", len(decoded_bits), decoded_bits.pos)
  *                 if i + bits.pos > len(bits):
  *                     raise Exception("Attempted to read beyond end of bitstring during AC decoding.")             # <<<<<<<<<<<<<<
  * 
  *         # Reconstruct an image from our decoded blocks, and store it.
  */
-        __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])), __pyx_tuple__37, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 349, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])), __pyx_tuple__37, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 338, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_Raise(__pyx_t_3, 0, 0, 0);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __PYX_ERR(0, 349, __pyx_L1_error)
+        __PYX_ERR(0, 338, __pyx_L1_error)
 
-        /* "proto_mpeg_x.pyx":348
+        /* "proto_mpeg_x.pyx":337
  *                 i = i + 1
  *                 # print("Length and position:", len(decoded_bits), decoded_bits.pos)
  *                 if i + bits.pos > len(bits):             # <<<<<<<<<<<<<<
@@ -6892,379 +6709,127 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
     __pyx_L6:;
   }
 
-  /* "proto_mpeg_x.pyx":355
- *         #self.v_mblocks = v_mblocks
+  /* "proto_mpeg_x.pyx":345
  *         #self.set_image(blocks)
- *         img=proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), v_mblocks, h_mblocks)             # <<<<<<<<<<<<<<
- *         if(ycbcr):
- *             img=color_convert.ycbcr2rgb(img).astype(np.uint8)
- */
-  __pyx_t_15 = __Pyx_GetModuleGlobalName(__pyx_n_s_proto_mpeg_computation); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 355, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_15);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_15, __pyx_n_s_blocks_to_image); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 355, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_10);
-  __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_blocks, __pyx_n_s_astype); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 355, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 355, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_uint8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 355, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_7))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_7);
-    if (likely(__pyx_t_1)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_7);
-      __Pyx_INCREF(__pyx_t_1);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_7, function);
-    }
-  }
-  if (!__pyx_t_1) {
-    __pyx_t_15 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_2); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 355, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_GOTREF(__pyx_t_15);
-  } else {
-    #if CYTHON_FAST_PYCALL
-    if (PyFunction_Check(__pyx_t_7)) {
-      PyObject *__pyx_temp[2] = {__pyx_t_1, __pyx_t_2};
-      __pyx_t_15 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 355, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __Pyx_GOTREF(__pyx_t_15);
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    } else
-    #endif
-    #if CYTHON_FAST_PYCCALL
-    if (__Pyx_PyFastCFunction_Check(__pyx_t_7)) {
-      PyObject *__pyx_temp[2] = {__pyx_t_1, __pyx_t_2};
-      __pyx_t_15 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 355, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __Pyx_GOTREF(__pyx_t_15);
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    } else
-    #endif
-    {
-      __pyx_t_9 = PyTuple_New(1+1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 355, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_9);
-      __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_1); __pyx_t_1 = NULL;
-      __Pyx_GIVEREF(__pyx_t_2);
-      PyTuple_SET_ITEM(__pyx_t_9, 0+1, __pyx_t_2);
-      __pyx_t_2 = 0;
-      __pyx_t_15 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_9, NULL); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 355, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_15);
-      __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    }
-  }
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = NULL;
-  __pyx_t_16 = 0;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_10))) {
-    __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_10);
-    if (likely(__pyx_t_7)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_10);
-      __Pyx_INCREF(__pyx_t_7);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_10, function);
-      __pyx_t_16 = 1;
-    }
-  }
-  #if CYTHON_FAST_PYCALL
-  if (PyFunction_Check(__pyx_t_10)) {
-    PyObject *__pyx_temp[4] = {__pyx_t_7, __pyx_t_15, __pyx_v_v_mblocks, __pyx_v_h_mblocks};
-    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_10, __pyx_temp+1-__pyx_t_16, 3+__pyx_t_16); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 355, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-  } else
-  #endif
-  #if CYTHON_FAST_PYCCALL
-  if (__Pyx_PyFastCFunction_Check(__pyx_t_10)) {
-    PyObject *__pyx_temp[4] = {__pyx_t_7, __pyx_t_15, __pyx_v_v_mblocks, __pyx_v_h_mblocks};
-    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_10, __pyx_temp+1-__pyx_t_16, 3+__pyx_t_16); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 355, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-  } else
-  #endif
-  {
-    __pyx_t_9 = PyTuple_New(3+__pyx_t_16); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 355, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_9);
-    if (__pyx_t_7) {
-      __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_7); __pyx_t_7 = NULL;
-    }
-    __Pyx_GIVEREF(__pyx_t_15);
-    PyTuple_SET_ITEM(__pyx_t_9, 0+__pyx_t_16, __pyx_t_15);
-    __Pyx_INCREF(__pyx_v_v_mblocks);
-    __Pyx_GIVEREF(__pyx_v_v_mblocks);
-    PyTuple_SET_ITEM(__pyx_t_9, 1+__pyx_t_16, __pyx_v_v_mblocks);
-    __Pyx_INCREF(__pyx_v_h_mblocks);
-    __Pyx_GIVEREF(__pyx_v_h_mblocks);
-    PyTuple_SET_ITEM(__pyx_t_9, 2+__pyx_t_16, __pyx_v_h_mblocks);
-    __pyx_t_15 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_9, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 355, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  }
-  __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-  __pyx_v_img = __pyx_t_3;
-  __pyx_t_3 = 0;
-
-  /* "proto_mpeg_x.pyx":356
- *         #self.set_image(blocks)
- *         img=proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), v_mblocks, h_mblocks)
- *         if(ycbcr):             # <<<<<<<<<<<<<<
- *             img=color_convert.ycbcr2rgb(img).astype(np.uint8)
- *         return proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), v_mblocks, h_mblocks)
- */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_ycbcr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 356, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 356, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__pyx_t_11) {
-
-    /* "proto_mpeg_x.pyx":357
- *         img=proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), v_mblocks, h_mblocks)
- *         if(ycbcr):
- *             img=color_convert.ycbcr2rgb(img).astype(np.uint8)             # <<<<<<<<<<<<<<
- *         return proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), v_mblocks, h_mblocks)
  * 
- */
-    __pyx_t_9 = __Pyx_GetModuleGlobalName(__pyx_n_s_color_convert); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 357, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_ycbcr2rgb); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 357, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_15);
-    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_9 = NULL;
-    if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_15))) {
-      __pyx_t_9 = PyMethod_GET_SELF(__pyx_t_15);
-      if (likely(__pyx_t_9)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_15);
-        __Pyx_INCREF(__pyx_t_9);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_15, function);
-      }
-    }
-    if (!__pyx_t_9) {
-      __pyx_t_10 = __Pyx_PyObject_CallOneArg(__pyx_t_15, __pyx_v_img); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 357, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_10);
-    } else {
-      #if CYTHON_FAST_PYCALL
-      if (PyFunction_Check(__pyx_t_15)) {
-        PyObject *__pyx_temp[2] = {__pyx_t_9, __pyx_v_img};
-        __pyx_t_10 = __Pyx_PyFunction_FastCall(__pyx_t_15, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 357, __pyx_L1_error)
-        __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-        __Pyx_GOTREF(__pyx_t_10);
-      } else
-      #endif
-      #if CYTHON_FAST_PYCCALL
-      if (__Pyx_PyFastCFunction_Check(__pyx_t_15)) {
-        PyObject *__pyx_temp[2] = {__pyx_t_9, __pyx_v_img};
-        __pyx_t_10 = __Pyx_PyCFunction_FastCall(__pyx_t_15, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 357, __pyx_L1_error)
-        __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-        __Pyx_GOTREF(__pyx_t_10);
-      } else
-      #endif
-      {
-        __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 357, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_7);
-        __Pyx_GIVEREF(__pyx_t_9); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_9); __pyx_t_9 = NULL;
-        __Pyx_INCREF(__pyx_v_img);
-        __Pyx_GIVEREF(__pyx_v_img);
-        PyTuple_SET_ITEM(__pyx_t_7, 0+1, __pyx_v_img);
-        __pyx_t_10 = __Pyx_PyObject_Call(__pyx_t_15, __pyx_t_7, NULL); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 357, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_10);
-        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      }
-    }
-    __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-    __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_astype); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 357, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_15);
-    __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    __pyx_t_10 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 357, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_10);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_uint8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 357, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_7);
-    __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    __pyx_t_10 = NULL;
-    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_15))) {
-      __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_15);
-      if (likely(__pyx_t_10)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_15);
-        __Pyx_INCREF(__pyx_t_10);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_15, function);
-      }
-    }
-    if (!__pyx_t_10) {
-      __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_15, __pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 357, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __Pyx_GOTREF(__pyx_t_3);
-    } else {
-      #if CYTHON_FAST_PYCALL
-      if (PyFunction_Check(__pyx_t_15)) {
-        PyObject *__pyx_temp[2] = {__pyx_t_10, __pyx_t_7};
-        __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_15, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 357, __pyx_L1_error)
-        __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-        __Pyx_GOTREF(__pyx_t_3);
-        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      } else
-      #endif
-      #if CYTHON_FAST_PYCCALL
-      if (__Pyx_PyFastCFunction_Check(__pyx_t_15)) {
-        PyObject *__pyx_temp[2] = {__pyx_t_10, __pyx_t_7};
-        __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_15, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 357, __pyx_L1_error)
-        __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-        __Pyx_GOTREF(__pyx_t_3);
-        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      } else
-      #endif
-      {
-        __pyx_t_9 = PyTuple_New(1+1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 357, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_9);
-        __Pyx_GIVEREF(__pyx_t_10); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_10); __pyx_t_10 = NULL;
-        __Pyx_GIVEREF(__pyx_t_7);
-        PyTuple_SET_ITEM(__pyx_t_9, 0+1, __pyx_t_7);
-        __pyx_t_7 = 0;
-        __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_15, __pyx_t_9, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 357, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_3);
-        __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      }
-    }
-    __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-    __Pyx_DECREF_SET(__pyx_v_img, __pyx_t_3);
-    __pyx_t_3 = 0;
-
-    /* "proto_mpeg_x.pyx":356
- *         #self.set_image(blocks)
- *         img=proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), v_mblocks, h_mblocks)
- *         if(ycbcr):             # <<<<<<<<<<<<<<
- *             img=color_convert.ycbcr2rgb(img).astype(np.uint8)
- *         return proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), v_mblocks, h_mblocks)
- */
-  }
-
-  /* "proto_mpeg_x.pyx":358
- *         if(ycbcr):
- *             img=color_convert.ycbcr2rgb(img).astype(np.uint8)
  *         return proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), v_mblocks, h_mblocks)             # <<<<<<<<<<<<<<
  * 
  * def get_jpegs(directory, number):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_15 = __Pyx_GetModuleGlobalName(__pyx_n_s_proto_mpeg_computation); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 358, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_15);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_15, __pyx_n_s_blocks_to_image); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 358, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_9);
-  __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_blocks, __pyx_n_s_astype); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 358, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_10 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 358, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_GetModuleGlobalName(__pyx_n_s_proto_mpeg_computation); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_uint8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 358, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_17 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_blocks_to_image); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 345, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_17);
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-  __pyx_t_10 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_7))) {
-    __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_7);
-    if (likely(__pyx_t_10)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_7);
-      __Pyx_INCREF(__pyx_t_10);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_blocks, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 345, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 345, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_uint8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 345, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_1)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_1);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_7, function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
     }
   }
-  if (!__pyx_t_10) {
-    __pyx_t_15 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_2); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 358, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_GOTREF(__pyx_t_15);
+  if (!__pyx_t_1) {
+    __pyx_t_10 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_7); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 345, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __Pyx_GOTREF(__pyx_t_10);
   } else {
     #if CYTHON_FAST_PYCALL
-    if (PyFunction_Check(__pyx_t_7)) {
-      PyObject *__pyx_temp[2] = {__pyx_t_10, __pyx_t_2};
-      __pyx_t_15 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 358, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __Pyx_GOTREF(__pyx_t_15);
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (PyFunction_Check(__pyx_t_2)) {
+      PyObject *__pyx_temp[2] = {__pyx_t_1, __pyx_t_7};
+      __pyx_t_10 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 345, __pyx_L1_error)
+      __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __Pyx_GOTREF(__pyx_t_10);
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     } else
     #endif
     #if CYTHON_FAST_PYCCALL
-    if (__Pyx_PyFastCFunction_Check(__pyx_t_7)) {
-      PyObject *__pyx_temp[2] = {__pyx_t_10, __pyx_t_2};
-      __pyx_t_15 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 358, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __Pyx_GOTREF(__pyx_t_15);
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
+      PyObject *__pyx_temp[2] = {__pyx_t_1, __pyx_t_7};
+      __pyx_t_10 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 345, __pyx_L1_error)
+      __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __Pyx_GOTREF(__pyx_t_10);
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     } else
     #endif
     {
-      __pyx_t_1 = PyTuple_New(1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 358, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-      __Pyx_GIVEREF(__pyx_t_10); PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_10); __pyx_t_10 = NULL;
-      __Pyx_GIVEREF(__pyx_t_2);
-      PyTuple_SET_ITEM(__pyx_t_1, 0+1, __pyx_t_2);
-      __pyx_t_2 = 0;
-      __pyx_t_15 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_1, NULL); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 358, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_15);
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __pyx_t_9 = PyTuple_New(1+1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 345, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_9);
+      __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_1); __pyx_t_1 = NULL;
+      __Pyx_GIVEREF(__pyx_t_7);
+      PyTuple_SET_ITEM(__pyx_t_9, 0+1, __pyx_t_7);
+      __pyx_t_7 = 0;
+      __pyx_t_10 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_9, NULL); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 345, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_10);
+      __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     }
   }
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = NULL;
-  __pyx_t_16 = 0;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_9))) {
-    __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_9);
-    if (likely(__pyx_t_7)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_9);
-      __Pyx_INCREF(__pyx_t_7);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = NULL;
+  __pyx_t_18 = 0;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_17))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_17);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_17);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_9, function);
-      __pyx_t_16 = 1;
+      __Pyx_DECREF_SET(__pyx_t_17, function);
+      __pyx_t_18 = 1;
     }
   }
   #if CYTHON_FAST_PYCALL
-  if (PyFunction_Check(__pyx_t_9)) {
-    PyObject *__pyx_temp[4] = {__pyx_t_7, __pyx_t_15, __pyx_v_v_mblocks, __pyx_v_h_mblocks};
-    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_9, __pyx_temp+1-__pyx_t_16, 3+__pyx_t_16); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 358, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+  if (PyFunction_Check(__pyx_t_17)) {
+    PyObject *__pyx_temp[4] = {__pyx_t_2, __pyx_t_10, __pyx_v_v_mblocks, __pyx_v_h_mblocks};
+    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_17, __pyx_temp+1-__pyx_t_18, 3+__pyx_t_18); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 345, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
+    __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
   } else
   #endif
   #if CYTHON_FAST_PYCCALL
-  if (__Pyx_PyFastCFunction_Check(__pyx_t_9)) {
-    PyObject *__pyx_temp[4] = {__pyx_t_7, __pyx_t_15, __pyx_v_v_mblocks, __pyx_v_h_mblocks};
-    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_9, __pyx_temp+1-__pyx_t_16, 3+__pyx_t_16); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 358, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+  if (__Pyx_PyFastCFunction_Check(__pyx_t_17)) {
+    PyObject *__pyx_temp[4] = {__pyx_t_2, __pyx_t_10, __pyx_v_v_mblocks, __pyx_v_h_mblocks};
+    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_17, __pyx_temp+1-__pyx_t_18, 3+__pyx_t_18); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 345, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
+    __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
   } else
   #endif
   {
-    __pyx_t_1 = PyTuple_New(3+__pyx_t_16); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 358, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    if (__pyx_t_7) {
-      __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_7); __pyx_t_7 = NULL;
+    __pyx_t_9 = PyTuple_New(3+__pyx_t_18); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 345, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_9);
+    if (__pyx_t_2) {
+      __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_2); __pyx_t_2 = NULL;
     }
-    __Pyx_GIVEREF(__pyx_t_15);
-    PyTuple_SET_ITEM(__pyx_t_1, 0+__pyx_t_16, __pyx_t_15);
+    __Pyx_GIVEREF(__pyx_t_10);
+    PyTuple_SET_ITEM(__pyx_t_9, 0+__pyx_t_18, __pyx_t_10);
     __Pyx_INCREF(__pyx_v_v_mblocks);
     __Pyx_GIVEREF(__pyx_v_v_mblocks);
-    PyTuple_SET_ITEM(__pyx_t_1, 1+__pyx_t_16, __pyx_v_v_mblocks);
+    PyTuple_SET_ITEM(__pyx_t_9, 1+__pyx_t_18, __pyx_v_v_mblocks);
     __Pyx_INCREF(__pyx_v_h_mblocks);
     __Pyx_GIVEREF(__pyx_v_h_mblocks);
-    PyTuple_SET_ITEM(__pyx_t_1, 2+__pyx_t_16, __pyx_v_h_mblocks);
-    __pyx_t_15 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_1, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 358, __pyx_L1_error)
+    PyTuple_SET_ITEM(__pyx_t_9, 2+__pyx_t_18, __pyx_v_h_mblocks);
+    __pyx_t_10 = 0;
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_17, __pyx_t_9, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 345, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
-  __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+  __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "proto_mpeg_x.pyx":273
+  /* "proto_mpeg_x.pyx":264
  *         return output
  * 
  *     def decode_from_bits(self, bits, h_mblocks, v_mblocks):             # <<<<<<<<<<<<<<
@@ -7285,6 +6850,8 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
   __Pyx_XDECREF(__pyx_t_13);
   __Pyx_XDECREF(__pyx_t_14);
   __Pyx_XDECREF(__pyx_t_15);
+  __Pyx_XDECREF(__pyx_t_16);
+  __Pyx_XDECREF(__pyx_t_17);
   __Pyx_AddTraceback("proto_mpeg_x.frame.decode_from_bits", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -7297,15 +6864,13 @@ static PyObject *__pyx_pf_12proto_mpeg_x_5frame_26decode_from_bits(CYTHON_UNUSED
   __Pyx_XDECREF(__pyx_v_data);
   __Pyx_XDECREF(__pyx_v_run);
   __Pyx_XDECREF(__pyx_v_level);
-  __Pyx_XDECREF(__pyx_v_bl_recon);
   __Pyx_XDECREF(__pyx_v_bits_read);
-  __Pyx_XDECREF(__pyx_v_img);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "proto_mpeg_x.pyx":360
+/* "proto_mpeg_x.pyx":347
  *         return proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), v_mblocks, h_mblocks)
  * 
  * def get_jpegs(directory, number):             # <<<<<<<<<<<<<<
@@ -7342,11 +6907,11 @@ static PyObject *__pyx_pw_12proto_mpeg_x_1get_jpegs(PyObject *__pyx_self, PyObje
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_number)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_jpegs", 1, 2, 2, 1); __PYX_ERR(0, 360, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_jpegs", 1, 2, 2, 1); __PYX_ERR(0, 347, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_jpegs") < 0)) __PYX_ERR(0, 360, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_jpegs") < 0)) __PYX_ERR(0, 347, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -7359,7 +6924,7 @@ static PyObject *__pyx_pw_12proto_mpeg_x_1get_jpegs(PyObject *__pyx_self, PyObje
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_jpegs", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 360, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_jpegs", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 347, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("proto_mpeg_x.get_jpegs", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -7376,7 +6941,6 @@ static PyObject *__pyx_pf_12proto_mpeg_x_get_jpegs(CYTHON_UNUSED PyObject *__pyx
   PyObject *__pyx_v_images = NULL;
   PyObject *__pyx_v_i = NULL;
   PyObject *__pyx_v_file = NULL;
-  PyObject *__pyx_v_img = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -7388,22 +6952,21 @@ static PyObject *__pyx_pf_12proto_mpeg_x_get_jpegs(CYTHON_UNUSED PyObject *__pyx
   Py_ssize_t __pyx_t_7;
   int __pyx_t_8;
   PyObject *__pyx_t_9 = NULL;
-  PyObject *__pyx_t_10 = NULL;
   __Pyx_RefNannySetupContext("get_jpegs", 0);
 
-  /* "proto_mpeg_x.pyx":361
+  /* "proto_mpeg_x.pyx":348
  * 
  * def get_jpegs(directory, number):
  *     images = []             # <<<<<<<<<<<<<<
  *     i = 1
  *     for file in sorted(listdir(directory)):
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 361, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 348, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_images = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":362
+  /* "proto_mpeg_x.pyx":349
  * def get_jpegs(directory, number):
  *     images = []
  *     i = 1             # <<<<<<<<<<<<<<
@@ -7413,14 +6976,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_get_jpegs(CYTHON_UNUSED PyObject *__pyx
   __Pyx_INCREF(__pyx_int_1);
   __pyx_v_i = __pyx_int_1;
 
-  /* "proto_mpeg_x.pyx":363
+  /* "proto_mpeg_x.pyx":350
  *     images = []
  *     i = 1
  *     for file in sorted(listdir(directory)):             # <<<<<<<<<<<<<<
  *         if file.endswith('.jpg'):
- *             img=skimage.io.imread(directory + '/' + file)
+ *             images.append(skimage.io.imread(directory + '/' + file))
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_listdir); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 363, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_listdir); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 350, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -7433,13 +6996,13 @@ static PyObject *__pyx_pf_12proto_mpeg_x_get_jpegs(CYTHON_UNUSED PyObject *__pyx
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_directory); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 363, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_directory); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 350, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_directory};
-      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 363, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 350, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else
@@ -7447,81 +7010,81 @@ static PyObject *__pyx_pf_12proto_mpeg_x_get_jpegs(CYTHON_UNUSED PyObject *__pyx
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_directory};
-      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 363, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 350, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else
     #endif
     {
-      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 363, __pyx_L1_error)
+      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 350, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
       __Pyx_INCREF(__pyx_v_directory);
       __Pyx_GIVEREF(__pyx_v_directory);
       PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_v_directory);
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 363, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 350, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PySequence_List(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 363, __pyx_L1_error)
+  __pyx_t_3 = PySequence_List(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 350, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_1 = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
-  __pyx_t_6 = PyList_Sort(__pyx_t_1); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 363, __pyx_L1_error)
+  __pyx_t_6 = PyList_Sort(__pyx_t_1); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 350, __pyx_L1_error)
   if (unlikely(__pyx_t_1 == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 363, __pyx_L1_error)
+    __PYX_ERR(0, 350, __pyx_L1_error)
   }
   __pyx_t_3 = __pyx_t_1; __Pyx_INCREF(__pyx_t_3); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
     if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_3)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 363, __pyx_L1_error)
+    __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 350, __pyx_L1_error)
     #else
-    __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 363, __pyx_L1_error)
+    __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 350, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     #endif
     __Pyx_XDECREF_SET(__pyx_v_file, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "proto_mpeg_x.pyx":364
+    /* "proto_mpeg_x.pyx":351
  *     i = 1
  *     for file in sorted(listdir(directory)):
  *         if file.endswith('.jpg'):             # <<<<<<<<<<<<<<
- *             img=skimage.io.imread(directory + '/' + file)
- *             if(ycbcr):
+ *             images.append(skimage.io.imread(directory + '/' + file))
+ *         if i == number:
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_file, __pyx_n_s_endswith); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 364, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_file, __pyx_n_s_endswith); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 351, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__38, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 364, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__38, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 351, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 364, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 351, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if (__pyx_t_8) {
 
-      /* "proto_mpeg_x.pyx":365
+      /* "proto_mpeg_x.pyx":352
  *     for file in sorted(listdir(directory)):
  *         if file.endswith('.jpg'):
- *             img=skimage.io.imread(directory + '/' + file)             # <<<<<<<<<<<<<<
- *             if(ycbcr):
- *                 img=color_convert.rgb2ycbcr(img.astype(float))
+ *             images.append(skimage.io.imread(directory + '/' + file))             # <<<<<<<<<<<<<<
+ *         if i == number:
+ *             break
  */
-      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_skimage); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 365, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_skimage); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 352, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_io); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 365, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_io); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 352, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_imread); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 365, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_imread); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 352, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_5 = PyNumber_Add(__pyx_v_directory, __pyx_kp_s__39); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 365, __pyx_L1_error)
+      __pyx_t_5 = PyNumber_Add(__pyx_v_directory, __pyx_kp_s__39); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 352, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_4 = PyNumber_Add(__pyx_t_5, __pyx_v_file); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 365, __pyx_L1_error)
+      __pyx_t_4 = PyNumber_Add(__pyx_t_5, __pyx_v_file); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 352, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_t_5 = NULL;
@@ -7535,14 +7098,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_get_jpegs(CYTHON_UNUSED PyObject *__pyx
         }
       }
       if (!__pyx_t_5) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 365, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 352, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_GOTREF(__pyx_t_2);
       } else {
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_1)) {
           PyObject *__pyx_temp[2] = {__pyx_t_5, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 365, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 352, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -7551,188 +7114,51 @@ static PyObject *__pyx_pf_12proto_mpeg_x_get_jpegs(CYTHON_UNUSED PyObject *__pyx
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
           PyObject *__pyx_temp[2] = {__pyx_t_5, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 365, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 352, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         } else
         #endif
         {
-          __pyx_t_9 = PyTuple_New(1+1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 365, __pyx_L1_error)
+          __pyx_t_9 = PyTuple_New(1+1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 352, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_9);
           __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_5); __pyx_t_5 = NULL;
           __Pyx_GIVEREF(__pyx_t_4);
           PyTuple_SET_ITEM(__pyx_t_9, 0+1, __pyx_t_4);
           __pyx_t_4 = 0;
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 365, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 352, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         }
       }
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __Pyx_XDECREF_SET(__pyx_v_img, __pyx_t_2);
-      __pyx_t_2 = 0;
-
-      /* "proto_mpeg_x.pyx":366
- *         if file.endswith('.jpg'):
- *             img=skimage.io.imread(directory + '/' + file)
- *             if(ycbcr):             # <<<<<<<<<<<<<<
- *                 img=color_convert.rgb2ycbcr(img.astype(float))
- *             images.append(img)
- */
-      __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_ycbcr); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 366, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 366, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_images, __pyx_t_2); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 352, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (__pyx_t_8) {
 
-        /* "proto_mpeg_x.pyx":367
- *             img=skimage.io.imread(directory + '/' + file)
- *             if(ycbcr):
- *                 img=color_convert.rgb2ycbcr(img.astype(float))             # <<<<<<<<<<<<<<
- *             images.append(img)
- *         if i == number:
- */
-        __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_color_convert); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 367, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_rgb2ycbcr); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 367, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_9);
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_img, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 367, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_5 = NULL;
-        if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
-          __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_4);
-          if (likely(__pyx_t_5)) {
-            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-            __Pyx_INCREF(__pyx_t_5);
-            __Pyx_INCREF(function);
-            __Pyx_DECREF_SET(__pyx_t_4, function);
-          }
-        }
-        if (!__pyx_t_5) {
-          __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, ((PyObject *)(&PyFloat_Type))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 367, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_1);
-        } else {
-          #if CYTHON_FAST_PYCALL
-          if (PyFunction_Check(__pyx_t_4)) {
-            PyObject *__pyx_temp[2] = {__pyx_t_5, ((PyObject *)(&PyFloat_Type))};
-            __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 367, __pyx_L1_error)
-            __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-            __Pyx_GOTREF(__pyx_t_1);
-          } else
-          #endif
-          #if CYTHON_FAST_PYCCALL
-          if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
-            PyObject *__pyx_temp[2] = {__pyx_t_5, ((PyObject *)(&PyFloat_Type))};
-            __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 367, __pyx_L1_error)
-            __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-            __Pyx_GOTREF(__pyx_t_1);
-          } else
-          #endif
-          {
-            __pyx_t_10 = PyTuple_New(1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 367, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_10);
-            __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_5); __pyx_t_5 = NULL;
-            __Pyx_INCREF(((PyObject *)(&PyFloat_Type)));
-            __Pyx_GIVEREF(((PyObject *)(&PyFloat_Type)));
-            PyTuple_SET_ITEM(__pyx_t_10, 0+1, ((PyObject *)(&PyFloat_Type)));
-            __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 367, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_1);
-            __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-          }
-        }
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_4 = NULL;
-        if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_9))) {
-          __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_9);
-          if (likely(__pyx_t_4)) {
-            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_9);
-            __Pyx_INCREF(__pyx_t_4);
-            __Pyx_INCREF(function);
-            __Pyx_DECREF_SET(__pyx_t_9, function);
-          }
-        }
-        if (!__pyx_t_4) {
-          __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_9, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 367, __pyx_L1_error)
-          __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-          __Pyx_GOTREF(__pyx_t_2);
-        } else {
-          #if CYTHON_FAST_PYCALL
-          if (PyFunction_Check(__pyx_t_9)) {
-            PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_1};
-            __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_9, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 367, __pyx_L1_error)
-            __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-            __Pyx_GOTREF(__pyx_t_2);
-            __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-          } else
-          #endif
-          #if CYTHON_FAST_PYCCALL
-          if (__Pyx_PyFastCFunction_Check(__pyx_t_9)) {
-            PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_1};
-            __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_9, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 367, __pyx_L1_error)
-            __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-            __Pyx_GOTREF(__pyx_t_2);
-            __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-          } else
-          #endif
-          {
-            __pyx_t_10 = PyTuple_New(1+1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 367, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_10);
-            __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_4); __pyx_t_4 = NULL;
-            __Pyx_GIVEREF(__pyx_t_1);
-            PyTuple_SET_ITEM(__pyx_t_10, 0+1, __pyx_t_1);
-            __pyx_t_1 = 0;
-            __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_10, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 367, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_2);
-            __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-          }
-        }
-        __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-        __Pyx_DECREF_SET(__pyx_v_img, __pyx_t_2);
-        __pyx_t_2 = 0;
-
-        /* "proto_mpeg_x.pyx":366
- *         if file.endswith('.jpg'):
- *             img=skimage.io.imread(directory + '/' + file)
- *             if(ycbcr):             # <<<<<<<<<<<<<<
- *                 img=color_convert.rgb2ycbcr(img.astype(float))
- *             images.append(img)
- */
-      }
-
-      /* "proto_mpeg_x.pyx":368
- *             if(ycbcr):
- *                 img=color_convert.rgb2ycbcr(img.astype(float))
- *             images.append(img)             # <<<<<<<<<<<<<<
- *         if i == number:
- *             break
- */
-      __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_images, __pyx_v_img); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 368, __pyx_L1_error)
-
-      /* "proto_mpeg_x.pyx":364
+      /* "proto_mpeg_x.pyx":351
  *     i = 1
  *     for file in sorted(listdir(directory)):
  *         if file.endswith('.jpg'):             # <<<<<<<<<<<<<<
- *             img=skimage.io.imread(directory + '/' + file)
- *             if(ycbcr):
+ *             images.append(skimage.io.imread(directory + '/' + file))
+ *         if i == number:
  */
     }
 
-    /* "proto_mpeg_x.pyx":369
- *                 img=color_convert.rgb2ycbcr(img.astype(float))
- *             images.append(img)
+    /* "proto_mpeg_x.pyx":353
+ *         if file.endswith('.jpg'):
+ *             images.append(skimage.io.imread(directory + '/' + file))
  *         if i == number:             # <<<<<<<<<<<<<<
  *             break
  *         i=i+1
  */
-    __pyx_t_2 = PyObject_RichCompare(__pyx_v_i, __pyx_v_number, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 369, __pyx_L1_error)
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_2 = PyObject_RichCompare(__pyx_v_i, __pyx_v_number, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 353, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 353, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if (__pyx_t_8) {
 
-      /* "proto_mpeg_x.pyx":370
- *             images.append(img)
+      /* "proto_mpeg_x.pyx":354
+ *             images.append(skimage.io.imread(directory + '/' + file))
  *         if i == number:
  *             break             # <<<<<<<<<<<<<<
  *         i=i+1
@@ -7740,39 +7166,39 @@ static PyObject *__pyx_pf_12proto_mpeg_x_get_jpegs(CYTHON_UNUSED PyObject *__pyx
  */
       goto __pyx_L4_break;
 
-      /* "proto_mpeg_x.pyx":369
- *                 img=color_convert.rgb2ycbcr(img.astype(float))
- *             images.append(img)
+      /* "proto_mpeg_x.pyx":353
+ *         if file.endswith('.jpg'):
+ *             images.append(skimage.io.imread(directory + '/' + file))
  *         if i == number:             # <<<<<<<<<<<<<<
  *             break
  *         i=i+1
  */
     }
 
-    /* "proto_mpeg_x.pyx":371
+    /* "proto_mpeg_x.pyx":355
  *         if i == number:
  *             break
  *         i=i+1             # <<<<<<<<<<<<<<
  *     return images
  * 
  */
-    __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_v_i, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 371, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_v_i, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 355, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF_SET(__pyx_v_i, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "proto_mpeg_x.pyx":363
+    /* "proto_mpeg_x.pyx":350
  *     images = []
  *     i = 1
  *     for file in sorted(listdir(directory)):             # <<<<<<<<<<<<<<
  *         if file.endswith('.jpg'):
- *             img=skimage.io.imread(directory + '/' + file)
+ *             images.append(skimage.io.imread(directory + '/' + file))
  */
   }
   __pyx_L4_break:;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "proto_mpeg_x.pyx":372
+  /* "proto_mpeg_x.pyx":356
  *             break
  *         i=i+1
  *     return images             # <<<<<<<<<<<<<<
@@ -7784,7 +7210,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_get_jpegs(CYTHON_UNUSED PyObject *__pyx
   __pyx_r = __pyx_v_images;
   goto __pyx_L0;
 
-  /* "proto_mpeg_x.pyx":360
+  /* "proto_mpeg_x.pyx":347
  *         return proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), v_mblocks, h_mblocks)
  * 
  * def get_jpegs(directory, number):             # <<<<<<<<<<<<<<
@@ -7800,20 +7226,18 @@ static PyObject *__pyx_pf_12proto_mpeg_x_get_jpegs(CYTHON_UNUSED PyObject *__pyx
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_9);
-  __Pyx_XDECREF(__pyx_t_10);
   __Pyx_AddTraceback("proto_mpeg_x.get_jpegs", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_images);
   __Pyx_XDECREF(__pyx_v_i);
   __Pyx_XDECREF(__pyx_v_file);
-  __Pyx_XDECREF(__pyx_v_img);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "proto_mpeg_x.pyx":374
+/* "proto_mpeg_x.pyx":358
  *     return images
  * 
  * def encode_video(files, output_file, compression_level): # queue):             # <<<<<<<<<<<<<<
@@ -7853,16 +7277,16 @@ static PyObject *__pyx_pw_12proto_mpeg_x_3encode_video(PyObject *__pyx_self, PyO
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_output_file)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("encode_video", 1, 3, 3, 1); __PYX_ERR(0, 374, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("encode_video", 1, 3, 3, 1); __PYX_ERR(0, 358, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_compression_level)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("encode_video", 1, 3, 3, 2); __PYX_ERR(0, 374, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("encode_video", 1, 3, 3, 2); __PYX_ERR(0, 358, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "encode_video") < 0)) __PYX_ERR(0, 374, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "encode_video") < 0)) __PYX_ERR(0, 358, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -7877,7 +7301,7 @@ static PyObject *__pyx_pw_12proto_mpeg_x_3encode_video(PyObject *__pyx_self, PyO
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("encode_video", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 374, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("encode_video", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 358, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("proto_mpeg_x.encode_video", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -7912,7 +7336,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
   Py_ssize_t __pyx_t_12;
   __Pyx_RefNannySetupContext("encode_video", 0);
 
-  /* "proto_mpeg_x.pyx":384
+  /* "proto_mpeg_x.pyx":368
  * 
  *     # Open output file
  *     try:             # <<<<<<<<<<<<<<
@@ -7928,14 +7352,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "proto_mpeg_x.pyx":385
+      /* "proto_mpeg_x.pyx":369
  *     # Open output file
  *     try:
  *         f = open(output_file, 'wb')             # <<<<<<<<<<<<<<
  *     except:
  *         raise Exception("Could not open output file", output_file, "for writing.")
  */
-      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 385, __pyx_L3_error)
+      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 369, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_INCREF(__pyx_v_output_file);
       __Pyx_GIVEREF(__pyx_v_output_file);
@@ -7943,13 +7367,13 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
       __Pyx_INCREF(__pyx_n_s_wb);
       __Pyx_GIVEREF(__pyx_n_s_wb);
       PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_n_s_wb);
-      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 385, __pyx_L3_error)
+      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 369, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_v_f = __pyx_t_5;
       __pyx_t_5 = 0;
 
-      /* "proto_mpeg_x.pyx":384
+      /* "proto_mpeg_x.pyx":368
  * 
  *     # Open output file
  *     try:             # <<<<<<<<<<<<<<
@@ -7966,7 +7390,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "proto_mpeg_x.pyx":386
+    /* "proto_mpeg_x.pyx":370
  *     try:
  *         f = open(output_file, 'wb')
  *     except:             # <<<<<<<<<<<<<<
@@ -7975,19 +7399,19 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
  */
     /*except:*/ {
       __Pyx_AddTraceback("proto_mpeg_x.encode_video", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_4, &__pyx_t_6) < 0) __PYX_ERR(0, 386, __pyx_L5_except_error)
+      if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_4, &__pyx_t_6) < 0) __PYX_ERR(0, 370, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GOTREF(__pyx_t_6);
 
-      /* "proto_mpeg_x.pyx":387
+      /* "proto_mpeg_x.pyx":371
  *         f = open(output_file, 'wb')
  *     except:
  *         raise Exception("Could not open output file", output_file, "for writing.")             # <<<<<<<<<<<<<<
  * 
  *     # Get a frame object
  */
-      __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 387, __pyx_L5_except_error)
+      __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 371, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_INCREF(__pyx_kp_s_Could_not_open_output_file);
       __Pyx_GIVEREF(__pyx_kp_s_Could_not_open_output_file);
@@ -7998,16 +7422,16 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
       __Pyx_INCREF(__pyx_kp_s_for_writing);
       __Pyx_GIVEREF(__pyx_kp_s_for_writing);
       PyTuple_SET_ITEM(__pyx_t_7, 2, __pyx_kp_s_for_writing);
-      __pyx_t_8 = __Pyx_PyObject_Call(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])), __pyx_t_7, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 387, __pyx_L5_except_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])), __pyx_t_7, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 371, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __PYX_ERR(0, 387, __pyx_L5_except_error)
+      __PYX_ERR(0, 371, __pyx_L5_except_error)
     }
     __pyx_L5_except_error:;
 
-    /* "proto_mpeg_x.pyx":384
+    /* "proto_mpeg_x.pyx":368
  * 
  *     # Open output file
  *     try:             # <<<<<<<<<<<<<<
@@ -8023,14 +7447,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
     __pyx_L10_try_end:;
   }
 
-  /* "proto_mpeg_x.pyx":390
+  /* "proto_mpeg_x.pyx":374
  * 
  *     # Get a frame object
  *     img = frame()             # <<<<<<<<<<<<<<
  * 
  *     # Create output bit array
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_frame); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 390, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_frame); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 374, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -8043,24 +7467,24 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
     }
   }
   if (__pyx_t_5) {
-    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 390, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 374, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   } else {
-    __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 390, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 374, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_img = __pyx_t_6;
   __pyx_t_6 = 0;
 
-  /* "proto_mpeg_x.pyx":393
+  /* "proto_mpeg_x.pyx":377
  * 
  *     # Create output bit array
  *     output = BitArray()             # <<<<<<<<<<<<<<
  * 
  *     i = 1
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_BitArray); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 393, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_BitArray); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 377, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -8073,17 +7497,17 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
     }
   }
   if (__pyx_t_5) {
-    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 393, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 377, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   } else {
-    __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 393, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 377, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_output = __pyx_t_6;
   __pyx_t_6 = 0;
 
-  /* "proto_mpeg_x.pyx":395
+  /* "proto_mpeg_x.pyx":379
  *     output = BitArray()
  * 
  *     i = 1             # <<<<<<<<<<<<<<
@@ -8093,7 +7517,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
   __Pyx_INCREF(__pyx_int_1);
   __pyx_v_i = __pyx_int_1;
 
-  /* "proto_mpeg_x.pyx":397
+  /* "proto_mpeg_x.pyx":381
  *     i = 1
  * 
  *     for path in files:             # <<<<<<<<<<<<<<
@@ -8104,26 +7528,26 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
     __pyx_t_6 = __pyx_v_files; __Pyx_INCREF(__pyx_t_6); __pyx_t_9 = 0;
     __pyx_t_10 = NULL;
   } else {
-    __pyx_t_9 = -1; __pyx_t_6 = PyObject_GetIter(__pyx_v_files); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 397, __pyx_L1_error)
+    __pyx_t_9 = -1; __pyx_t_6 = PyObject_GetIter(__pyx_v_files); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 381, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_10 = Py_TYPE(__pyx_t_6)->tp_iternext; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 397, __pyx_L1_error)
+    __pyx_t_10 = Py_TYPE(__pyx_t_6)->tp_iternext; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 381, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_10)) {
       if (likely(PyList_CheckExact(__pyx_t_6))) {
         if (__pyx_t_9 >= PyList_GET_SIZE(__pyx_t_6)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_9); __Pyx_INCREF(__pyx_t_4); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 397, __pyx_L1_error)
+        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_9); __Pyx_INCREF(__pyx_t_4); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 381, __pyx_L1_error)
         #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_6, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 397, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_6, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 381, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
       } else {
         if (__pyx_t_9 >= PyTuple_GET_SIZE(__pyx_t_6)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_6, __pyx_t_9); __Pyx_INCREF(__pyx_t_4); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 397, __pyx_L1_error)
+        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_6, __pyx_t_9); __Pyx_INCREF(__pyx_t_4); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 381, __pyx_L1_error)
         #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_6, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 397, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_6, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 381, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
       }
@@ -8133,7 +7557,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 397, __pyx_L1_error)
+          else __PYX_ERR(0, 381, __pyx_L1_error)
         }
         break;
       }
@@ -8142,14 +7566,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
     __Pyx_XDECREF_SET(__pyx_v_path, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "proto_mpeg_x.pyx":399
+    /* "proto_mpeg_x.pyx":383
  *     for path in files:
  *         # Load an image
  *         img.load_from_file(path)             # <<<<<<<<<<<<<<
  *         # Append the encoded bits to the output
  *         output.append(img.encode_to_bits())
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_img, __pyx_n_s_load_from_file); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 399, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_img, __pyx_n_s_load_from_file); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 383, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_8 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -8162,13 +7586,13 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
       }
     }
     if (!__pyx_t_8) {
-      __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_path); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 399, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_path); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 383, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
     } else {
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_5)) {
         PyObject *__pyx_temp[2] = {__pyx_t_8, __pyx_v_path};
-        __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 399, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 383, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
         __Pyx_GOTREF(__pyx_t_4);
       } else
@@ -8176,19 +7600,19 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
         PyObject *__pyx_temp[2] = {__pyx_t_8, __pyx_v_path};
-        __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 399, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 383, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
         __Pyx_GOTREF(__pyx_t_4);
       } else
       #endif
       {
-        __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 399, __pyx_L1_error)
+        __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 383, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_8); __pyx_t_8 = NULL;
         __Pyx_INCREF(__pyx_v_path);
         __Pyx_GIVEREF(__pyx_v_path);
         PyTuple_SET_ITEM(__pyx_t_7, 0+1, __pyx_v_path);
-        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_7, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 399, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_7, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 383, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       }
@@ -8196,14 +7620,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "proto_mpeg_x.pyx":401
+    /* "proto_mpeg_x.pyx":385
  *         img.load_from_file(path)
  *         # Append the encoded bits to the output
  *         output.append(img.encode_to_bits())             # <<<<<<<<<<<<<<
  *         # Append an end of frame character
  *         output.append('0b' + huffman_mpeg.EOF)
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_img, __pyx_n_s_encode_to_bits); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 401, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_img, __pyx_n_s_encode_to_bits); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 385, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -8216,45 +7640,45 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
       }
     }
     if (__pyx_t_7) {
-      __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 401, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 385, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     } else {
-      __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 401, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 385, __pyx_L1_error)
     }
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_11 = __Pyx_PyObject_Append(__pyx_v_output, __pyx_t_4); if (unlikely(__pyx_t_11 == -1)) __PYX_ERR(0, 401, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyObject_Append(__pyx_v_output, __pyx_t_4); if (unlikely(__pyx_t_11 == -1)) __PYX_ERR(0, 385, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "proto_mpeg_x.pyx":403
+    /* "proto_mpeg_x.pyx":387
  *         output.append(img.encode_to_bits())
  *         # Append an end of frame character
  *         output.append('0b' + huffman_mpeg.EOF)             # <<<<<<<<<<<<<<
  * 
  *         print("File", i, "of", len(files), "encoded.")
  */
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_huffman_mpeg); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 403, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_huffman_mpeg); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 387, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_EOF); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 403, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_EOF); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 387, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = PyNumber_Add(__pyx_kp_s_0b, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 403, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_Add(__pyx_kp_s_0b, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 387, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_11 = __Pyx_PyObject_Append(__pyx_v_output, __pyx_t_4); if (unlikely(__pyx_t_11 == -1)) __PYX_ERR(0, 403, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyObject_Append(__pyx_v_output, __pyx_t_4); if (unlikely(__pyx_t_11 == -1)) __PYX_ERR(0, 387, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "proto_mpeg_x.pyx":405
+    /* "proto_mpeg_x.pyx":389
  *         output.append('0b' + huffman_mpeg.EOF)
  * 
  *         print("File", i, "of", len(files), "encoded.")             # <<<<<<<<<<<<<<
  *         i += 1
  * 
  */
-    __pyx_t_12 = PyObject_Length(__pyx_v_files); if (unlikely(__pyx_t_12 == -1)) __PYX_ERR(0, 405, __pyx_L1_error)
-    __pyx_t_4 = PyInt_FromSsize_t(__pyx_t_12); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 405, __pyx_L1_error)
+    __pyx_t_12 = PyObject_Length(__pyx_v_files); if (unlikely(__pyx_t_12 == -1)) __PYX_ERR(0, 389, __pyx_L1_error)
+    __pyx_t_4 = PyInt_FromSsize_t(__pyx_t_12); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 389, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyTuple_New(5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 405, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 389, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_INCREF(__pyx_n_s_File);
     __Pyx_GIVEREF(__pyx_n_s_File);
@@ -8271,22 +7695,22 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
     __Pyx_GIVEREF(__pyx_kp_s_encoded);
     PyTuple_SET_ITEM(__pyx_t_5, 4, __pyx_kp_s_encoded);
     __pyx_t_4 = 0;
-    if (__Pyx_PrintOne(0, __pyx_t_5) < 0) __PYX_ERR(0, 405, __pyx_L1_error)
+    if (__Pyx_PrintOne(0, __pyx_t_5) < 0) __PYX_ERR(0, 389, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "proto_mpeg_x.pyx":406
+    /* "proto_mpeg_x.pyx":390
  * 
  *         print("File", i, "of", len(files), "encoded.")
  *         i += 1             # <<<<<<<<<<<<<<
  * 
  *         # queue.put(100/len(files))
  */
-    __pyx_t_5 = __Pyx_PyInt_AddObjC(__pyx_v_i, __pyx_int_1, 1, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 406, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyInt_AddObjC(__pyx_v_i, __pyx_int_1, 1, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 390, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF_SET(__pyx_v_i, __pyx_t_5);
     __pyx_t_5 = 0;
 
-    /* "proto_mpeg_x.pyx":397
+    /* "proto_mpeg_x.pyx":381
  *     i = 1
  * 
  *     for path in files:             # <<<<<<<<<<<<<<
@@ -8296,26 +7720,26 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
   }
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "proto_mpeg_x.pyx":413
+  /* "proto_mpeg_x.pyx":397
  *     # WRITE HEADER
  *     # v_mblocks and h_mblocks will be encoded as 8-bit unsigned integers
  *     output.prepend('uint:8=' + str(img.h_mblocks))             # <<<<<<<<<<<<<<
  *     output.prepend('uint:8=' + str(img.v_mblocks))
  *     # number of images written as 20-bit unsigned integer
  */
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_output, __pyx_n_s_prepend); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 413, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_output, __pyx_n_s_prepend); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 397, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_img, __pyx_n_s_h_mblocks); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 413, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_img, __pyx_n_s_h_mblocks); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 397, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 413, __pyx_L1_error)
+  __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 397, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_GIVEREF(__pyx_t_4);
   PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_4);
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_7, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 413, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_7, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 397, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyNumber_Add(__pyx_kp_s_uint_8, __pyx_t_4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 413, __pyx_L1_error)
+  __pyx_t_7 = PyNumber_Add(__pyx_kp_s_uint_8, __pyx_t_4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 397, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -8329,14 +7753,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 413, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 397, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_6);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_5)) {
       PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_7};
-      __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 413, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 397, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -8345,20 +7769,20 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
       PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_7};
-      __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 413, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 397, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     } else
     #endif
     {
-      __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 413, __pyx_L1_error)
+      __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 397, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_4); __pyx_t_4 = NULL;
       __Pyx_GIVEREF(__pyx_t_7);
       PyTuple_SET_ITEM(__pyx_t_8, 0+1, __pyx_t_7);
       __pyx_t_7 = 0;
-      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 413, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 397, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     }
@@ -8366,26 +7790,26 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "proto_mpeg_x.pyx":414
+  /* "proto_mpeg_x.pyx":398
  *     # v_mblocks and h_mblocks will be encoded as 8-bit unsigned integers
  *     output.prepend('uint:8=' + str(img.h_mblocks))
  *     output.prepend('uint:8=' + str(img.v_mblocks))             # <<<<<<<<<<<<<<
  *     # number of images written as 20-bit unsigned integer
  *     output.prepend('uint:20=' + str(len(files)))
  */
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_output, __pyx_n_s_prepend); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 414, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_output, __pyx_n_s_prepend); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 398, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_img, __pyx_n_s_v_mblocks); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 414, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_img, __pyx_n_s_v_mblocks); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 398, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 414, __pyx_L1_error)
+  __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 398, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_GIVEREF(__pyx_t_8);
   PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_8);
   __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_7, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 414, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_7, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 398, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyNumber_Add(__pyx_kp_s_uint_8, __pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 414, __pyx_L1_error)
+  __pyx_t_7 = PyNumber_Add(__pyx_kp_s_uint_8, __pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 398, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __pyx_t_8 = NULL;
@@ -8399,14 +7823,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
     }
   }
   if (!__pyx_t_8) {
-    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 414, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 398, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_6);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_5)) {
       PyObject *__pyx_temp[2] = {__pyx_t_8, __pyx_t_7};
-      __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 414, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 398, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -8415,20 +7839,20 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
       PyObject *__pyx_temp[2] = {__pyx_t_8, __pyx_t_7};
-      __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 414, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 398, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     } else
     #endif
     {
-      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 414, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 398, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_8); __pyx_t_8 = NULL;
       __Pyx_GIVEREF(__pyx_t_7);
       PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_7);
       __pyx_t_7 = 0;
-      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 414, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 398, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
@@ -8436,27 +7860,27 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "proto_mpeg_x.pyx":416
+  /* "proto_mpeg_x.pyx":400
  *     output.prepend('uint:8=' + str(img.v_mblocks))
  *     # number of images written as 20-bit unsigned integer
  *     output.prepend('uint:20=' + str(len(files)))             # <<<<<<<<<<<<<<
  * 
  *     output.tofile(f)
  */
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_output, __pyx_n_s_prepend); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 416, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_output, __pyx_n_s_prepend); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 400, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_9 = PyObject_Length(__pyx_v_files); if (unlikely(__pyx_t_9 == -1)) __PYX_ERR(0, 416, __pyx_L1_error)
-  __pyx_t_4 = PyInt_FromSsize_t(__pyx_t_9); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 416, __pyx_L1_error)
+  __pyx_t_9 = PyObject_Length(__pyx_v_files); if (unlikely(__pyx_t_9 == -1)) __PYX_ERR(0, 400, __pyx_L1_error)
+  __pyx_t_4 = PyInt_FromSsize_t(__pyx_t_9); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 400, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 416, __pyx_L1_error)
+  __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 400, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_GIVEREF(__pyx_t_4);
   PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_4);
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_7, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 416, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_7, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 400, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyNumber_Add(__pyx_kp_s_uint_20, __pyx_t_4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 416, __pyx_L1_error)
+  __pyx_t_7 = PyNumber_Add(__pyx_kp_s_uint_20, __pyx_t_4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 400, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -8470,14 +7894,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 416, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 400, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_6);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_5)) {
       PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_7};
-      __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 416, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 400, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -8486,20 +7910,20 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
       PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_7};
-      __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 416, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 400, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     } else
     #endif
     {
-      __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 416, __pyx_L1_error)
+      __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 400, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_4); __pyx_t_4 = NULL;
       __Pyx_GIVEREF(__pyx_t_7);
       PyTuple_SET_ITEM(__pyx_t_8, 0+1, __pyx_t_7);
       __pyx_t_7 = 0;
-      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 416, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 400, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     }
@@ -8507,14 +7931,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "proto_mpeg_x.pyx":418
+  /* "proto_mpeg_x.pyx":402
  *     output.prepend('uint:20=' + str(len(files)))
  * 
  *     output.tofile(f)             # <<<<<<<<<<<<<<
  *     f.close()
  * 
  */
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_output, __pyx_n_s_tofile); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 418, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_output, __pyx_n_s_tofile); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_8 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -8527,13 +7951,13 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
     }
   }
   if (!__pyx_t_8) {
-    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_f); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 418, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_f); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 402, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_5)) {
       PyObject *__pyx_temp[2] = {__pyx_t_8, __pyx_v_f};
-      __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 418, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 402, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_GOTREF(__pyx_t_6);
     } else
@@ -8541,19 +7965,19 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
       PyObject *__pyx_temp[2] = {__pyx_t_8, __pyx_v_f};
-      __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 418, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 402, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_GOTREF(__pyx_t_6);
     } else
     #endif
     {
-      __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 418, __pyx_L1_error)
+      __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 402, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_8); __pyx_t_8 = NULL;
       __Pyx_INCREF(__pyx_v_f);
       __Pyx_GIVEREF(__pyx_v_f);
       PyTuple_SET_ITEM(__pyx_t_7, 0+1, __pyx_v_f);
-      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_7, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 418, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_7, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 402, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     }
@@ -8561,14 +7985,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "proto_mpeg_x.pyx":419
+  /* "proto_mpeg_x.pyx":403
  * 
  *     output.tofile(f)
  *     f.close()             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_f, __pyx_n_s_close); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 419, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_f, __pyx_n_s_close); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 403, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_7 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -8581,16 +8005,16 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
     }
   }
   if (__pyx_t_7) {
-    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 403, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   } else {
-    __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 403, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "proto_mpeg_x.pyx":374
+  /* "proto_mpeg_x.pyx":358
  *     return images
  * 
  * def encode_video(files, output_file, compression_level): # queue):             # <<<<<<<<<<<<<<
@@ -8620,7 +8044,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_2encode_video(CYTHON_UNUSED PyObject *_
   return __pyx_r;
 }
 
-/* "proto_mpeg_x.pyx":422
+/* "proto_mpeg_x.pyx":406
  * 
  * 
  * def decode_video(file):             # <<<<<<<<<<<<<<
@@ -8670,7 +8094,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
   int __pyx_t_13;
   __Pyx_RefNannySetupContext("decode_video", 0);
 
-  /* "proto_mpeg_x.pyx":429
+  /* "proto_mpeg_x.pyx":413
  * 
  *     # Open a BitStream from the file
  *     try:             # <<<<<<<<<<<<<<
@@ -8686,14 +8110,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "proto_mpeg_x.pyx":430
+      /* "proto_mpeg_x.pyx":414
  *     # Open a BitStream from the file
  *     try:
  *         f = open(file, 'rb')             # <<<<<<<<<<<<<<
  *     except:
  *         raise Exception("Could not open input file", file, "for reading.")
  */
-      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 430, __pyx_L3_error)
+      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 414, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_INCREF(__pyx_v_file);
       __Pyx_GIVEREF(__pyx_v_file);
@@ -8701,13 +8125,13 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
       __Pyx_INCREF(__pyx_n_s_rb);
       __Pyx_GIVEREF(__pyx_n_s_rb);
       PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_n_s_rb);
-      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 430, __pyx_L3_error)
+      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 414, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_v_f = __pyx_t_5;
       __pyx_t_5 = 0;
 
-      /* "proto_mpeg_x.pyx":429
+      /* "proto_mpeg_x.pyx":413
  * 
  *     # Open a BitStream from the file
  *     try:             # <<<<<<<<<<<<<<
@@ -8724,7 +8148,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "proto_mpeg_x.pyx":431
+    /* "proto_mpeg_x.pyx":415
  *     try:
  *         f = open(file, 'rb')
  *     except:             # <<<<<<<<<<<<<<
@@ -8733,19 +8157,19 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
  */
     /*except:*/ {
       __Pyx_AddTraceback("proto_mpeg_x.decode_video", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_4, &__pyx_t_6) < 0) __PYX_ERR(0, 431, __pyx_L5_except_error)
+      if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_4, &__pyx_t_6) < 0) __PYX_ERR(0, 415, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GOTREF(__pyx_t_6);
 
-      /* "proto_mpeg_x.pyx":432
+      /* "proto_mpeg_x.pyx":416
  *         f = open(file, 'rb')
  *     except:
  *         raise Exception("Could not open input file", file, "for reading.")             # <<<<<<<<<<<<<<
  * 
  *     decoder_bits = BitStream(f)
  */
-      __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 432, __pyx_L5_except_error)
+      __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 416, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_INCREF(__pyx_kp_s_Could_not_open_input_file);
       __Pyx_GIVEREF(__pyx_kp_s_Could_not_open_input_file);
@@ -8756,16 +8180,16 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
       __Pyx_INCREF(__pyx_kp_s_for_reading);
       __Pyx_GIVEREF(__pyx_kp_s_for_reading);
       PyTuple_SET_ITEM(__pyx_t_7, 2, __pyx_kp_s_for_reading);
-      __pyx_t_8 = __Pyx_PyObject_Call(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])), __pyx_t_7, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 432, __pyx_L5_except_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])), __pyx_t_7, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 416, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __PYX_ERR(0, 432, __pyx_L5_except_error)
+      __PYX_ERR(0, 416, __pyx_L5_except_error)
     }
     __pyx_L5_except_error:;
 
-    /* "proto_mpeg_x.pyx":429
+    /* "proto_mpeg_x.pyx":413
  * 
  *     # Open a BitStream from the file
  *     try:             # <<<<<<<<<<<<<<
@@ -8781,14 +8205,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
     __pyx_L10_try_end:;
   }
 
-  /* "proto_mpeg_x.pyx":434
+  /* "proto_mpeg_x.pyx":418
  *         raise Exception("Could not open input file", file, "for reading.")
  * 
  *     decoder_bits = BitStream(f)             # <<<<<<<<<<<<<<
  * 
  *     # READ HEADER
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_BitStream); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 434, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_BitStream); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 418, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -8801,13 +8225,13 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
     }
   }
   if (!__pyx_t_5) {
-    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_f); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 434, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_f); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 418, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_4)) {
       PyObject *__pyx_temp[2] = {__pyx_t_5, __pyx_v_f};
-      __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 434, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 418, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_GOTREF(__pyx_t_6);
     } else
@@ -8815,19 +8239,19 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
       PyObject *__pyx_temp[2] = {__pyx_t_5, __pyx_v_f};
-      __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 434, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 418, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_GOTREF(__pyx_t_6);
     } else
     #endif
     {
-      __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 434, __pyx_L1_error)
+      __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 418, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_5); __pyx_t_5 = NULL;
       __Pyx_INCREF(__pyx_v_f);
       __Pyx_GIVEREF(__pyx_v_f);
       PyTuple_SET_ITEM(__pyx_t_8, 0+1, __pyx_v_f);
-      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 434, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 418, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     }
@@ -8836,68 +8260,68 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
   __pyx_v_decoder_bits = __pyx_t_6;
   __pyx_t_6 = 0;
 
-  /* "proto_mpeg_x.pyx":437
+  /* "proto_mpeg_x.pyx":421
  * 
  *     # READ HEADER
  *     num_imgs  = decoder_bits.read('uint:20')             # <<<<<<<<<<<<<<
  *     v_mblocks = decoder_bits.read('uint:8')
  *     h_mblocks = decoder_bits.read('uint:8')
  */
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_decoder_bits, __pyx_n_s_read); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 437, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_decoder_bits, __pyx_n_s_read); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 421, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__40, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 437, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__40, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 421, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_v_num_imgs = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "proto_mpeg_x.pyx":438
+  /* "proto_mpeg_x.pyx":422
  *     # READ HEADER
  *     num_imgs  = decoder_bits.read('uint:20')
  *     v_mblocks = decoder_bits.read('uint:8')             # <<<<<<<<<<<<<<
  *     h_mblocks = decoder_bits.read('uint:8')
  * 
  */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_decoder_bits, __pyx_n_s_read); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 438, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_decoder_bits, __pyx_n_s_read); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 422, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_tuple__41, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 438, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_tuple__41, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 422, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_v_mblocks = __pyx_t_6;
   __pyx_t_6 = 0;
 
-  /* "proto_mpeg_x.pyx":439
+  /* "proto_mpeg_x.pyx":423
  *     num_imgs  = decoder_bits.read('uint:20')
  *     v_mblocks = decoder_bits.read('uint:8')
  *     h_mblocks = decoder_bits.read('uint:8')             # <<<<<<<<<<<<<<
  * 
  *     video = np.empty((v_mblocks*16, h_mblocks*16, 3, num_imgs), dtype=np.uint8)
  */
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_decoder_bits, __pyx_n_s_read); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 439, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_decoder_bits, __pyx_n_s_read); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 423, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__42, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 439, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__42, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 423, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_v_h_mblocks = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "proto_mpeg_x.pyx":441
+  /* "proto_mpeg_x.pyx":425
  *     h_mblocks = decoder_bits.read('uint:8')
  * 
  *     video = np.empty((v_mblocks*16, h_mblocks*16, 3, num_imgs), dtype=np.uint8)             # <<<<<<<<<<<<<<
  * 
  *     img = frame()
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 441, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 425, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_empty); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 441, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_empty); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 425, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Multiply(__pyx_v_v_mblocks, __pyx_int_16); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 441, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Multiply(__pyx_v_v_mblocks, __pyx_int_16); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 425, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_8 = PyNumber_Multiply(__pyx_v_h_mblocks, __pyx_int_16); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 441, __pyx_L1_error)
+  __pyx_t_8 = PyNumber_Multiply(__pyx_v_h_mblocks, __pyx_int_16); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 425, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 441, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 425, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_4);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4);
@@ -8911,21 +8335,21 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
   PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_v_num_imgs);
   __pyx_t_4 = 0;
   __pyx_t_8 = 0;
-  __pyx_t_8 = PyTuple_New(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 441, __pyx_L1_error)
+  __pyx_t_8 = PyTuple_New(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 425, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_GIVEREF(__pyx_t_5);
   PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_5);
   __pyx_t_5 = 0;
-  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 441, __pyx_L1_error)
+  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 425, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 441, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 425, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_uint8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 441, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_uint8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 425, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_dtype, __pyx_t_7) < 0) __PYX_ERR(0, 441, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_dtype, __pyx_t_7) < 0) __PYX_ERR(0, 425, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_8, __pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 441, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_8, __pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 425, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -8933,14 +8357,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
   __pyx_v_video = __pyx_t_7;
   __pyx_t_7 = 0;
 
-  /* "proto_mpeg_x.pyx":443
+  /* "proto_mpeg_x.pyx":427
  *     video = np.empty((v_mblocks*16, h_mblocks*16, 3, num_imgs), dtype=np.uint8)
  * 
  *     img = frame()             # <<<<<<<<<<<<<<
  * 
  *     for i in range(num_imgs):
  */
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_frame); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 443, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_frame); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 427, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_8 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_5))) {
@@ -8953,38 +8377,38 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
     }
   }
   if (__pyx_t_8) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 443, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 427, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   } else {
-    __pyx_t_7 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 443, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 427, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v_img = __pyx_t_7;
   __pyx_t_7 = 0;
 
-  /* "proto_mpeg_x.pyx":445
+  /* "proto_mpeg_x.pyx":429
  *     img = frame()
  * 
  *     for i in range(num_imgs):             # <<<<<<<<<<<<<<
  * 
  *         this_image_bits = decoder_bits.readto('0b' + huffman_mpeg.EOF)[:-1*len(huffman_mpeg.EOF)]
  */
-  __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 445, __pyx_L1_error)
+  __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 429, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_INCREF(__pyx_v_num_imgs);
   __Pyx_GIVEREF(__pyx_v_num_imgs);
   PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_v_num_imgs);
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_7, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 445, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_7, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 429, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   if (likely(PyList_CheckExact(__pyx_t_5)) || PyTuple_CheckExact(__pyx_t_5)) {
     __pyx_t_7 = __pyx_t_5; __Pyx_INCREF(__pyx_t_7); __pyx_t_9 = 0;
     __pyx_t_10 = NULL;
   } else {
-    __pyx_t_9 = -1; __pyx_t_7 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 445, __pyx_L1_error)
+    __pyx_t_9 = -1; __pyx_t_7 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 429, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_10 = Py_TYPE(__pyx_t_7)->tp_iternext; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 445, __pyx_L1_error)
+    __pyx_t_10 = Py_TYPE(__pyx_t_7)->tp_iternext; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 429, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   for (;;) {
@@ -8992,17 +8416,17 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
       if (likely(PyList_CheckExact(__pyx_t_7))) {
         if (__pyx_t_9 >= PyList_GET_SIZE(__pyx_t_7)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_5 = PyList_GET_ITEM(__pyx_t_7, __pyx_t_9); __Pyx_INCREF(__pyx_t_5); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 445, __pyx_L1_error)
+        __pyx_t_5 = PyList_GET_ITEM(__pyx_t_7, __pyx_t_9); __Pyx_INCREF(__pyx_t_5); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 429, __pyx_L1_error)
         #else
-        __pyx_t_5 = PySequence_ITEM(__pyx_t_7, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 445, __pyx_L1_error)
+        __pyx_t_5 = PySequence_ITEM(__pyx_t_7, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 429, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         #endif
       } else {
         if (__pyx_t_9 >= PyTuple_GET_SIZE(__pyx_t_7)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_5 = PyTuple_GET_ITEM(__pyx_t_7, __pyx_t_9); __Pyx_INCREF(__pyx_t_5); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 445, __pyx_L1_error)
+        __pyx_t_5 = PyTuple_GET_ITEM(__pyx_t_7, __pyx_t_9); __Pyx_INCREF(__pyx_t_5); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 429, __pyx_L1_error)
         #else
-        __pyx_t_5 = PySequence_ITEM(__pyx_t_7, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 445, __pyx_L1_error)
+        __pyx_t_5 = PySequence_ITEM(__pyx_t_7, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 429, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         #endif
       }
@@ -9012,7 +8436,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 445, __pyx_L1_error)
+          else __PYX_ERR(0, 429, __pyx_L1_error)
         }
         break;
       }
@@ -9021,21 +8445,21 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
     __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_5);
     __pyx_t_5 = 0;
 
-    /* "proto_mpeg_x.pyx":447
+    /* "proto_mpeg_x.pyx":431
  *     for i in range(num_imgs):
  * 
  *         this_image_bits = decoder_bits.readto('0b' + huffman_mpeg.EOF)[:-1*len(huffman_mpeg.EOF)]             # <<<<<<<<<<<<<<
  *         video[:, :, :, i] = img.decode_from_bits(this_image_bits, h_mblocks, v_mblocks)
  *         print("decoded", i+1, "out of", num_imgs, "images")
  */
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_decoder_bits, __pyx_n_s_readto); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 447, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_decoder_bits, __pyx_n_s_readto); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 431, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_huffman_mpeg); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 447, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_huffman_mpeg); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 431, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_EOF); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 447, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_EOF); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 431, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = PyNumber_Add(__pyx_kp_s_0b, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 447, __pyx_L1_error)
+    __pyx_t_6 = PyNumber_Add(__pyx_kp_s_0b, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 431, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_4 = NULL;
@@ -9049,14 +8473,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
       }
     }
     if (!__pyx_t_4) {
-      __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 447, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 431, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_GOTREF(__pyx_t_5);
     } else {
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_8)) {
         PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_6};
-        __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_8, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 447, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_8, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 431, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -9065,46 +8489,46 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_8)) {
         PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_6};
-        __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_8, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 447, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_8, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 431, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       } else
       #endif
       {
-        __pyx_t_11 = PyTuple_New(1+1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 447, __pyx_L1_error)
+        __pyx_t_11 = PyTuple_New(1+1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 431, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_11);
         __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_11, 0, __pyx_t_4); __pyx_t_4 = NULL;
         __Pyx_GIVEREF(__pyx_t_6);
         PyTuple_SET_ITEM(__pyx_t_11, 0+1, __pyx_t_6);
         __pyx_t_6 = 0;
-        __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_11, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 447, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_11, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 431, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
       }
     }
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_huffman_mpeg); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 447, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_huffman_mpeg); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 431, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_EOF); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 447, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_EOF); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 431, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_12 = PyObject_Length(__pyx_t_11); if (unlikely(__pyx_t_12 == -1)) __PYX_ERR(0, 447, __pyx_L1_error)
+    __pyx_t_12 = PyObject_Length(__pyx_t_11); if (unlikely(__pyx_t_12 == -1)) __PYX_ERR(0, 431, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-    __pyx_t_11 = __Pyx_PyObject_GetSlice(__pyx_t_5, 0, (-1L * __pyx_t_12), NULL, NULL, NULL, 0, 1, 1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 447, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyObject_GetSlice(__pyx_t_5, 0, (-1L * __pyx_t_12), NULL, NULL, NULL, 0, 1, 1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 431, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_XDECREF_SET(__pyx_v_this_image_bits, __pyx_t_11);
     __pyx_t_11 = 0;
 
-    /* "proto_mpeg_x.pyx":448
+    /* "proto_mpeg_x.pyx":432
  * 
  *         this_image_bits = decoder_bits.readto('0b' + huffman_mpeg.EOF)[:-1*len(huffman_mpeg.EOF)]
  *         video[:, :, :, i] = img.decode_from_bits(this_image_bits, h_mblocks, v_mblocks)             # <<<<<<<<<<<<<<
  *         print("decoded", i+1, "out of", num_imgs, "images")
  *         print(decoder_bits.pos, len(decoder_bits))
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_img, __pyx_n_s_decode_from_bits); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 448, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_img, __pyx_n_s_decode_from_bits); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 432, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_8 = NULL;
     __pyx_t_13 = 0;
@@ -9121,7 +8545,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_5)) {
       PyObject *__pyx_temp[4] = {__pyx_t_8, __pyx_v_this_image_bits, __pyx_v_h_mblocks, __pyx_v_v_mblocks};
-      __pyx_t_11 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_13, 3+__pyx_t_13); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 448, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_13, 3+__pyx_t_13); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 432, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_GOTREF(__pyx_t_11);
     } else
@@ -9129,13 +8553,13 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
       PyObject *__pyx_temp[4] = {__pyx_t_8, __pyx_v_this_image_bits, __pyx_v_h_mblocks, __pyx_v_v_mblocks};
-      __pyx_t_11 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_13, 3+__pyx_t_13); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 448, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_13, 3+__pyx_t_13); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 432, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_GOTREF(__pyx_t_11);
     } else
     #endif
     {
-      __pyx_t_6 = PyTuple_New(3+__pyx_t_13); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 448, __pyx_L1_error)
+      __pyx_t_6 = PyTuple_New(3+__pyx_t_13); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 432, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       if (__pyx_t_8) {
         __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_8); __pyx_t_8 = NULL;
@@ -9149,12 +8573,12 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
       __Pyx_INCREF(__pyx_v_v_mblocks);
       __Pyx_GIVEREF(__pyx_v_v_mblocks);
       PyTuple_SET_ITEM(__pyx_t_6, 2+__pyx_t_13, __pyx_v_v_mblocks);
-      __pyx_t_11 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_6, NULL); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 448, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_6, NULL); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 432, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_11);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 448, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 432, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_INCREF(__pyx_slice__43);
     __Pyx_GIVEREF(__pyx_slice__43);
@@ -9168,20 +8592,20 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
     __Pyx_INCREF(__pyx_v_i);
     __Pyx_GIVEREF(__pyx_v_i);
     PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_v_i);
-    if (unlikely(PyObject_SetItem(__pyx_v_video, __pyx_t_5, __pyx_t_11) < 0)) __PYX_ERR(0, 448, __pyx_L1_error)
+    if (unlikely(PyObject_SetItem(__pyx_v_video, __pyx_t_5, __pyx_t_11) < 0)) __PYX_ERR(0, 432, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
 
-    /* "proto_mpeg_x.pyx":449
+    /* "proto_mpeg_x.pyx":433
  *         this_image_bits = decoder_bits.readto('0b' + huffman_mpeg.EOF)[:-1*len(huffman_mpeg.EOF)]
  *         video[:, :, :, i] = img.decode_from_bits(this_image_bits, h_mblocks, v_mblocks)
  *         print("decoded", i+1, "out of", num_imgs, "images")             # <<<<<<<<<<<<<<
  *         print(decoder_bits.pos, len(decoder_bits))
  * 
  */
-    __pyx_t_11 = __Pyx_PyInt_AddObjC(__pyx_v_i, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 449, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyInt_AddObjC(__pyx_v_i, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 433, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
-    __pyx_t_5 = PyTuple_New(5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 449, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 433, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_INCREF(__pyx_n_s_decoded);
     __Pyx_GIVEREF(__pyx_n_s_decoded);
@@ -9198,22 +8622,22 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
     __Pyx_GIVEREF(__pyx_n_s_images);
     PyTuple_SET_ITEM(__pyx_t_5, 4, __pyx_n_s_images);
     __pyx_t_11 = 0;
-    if (__Pyx_PrintOne(0, __pyx_t_5) < 0) __PYX_ERR(0, 449, __pyx_L1_error)
+    if (__Pyx_PrintOne(0, __pyx_t_5) < 0) __PYX_ERR(0, 433, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "proto_mpeg_x.pyx":450
+    /* "proto_mpeg_x.pyx":434
  *         video[:, :, :, i] = img.decode_from_bits(this_image_bits, h_mblocks, v_mblocks)
  *         print("decoded", i+1, "out of", num_imgs, "images")
  *         print(decoder_bits.pos, len(decoder_bits))             # <<<<<<<<<<<<<<
  * 
  *     f.close()
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_decoder_bits, __pyx_n_s_pos); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 450, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_decoder_bits, __pyx_n_s_pos); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 434, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_12 = PyObject_Length(__pyx_v_decoder_bits); if (unlikely(__pyx_t_12 == -1)) __PYX_ERR(0, 450, __pyx_L1_error)
-    __pyx_t_11 = PyInt_FromSsize_t(__pyx_t_12); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 450, __pyx_L1_error)
+    __pyx_t_12 = PyObject_Length(__pyx_v_decoder_bits); if (unlikely(__pyx_t_12 == -1)) __PYX_ERR(0, 434, __pyx_L1_error)
+    __pyx_t_11 = PyInt_FromSsize_t(__pyx_t_12); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 434, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
-    __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 450, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 434, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_GIVEREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_5);
@@ -9221,10 +8645,10 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
     PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_11);
     __pyx_t_5 = 0;
     __pyx_t_11 = 0;
-    if (__Pyx_PrintOne(0, __pyx_t_6) < 0) __PYX_ERR(0, 450, __pyx_L1_error)
+    if (__Pyx_PrintOne(0, __pyx_t_6) < 0) __PYX_ERR(0, 434, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-    /* "proto_mpeg_x.pyx":445
+    /* "proto_mpeg_x.pyx":429
  *     img = frame()
  * 
  *     for i in range(num_imgs):             # <<<<<<<<<<<<<<
@@ -9234,14 +8658,14 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
   }
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "proto_mpeg_x.pyx":452
+  /* "proto_mpeg_x.pyx":436
  *         print(decoder_bits.pos, len(decoder_bits))
  * 
  *     f.close()             # <<<<<<<<<<<<<<
  * 
  *     return video
  */
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_f, __pyx_n_s_close); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 452, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_f, __pyx_n_s_close); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 436, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_11 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -9254,16 +8678,16 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
     }
   }
   if (__pyx_t_11) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_11); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 452, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_11); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 436, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
   } else {
-    __pyx_t_7 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 452, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 436, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "proto_mpeg_x.pyx":454
+  /* "proto_mpeg_x.pyx":438
  *     f.close()
  * 
  *     return video             # <<<<<<<<<<<<<<
@@ -9274,7 +8698,7 @@ static PyObject *__pyx_pf_12proto_mpeg_x_4decode_video(CYTHON_UNUSED PyObject *_
   __pyx_r = __pyx_v_video;
   goto __pyx_L0;
 
-  /* "proto_mpeg_x.pyx":422
+  /* "proto_mpeg_x.pyx":406
  * 
  * 
  * def decode_video(file):             # <<<<<<<<<<<<<<
@@ -9347,13 +8771,11 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_ESC, __pyx_k_ESC, sizeof(__pyx_k_ESC), 0, 0, 1, 1},
   {&__pyx_n_s_F, __pyx_k_F, sizeof(__pyx_k_F), 0, 0, 1, 1},
   {&__pyx_n_s_File, __pyx_k_File, sizeof(__pyx_k_File), 0, 0, 1, 1},
-  {&__pyx_n_s_QF, __pyx_k_QF, sizeof(__pyx_k_QF), 0, 0, 1, 1},
   {&__pyx_n_s_Warning, __pyx_k_Warning, sizeof(__pyx_k_Warning), 0, 0, 1, 1},
   {&__pyx_kp_s__39, __pyx_k__39, sizeof(__pyx_k__39), 0, 0, 1, 0},
   {&__pyx_n_s__46, __pyx_k__46, sizeof(__pyx_k__46), 0, 0, 1, 1},
   {&__pyx_n_s_abs, __pyx_k_abs, sizeof(__pyx_k_abs), 0, 0, 1, 1},
   {&__pyx_n_s_append, __pyx_k_append, sizeof(__pyx_k_append), 0, 0, 1, 1},
-  {&__pyx_n_s_array, __pyx_k_array, sizeof(__pyx_k_array), 0, 0, 1, 1},
   {&__pyx_n_s_astype, __pyx_k_astype, sizeof(__pyx_k_astype), 0, 0, 1, 1},
   {&__pyx_n_s_axis, __pyx_k_axis, sizeof(__pyx_k_axis), 0, 0, 1, 1},
   {&__pyx_n_s_b, __pyx_k_b, sizeof(__pyx_k_b), 0, 0, 1, 1},
@@ -9362,14 +8784,11 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_bits, __pyx_k_bits, sizeof(__pyx_k_bits), 0, 0, 1, 1},
   {&__pyx_n_s_bits_read, __pyx_k_bits_read, sizeof(__pyx_k_bits_read), 0, 0, 1, 1},
   {&__pyx_n_s_bitstring, __pyx_k_bitstring, sizeof(__pyx_k_bitstring), 0, 0, 1, 1},
-  {&__pyx_n_s_bl_recon, __pyx_k_bl_recon, sizeof(__pyx_k_bl_recon), 0, 0, 1, 1},
   {&__pyx_n_s_block, __pyx_k_block, sizeof(__pyx_k_block), 0, 0, 1, 1},
   {&__pyx_n_s_blocks, __pyx_k_blocks, sizeof(__pyx_k_blocks), 0, 0, 1, 1},
   {&__pyx_n_s_blocks_to_image, __pyx_k_blocks_to_image, sizeof(__pyx_k_blocks_to_image), 0, 0, 1, 1},
-  {&__pyx_n_s_ceil, __pyx_k_ceil, sizeof(__pyx_k_ceil), 0, 0, 1, 1},
   {&__pyx_n_s_close, __pyx_k_close, sizeof(__pyx_k_close), 0, 0, 1, 1},
   {&__pyx_n_s_coeff, __pyx_k_coeff, sizeof(__pyx_k_coeff), 0, 0, 1, 1},
-  {&__pyx_n_s_color_convert, __pyx_k_color_convert, sizeof(__pyx_k_color_convert), 0, 0, 1, 1},
   {&__pyx_n_s_compression_level, __pyx_k_compression_level, sizeof(__pyx_k_compression_level), 0, 0, 1, 1},
   {&__pyx_n_s_data, __pyx_k_data, sizeof(__pyx_k_data), 0, 0, 1, 1},
   {&__pyx_n_s_dct, __pyx_k_dct, sizeof(__pyx_k_dct), 0, 0, 1, 1},
@@ -9421,7 +8840,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_getFrame, __pyx_k_getFrame, sizeof(__pyx_k_getFrame), 0, 0, 1, 1},
   {&__pyx_n_s_get_jpegs, __pyx_k_get_jpegs, sizeof(__pyx_k_get_jpegs), 0, 0, 1, 1},
   {&__pyx_n_s_h_mblocks, __pyx_k_h_mblocks, sizeof(__pyx_k_h_mblocks), 0, 0, 1, 1},
-  {&__pyx_kp_s_home_mtezcan_Dropbox__CURRENT_F, __pyx_k_home_mtezcan_Dropbox__CURRENT_F, sizeof(__pyx_k_home_mtezcan_Dropbox__CURRENT_F), 0, 0, 1, 0},
+  {&__pyx_kp_s_home_brian_Documents_EC504_proj, __pyx_k_home_brian_Documents_EC504_proj, sizeof(__pyx_k_home_brian_Documents_EC504_proj), 0, 0, 1, 0},
   {&__pyx_n_s_huffman_mpeg, __pyx_k_huffman_mpeg, sizeof(__pyx_k_huffman_mpeg), 0, 0, 1, 1},
   {&__pyx_n_s_i, __pyx_k_i, sizeof(__pyx_k_i), 0, 0, 1, 1},
   {&__pyx_n_s_idct, __pyx_k_idct, sizeof(__pyx_k_idct), 0, 0, 1, 1},
@@ -9473,7 +8892,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_proto_mpeg_x, __pyx_k_proto_mpeg_x, sizeof(__pyx_k_proto_mpeg_x), 0, 0, 1, 1},
   {&__pyx_n_s_qualname, __pyx_k_qualname, sizeof(__pyx_k_qualname), 0, 0, 1, 1},
   {&__pyx_n_s_quant_intra, __pyx_k_quant_intra, sizeof(__pyx_k_quant_intra), 0, 0, 1, 1},
-  {&__pyx_n_s_quant_matrix, __pyx_k_quant_matrix, sizeof(__pyx_k_quant_matrix), 0, 0, 1, 1},
   {&__pyx_n_s_quantize_intra, __pyx_k_quantize_intra, sizeof(__pyx_k_quantize_intra), 0, 0, 1, 1},
   {&__pyx_n_s_r, __pyx_k_r, sizeof(__pyx_k_r), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
@@ -9482,7 +8900,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_readto, __pyx_k_readto, sizeof(__pyx_k_readto), 0, 0, 1, 1},
   {&__pyx_n_s_reconstructed_image, __pyx_k_reconstructed_image, sizeof(__pyx_k_reconstructed_image), 0, 0, 1, 1},
   {&__pyx_n_s_reshape, __pyx_k_reshape, sizeof(__pyx_k_reshape), 0, 0, 1, 1},
-  {&__pyx_n_s_rgb2ycbcr, __pyx_k_rgb2ycbcr, sizeof(__pyx_k_rgb2ycbcr), 0, 0, 1, 1},
   {&__pyx_n_s_rint, __pyx_k_rint, sizeof(__pyx_k_rint), 0, 0, 1, 1},
   {&__pyx_n_s_run, __pyx_k_run, sizeof(__pyx_k_run), 0, 0, 1, 1},
   {&__pyx_n_s_run_level, __pyx_k_run_level, sizeof(__pyx_k_run_level), 0, 0, 1, 1},
@@ -9509,8 +8926,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_video, __pyx_k_video, sizeof(__pyx_k_video), 0, 0, 1, 1},
   {&__pyx_n_s_view_single, __pyx_k_view_single, sizeof(__pyx_k_view_single), 0, 0, 1, 1},
   {&__pyx_n_s_wb, __pyx_k_wb, sizeof(__pyx_k_wb), 0, 0, 1, 1},
-  {&__pyx_n_s_ycbcr, __pyx_k_ycbcr, sizeof(__pyx_k_ycbcr), 0, 0, 1, 1},
-  {&__pyx_n_s_ycbcr2rgb, __pyx_k_ycbcr2rgb, sizeof(__pyx_k_ycbcr2rgb), 0, 0, 1, 1},
   {&__pyx_n_s_zero_count, __pyx_k_zero_count, sizeof(__pyx_k_zero_count), 0, 0, 1, 1},
   {&__pyx_n_s_zeros, __pyx_k_zeros, sizeof(__pyx_k_zeros), 0, 0, 1, 1},
   {&__pyx_n_s_zigzag_from_block, __pyx_k_zigzag_from_block, sizeof(__pyx_k_zigzag_from_block), 0, 0, 1, 1},
@@ -9523,10 +8938,10 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_Warning = __Pyx_GetBuiltinName(__pyx_n_s_Warning); if (!__pyx_builtin_Warning) __PYX_ERR(0, 145, __pyx_L1_error)
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 184, __pyx_L1_error)
-  __pyx_builtin_map = __Pyx_GetBuiltinName(__pyx_n_s_map); if (!__pyx_builtin_map) __PYX_ERR(0, 207, __pyx_L1_error)
-  __pyx_builtin_open = __Pyx_GetBuiltinName(__pyx_n_s_open); if (!__pyx_builtin_open) __PYX_ERR(0, 385, __pyx_L1_error)
+  __pyx_builtin_Warning = __Pyx_GetBuiltinName(__pyx_n_s_Warning); if (!__pyx_builtin_Warning) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 175, __pyx_L1_error)
+  __pyx_builtin_map = __Pyx_GetBuiltinName(__pyx_n_s_map); if (!__pyx_builtin_map) __PYX_ERR(0, 198, __pyx_L1_error)
+  __pyx_builtin_open = __Pyx_GetBuiltinName(__pyx_n_s_open); if (!__pyx_builtin_open) __PYX_ERR(0, 369, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -9536,501 +8951,501 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "proto_mpeg_x.pyx":63
+  /* "proto_mpeg_x.pyx":58
  *         if len(image) == 1:
  *             data = image[0]
  *             self.r = data[:, :, 0]             # <<<<<<<<<<<<<<
  *             self.g = data[:, :, 1]
  *             self.b = data[:, :, 2]
  */
-  __pyx_slice_ = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice_)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_slice_ = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice_)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice_);
   __Pyx_GIVEREF(__pyx_slice_);
-  __pyx_slice__2 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__2)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_slice__2 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__2)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__2);
   __Pyx_GIVEREF(__pyx_slice__2);
-  __pyx_tuple__3 = PyTuple_Pack(3, __pyx_slice_, __pyx_slice__2, __pyx_int_0); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_tuple__3 = PyTuple_Pack(3, __pyx_slice_, __pyx_slice__2, __pyx_int_0); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
-  /* "proto_mpeg_x.pyx":64
+  /* "proto_mpeg_x.pyx":59
  *             data = image[0]
  *             self.r = data[:, :, 0]
  *             self.g = data[:, :, 1]             # <<<<<<<<<<<<<<
  *             self.b = data[:, :, 2]
  *             self.v_mblocks = np.shape(self.r)[0] // 16
  */
-  __pyx_slice__4 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__4)) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_slice__4 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__4)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__4);
   __Pyx_GIVEREF(__pyx_slice__4);
-  __pyx_slice__5 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__5)) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_slice__5 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__5)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__5);
   __Pyx_GIVEREF(__pyx_slice__5);
-  __pyx_tuple__6 = PyTuple_Pack(3, __pyx_slice__4, __pyx_slice__5, __pyx_int_1); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_tuple__6 = PyTuple_Pack(3, __pyx_slice__4, __pyx_slice__5, __pyx_int_1); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
 
-  /* "proto_mpeg_x.pyx":65
+  /* "proto_mpeg_x.pyx":60
  *             self.r = data[:, :, 0]
  *             self.g = data[:, :, 1]
  *             self.b = data[:, :, 2]             # <<<<<<<<<<<<<<
  *             self.v_mblocks = np.shape(self.r)[0] // 16
  *             self.h_mblocks = np.shape(self.r)[1] // 16
  */
-  __pyx_slice__7 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__7)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_slice__7 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__7)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__7);
   __Pyx_GIVEREF(__pyx_slice__7);
-  __pyx_slice__8 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__8)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_slice__8 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__8)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__8);
   __Pyx_GIVEREF(__pyx_slice__8);
-  __pyx_tuple__9 = PyTuple_Pack(3, __pyx_slice__7, __pyx_slice__8, __pyx_int_2); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_tuple__9 = PyTuple_Pack(3, __pyx_slice__7, __pyx_slice__8, __pyx_int_2); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__9);
   __Pyx_GIVEREF(__pyx_tuple__9);
 
-  /* "proto_mpeg_x.pyx":81
+  /* "proto_mpeg_x.pyx":76
  *     def load_from_file(self, path):
  *         image = skimage.io.imread(path)
  *         self.r = image[:, :, 0]             # <<<<<<<<<<<<<<
- *         self.g = image[:, :, 1]
- *         self.b = image[:, :, 2]
+ *         self.g = image[:, :, 0]
+ *         self.b = image[:, :, 0]
  */
-  __pyx_slice__10 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__10)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_slice__10 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__10)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__10);
   __Pyx_GIVEREF(__pyx_slice__10);
-  __pyx_slice__11 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__11)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_slice__11 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__11)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__11);
   __Pyx_GIVEREF(__pyx_slice__11);
-  __pyx_tuple__12 = PyTuple_Pack(3, __pyx_slice__10, __pyx_slice__11, __pyx_int_0); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_tuple__12 = PyTuple_Pack(3, __pyx_slice__10, __pyx_slice__11, __pyx_int_0); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__12);
   __Pyx_GIVEREF(__pyx_tuple__12);
 
-  /* "proto_mpeg_x.pyx":82
+  /* "proto_mpeg_x.pyx":77
  *         image = skimage.io.imread(path)
  *         self.r = image[:, :, 0]
- *         self.g = image[:, :, 1]             # <<<<<<<<<<<<<<
- *         self.b = image[:, :, 2]
+ *         self.g = image[:, :, 0]             # <<<<<<<<<<<<<<
+ *         self.b = image[:, :, 0]
  *         self.v_mblocks = np.shape(self.r)[0] // 16
  */
-  __pyx_slice__13 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__13)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_slice__13 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__13)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__13);
   __Pyx_GIVEREF(__pyx_slice__13);
-  __pyx_slice__14 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__14)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_slice__14 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__14)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__14);
   __Pyx_GIVEREF(__pyx_slice__14);
-  __pyx_tuple__15 = PyTuple_Pack(3, __pyx_slice__13, __pyx_slice__14, __pyx_int_1); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_tuple__15 = PyTuple_Pack(3, __pyx_slice__13, __pyx_slice__14, __pyx_int_0); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__15);
   __Pyx_GIVEREF(__pyx_tuple__15);
 
-  /* "proto_mpeg_x.pyx":83
+  /* "proto_mpeg_x.pyx":78
  *         self.r = image[:, :, 0]
- *         self.g = image[:, :, 1]
- *         self.b = image[:, :, 2]             # <<<<<<<<<<<<<<
+ *         self.g = image[:, :, 0]
+ *         self.b = image[:, :, 0]             # <<<<<<<<<<<<<<
  *         self.v_mblocks = np.shape(self.r)[0] // 16
  *         self.h_mblocks = np.shape(self.r)[1] // 16
  */
-  __pyx_slice__16 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__16)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_slice__16 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__16)) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__16);
   __Pyx_GIVEREF(__pyx_slice__16);
-  __pyx_slice__17 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__17)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_slice__17 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__17)) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__17);
   __Pyx_GIVEREF(__pyx_slice__17);
-  __pyx_tuple__18 = PyTuple_Pack(3, __pyx_slice__16, __pyx_slice__17, __pyx_int_2); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_tuple__18 = PyTuple_Pack(3, __pyx_slice__16, __pyx_slice__17, __pyx_int_0); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__18);
   __Pyx_GIVEREF(__pyx_tuple__18);
 
-  /* "proto_mpeg_x.pyx":117
+  /* "proto_mpeg_x.pyx":112
  *         #print("type seen by set_image function:", type(blocks[0, 0, 0]))
  *         image = self.blocks_to_image(blocks)
  *         (self.r, self.g, self.b) = (image[:, :, 0], image[:, :, 1], image[:, :, 2])             # <<<<<<<<<<<<<<
  *         # (self.r, self.g, self.b) = self.blocks_to_image(blocks)
  * 
  */
-  __pyx_slice__19 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__19)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_slice__19 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__19)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__19);
   __Pyx_GIVEREF(__pyx_slice__19);
-  __pyx_slice__20 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__20)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_slice__20 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__20)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__20);
   __Pyx_GIVEREF(__pyx_slice__20);
-  __pyx_tuple__21 = PyTuple_Pack(3, __pyx_slice__19, __pyx_slice__20, __pyx_int_0); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_tuple__21 = PyTuple_Pack(3, __pyx_slice__19, __pyx_slice__20, __pyx_int_0); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__21);
   __Pyx_GIVEREF(__pyx_tuple__21);
-  __pyx_slice__22 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__22)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_slice__22 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__22)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__22);
   __Pyx_GIVEREF(__pyx_slice__22);
-  __pyx_slice__23 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__23)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_slice__23 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__23)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__23);
   __Pyx_GIVEREF(__pyx_slice__23);
-  __pyx_tuple__24 = PyTuple_Pack(3, __pyx_slice__22, __pyx_slice__23, __pyx_int_1); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_tuple__24 = PyTuple_Pack(3, __pyx_slice__22, __pyx_slice__23, __pyx_int_1); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__24);
   __Pyx_GIVEREF(__pyx_tuple__24);
-  __pyx_slice__25 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__25)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_slice__25 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__25)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__25);
   __Pyx_GIVEREF(__pyx_slice__25);
-  __pyx_slice__26 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__26)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_slice__26 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__26)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__26);
   __Pyx_GIVEREF(__pyx_slice__26);
-  __pyx_tuple__27 = PyTuple_Pack(3, __pyx_slice__25, __pyx_slice__26, __pyx_int_2); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_tuple__27 = PyTuple_Pack(3, __pyx_slice__25, __pyx_slice__26, __pyx_int_2); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__27);
   __Pyx_GIVEREF(__pyx_tuple__27);
 
-  /* "proto_mpeg_x.pyx":150
+  /* "proto_mpeg_x.pyx":141
  *         # Insert a series of AC DCT coefficients in run/level format
  *         zero_count = 0
  *         for i in zz_indices[1:]:             # <<<<<<<<<<<<<<
  *             coeff = F[i]
  *             if coeff == 0:
  */
-  __pyx_slice__28 = PySlice_New(__pyx_int_1, Py_None, Py_None); if (unlikely(!__pyx_slice__28)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_slice__28 = PySlice_New(__pyx_int_1, Py_None, Py_None); if (unlikely(!__pyx_slice__28)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__28);
   __Pyx_GIVEREF(__pyx_slice__28);
 
-  /* "proto_mpeg_x.pyx":177
+  /* "proto_mpeg_x.pyx":168
  *         """
  *         # Create a flattened array to reconstruct the data
  *         block = np.zeros((64,))             # <<<<<<<<<<<<<<
  * 
  *         # Insert the DC term
  */
-  __pyx_tuple__29 = PyTuple_Pack(1, __pyx_int_64); if (unlikely(!__pyx_tuple__29)) __PYX_ERR(0, 177, __pyx_L1_error)
+  __pyx_tuple__29 = PyTuple_Pack(1, __pyx_int_64); if (unlikely(!__pyx_tuple__29)) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__29);
   __Pyx_GIVEREF(__pyx_tuple__29);
-  __pyx_tuple__30 = PyTuple_Pack(1, __pyx_tuple__29); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(0, 177, __pyx_L1_error)
+  __pyx_tuple__30 = PyTuple_Pack(1, __pyx_tuple__29); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__30);
   __Pyx_GIVEREF(__pyx_tuple__30);
 
-  /* "proto_mpeg_x.pyx":197
+  /* "proto_mpeg_x.pyx":188
  * 
  *         # Turn back into a 2d array and return
  *         return np.reshape(block, (8,8)).astype(np.int)             # <<<<<<<<<<<<<<
  * 
  *     def zigzag_to_bits(self, encoder_table, zz):
  */
-  __pyx_tuple__31 = PyTuple_Pack(2, __pyx_int_8, __pyx_int_8); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_tuple__31 = PyTuple_Pack(2, __pyx_int_8, __pyx_int_8); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(0, 188, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__31);
   __Pyx_GIVEREF(__pyx_tuple__31);
 
-  /* "proto_mpeg_x.pyx":284
+  /* "proto_mpeg_x.pyx":275
  * 
  *         # This is the array we'll send to self.image_to_blocks after we've processed all bits
  *         blocks = np.empty((0, 8, 8))             # <<<<<<<<<<<<<<
  * 
  *         # As we decode bits, we will use this list to summarize one 8x8 block at a time.
  */
-  __pyx_tuple__32 = PyTuple_Pack(3, __pyx_int_0, __pyx_int_8, __pyx_int_8); if (unlikely(!__pyx_tuple__32)) __PYX_ERR(0, 284, __pyx_L1_error)
+  __pyx_tuple__32 = PyTuple_Pack(3, __pyx_int_0, __pyx_int_8, __pyx_int_8); if (unlikely(!__pyx_tuple__32)) __PYX_ERR(0, 275, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__32);
   __Pyx_GIVEREF(__pyx_tuple__32);
-  __pyx_tuple__33 = PyTuple_Pack(1, __pyx_tuple__32); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(0, 284, __pyx_L1_error)
+  __pyx_tuple__33 = PyTuple_Pack(1, __pyx_tuple__32); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(0, 275, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__33);
   __Pyx_GIVEREF(__pyx_tuple__33);
 
-  /* "proto_mpeg_x.pyx":298
+  /* "proto_mpeg_x.pyx":289
  *             # If the zigzag summary is empty, we first need to read a DC term
  *             if len(decoded_zz_summary) == 0:
  *                 decoded_zz_summary.append(bits.read('uint:8'))             # <<<<<<<<<<<<<<
  *             # Note: i is the number of bits to peek/read, beginning at decoded_bits.pos
  *             bit_string = Bits('0b' + bits.peek('bin:' + str(i)))
  */
-  __pyx_tuple__34 = PyTuple_Pack(1, __pyx_kp_s_uint_8_2); if (unlikely(!__pyx_tuple__34)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __pyx_tuple__34 = PyTuple_Pack(1, __pyx_kp_s_uint_8_2); if (unlikely(!__pyx_tuple__34)) __PYX_ERR(0, 289, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__34);
   __Pyx_GIVEREF(__pyx_tuple__34);
 
-  /* "proto_mpeg_x.pyx":310
+  /* "proto_mpeg_x.pyx":301
  *                     bits.read('bin:' + str(i))
  *                     # read the run (6 bit unsigned int) and the level (16-bit signed int)
  *                     run = bits.read('uint:6')             # <<<<<<<<<<<<<<
  *                     level = bits.read('int:16')
  *                     decoded_zz_summary.append((run, level))
  */
-  __pyx_tuple__35 = PyTuple_Pack(1, __pyx_kp_s_uint_6_2); if (unlikely(!__pyx_tuple__35)) __PYX_ERR(0, 310, __pyx_L1_error)
+  __pyx_tuple__35 = PyTuple_Pack(1, __pyx_kp_s_uint_6_2); if (unlikely(!__pyx_tuple__35)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__35);
   __Pyx_GIVEREF(__pyx_tuple__35);
 
-  /* "proto_mpeg_x.pyx":311
+  /* "proto_mpeg_x.pyx":302
  *                     # read the run (6 bit unsigned int) and the level (16-bit signed int)
  *                     run = bits.read('uint:6')
  *                     level = bits.read('int:16')             # <<<<<<<<<<<<<<
  *                     decoded_zz_summary.append((run, level))
  *                     # print("Handled escape character and appended run, level", (run, level))
  */
-  __pyx_tuple__36 = PyTuple_Pack(1, __pyx_kp_s_int_16_2); if (unlikely(!__pyx_tuple__36)) __PYX_ERR(0, 311, __pyx_L1_error)
+  __pyx_tuple__36 = PyTuple_Pack(1, __pyx_kp_s_int_16_2); if (unlikely(!__pyx_tuple__36)) __PYX_ERR(0, 302, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__36);
   __Pyx_GIVEREF(__pyx_tuple__36);
 
-  /* "proto_mpeg_x.pyx":349
+  /* "proto_mpeg_x.pyx":338
  *                 # print("Length and position:", len(decoded_bits), decoded_bits.pos)
  *                 if i + bits.pos > len(bits):
  *                     raise Exception("Attempted to read beyond end of bitstring during AC decoding.")             # <<<<<<<<<<<<<<
  * 
  *         # Reconstruct an image from our decoded blocks, and store it.
  */
-  __pyx_tuple__37 = PyTuple_Pack(1, __pyx_kp_s_Attempted_to_read_beyond_end_of); if (unlikely(!__pyx_tuple__37)) __PYX_ERR(0, 349, __pyx_L1_error)
+  __pyx_tuple__37 = PyTuple_Pack(1, __pyx_kp_s_Attempted_to_read_beyond_end_of); if (unlikely(!__pyx_tuple__37)) __PYX_ERR(0, 338, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__37);
   __Pyx_GIVEREF(__pyx_tuple__37);
 
-  /* "proto_mpeg_x.pyx":364
+  /* "proto_mpeg_x.pyx":351
  *     i = 1
  *     for file in sorted(listdir(directory)):
  *         if file.endswith('.jpg'):             # <<<<<<<<<<<<<<
- *             img=skimage.io.imread(directory + '/' + file)
- *             if(ycbcr):
+ *             images.append(skimage.io.imread(directory + '/' + file))
+ *         if i == number:
  */
-  __pyx_tuple__38 = PyTuple_Pack(1, __pyx_kp_s_jpg); if (unlikely(!__pyx_tuple__38)) __PYX_ERR(0, 364, __pyx_L1_error)
+  __pyx_tuple__38 = PyTuple_Pack(1, __pyx_kp_s_jpg); if (unlikely(!__pyx_tuple__38)) __PYX_ERR(0, 351, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__38);
   __Pyx_GIVEREF(__pyx_tuple__38);
 
-  /* "proto_mpeg_x.pyx":437
+  /* "proto_mpeg_x.pyx":421
  * 
  *     # READ HEADER
  *     num_imgs  = decoder_bits.read('uint:20')             # <<<<<<<<<<<<<<
  *     v_mblocks = decoder_bits.read('uint:8')
  *     h_mblocks = decoder_bits.read('uint:8')
  */
-  __pyx_tuple__40 = PyTuple_Pack(1, __pyx_kp_s_uint_20_2); if (unlikely(!__pyx_tuple__40)) __PYX_ERR(0, 437, __pyx_L1_error)
+  __pyx_tuple__40 = PyTuple_Pack(1, __pyx_kp_s_uint_20_2); if (unlikely(!__pyx_tuple__40)) __PYX_ERR(0, 421, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__40);
   __Pyx_GIVEREF(__pyx_tuple__40);
 
-  /* "proto_mpeg_x.pyx":438
+  /* "proto_mpeg_x.pyx":422
  *     # READ HEADER
  *     num_imgs  = decoder_bits.read('uint:20')
  *     v_mblocks = decoder_bits.read('uint:8')             # <<<<<<<<<<<<<<
  *     h_mblocks = decoder_bits.read('uint:8')
  * 
  */
-  __pyx_tuple__41 = PyTuple_Pack(1, __pyx_kp_s_uint_8_2); if (unlikely(!__pyx_tuple__41)) __PYX_ERR(0, 438, __pyx_L1_error)
+  __pyx_tuple__41 = PyTuple_Pack(1, __pyx_kp_s_uint_8_2); if (unlikely(!__pyx_tuple__41)) __PYX_ERR(0, 422, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__41);
   __Pyx_GIVEREF(__pyx_tuple__41);
 
-  /* "proto_mpeg_x.pyx":439
+  /* "proto_mpeg_x.pyx":423
  *     num_imgs  = decoder_bits.read('uint:20')
  *     v_mblocks = decoder_bits.read('uint:8')
  *     h_mblocks = decoder_bits.read('uint:8')             # <<<<<<<<<<<<<<
  * 
  *     video = np.empty((v_mblocks*16, h_mblocks*16, 3, num_imgs), dtype=np.uint8)
  */
-  __pyx_tuple__42 = PyTuple_Pack(1, __pyx_kp_s_uint_8_2); if (unlikely(!__pyx_tuple__42)) __PYX_ERR(0, 439, __pyx_L1_error)
+  __pyx_tuple__42 = PyTuple_Pack(1, __pyx_kp_s_uint_8_2); if (unlikely(!__pyx_tuple__42)) __PYX_ERR(0, 423, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__42);
   __Pyx_GIVEREF(__pyx_tuple__42);
 
-  /* "proto_mpeg_x.pyx":448
+  /* "proto_mpeg_x.pyx":432
  * 
  *         this_image_bits = decoder_bits.readto('0b' + huffman_mpeg.EOF)[:-1*len(huffman_mpeg.EOF)]
  *         video[:, :, :, i] = img.decode_from_bits(this_image_bits, h_mblocks, v_mblocks)             # <<<<<<<<<<<<<<
  *         print("decoded", i+1, "out of", num_imgs, "images")
  *         print(decoder_bits.pos, len(decoder_bits))
  */
-  __pyx_slice__43 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__43)) __PYX_ERR(0, 448, __pyx_L1_error)
+  __pyx_slice__43 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__43)) __PYX_ERR(0, 432, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__43);
   __Pyx_GIVEREF(__pyx_slice__43);
-  __pyx_slice__44 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__44)) __PYX_ERR(0, 448, __pyx_L1_error)
+  __pyx_slice__44 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__44)) __PYX_ERR(0, 432, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__44);
   __Pyx_GIVEREF(__pyx_slice__44);
-  __pyx_slice__45 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__45)) __PYX_ERR(0, 448, __pyx_L1_error)
+  __pyx_slice__45 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__45)) __PYX_ERR(0, 432, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__45);
   __Pyx_GIVEREF(__pyx_slice__45);
 
-  /* "proto_mpeg_x.pyx":56
+  /* "proto_mpeg_x.pyx":52
  * 
  * class frame:
- *     def __init__(self, *image,QF=.1):             # <<<<<<<<<<<<<<
+ *     def __init__(self, *image):             # <<<<<<<<<<<<<<
  *         '''
  *         :param image: RBG image of shape (height, width, 3)
  */
-  __pyx_tuple__47 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_QF, __pyx_n_s_image, __pyx_n_s_data); if (unlikely(!__pyx_tuple__47)) __PYX_ERR(0, 56, __pyx_L1_error)
+  __pyx_tuple__47 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_image, __pyx_n_s_data); if (unlikely(!__pyx_tuple__47)) __PYX_ERR(0, 52, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__47);
   __Pyx_GIVEREF(__pyx_tuple__47);
-  __pyx_codeobj__48 = (PyObject*)__Pyx_PyCode_New(1, 1, 4, 0, CO_VARARGS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__47, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_mtezcan_Dropbox__CURRENT_F, __pyx_n_s_init, 56, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__48)) __PYX_ERR(0, 56, __pyx_L1_error)
+  __pyx_codeobj__48 = (PyObject*)__Pyx_PyCode_New(1, 0, 3, 0, CO_VARARGS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__47, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_brian_Documents_EC504_proj, __pyx_n_s_init, 52, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__48)) __PYX_ERR(0, 52, __pyx_L1_error)
 
-  /* "proto_mpeg_x.pyx":75
+  /* "proto_mpeg_x.pyx":70
  *             self.h_mblocks = None
  * 
  *     def getFrame(self):             # <<<<<<<<<<<<<<
  *         reconstructed_image = np.dstack((self.r, self.g, self.b))
  *         return reconstructed_image
  */
-  __pyx_tuple__49 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_reconstructed_image); if (unlikely(!__pyx_tuple__49)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __pyx_tuple__49 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_reconstructed_image); if (unlikely(!__pyx_tuple__49)) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__49);
   __Pyx_GIVEREF(__pyx_tuple__49);
-  __pyx_codeobj__50 = (PyObject*)__Pyx_PyCode_New(1, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__49, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_mtezcan_Dropbox__CURRENT_F, __pyx_n_s_getFrame, 75, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__50)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __pyx_codeobj__50 = (PyObject*)__Pyx_PyCode_New(1, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__49, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_brian_Documents_EC504_proj, __pyx_n_s_getFrame, 70, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__50)) __PYX_ERR(0, 70, __pyx_L1_error)
 
-  /* "proto_mpeg_x.pyx":79
+  /* "proto_mpeg_x.pyx":74
  *         return reconstructed_image
  * 
  *     def load_from_file(self, path):             # <<<<<<<<<<<<<<
  *         image = skimage.io.imread(path)
  *         self.r = image[:, :, 0]
  */
-  __pyx_tuple__51 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_path, __pyx_n_s_image); if (unlikely(!__pyx_tuple__51)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_tuple__51 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_path, __pyx_n_s_image); if (unlikely(!__pyx_tuple__51)) __PYX_ERR(0, 74, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__51);
   __Pyx_GIVEREF(__pyx_tuple__51);
-  __pyx_codeobj__52 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__51, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_mtezcan_Dropbox__CURRENT_F, __pyx_n_s_load_from_file, 79, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__52)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_codeobj__52 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__51, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_brian_Documents_EC504_proj, __pyx_n_s_load_from_file, 74, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__52)) __PYX_ERR(0, 74, __pyx_L1_error)
 
-  /* "proto_mpeg_x.pyx":87
+  /* "proto_mpeg_x.pyx":82
  *         self.h_mblocks = np.shape(self.r)[1] // 16
  * 
  *     def show(self):             # <<<<<<<<<<<<<<
  *         reconstructed_image = np.dstack((self.r, self.g, self.b))
  *         ec504viewer.view_single(reconstructed_image)
  */
-  __pyx_tuple__53 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_reconstructed_image); if (unlikely(!__pyx_tuple__53)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_tuple__53 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_reconstructed_image); if (unlikely(!__pyx_tuple__53)) __PYX_ERR(0, 82, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__53);
   __Pyx_GIVEREF(__pyx_tuple__53);
-  __pyx_codeobj__54 = (PyObject*)__Pyx_PyCode_New(1, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__53, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_mtezcan_Dropbox__CURRENT_F, __pyx_n_s_show, 87, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__54)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_codeobj__54 = (PyObject*)__Pyx_PyCode_New(1, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__53, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_brian_Documents_EC504_proj, __pyx_n_s_show, 82, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__54)) __PYX_ERR(0, 82, __pyx_L1_error)
 
-  /* "proto_mpeg_x.pyx":91
+  /* "proto_mpeg_x.pyx":86
  *         ec504viewer.view_single(reconstructed_image)
  * 
  *     def image_to_blocks(self):             # <<<<<<<<<<<<<<
  *         """
  *         Convert the stored image into a sequence of 8x8 pixel blocks for encoding
  */
-  __pyx_tuple__55 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__55)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __pyx_tuple__55 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__55)) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__55);
   __Pyx_GIVEREF(__pyx_tuple__55);
-  __pyx_codeobj__56 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__55, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_mtezcan_Dropbox__CURRENT_F, __pyx_n_s_image_to_blocks, 91, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__56)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __pyx_codeobj__56 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__55, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_brian_Documents_EC504_proj, __pyx_n_s_image_to_blocks, 86, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__56)) __PYX_ERR(0, 86, __pyx_L1_error)
 
-  /* "proto_mpeg_x.pyx":98
+  /* "proto_mpeg_x.pyx":93
  *         return proto_mpeg_computation.image_to_blocks(self.r, self.g, self.b)
  * 
  *     def blocks_to_image(self, blocks):             # <<<<<<<<<<<<<<
  *         """
  *         Given a sequence of blocks, reconstruct the original image. This routine relies on knowing the original dim.
  */
-  __pyx_tuple__57 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_blocks); if (unlikely(!__pyx_tuple__57)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_tuple__57 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_blocks); if (unlikely(!__pyx_tuple__57)) __PYX_ERR(0, 93, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__57);
   __Pyx_GIVEREF(__pyx_tuple__57);
-  __pyx_codeobj__58 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__57, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_mtezcan_Dropbox__CURRENT_F, __pyx_n_s_blocks_to_image, 98, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__58)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_codeobj__58 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__57, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_brian_Documents_EC504_proj, __pyx_n_s_blocks_to_image, 93, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__58)) __PYX_ERR(0, 93, __pyx_L1_error)
 
-  /* "proto_mpeg_x.pyx":109
+  /* "proto_mpeg_x.pyx":104
  *         return proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), self.v_mblocks, self.h_mblocks)
  * 
  *     def set_image(self, blocks):             # <<<<<<<<<<<<<<
  *         """
  *         Given a sequence of blocks (x, 8, 8), reconstruct the image and save it as my stored image
  */
-  __pyx_tuple__59 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_blocks, __pyx_n_s_image); if (unlikely(!__pyx_tuple__59)) __PYX_ERR(0, 109, __pyx_L1_error)
+  __pyx_tuple__59 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_blocks, __pyx_n_s_image); if (unlikely(!__pyx_tuple__59)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__59);
   __Pyx_GIVEREF(__pyx_tuple__59);
-  __pyx_codeobj__60 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__59, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_mtezcan_Dropbox__CURRENT_F, __pyx_n_s_set_image, 109, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__60)) __PYX_ERR(0, 109, __pyx_L1_error)
+  __pyx_codeobj__60 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__59, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_brian_Documents_EC504_proj, __pyx_n_s_set_image, 104, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__60)) __PYX_ERR(0, 104, __pyx_L1_error)
 
-  /* "proto_mpeg_x.pyx":120
+  /* "proto_mpeg_x.pyx":115
  *         # (self.r, self.g, self.b) = self.blocks_to_image(blocks)
  * 
  *     def quantize_intra(self, F):             # <<<<<<<<<<<<<<
- *         quant_matrix=np.ceil(quant_intra*self.QF)
- *         quant_matrix[quant_matrix>255]=255
+ *         return np.rint(F/quant_intra).astype(np.int)
+ * 
  */
-  __pyx_tuple__61 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_F, __pyx_n_s_quant_matrix); if (unlikely(!__pyx_tuple__61)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_tuple__61 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_F); if (unlikely(!__pyx_tuple__61)) __PYX_ERR(0, 115, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__61);
   __Pyx_GIVEREF(__pyx_tuple__61);
-  __pyx_codeobj__62 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__61, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_mtezcan_Dropbox__CURRENT_F, __pyx_n_s_quantize_intra, 120, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__62)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_codeobj__62 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__61, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_brian_Documents_EC504_proj, __pyx_n_s_quantize_intra, 115, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__62)) __PYX_ERR(0, 115, __pyx_L1_error)
 
-  /* "proto_mpeg_x.pyx":125
- *         return np.rint(F/quant_matrix).astype(np.int)
+  /* "proto_mpeg_x.pyx":118
+ *         return np.rint(F/quant_intra).astype(np.int)
  * 
  *     def dequantize_intra(self, F):             # <<<<<<<<<<<<<<
- *         quant_matrix=np.ceil(quant_intra*self.QF)
- *         quant_matrix[quant_matrix>255]=255
+ *         return F*quant_intra
+ * 
  */
-  __pyx_tuple__63 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_F, __pyx_n_s_quant_matrix); if (unlikely(!__pyx_tuple__63)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __pyx_tuple__63 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_F); if (unlikely(!__pyx_tuple__63)) __PYX_ERR(0, 118, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__63);
   __Pyx_GIVEREF(__pyx_tuple__63);
-  __pyx_codeobj__64 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__63, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_mtezcan_Dropbox__CURRENT_F, __pyx_n_s_dequantize_intra, 125, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__64)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __pyx_codeobj__64 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__63, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_brian_Documents_EC504_proj, __pyx_n_s_dequantize_intra, 118, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__64)) __PYX_ERR(0, 118, __pyx_L1_error)
 
-  /* "proto_mpeg_x.pyx":130
- *         return F*quant_matrix
+  /* "proto_mpeg_x.pyx":121
+ *         return F*quant_intra
  * 
  *     def zigzag_from_block(self, F):             # <<<<<<<<<<<<<<
  *         """
  *         Given a quantized 8x8 array of DCT coefficients, generate a string to encode the data
  */
-  __pyx_tuple__65 = PyTuple_Pack(9, __pyx_n_s_self, __pyx_n_s_F, __pyx_n_s_encoder_string, __pyx_n_s_zero_count, __pyx_n_s_i, __pyx_n_s_coeff, __pyx_n_s_min_length, __pyx_n_s_run, __pyx_n_s_level); if (unlikely(!__pyx_tuple__65)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_tuple__65 = PyTuple_Pack(9, __pyx_n_s_self, __pyx_n_s_F, __pyx_n_s_encoder_string, __pyx_n_s_zero_count, __pyx_n_s_i, __pyx_n_s_coeff, __pyx_n_s_min_length, __pyx_n_s_run, __pyx_n_s_level); if (unlikely(!__pyx_tuple__65)) __PYX_ERR(0, 121, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__65);
   __Pyx_GIVEREF(__pyx_tuple__65);
-  __pyx_codeobj__66 = (PyObject*)__Pyx_PyCode_New(2, 0, 9, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__65, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_mtezcan_Dropbox__CURRENT_F, __pyx_n_s_zigzag_from_block, 130, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__66)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_codeobj__66 = (PyObject*)__Pyx_PyCode_New(2, 0, 9, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__65, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_brian_Documents_EC504_proj, __pyx_n_s_zigzag_from_block, 121, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__66)) __PYX_ERR(0, 121, __pyx_L1_error)
 
-  /* "proto_mpeg_x.pyx":171
+  /* "proto_mpeg_x.pyx":162
  *         return encoder_string
  * 
  *     def zigzag_to_block(self, zz):             # <<<<<<<<<<<<<<
  *         """
  *         :param zz: List of decoded entries that describe a block of data
  */
-  __pyx_tuple__67 = PyTuple_Pack(7, __pyx_n_s_self, __pyx_n_s_zz, __pyx_n_s_block, __pyx_n_s_index, __pyx_n_s_i, __pyx_n_s_run, __pyx_n_s_level); if (unlikely(!__pyx_tuple__67)) __PYX_ERR(0, 171, __pyx_L1_error)
+  __pyx_tuple__67 = PyTuple_Pack(7, __pyx_n_s_self, __pyx_n_s_zz, __pyx_n_s_block, __pyx_n_s_index, __pyx_n_s_i, __pyx_n_s_run, __pyx_n_s_level); if (unlikely(!__pyx_tuple__67)) __PYX_ERR(0, 162, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__67);
   __Pyx_GIVEREF(__pyx_tuple__67);
-  __pyx_codeobj__68 = (PyObject*)__Pyx_PyCode_New(2, 0, 7, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__67, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_mtezcan_Dropbox__CURRENT_F, __pyx_n_s_zigzag_to_block, 171, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__68)) __PYX_ERR(0, 171, __pyx_L1_error)
+  __pyx_codeobj__68 = (PyObject*)__Pyx_PyCode_New(2, 0, 7, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__67, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_brian_Documents_EC504_proj, __pyx_n_s_zigzag_to_block, 162, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__68)) __PYX_ERR(0, 162, __pyx_L1_error)
 
-  /* "proto_mpeg_x.pyx":199
+  /* "proto_mpeg_x.pyx":190
  *         return np.reshape(block, (8,8)).astype(np.int)
  * 
  *     def zigzag_to_bits(self, encoder_table, zz):             # <<<<<<<<<<<<<<
  * 
  *         # Encode the DC term into a BitArray
  */
-  __pyx_tuple__69 = PyTuple_Pack(9, __pyx_n_s_self, __pyx_n_s_encoder_table, __pyx_n_s_zz, __pyx_n_s_encoded_bits, __pyx_n_s_i, __pyx_n_s_run_level, __pyx_n_s_run_level_positive, __pyx_n_s_run, __pyx_n_s_level); if (unlikely(!__pyx_tuple__69)) __PYX_ERR(0, 199, __pyx_L1_error)
+  __pyx_tuple__69 = PyTuple_Pack(9, __pyx_n_s_self, __pyx_n_s_encoder_table, __pyx_n_s_zz, __pyx_n_s_encoded_bits, __pyx_n_s_i, __pyx_n_s_run_level, __pyx_n_s_run_level_positive, __pyx_n_s_run, __pyx_n_s_level); if (unlikely(!__pyx_tuple__69)) __PYX_ERR(0, 190, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__69);
   __Pyx_GIVEREF(__pyx_tuple__69);
-  __pyx_codeobj__70 = (PyObject*)__Pyx_PyCode_New(3, 0, 9, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__69, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_mtezcan_Dropbox__CURRENT_F, __pyx_n_s_zigzag_to_bits, 199, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__70)) __PYX_ERR(0, 199, __pyx_L1_error)
+  __pyx_codeobj__70 = (PyObject*)__Pyx_PyCode_New(3, 0, 9, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__69, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_brian_Documents_EC504_proj, __pyx_n_s_zigzag_to_bits, 190, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__70)) __PYX_ERR(0, 190, __pyx_L1_error)
 
-  /* "proto_mpeg_x.pyx":235
+  /* "proto_mpeg_x.pyx":226
  *         return encoded_bits
  * 
  *     def encode_to_bits(self):             # <<<<<<<<<<<<<<
  *         """
  *         Encode the stored image data into a bitstream. The calling function is responsible for writing start and
  */
-  __pyx_tuple__71 = PyTuple_Pack(8, __pyx_n_s_self, __pyx_n_s_img_blocks, __pyx_n_s_total_blocks, __pyx_n_s_encoder_table, __pyx_n_s_output, __pyx_n_s_i, __pyx_n_s_block, __pyx_n_s_zz); if (unlikely(!__pyx_tuple__71)) __PYX_ERR(0, 235, __pyx_L1_error)
+  __pyx_tuple__71 = PyTuple_Pack(8, __pyx_n_s_self, __pyx_n_s_img_blocks, __pyx_n_s_total_blocks, __pyx_n_s_encoder_table, __pyx_n_s_output, __pyx_n_s_i, __pyx_n_s_block, __pyx_n_s_zz); if (unlikely(!__pyx_tuple__71)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__71);
   __Pyx_GIVEREF(__pyx_tuple__71);
-  __pyx_codeobj__72 = (PyObject*)__Pyx_PyCode_New(1, 0, 8, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__71, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_mtezcan_Dropbox__CURRENT_F, __pyx_n_s_encode_to_bits, 235, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__72)) __PYX_ERR(0, 235, __pyx_L1_error)
+  __pyx_codeobj__72 = (PyObject*)__Pyx_PyCode_New(1, 0, 8, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__71, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_brian_Documents_EC504_proj, __pyx_n_s_encode_to_bits, 226, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__72)) __PYX_ERR(0, 226, __pyx_L1_error)
 
-  /* "proto_mpeg_x.pyx":273
+  /* "proto_mpeg_x.pyx":264
  *         return output
  * 
  *     def decode_from_bits(self, bits, h_mblocks, v_mblocks):             # <<<<<<<<<<<<<<
  * 
  *         # Get the decoder table for converting Bits into (run, level)
  */
-  __pyx_tuple__73 = PyTuple_Pack(18, __pyx_n_s_self, __pyx_n_s_bits, __pyx_n_s_h_mblocks, __pyx_n_s_v_mblocks, __pyx_n_s_decoder_table, __pyx_n_s_total_bits, __pyx_n_s_total_blocks, __pyx_n_s_blocks, __pyx_n_s_decoded_zz_summary, __pyx_n_s_j, __pyx_n_s_i, __pyx_n_s_bit_string, __pyx_n_s_data, __pyx_n_s_run, __pyx_n_s_level, __pyx_n_s_bl_recon, __pyx_n_s_bits_read, __pyx_n_s_img); if (unlikely(!__pyx_tuple__73)) __PYX_ERR(0, 273, __pyx_L1_error)
+  __pyx_tuple__73 = PyTuple_Pack(16, __pyx_n_s_self, __pyx_n_s_bits, __pyx_n_s_h_mblocks, __pyx_n_s_v_mblocks, __pyx_n_s_decoder_table, __pyx_n_s_total_bits, __pyx_n_s_total_blocks, __pyx_n_s_blocks, __pyx_n_s_decoded_zz_summary, __pyx_n_s_j, __pyx_n_s_i, __pyx_n_s_bit_string, __pyx_n_s_data, __pyx_n_s_run, __pyx_n_s_level, __pyx_n_s_bits_read); if (unlikely(!__pyx_tuple__73)) __PYX_ERR(0, 264, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__73);
   __Pyx_GIVEREF(__pyx_tuple__73);
-  __pyx_codeobj__74 = (PyObject*)__Pyx_PyCode_New(4, 0, 18, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__73, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_mtezcan_Dropbox__CURRENT_F, __pyx_n_s_decode_from_bits, 273, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__74)) __PYX_ERR(0, 273, __pyx_L1_error)
+  __pyx_codeobj__74 = (PyObject*)__Pyx_PyCode_New(4, 0, 16, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__73, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_brian_Documents_EC504_proj, __pyx_n_s_decode_from_bits, 264, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__74)) __PYX_ERR(0, 264, __pyx_L1_error)
 
-  /* "proto_mpeg_x.pyx":360
+  /* "proto_mpeg_x.pyx":347
  *         return proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), v_mblocks, h_mblocks)
  * 
  * def get_jpegs(directory, number):             # <<<<<<<<<<<<<<
  *     images = []
  *     i = 1
  */
-  __pyx_tuple__75 = PyTuple_Pack(6, __pyx_n_s_directory, __pyx_n_s_number, __pyx_n_s_images, __pyx_n_s_i, __pyx_n_s_file, __pyx_n_s_img); if (unlikely(!__pyx_tuple__75)) __PYX_ERR(0, 360, __pyx_L1_error)
+  __pyx_tuple__75 = PyTuple_Pack(5, __pyx_n_s_directory, __pyx_n_s_number, __pyx_n_s_images, __pyx_n_s_i, __pyx_n_s_file); if (unlikely(!__pyx_tuple__75)) __PYX_ERR(0, 347, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__75);
   __Pyx_GIVEREF(__pyx_tuple__75);
-  __pyx_codeobj__76 = (PyObject*)__Pyx_PyCode_New(2, 0, 6, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__75, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_mtezcan_Dropbox__CURRENT_F, __pyx_n_s_get_jpegs, 360, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__76)) __PYX_ERR(0, 360, __pyx_L1_error)
+  __pyx_codeobj__76 = (PyObject*)__Pyx_PyCode_New(2, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__75, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_brian_Documents_EC504_proj, __pyx_n_s_get_jpegs, 347, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__76)) __PYX_ERR(0, 347, __pyx_L1_error)
 
-  /* "proto_mpeg_x.pyx":374
+  /* "proto_mpeg_x.pyx":358
  *     return images
  * 
  * def encode_video(files, output_file, compression_level): # queue):             # <<<<<<<<<<<<<<
  *     """
  *     Given a list of files, encode them into output_file with compression_level
  */
-  __pyx_tuple__77 = PyTuple_Pack(8, __pyx_n_s_files, __pyx_n_s_output_file, __pyx_n_s_compression_level, __pyx_n_s_f, __pyx_n_s_img, __pyx_n_s_output, __pyx_n_s_i, __pyx_n_s_path); if (unlikely(!__pyx_tuple__77)) __PYX_ERR(0, 374, __pyx_L1_error)
+  __pyx_tuple__77 = PyTuple_Pack(8, __pyx_n_s_files, __pyx_n_s_output_file, __pyx_n_s_compression_level, __pyx_n_s_f, __pyx_n_s_img, __pyx_n_s_output, __pyx_n_s_i, __pyx_n_s_path); if (unlikely(!__pyx_tuple__77)) __PYX_ERR(0, 358, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__77);
   __Pyx_GIVEREF(__pyx_tuple__77);
-  __pyx_codeobj__78 = (PyObject*)__Pyx_PyCode_New(3, 0, 8, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__77, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_mtezcan_Dropbox__CURRENT_F, __pyx_n_s_encode_video, 374, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__78)) __PYX_ERR(0, 374, __pyx_L1_error)
+  __pyx_codeobj__78 = (PyObject*)__Pyx_PyCode_New(3, 0, 8, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__77, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_brian_Documents_EC504_proj, __pyx_n_s_encode_video, 358, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__78)) __PYX_ERR(0, 358, __pyx_L1_error)
 
-  /* "proto_mpeg_x.pyx":422
+  /* "proto_mpeg_x.pyx":406
  * 
  * 
  * def decode_video(file):             # <<<<<<<<<<<<<<
  *     """
  *     :param file:
  */
-  __pyx_tuple__79 = PyTuple_Pack(10, __pyx_n_s_file, __pyx_n_s_f, __pyx_n_s_decoder_bits, __pyx_n_s_num_imgs, __pyx_n_s_v_mblocks, __pyx_n_s_h_mblocks, __pyx_n_s_video, __pyx_n_s_img, __pyx_n_s_i, __pyx_n_s_this_image_bits); if (unlikely(!__pyx_tuple__79)) __PYX_ERR(0, 422, __pyx_L1_error)
+  __pyx_tuple__79 = PyTuple_Pack(10, __pyx_n_s_file, __pyx_n_s_f, __pyx_n_s_decoder_bits, __pyx_n_s_num_imgs, __pyx_n_s_v_mblocks, __pyx_n_s_h_mblocks, __pyx_n_s_video, __pyx_n_s_img, __pyx_n_s_i, __pyx_n_s_this_image_bits); if (unlikely(!__pyx_tuple__79)) __PYX_ERR(0, 406, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__79);
   __Pyx_GIVEREF(__pyx_tuple__79);
-  __pyx_codeobj__80 = (PyObject*)__Pyx_PyCode_New(1, 0, 10, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__79, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_mtezcan_Dropbox__CURRENT_F, __pyx_n_s_decode_video, 422, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__80)) __PYX_ERR(0, 422, __pyx_L1_error)
+  __pyx_codeobj__80 = (PyObject*)__Pyx_PyCode_New(1, 0, 10, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__79, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_brian_Documents_EC504_proj, __pyx_n_s_decode_video, 406, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__80)) __PYX_ERR(0, 406, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -10040,7 +9455,6 @@ static int __Pyx_InitCachedConstants(void) {
 
 static int __Pyx_InitGlobals(void) {
   if (__Pyx_InitStrings(__pyx_string_tab) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
-  __pyx_float__1 = PyFloat_FromDouble(.1); if (unlikely(!__pyx_float__1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_0 = PyInt_FromLong(0); if (unlikely(!__pyx_int_0)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_1 = PyInt_FromLong(1); if (unlikely(!__pyx_int_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_2 = PyInt_FromLong(2); if (unlikely(!__pyx_int_2)) __PYX_ERR(0, 1, __pyx_L1_error)
@@ -10132,8 +9546,6 @@ PyMODINIT_FUNC PyInit_proto_mpeg_x(void)
   PyObject *__pyx_t_7 = NULL;
   PyObject *__pyx_t_8 = NULL;
   PyObject *__pyx_t_9 = NULL;
-  PyObject *__pyx_t_10 = NULL;
-  PyObject *__pyx_t_11 = NULL;
   __Pyx_RefNannyDeclarations
   #if CYTHON_REFNANNY
   __Pyx_RefNanny = __Pyx_RefNannyImportAPI("refnanny");
@@ -10220,7 +9632,7 @@ PyMODINIT_FUNC PyInit_proto_mpeg_x(void)
   /* "proto_mpeg_x.pyx":1
  * import numpy as np             # <<<<<<<<<<<<<<
  * from os import listdir
- * import color_convert
+ * import skimage.io
  */
   __pyx_t_1 = __Pyx_Import(__pyx_n_s_numpy, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -10230,8 +9642,8 @@ PyMODINIT_FUNC PyInit_proto_mpeg_x(void)
   /* "proto_mpeg_x.pyx":2
  * import numpy as np
  * from os import listdir             # <<<<<<<<<<<<<<
- * import color_convert
  * import skimage.io
+ * import matplotlib.pyplot as plt
  */
   __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -10250,77 +9662,65 @@ PyMODINIT_FUNC PyInit_proto_mpeg_x(void)
   /* "proto_mpeg_x.pyx":3
  * import numpy as np
  * from os import listdir
- * import color_convert             # <<<<<<<<<<<<<<
- * import skimage.io
- * import matplotlib.pyplot as plt
- */
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_color_convert, 0, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_color_convert, __pyx_t_2) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "proto_mpeg_x.pyx":4
- * from os import listdir
- * import color_convert
  * import skimage.io             # <<<<<<<<<<<<<<
  * import matplotlib.pyplot as plt
  * import dct_fast as dct
  */
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_skimage_io, 0, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_skimage_io, 0, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_skimage, __pyx_t_2) < 0) __PYX_ERR(0, 4, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_skimage, __pyx_t_2) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "proto_mpeg_x.pyx":5
- * import color_convert
+  /* "proto_mpeg_x.pyx":4
+ * from os import listdir
  * import skimage.io
  * import matplotlib.pyplot as plt             # <<<<<<<<<<<<<<
  * import dct_fast as dct
  * import huffman_mpeg
  */
-  __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 5, __pyx_L1_error)
+  __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_n_s__46);
   __Pyx_GIVEREF(__pyx_n_s__46);
   PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s__46);
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_matplotlib_pyplot, __pyx_t_2, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 5, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_matplotlib_pyplot, __pyx_t_2, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_plt, __pyx_t_1) < 0) __PYX_ERR(0, 5, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_plt, __pyx_t_1) < 0) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":6
+  /* "proto_mpeg_x.pyx":5
  * import skimage.io
  * import matplotlib.pyplot as plt
  * import dct_fast as dct             # <<<<<<<<<<<<<<
  * import huffman_mpeg
  * from bitstring import BitArray, BitStream, Bits
  */
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_dct_fast, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 6, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_dct_fast, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_dct, __pyx_t_1) < 0) __PYX_ERR(0, 6, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_dct, __pyx_t_1) < 0) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":7
+  /* "proto_mpeg_x.pyx":6
  * import matplotlib.pyplot as plt
  * import dct_fast as dct
  * import huffman_mpeg             # <<<<<<<<<<<<<<
  * from bitstring import BitArray, BitStream, Bits
  * import ec504viewer
  */
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_huffman_mpeg, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 7, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_huffman_mpeg, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_huffman_mpeg, __pyx_t_1) < 0) __PYX_ERR(0, 7, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_huffman_mpeg, __pyx_t_1) < 0) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":8
+  /* "proto_mpeg_x.pyx":7
  * import dct_fast as dct
  * import huffman_mpeg
  * from bitstring import BitArray, BitStream, Bits             # <<<<<<<<<<<<<<
  * import ec504viewer
  * import proto_mpeg_computation
  */
-  __pyx_t_1 = PyList_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 8, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_n_s_BitArray);
   __Pyx_GIVEREF(__pyx_n_s_BitArray);
@@ -10331,423 +9731,875 @@ PyMODINIT_FUNC PyInit_proto_mpeg_x(void)
   __Pyx_INCREF(__pyx_n_s_Bits);
   __Pyx_GIVEREF(__pyx_n_s_Bits);
   PyList_SET_ITEM(__pyx_t_1, 2, __pyx_n_s_Bits);
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_bitstring, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 8, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_bitstring, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_BitArray); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 8, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_BitArray); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_BitArray, __pyx_t_1) < 0) __PYX_ERR(0, 8, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_BitArray, __pyx_t_1) < 0) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_BitStream); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 8, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_BitStream); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_BitStream, __pyx_t_1) < 0) __PYX_ERR(0, 8, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_BitStream, __pyx_t_1) < 0) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_Bits); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 8, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_Bits); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Bits, __pyx_t_1) < 0) __PYX_ERR(0, 8, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Bits, __pyx_t_1) < 0) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "proto_mpeg_x.pyx":9
+  /* "proto_mpeg_x.pyx":8
  * import huffman_mpeg
  * from bitstring import BitArray, BitStream, Bits
  * import ec504viewer             # <<<<<<<<<<<<<<
  * import proto_mpeg_computation
  * # import queue
  */
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_ec504viewer, 0, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_ec504viewer, 0, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 8, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ec504viewer, __pyx_t_2) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ec504viewer, __pyx_t_2) < 0) __PYX_ERR(0, 8, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "proto_mpeg_x.pyx":10
+  /* "proto_mpeg_x.pyx":9
  * from bitstring import BitArray, BitStream, Bits
  * import ec504viewer
  * import proto_mpeg_computation             # <<<<<<<<<<<<<<
  * # import queue
  * 
  */
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_proto_mpeg_computation, 0, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 10, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_proto_mpeg_computation, 0, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_proto_mpeg_computation, __pyx_t_2) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_proto_mpeg_computation, __pyx_t_2) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "proto_mpeg_x.pyx":13
+  /* "proto_mpeg_x.pyx":12
  * # import queue
  * 
- * ycbcr=True             # <<<<<<<<<<<<<<
- * 
- * quant_intra=np.array([[ 1, 16, 19, 22, 26, 27, 29, 34],
- */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ycbcr, Py_True) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
-
-  /* "proto_mpeg_x.pyx":15
- * ycbcr=True
- * 
- * quant_intra=np.array([[ 1, 16, 19, 22, 26, 27, 29, 34],             # <<<<<<<<<<<<<<
+ * quant_intra=[[ 8, 16, 19, 22, 26, 27, 29, 34],             # <<<<<<<<<<<<<<
  *              [16, 16, 22, 24, 27, 29, 34, 37],
  *              [19, 22, 26, 27, 29, 34, 34, 38],
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 15, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 15, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyList_New(8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 15, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_INCREF(__pyx_int_1);
-  __Pyx_GIVEREF(__pyx_int_1);
-  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_int_1);
+  __pyx_t_2 = PyList_New(8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_INCREF(__pyx_int_8);
+  __Pyx_GIVEREF(__pyx_int_8);
+  PyList_SET_ITEM(__pyx_t_2, 0, __pyx_int_8);
   __Pyx_INCREF(__pyx_int_16);
   __Pyx_GIVEREF(__pyx_int_16);
-  PyList_SET_ITEM(__pyx_t_1, 1, __pyx_int_16);
+  PyList_SET_ITEM(__pyx_t_2, 1, __pyx_int_16);
   __Pyx_INCREF(__pyx_int_19);
   __Pyx_GIVEREF(__pyx_int_19);
-  PyList_SET_ITEM(__pyx_t_1, 2, __pyx_int_19);
+  PyList_SET_ITEM(__pyx_t_2, 2, __pyx_int_19);
   __Pyx_INCREF(__pyx_int_22);
   __Pyx_GIVEREF(__pyx_int_22);
-  PyList_SET_ITEM(__pyx_t_1, 3, __pyx_int_22);
+  PyList_SET_ITEM(__pyx_t_2, 3, __pyx_int_22);
   __Pyx_INCREF(__pyx_int_26);
   __Pyx_GIVEREF(__pyx_int_26);
-  PyList_SET_ITEM(__pyx_t_1, 4, __pyx_int_26);
+  PyList_SET_ITEM(__pyx_t_2, 4, __pyx_int_26);
   __Pyx_INCREF(__pyx_int_27);
   __Pyx_GIVEREF(__pyx_int_27);
-  PyList_SET_ITEM(__pyx_t_1, 5, __pyx_int_27);
+  PyList_SET_ITEM(__pyx_t_2, 5, __pyx_int_27);
   __Pyx_INCREF(__pyx_int_29);
   __Pyx_GIVEREF(__pyx_int_29);
-  PyList_SET_ITEM(__pyx_t_1, 6, __pyx_int_29);
+  PyList_SET_ITEM(__pyx_t_2, 6, __pyx_int_29);
   __Pyx_INCREF(__pyx_int_34);
   __Pyx_GIVEREF(__pyx_int_34);
-  PyList_SET_ITEM(__pyx_t_1, 7, __pyx_int_34);
+  PyList_SET_ITEM(__pyx_t_2, 7, __pyx_int_34);
 
-  /* "proto_mpeg_x.pyx":16
+  /* "proto_mpeg_x.pyx":13
  * 
- * quant_intra=np.array([[ 1, 16, 19, 22, 26, 27, 29, 34],
+ * quant_intra=[[ 8, 16, 19, 22, 26, 27, 29, 34],
  *              [16, 16, 22, 24, 27, 29, 34, 37],             # <<<<<<<<<<<<<<
  *              [19, 22, 26, 27, 29, 34, 34, 38],
  *              [22, 22, 26, 27, 29, 34, 37, 40],
  */
-  __pyx_t_4 = PyList_New(8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 16, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_1 = PyList_New(8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_int_16);
   __Pyx_GIVEREF(__pyx_int_16);
-  PyList_SET_ITEM(__pyx_t_4, 0, __pyx_int_16);
+  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_int_16);
   __Pyx_INCREF(__pyx_int_16);
   __Pyx_GIVEREF(__pyx_int_16);
-  PyList_SET_ITEM(__pyx_t_4, 1, __pyx_int_16);
+  PyList_SET_ITEM(__pyx_t_1, 1, __pyx_int_16);
   __Pyx_INCREF(__pyx_int_22);
   __Pyx_GIVEREF(__pyx_int_22);
-  PyList_SET_ITEM(__pyx_t_4, 2, __pyx_int_22);
+  PyList_SET_ITEM(__pyx_t_1, 2, __pyx_int_22);
   __Pyx_INCREF(__pyx_int_24);
   __Pyx_GIVEREF(__pyx_int_24);
-  PyList_SET_ITEM(__pyx_t_4, 3, __pyx_int_24);
+  PyList_SET_ITEM(__pyx_t_1, 3, __pyx_int_24);
   __Pyx_INCREF(__pyx_int_27);
   __Pyx_GIVEREF(__pyx_int_27);
-  PyList_SET_ITEM(__pyx_t_4, 4, __pyx_int_27);
+  PyList_SET_ITEM(__pyx_t_1, 4, __pyx_int_27);
   __Pyx_INCREF(__pyx_int_29);
   __Pyx_GIVEREF(__pyx_int_29);
-  PyList_SET_ITEM(__pyx_t_4, 5, __pyx_int_29);
+  PyList_SET_ITEM(__pyx_t_1, 5, __pyx_int_29);
   __Pyx_INCREF(__pyx_int_34);
   __Pyx_GIVEREF(__pyx_int_34);
-  PyList_SET_ITEM(__pyx_t_4, 6, __pyx_int_34);
+  PyList_SET_ITEM(__pyx_t_1, 6, __pyx_int_34);
   __Pyx_INCREF(__pyx_int_37);
   __Pyx_GIVEREF(__pyx_int_37);
-  PyList_SET_ITEM(__pyx_t_4, 7, __pyx_int_37);
+  PyList_SET_ITEM(__pyx_t_1, 7, __pyx_int_37);
 
-  /* "proto_mpeg_x.pyx":17
- * quant_intra=np.array([[ 1, 16, 19, 22, 26, 27, 29, 34],
+  /* "proto_mpeg_x.pyx":14
+ * quant_intra=[[ 8, 16, 19, 22, 26, 27, 29, 34],
  *              [16, 16, 22, 24, 27, 29, 34, 37],
  *              [19, 22, 26, 27, 29, 34, 34, 38],             # <<<<<<<<<<<<<<
  *              [22, 22, 26, 27, 29, 34, 37, 40],
  *              [22, 26, 27, 29, 32, 35, 40, 48],
  */
-  __pyx_t_5 = PyList_New(8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 17, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_3 = PyList_New(8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 14, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_int_19);
   __Pyx_GIVEREF(__pyx_int_19);
-  PyList_SET_ITEM(__pyx_t_5, 0, __pyx_int_19);
+  PyList_SET_ITEM(__pyx_t_3, 0, __pyx_int_19);
   __Pyx_INCREF(__pyx_int_22);
   __Pyx_GIVEREF(__pyx_int_22);
-  PyList_SET_ITEM(__pyx_t_5, 1, __pyx_int_22);
+  PyList_SET_ITEM(__pyx_t_3, 1, __pyx_int_22);
   __Pyx_INCREF(__pyx_int_26);
   __Pyx_GIVEREF(__pyx_int_26);
-  PyList_SET_ITEM(__pyx_t_5, 2, __pyx_int_26);
+  PyList_SET_ITEM(__pyx_t_3, 2, __pyx_int_26);
   __Pyx_INCREF(__pyx_int_27);
   __Pyx_GIVEREF(__pyx_int_27);
-  PyList_SET_ITEM(__pyx_t_5, 3, __pyx_int_27);
+  PyList_SET_ITEM(__pyx_t_3, 3, __pyx_int_27);
   __Pyx_INCREF(__pyx_int_29);
   __Pyx_GIVEREF(__pyx_int_29);
-  PyList_SET_ITEM(__pyx_t_5, 4, __pyx_int_29);
+  PyList_SET_ITEM(__pyx_t_3, 4, __pyx_int_29);
   __Pyx_INCREF(__pyx_int_34);
   __Pyx_GIVEREF(__pyx_int_34);
-  PyList_SET_ITEM(__pyx_t_5, 5, __pyx_int_34);
+  PyList_SET_ITEM(__pyx_t_3, 5, __pyx_int_34);
   __Pyx_INCREF(__pyx_int_34);
   __Pyx_GIVEREF(__pyx_int_34);
-  PyList_SET_ITEM(__pyx_t_5, 6, __pyx_int_34);
+  PyList_SET_ITEM(__pyx_t_3, 6, __pyx_int_34);
   __Pyx_INCREF(__pyx_int_38);
   __Pyx_GIVEREF(__pyx_int_38);
-  PyList_SET_ITEM(__pyx_t_5, 7, __pyx_int_38);
+  PyList_SET_ITEM(__pyx_t_3, 7, __pyx_int_38);
 
-  /* "proto_mpeg_x.pyx":18
+  /* "proto_mpeg_x.pyx":15
  *              [16, 16, 22, 24, 27, 29, 34, 37],
  *              [19, 22, 26, 27, 29, 34, 34, 38],
  *              [22, 22, 26, 27, 29, 34, 37, 40],             # <<<<<<<<<<<<<<
  *              [22, 26, 27, 29, 32, 35, 40, 48],
  *              [26, 27, 29, 32, 35, 40, 48, 58],
  */
-  __pyx_t_6 = PyList_New(8); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 18, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_4 = PyList_New(8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
   __Pyx_INCREF(__pyx_int_22);
   __Pyx_GIVEREF(__pyx_int_22);
-  PyList_SET_ITEM(__pyx_t_6, 0, __pyx_int_22);
+  PyList_SET_ITEM(__pyx_t_4, 0, __pyx_int_22);
   __Pyx_INCREF(__pyx_int_22);
   __Pyx_GIVEREF(__pyx_int_22);
-  PyList_SET_ITEM(__pyx_t_6, 1, __pyx_int_22);
+  PyList_SET_ITEM(__pyx_t_4, 1, __pyx_int_22);
   __Pyx_INCREF(__pyx_int_26);
   __Pyx_GIVEREF(__pyx_int_26);
-  PyList_SET_ITEM(__pyx_t_6, 2, __pyx_int_26);
+  PyList_SET_ITEM(__pyx_t_4, 2, __pyx_int_26);
   __Pyx_INCREF(__pyx_int_27);
   __Pyx_GIVEREF(__pyx_int_27);
-  PyList_SET_ITEM(__pyx_t_6, 3, __pyx_int_27);
+  PyList_SET_ITEM(__pyx_t_4, 3, __pyx_int_27);
   __Pyx_INCREF(__pyx_int_29);
   __Pyx_GIVEREF(__pyx_int_29);
-  PyList_SET_ITEM(__pyx_t_6, 4, __pyx_int_29);
+  PyList_SET_ITEM(__pyx_t_4, 4, __pyx_int_29);
   __Pyx_INCREF(__pyx_int_34);
   __Pyx_GIVEREF(__pyx_int_34);
-  PyList_SET_ITEM(__pyx_t_6, 5, __pyx_int_34);
+  PyList_SET_ITEM(__pyx_t_4, 5, __pyx_int_34);
   __Pyx_INCREF(__pyx_int_37);
   __Pyx_GIVEREF(__pyx_int_37);
-  PyList_SET_ITEM(__pyx_t_6, 6, __pyx_int_37);
+  PyList_SET_ITEM(__pyx_t_4, 6, __pyx_int_37);
   __Pyx_INCREF(__pyx_int_40);
   __Pyx_GIVEREF(__pyx_int_40);
-  PyList_SET_ITEM(__pyx_t_6, 7, __pyx_int_40);
+  PyList_SET_ITEM(__pyx_t_4, 7, __pyx_int_40);
 
-  /* "proto_mpeg_x.pyx":19
+  /* "proto_mpeg_x.pyx":16
  *              [19, 22, 26, 27, 29, 34, 34, 38],
  *              [22, 22, 26, 27, 29, 34, 37, 40],
  *              [22, 26, 27, 29, 32, 35, 40, 48],             # <<<<<<<<<<<<<<
  *              [26, 27, 29, 32, 35, 40, 48, 58],
  *              [26, 27, 29, 34, 38, 46, 56, 69],
  */
-  __pyx_t_7 = PyList_New(8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 19, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_5 = PyList_New(8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
   __Pyx_INCREF(__pyx_int_22);
   __Pyx_GIVEREF(__pyx_int_22);
-  PyList_SET_ITEM(__pyx_t_7, 0, __pyx_int_22);
+  PyList_SET_ITEM(__pyx_t_5, 0, __pyx_int_22);
   __Pyx_INCREF(__pyx_int_26);
   __Pyx_GIVEREF(__pyx_int_26);
-  PyList_SET_ITEM(__pyx_t_7, 1, __pyx_int_26);
+  PyList_SET_ITEM(__pyx_t_5, 1, __pyx_int_26);
   __Pyx_INCREF(__pyx_int_27);
   __Pyx_GIVEREF(__pyx_int_27);
-  PyList_SET_ITEM(__pyx_t_7, 2, __pyx_int_27);
+  PyList_SET_ITEM(__pyx_t_5, 2, __pyx_int_27);
   __Pyx_INCREF(__pyx_int_29);
   __Pyx_GIVEREF(__pyx_int_29);
-  PyList_SET_ITEM(__pyx_t_7, 3, __pyx_int_29);
+  PyList_SET_ITEM(__pyx_t_5, 3, __pyx_int_29);
   __Pyx_INCREF(__pyx_int_32);
   __Pyx_GIVEREF(__pyx_int_32);
-  PyList_SET_ITEM(__pyx_t_7, 4, __pyx_int_32);
+  PyList_SET_ITEM(__pyx_t_5, 4, __pyx_int_32);
   __Pyx_INCREF(__pyx_int_35);
   __Pyx_GIVEREF(__pyx_int_35);
-  PyList_SET_ITEM(__pyx_t_7, 5, __pyx_int_35);
+  PyList_SET_ITEM(__pyx_t_5, 5, __pyx_int_35);
   __Pyx_INCREF(__pyx_int_40);
   __Pyx_GIVEREF(__pyx_int_40);
-  PyList_SET_ITEM(__pyx_t_7, 6, __pyx_int_40);
+  PyList_SET_ITEM(__pyx_t_5, 6, __pyx_int_40);
   __Pyx_INCREF(__pyx_int_48);
   __Pyx_GIVEREF(__pyx_int_48);
-  PyList_SET_ITEM(__pyx_t_7, 7, __pyx_int_48);
+  PyList_SET_ITEM(__pyx_t_5, 7, __pyx_int_48);
 
-  /* "proto_mpeg_x.pyx":20
+  /* "proto_mpeg_x.pyx":17
  *              [22, 22, 26, 27, 29, 34, 37, 40],
  *              [22, 26, 27, 29, 32, 35, 40, 48],
  *              [26, 27, 29, 32, 35, 40, 48, 58],             # <<<<<<<<<<<<<<
  *              [26, 27, 29, 34, 38, 46, 56, 69],
- *              [27, 29, 35, 38, 46, 56, 69, 83]])
+ *              [27, 29, 35, 38, 46, 56, 69, 83]]
  */
-  __pyx_t_8 = PyList_New(8); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 20, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_8);
+  __pyx_t_6 = PyList_New(8); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
   __Pyx_INCREF(__pyx_int_26);
   __Pyx_GIVEREF(__pyx_int_26);
-  PyList_SET_ITEM(__pyx_t_8, 0, __pyx_int_26);
+  PyList_SET_ITEM(__pyx_t_6, 0, __pyx_int_26);
   __Pyx_INCREF(__pyx_int_27);
   __Pyx_GIVEREF(__pyx_int_27);
-  PyList_SET_ITEM(__pyx_t_8, 1, __pyx_int_27);
+  PyList_SET_ITEM(__pyx_t_6, 1, __pyx_int_27);
   __Pyx_INCREF(__pyx_int_29);
   __Pyx_GIVEREF(__pyx_int_29);
-  PyList_SET_ITEM(__pyx_t_8, 2, __pyx_int_29);
+  PyList_SET_ITEM(__pyx_t_6, 2, __pyx_int_29);
   __Pyx_INCREF(__pyx_int_32);
   __Pyx_GIVEREF(__pyx_int_32);
-  PyList_SET_ITEM(__pyx_t_8, 3, __pyx_int_32);
+  PyList_SET_ITEM(__pyx_t_6, 3, __pyx_int_32);
   __Pyx_INCREF(__pyx_int_35);
   __Pyx_GIVEREF(__pyx_int_35);
-  PyList_SET_ITEM(__pyx_t_8, 4, __pyx_int_35);
+  PyList_SET_ITEM(__pyx_t_6, 4, __pyx_int_35);
   __Pyx_INCREF(__pyx_int_40);
   __Pyx_GIVEREF(__pyx_int_40);
-  PyList_SET_ITEM(__pyx_t_8, 5, __pyx_int_40);
+  PyList_SET_ITEM(__pyx_t_6, 5, __pyx_int_40);
   __Pyx_INCREF(__pyx_int_48);
   __Pyx_GIVEREF(__pyx_int_48);
-  PyList_SET_ITEM(__pyx_t_8, 6, __pyx_int_48);
+  PyList_SET_ITEM(__pyx_t_6, 6, __pyx_int_48);
   __Pyx_INCREF(__pyx_int_58);
   __Pyx_GIVEREF(__pyx_int_58);
-  PyList_SET_ITEM(__pyx_t_8, 7, __pyx_int_58);
+  PyList_SET_ITEM(__pyx_t_6, 7, __pyx_int_58);
 
-  /* "proto_mpeg_x.pyx":21
+  /* "proto_mpeg_x.pyx":18
  *              [22, 26, 27, 29, 32, 35, 40, 48],
  *              [26, 27, 29, 32, 35, 40, 48, 58],
  *              [26, 27, 29, 34, 38, 46, 56, 69],             # <<<<<<<<<<<<<<
- *              [27, 29, 35, 38, 46, 56, 69, 83]])
+ *              [27, 29, 35, 38, 46, 56, 69, 83]]
  * 
  */
-  __pyx_t_9 = PyList_New(8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 21, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_9);
+  __pyx_t_7 = PyList_New(8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   __Pyx_INCREF(__pyx_int_26);
   __Pyx_GIVEREF(__pyx_int_26);
-  PyList_SET_ITEM(__pyx_t_9, 0, __pyx_int_26);
+  PyList_SET_ITEM(__pyx_t_7, 0, __pyx_int_26);
   __Pyx_INCREF(__pyx_int_27);
   __Pyx_GIVEREF(__pyx_int_27);
-  PyList_SET_ITEM(__pyx_t_9, 1, __pyx_int_27);
+  PyList_SET_ITEM(__pyx_t_7, 1, __pyx_int_27);
   __Pyx_INCREF(__pyx_int_29);
   __Pyx_GIVEREF(__pyx_int_29);
-  PyList_SET_ITEM(__pyx_t_9, 2, __pyx_int_29);
+  PyList_SET_ITEM(__pyx_t_7, 2, __pyx_int_29);
   __Pyx_INCREF(__pyx_int_34);
   __Pyx_GIVEREF(__pyx_int_34);
-  PyList_SET_ITEM(__pyx_t_9, 3, __pyx_int_34);
+  PyList_SET_ITEM(__pyx_t_7, 3, __pyx_int_34);
   __Pyx_INCREF(__pyx_int_38);
   __Pyx_GIVEREF(__pyx_int_38);
-  PyList_SET_ITEM(__pyx_t_9, 4, __pyx_int_38);
+  PyList_SET_ITEM(__pyx_t_7, 4, __pyx_int_38);
   __Pyx_INCREF(__pyx_int_46);
   __Pyx_GIVEREF(__pyx_int_46);
-  PyList_SET_ITEM(__pyx_t_9, 5, __pyx_int_46);
+  PyList_SET_ITEM(__pyx_t_7, 5, __pyx_int_46);
   __Pyx_INCREF(__pyx_int_56);
   __Pyx_GIVEREF(__pyx_int_56);
-  PyList_SET_ITEM(__pyx_t_9, 6, __pyx_int_56);
+  PyList_SET_ITEM(__pyx_t_7, 6, __pyx_int_56);
   __Pyx_INCREF(__pyx_int_69);
   __Pyx_GIVEREF(__pyx_int_69);
-  PyList_SET_ITEM(__pyx_t_9, 7, __pyx_int_69);
+  PyList_SET_ITEM(__pyx_t_7, 7, __pyx_int_69);
 
-  /* "proto_mpeg_x.pyx":22
+  /* "proto_mpeg_x.pyx":19
  *              [26, 27, 29, 32, 35, 40, 48, 58],
  *              [26, 27, 29, 34, 38, 46, 56, 69],
- *              [27, 29, 35, 38, 46, 56, 69, 83]])             # <<<<<<<<<<<<<<
+ *              [27, 29, 35, 38, 46, 56, 69, 83]]             # <<<<<<<<<<<<<<
  * 
- * 
+ * # Zigzag order. Note that zigzag order != indicies.
  */
-  __pyx_t_10 = PyList_New(8); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 22, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_10);
+  __pyx_t_8 = PyList_New(8); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
   __Pyx_INCREF(__pyx_int_27);
   __Pyx_GIVEREF(__pyx_int_27);
-  PyList_SET_ITEM(__pyx_t_10, 0, __pyx_int_27);
+  PyList_SET_ITEM(__pyx_t_8, 0, __pyx_int_27);
   __Pyx_INCREF(__pyx_int_29);
   __Pyx_GIVEREF(__pyx_int_29);
-  PyList_SET_ITEM(__pyx_t_10, 1, __pyx_int_29);
+  PyList_SET_ITEM(__pyx_t_8, 1, __pyx_int_29);
   __Pyx_INCREF(__pyx_int_35);
   __Pyx_GIVEREF(__pyx_int_35);
-  PyList_SET_ITEM(__pyx_t_10, 2, __pyx_int_35);
+  PyList_SET_ITEM(__pyx_t_8, 2, __pyx_int_35);
   __Pyx_INCREF(__pyx_int_38);
   __Pyx_GIVEREF(__pyx_int_38);
-  PyList_SET_ITEM(__pyx_t_10, 3, __pyx_int_38);
+  PyList_SET_ITEM(__pyx_t_8, 3, __pyx_int_38);
   __Pyx_INCREF(__pyx_int_46);
   __Pyx_GIVEREF(__pyx_int_46);
-  PyList_SET_ITEM(__pyx_t_10, 4, __pyx_int_46);
+  PyList_SET_ITEM(__pyx_t_8, 4, __pyx_int_46);
   __Pyx_INCREF(__pyx_int_56);
   __Pyx_GIVEREF(__pyx_int_56);
-  PyList_SET_ITEM(__pyx_t_10, 5, __pyx_int_56);
+  PyList_SET_ITEM(__pyx_t_8, 5, __pyx_int_56);
   __Pyx_INCREF(__pyx_int_69);
   __Pyx_GIVEREF(__pyx_int_69);
-  PyList_SET_ITEM(__pyx_t_10, 6, __pyx_int_69);
+  PyList_SET_ITEM(__pyx_t_8, 6, __pyx_int_69);
   __Pyx_INCREF(__pyx_int_83);
   __Pyx_GIVEREF(__pyx_int_83);
-  PyList_SET_ITEM(__pyx_t_10, 7, __pyx_int_83);
+  PyList_SET_ITEM(__pyx_t_8, 7, __pyx_int_83);
 
-  /* "proto_mpeg_x.pyx":15
- * ycbcr=True
+  /* "proto_mpeg_x.pyx":12
+ * # import queue
  * 
- * quant_intra=np.array([[ 1, 16, 19, 22, 26, 27, 29, 34],             # <<<<<<<<<<<<<<
+ * quant_intra=[[ 8, 16, 19, 22, 26, 27, 29, 34],             # <<<<<<<<<<<<<<
  *              [16, 16, 22, 24, 27, 29, 34, 37],
  *              [19, 22, 26, 27, 29, 34, 34, 38],
  */
-  __pyx_t_11 = PyList_New(8); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 15, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_11);
+  __pyx_t_9 = PyList_New(8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_9);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyList_SET_ITEM(__pyx_t_9, 0, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
-  PyList_SET_ITEM(__pyx_t_11, 0, __pyx_t_1);
+  PyList_SET_ITEM(__pyx_t_9, 1, __pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_3);
+  PyList_SET_ITEM(__pyx_t_9, 2, __pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_4);
-  PyList_SET_ITEM(__pyx_t_11, 1, __pyx_t_4);
+  PyList_SET_ITEM(__pyx_t_9, 3, __pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_5);
-  PyList_SET_ITEM(__pyx_t_11, 2, __pyx_t_5);
+  PyList_SET_ITEM(__pyx_t_9, 4, __pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_6);
-  PyList_SET_ITEM(__pyx_t_11, 3, __pyx_t_6);
+  PyList_SET_ITEM(__pyx_t_9, 5, __pyx_t_6);
   __Pyx_GIVEREF(__pyx_t_7);
-  PyList_SET_ITEM(__pyx_t_11, 4, __pyx_t_7);
+  PyList_SET_ITEM(__pyx_t_9, 6, __pyx_t_7);
   __Pyx_GIVEREF(__pyx_t_8);
-  PyList_SET_ITEM(__pyx_t_11, 5, __pyx_t_8);
-  __Pyx_GIVEREF(__pyx_t_9);
-  PyList_SET_ITEM(__pyx_t_11, 6, __pyx_t_9);
-  __Pyx_GIVEREF(__pyx_t_10);
-  PyList_SET_ITEM(__pyx_t_11, 7, __pyx_t_10);
+  PyList_SET_ITEM(__pyx_t_9, 7, __pyx_t_8);
+  __pyx_t_2 = 0;
   __pyx_t_1 = 0;
+  __pyx_t_3 = 0;
   __pyx_t_4 = 0;
   __pyx_t_5 = 0;
   __pyx_t_6 = 0;
   __pyx_t_7 = 0;
   __pyx_t_8 = 0;
-  __pyx_t_9 = 0;
-  __pyx_t_10 = 0;
-  __pyx_t_10 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_10)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_10);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-    }
-  }
-  if (!__pyx_t_10) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_11); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 15, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-    __Pyx_GOTREF(__pyx_t_2);
-  } else {
-    #if CYTHON_FAST_PYCALL
-    if (PyFunction_Check(__pyx_t_3)) {
-      PyObject *__pyx_temp[2] = {__pyx_t_10, __pyx_t_11};
-      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 15, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-    } else
-    #endif
-    #if CYTHON_FAST_PYCCALL
-    if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
-      PyObject *__pyx_temp[2] = {__pyx_t_10, __pyx_t_11};
-      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 15, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-    } else
-    #endif
-    {
-      __pyx_t_9 = PyTuple_New(1+1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 15, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_9);
-      __Pyx_GIVEREF(__pyx_t_10); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_10); __pyx_t_10 = NULL;
-      __Pyx_GIVEREF(__pyx_t_11);
-      PyTuple_SET_ITEM(__pyx_t_9, 0+1, __pyx_t_11);
-      __pyx_t_11 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 15, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    }
-  }
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_quant_intra, __pyx_t_2) < 0) __PYX_ERR(0, 15, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_quant_intra, __pyx_t_9) < 0) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-  /* "proto_mpeg_x.pyx":26
+  /* "proto_mpeg_x.pyx":22
  * 
  * # Zigzag order. Note that zigzag order != indicies.
  * zz_order = [[ 0,  1,  5,  6, 14, 15, 27, 28],             # <<<<<<<<<<<<<<
  *             [ 2,  4,  7, 13, 16, 26, 29, 42],
  *             [ 3,  8, 12, 17, 25, 30, 41, 43],
  */
-  __pyx_t_2 = PyList_New(8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_9 = PyList_New(8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_9);
+  __Pyx_INCREF(__pyx_int_0);
+  __Pyx_GIVEREF(__pyx_int_0);
+  PyList_SET_ITEM(__pyx_t_9, 0, __pyx_int_0);
+  __Pyx_INCREF(__pyx_int_1);
+  __Pyx_GIVEREF(__pyx_int_1);
+  PyList_SET_ITEM(__pyx_t_9, 1, __pyx_int_1);
+  __Pyx_INCREF(__pyx_int_5);
+  __Pyx_GIVEREF(__pyx_int_5);
+  PyList_SET_ITEM(__pyx_t_9, 2, __pyx_int_5);
+  __Pyx_INCREF(__pyx_int_6);
+  __Pyx_GIVEREF(__pyx_int_6);
+  PyList_SET_ITEM(__pyx_t_9, 3, __pyx_int_6);
+  __Pyx_INCREF(__pyx_int_14);
+  __Pyx_GIVEREF(__pyx_int_14);
+  PyList_SET_ITEM(__pyx_t_9, 4, __pyx_int_14);
+  __Pyx_INCREF(__pyx_int_15);
+  __Pyx_GIVEREF(__pyx_int_15);
+  PyList_SET_ITEM(__pyx_t_9, 5, __pyx_int_15);
+  __Pyx_INCREF(__pyx_int_27);
+  __Pyx_GIVEREF(__pyx_int_27);
+  PyList_SET_ITEM(__pyx_t_9, 6, __pyx_int_27);
+  __Pyx_INCREF(__pyx_int_28);
+  __Pyx_GIVEREF(__pyx_int_28);
+  PyList_SET_ITEM(__pyx_t_9, 7, __pyx_int_28);
+
+  /* "proto_mpeg_x.pyx":23
+ * # Zigzag order. Note that zigzag order != indicies.
+ * zz_order = [[ 0,  1,  5,  6, 14, 15, 27, 28],
+ *             [ 2,  4,  7, 13, 16, 26, 29, 42],             # <<<<<<<<<<<<<<
+ *             [ 3,  8, 12, 17, 25, 30, 41, 43],
+ *             [ 9, 11, 18, 24, 31, 40, 44, 53],
+ */
+  __pyx_t_8 = PyList_New(8); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  __Pyx_INCREF(__pyx_int_2);
+  __Pyx_GIVEREF(__pyx_int_2);
+  PyList_SET_ITEM(__pyx_t_8, 0, __pyx_int_2);
+  __Pyx_INCREF(__pyx_int_4);
+  __Pyx_GIVEREF(__pyx_int_4);
+  PyList_SET_ITEM(__pyx_t_8, 1, __pyx_int_4);
+  __Pyx_INCREF(__pyx_int_7);
+  __Pyx_GIVEREF(__pyx_int_7);
+  PyList_SET_ITEM(__pyx_t_8, 2, __pyx_int_7);
+  __Pyx_INCREF(__pyx_int_13);
+  __Pyx_GIVEREF(__pyx_int_13);
+  PyList_SET_ITEM(__pyx_t_8, 3, __pyx_int_13);
+  __Pyx_INCREF(__pyx_int_16);
+  __Pyx_GIVEREF(__pyx_int_16);
+  PyList_SET_ITEM(__pyx_t_8, 4, __pyx_int_16);
+  __Pyx_INCREF(__pyx_int_26);
+  __Pyx_GIVEREF(__pyx_int_26);
+  PyList_SET_ITEM(__pyx_t_8, 5, __pyx_int_26);
+  __Pyx_INCREF(__pyx_int_29);
+  __Pyx_GIVEREF(__pyx_int_29);
+  PyList_SET_ITEM(__pyx_t_8, 6, __pyx_int_29);
+  __Pyx_INCREF(__pyx_int_42);
+  __Pyx_GIVEREF(__pyx_int_42);
+  PyList_SET_ITEM(__pyx_t_8, 7, __pyx_int_42);
+
+  /* "proto_mpeg_x.pyx":24
+ * zz_order = [[ 0,  1,  5,  6, 14, 15, 27, 28],
+ *             [ 2,  4,  7, 13, 16, 26, 29, 42],
+ *             [ 3,  8, 12, 17, 25, 30, 41, 43],             # <<<<<<<<<<<<<<
+ *             [ 9, 11, 18, 24, 31, 40, 44, 53],
+ *             [10, 19, 23, 32, 39, 45, 52, 54],
+ */
+  __pyx_t_7 = PyList_New(8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __Pyx_INCREF(__pyx_int_3);
+  __Pyx_GIVEREF(__pyx_int_3);
+  PyList_SET_ITEM(__pyx_t_7, 0, __pyx_int_3);
+  __Pyx_INCREF(__pyx_int_8);
+  __Pyx_GIVEREF(__pyx_int_8);
+  PyList_SET_ITEM(__pyx_t_7, 1, __pyx_int_8);
+  __Pyx_INCREF(__pyx_int_12);
+  __Pyx_GIVEREF(__pyx_int_12);
+  PyList_SET_ITEM(__pyx_t_7, 2, __pyx_int_12);
+  __Pyx_INCREF(__pyx_int_17);
+  __Pyx_GIVEREF(__pyx_int_17);
+  PyList_SET_ITEM(__pyx_t_7, 3, __pyx_int_17);
+  __Pyx_INCREF(__pyx_int_25);
+  __Pyx_GIVEREF(__pyx_int_25);
+  PyList_SET_ITEM(__pyx_t_7, 4, __pyx_int_25);
+  __Pyx_INCREF(__pyx_int_30);
+  __Pyx_GIVEREF(__pyx_int_30);
+  PyList_SET_ITEM(__pyx_t_7, 5, __pyx_int_30);
+  __Pyx_INCREF(__pyx_int_41);
+  __Pyx_GIVEREF(__pyx_int_41);
+  PyList_SET_ITEM(__pyx_t_7, 6, __pyx_int_41);
+  __Pyx_INCREF(__pyx_int_43);
+  __Pyx_GIVEREF(__pyx_int_43);
+  PyList_SET_ITEM(__pyx_t_7, 7, __pyx_int_43);
+
+  /* "proto_mpeg_x.pyx":25
+ *             [ 2,  4,  7, 13, 16, 26, 29, 42],
+ *             [ 3,  8, 12, 17, 25, 30, 41, 43],
+ *             [ 9, 11, 18, 24, 31, 40, 44, 53],             # <<<<<<<<<<<<<<
+ *             [10, 19, 23, 32, 39, 45, 52, 54],
+ *             [20, 22, 33, 38, 46, 51, 55, 60],
+ */
+  __pyx_t_6 = PyList_New(8); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 25, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_INCREF(__pyx_int_9);
+  __Pyx_GIVEREF(__pyx_int_9);
+  PyList_SET_ITEM(__pyx_t_6, 0, __pyx_int_9);
+  __Pyx_INCREF(__pyx_int_11);
+  __Pyx_GIVEREF(__pyx_int_11);
+  PyList_SET_ITEM(__pyx_t_6, 1, __pyx_int_11);
+  __Pyx_INCREF(__pyx_int_18);
+  __Pyx_GIVEREF(__pyx_int_18);
+  PyList_SET_ITEM(__pyx_t_6, 2, __pyx_int_18);
+  __Pyx_INCREF(__pyx_int_24);
+  __Pyx_GIVEREF(__pyx_int_24);
+  PyList_SET_ITEM(__pyx_t_6, 3, __pyx_int_24);
+  __Pyx_INCREF(__pyx_int_31);
+  __Pyx_GIVEREF(__pyx_int_31);
+  PyList_SET_ITEM(__pyx_t_6, 4, __pyx_int_31);
+  __Pyx_INCREF(__pyx_int_40);
+  __Pyx_GIVEREF(__pyx_int_40);
+  PyList_SET_ITEM(__pyx_t_6, 5, __pyx_int_40);
+  __Pyx_INCREF(__pyx_int_44);
+  __Pyx_GIVEREF(__pyx_int_44);
+  PyList_SET_ITEM(__pyx_t_6, 6, __pyx_int_44);
+  __Pyx_INCREF(__pyx_int_53);
+  __Pyx_GIVEREF(__pyx_int_53);
+  PyList_SET_ITEM(__pyx_t_6, 7, __pyx_int_53);
+
+  /* "proto_mpeg_x.pyx":26
+ *             [ 3,  8, 12, 17, 25, 30, 41, 43],
+ *             [ 9, 11, 18, 24, 31, 40, 44, 53],
+ *             [10, 19, 23, 32, 39, 45, 52, 54],             # <<<<<<<<<<<<<<
+ *             [20, 22, 33, 38, 46, 51, 55, 60],
+ *             [21, 34, 37, 47, 50, 56, 59, 61],
+ */
+  __pyx_t_5 = PyList_New(8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_INCREF(__pyx_int_10);
+  __Pyx_GIVEREF(__pyx_int_10);
+  PyList_SET_ITEM(__pyx_t_5, 0, __pyx_int_10);
+  __Pyx_INCREF(__pyx_int_19);
+  __Pyx_GIVEREF(__pyx_int_19);
+  PyList_SET_ITEM(__pyx_t_5, 1, __pyx_int_19);
+  __Pyx_INCREF(__pyx_int_23);
+  __Pyx_GIVEREF(__pyx_int_23);
+  PyList_SET_ITEM(__pyx_t_5, 2, __pyx_int_23);
+  __Pyx_INCREF(__pyx_int_32);
+  __Pyx_GIVEREF(__pyx_int_32);
+  PyList_SET_ITEM(__pyx_t_5, 3, __pyx_int_32);
+  __Pyx_INCREF(__pyx_int_39);
+  __Pyx_GIVEREF(__pyx_int_39);
+  PyList_SET_ITEM(__pyx_t_5, 4, __pyx_int_39);
+  __Pyx_INCREF(__pyx_int_45);
+  __Pyx_GIVEREF(__pyx_int_45);
+  PyList_SET_ITEM(__pyx_t_5, 5, __pyx_int_45);
+  __Pyx_INCREF(__pyx_int_52);
+  __Pyx_GIVEREF(__pyx_int_52);
+  PyList_SET_ITEM(__pyx_t_5, 6, __pyx_int_52);
+  __Pyx_INCREF(__pyx_int_54);
+  __Pyx_GIVEREF(__pyx_int_54);
+  PyList_SET_ITEM(__pyx_t_5, 7, __pyx_int_54);
+
+  /* "proto_mpeg_x.pyx":27
+ *             [ 9, 11, 18, 24, 31, 40, 44, 53],
+ *             [10, 19, 23, 32, 39, 45, 52, 54],
+ *             [20, 22, 33, 38, 46, 51, 55, 60],             # <<<<<<<<<<<<<<
+ *             [21, 34, 37, 47, 50, 56, 59, 61],
+ *             [35, 36, 48, 49, 57, 58, 62, 63]]
+ */
+  __pyx_t_4 = PyList_New(8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_INCREF(__pyx_int_20);
+  __Pyx_GIVEREF(__pyx_int_20);
+  PyList_SET_ITEM(__pyx_t_4, 0, __pyx_int_20);
+  __Pyx_INCREF(__pyx_int_22);
+  __Pyx_GIVEREF(__pyx_int_22);
+  PyList_SET_ITEM(__pyx_t_4, 1, __pyx_int_22);
+  __Pyx_INCREF(__pyx_int_33);
+  __Pyx_GIVEREF(__pyx_int_33);
+  PyList_SET_ITEM(__pyx_t_4, 2, __pyx_int_33);
+  __Pyx_INCREF(__pyx_int_38);
+  __Pyx_GIVEREF(__pyx_int_38);
+  PyList_SET_ITEM(__pyx_t_4, 3, __pyx_int_38);
+  __Pyx_INCREF(__pyx_int_46);
+  __Pyx_GIVEREF(__pyx_int_46);
+  PyList_SET_ITEM(__pyx_t_4, 4, __pyx_int_46);
+  __Pyx_INCREF(__pyx_int_51);
+  __Pyx_GIVEREF(__pyx_int_51);
+  PyList_SET_ITEM(__pyx_t_4, 5, __pyx_int_51);
+  __Pyx_INCREF(__pyx_int_55);
+  __Pyx_GIVEREF(__pyx_int_55);
+  PyList_SET_ITEM(__pyx_t_4, 6, __pyx_int_55);
+  __Pyx_INCREF(__pyx_int_60);
+  __Pyx_GIVEREF(__pyx_int_60);
+  PyList_SET_ITEM(__pyx_t_4, 7, __pyx_int_60);
+
+  /* "proto_mpeg_x.pyx":28
+ *             [10, 19, 23, 32, 39, 45, 52, 54],
+ *             [20, 22, 33, 38, 46, 51, 55, 60],
+ *             [21, 34, 37, 47, 50, 56, 59, 61],             # <<<<<<<<<<<<<<
+ *             [35, 36, 48, 49, 57, 58, 62, 63]]
+ * 
+ */
+  __pyx_t_3 = PyList_New(8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_INCREF(__pyx_int_21);
+  __Pyx_GIVEREF(__pyx_int_21);
+  PyList_SET_ITEM(__pyx_t_3, 0, __pyx_int_21);
+  __Pyx_INCREF(__pyx_int_34);
+  __Pyx_GIVEREF(__pyx_int_34);
+  PyList_SET_ITEM(__pyx_t_3, 1, __pyx_int_34);
+  __Pyx_INCREF(__pyx_int_37);
+  __Pyx_GIVEREF(__pyx_int_37);
+  PyList_SET_ITEM(__pyx_t_3, 2, __pyx_int_37);
+  __Pyx_INCREF(__pyx_int_47);
+  __Pyx_GIVEREF(__pyx_int_47);
+  PyList_SET_ITEM(__pyx_t_3, 3, __pyx_int_47);
+  __Pyx_INCREF(__pyx_int_50);
+  __Pyx_GIVEREF(__pyx_int_50);
+  PyList_SET_ITEM(__pyx_t_3, 4, __pyx_int_50);
+  __Pyx_INCREF(__pyx_int_56);
+  __Pyx_GIVEREF(__pyx_int_56);
+  PyList_SET_ITEM(__pyx_t_3, 5, __pyx_int_56);
+  __Pyx_INCREF(__pyx_int_59);
+  __Pyx_GIVEREF(__pyx_int_59);
+  PyList_SET_ITEM(__pyx_t_3, 6, __pyx_int_59);
+  __Pyx_INCREF(__pyx_int_61);
+  __Pyx_GIVEREF(__pyx_int_61);
+  PyList_SET_ITEM(__pyx_t_3, 7, __pyx_int_61);
+
+  /* "proto_mpeg_x.pyx":29
+ *             [20, 22, 33, 38, 46, 51, 55, 60],
+ *             [21, 34, 37, 47, 50, 56, 59, 61],
+ *             [35, 36, 48, 49, 57, 58, 62, 63]]             # <<<<<<<<<<<<<<
+ * 
+ * # This is an array of indices that we use to sample a flattened DCT array in zigzag order.
+ */
+  __pyx_t_1 = PyList_New(8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_INCREF(__pyx_int_35);
+  __Pyx_GIVEREF(__pyx_int_35);
+  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_int_35);
+  __Pyx_INCREF(__pyx_int_36);
+  __Pyx_GIVEREF(__pyx_int_36);
+  PyList_SET_ITEM(__pyx_t_1, 1, __pyx_int_36);
+  __Pyx_INCREF(__pyx_int_48);
+  __Pyx_GIVEREF(__pyx_int_48);
+  PyList_SET_ITEM(__pyx_t_1, 2, __pyx_int_48);
+  __Pyx_INCREF(__pyx_int_49);
+  __Pyx_GIVEREF(__pyx_int_49);
+  PyList_SET_ITEM(__pyx_t_1, 3, __pyx_int_49);
+  __Pyx_INCREF(__pyx_int_57);
+  __Pyx_GIVEREF(__pyx_int_57);
+  PyList_SET_ITEM(__pyx_t_1, 4, __pyx_int_57);
+  __Pyx_INCREF(__pyx_int_58);
+  __Pyx_GIVEREF(__pyx_int_58);
+  PyList_SET_ITEM(__pyx_t_1, 5, __pyx_int_58);
+  __Pyx_INCREF(__pyx_int_62);
+  __Pyx_GIVEREF(__pyx_int_62);
+  PyList_SET_ITEM(__pyx_t_1, 6, __pyx_int_62);
+  __Pyx_INCREF(__pyx_int_63);
+  __Pyx_GIVEREF(__pyx_int_63);
+  PyList_SET_ITEM(__pyx_t_1, 7, __pyx_int_63);
+
+  /* "proto_mpeg_x.pyx":22
+ * 
+ * # Zigzag order. Note that zigzag order != indicies.
+ * zz_order = [[ 0,  1,  5,  6, 14, 15, 27, 28],             # <<<<<<<<<<<<<<
+ *             [ 2,  4,  7, 13, 16, 26, 29, 42],
+ *             [ 3,  8, 12, 17, 25, 30, 41, 43],
+ */
+  __pyx_t_2 = PyList_New(8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_9);
+  PyList_SET_ITEM(__pyx_t_2, 0, __pyx_t_9);
+  __Pyx_GIVEREF(__pyx_t_8);
+  PyList_SET_ITEM(__pyx_t_2, 1, __pyx_t_8);
+  __Pyx_GIVEREF(__pyx_t_7);
+  PyList_SET_ITEM(__pyx_t_2, 2, __pyx_t_7);
+  __Pyx_GIVEREF(__pyx_t_6);
+  PyList_SET_ITEM(__pyx_t_2, 3, __pyx_t_6);
+  __Pyx_GIVEREF(__pyx_t_5);
+  PyList_SET_ITEM(__pyx_t_2, 4, __pyx_t_5);
+  __Pyx_GIVEREF(__pyx_t_4);
+  PyList_SET_ITEM(__pyx_t_2, 5, __pyx_t_4);
+  __Pyx_GIVEREF(__pyx_t_3);
+  PyList_SET_ITEM(__pyx_t_2, 6, __pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyList_SET_ITEM(__pyx_t_2, 7, __pyx_t_1);
+  __pyx_t_9 = 0;
+  __pyx_t_8 = 0;
+  __pyx_t_7 = 0;
+  __pyx_t_6 = 0;
+  __pyx_t_5 = 0;
+  __pyx_t_4 = 0;
+  __pyx_t_3 = 0;
+  __pyx_t_1 = 0;
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_zz_order, __pyx_t_2) < 0) __PYX_ERR(0, 22, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "proto_mpeg_x.pyx":32
+ * 
+ * # This is an array of indices that we use to sample a flattened DCT array in zigzag order.
+ * zz_indices = [ 0,  1,  8, 16,  9,  2,  3, 10,             # <<<<<<<<<<<<<<
+ *                17, 24, 32, 25, 18, 11, 4,  5,
+ *                12, 19, 26, 33, 40, 48, 41, 34,
+ */
+  __pyx_t_2 = PyList_New(64); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_INCREF(__pyx_int_0);
+  __Pyx_GIVEREF(__pyx_int_0);
+  PyList_SET_ITEM(__pyx_t_2, 0, __pyx_int_0);
+  __Pyx_INCREF(__pyx_int_1);
+  __Pyx_GIVEREF(__pyx_int_1);
+  PyList_SET_ITEM(__pyx_t_2, 1, __pyx_int_1);
+  __Pyx_INCREF(__pyx_int_8);
+  __Pyx_GIVEREF(__pyx_int_8);
+  PyList_SET_ITEM(__pyx_t_2, 2, __pyx_int_8);
+  __Pyx_INCREF(__pyx_int_16);
+  __Pyx_GIVEREF(__pyx_int_16);
+  PyList_SET_ITEM(__pyx_t_2, 3, __pyx_int_16);
+  __Pyx_INCREF(__pyx_int_9);
+  __Pyx_GIVEREF(__pyx_int_9);
+  PyList_SET_ITEM(__pyx_t_2, 4, __pyx_int_9);
+  __Pyx_INCREF(__pyx_int_2);
+  __Pyx_GIVEREF(__pyx_int_2);
+  PyList_SET_ITEM(__pyx_t_2, 5, __pyx_int_2);
+  __Pyx_INCREF(__pyx_int_3);
+  __Pyx_GIVEREF(__pyx_int_3);
+  PyList_SET_ITEM(__pyx_t_2, 6, __pyx_int_3);
+  __Pyx_INCREF(__pyx_int_10);
+  __Pyx_GIVEREF(__pyx_int_10);
+  PyList_SET_ITEM(__pyx_t_2, 7, __pyx_int_10);
+  __Pyx_INCREF(__pyx_int_17);
+  __Pyx_GIVEREF(__pyx_int_17);
+  PyList_SET_ITEM(__pyx_t_2, 8, __pyx_int_17);
+  __Pyx_INCREF(__pyx_int_24);
+  __Pyx_GIVEREF(__pyx_int_24);
+  PyList_SET_ITEM(__pyx_t_2, 9, __pyx_int_24);
+  __Pyx_INCREF(__pyx_int_32);
+  __Pyx_GIVEREF(__pyx_int_32);
+  PyList_SET_ITEM(__pyx_t_2, 10, __pyx_int_32);
+  __Pyx_INCREF(__pyx_int_25);
+  __Pyx_GIVEREF(__pyx_int_25);
+  PyList_SET_ITEM(__pyx_t_2, 11, __pyx_int_25);
+  __Pyx_INCREF(__pyx_int_18);
+  __Pyx_GIVEREF(__pyx_int_18);
+  PyList_SET_ITEM(__pyx_t_2, 12, __pyx_int_18);
+  __Pyx_INCREF(__pyx_int_11);
+  __Pyx_GIVEREF(__pyx_int_11);
+  PyList_SET_ITEM(__pyx_t_2, 13, __pyx_int_11);
+  __Pyx_INCREF(__pyx_int_4);
+  __Pyx_GIVEREF(__pyx_int_4);
+  PyList_SET_ITEM(__pyx_t_2, 14, __pyx_int_4);
+  __Pyx_INCREF(__pyx_int_5);
+  __Pyx_GIVEREF(__pyx_int_5);
+  PyList_SET_ITEM(__pyx_t_2, 15, __pyx_int_5);
+  __Pyx_INCREF(__pyx_int_12);
+  __Pyx_GIVEREF(__pyx_int_12);
+  PyList_SET_ITEM(__pyx_t_2, 16, __pyx_int_12);
+  __Pyx_INCREF(__pyx_int_19);
+  __Pyx_GIVEREF(__pyx_int_19);
+  PyList_SET_ITEM(__pyx_t_2, 17, __pyx_int_19);
+  __Pyx_INCREF(__pyx_int_26);
+  __Pyx_GIVEREF(__pyx_int_26);
+  PyList_SET_ITEM(__pyx_t_2, 18, __pyx_int_26);
+  __Pyx_INCREF(__pyx_int_33);
+  __Pyx_GIVEREF(__pyx_int_33);
+  PyList_SET_ITEM(__pyx_t_2, 19, __pyx_int_33);
+  __Pyx_INCREF(__pyx_int_40);
+  __Pyx_GIVEREF(__pyx_int_40);
+  PyList_SET_ITEM(__pyx_t_2, 20, __pyx_int_40);
+  __Pyx_INCREF(__pyx_int_48);
+  __Pyx_GIVEREF(__pyx_int_48);
+  PyList_SET_ITEM(__pyx_t_2, 21, __pyx_int_48);
+  __Pyx_INCREF(__pyx_int_41);
+  __Pyx_GIVEREF(__pyx_int_41);
+  PyList_SET_ITEM(__pyx_t_2, 22, __pyx_int_41);
+  __Pyx_INCREF(__pyx_int_34);
+  __Pyx_GIVEREF(__pyx_int_34);
+  PyList_SET_ITEM(__pyx_t_2, 23, __pyx_int_34);
+  __Pyx_INCREF(__pyx_int_27);
+  __Pyx_GIVEREF(__pyx_int_27);
+  PyList_SET_ITEM(__pyx_t_2, 24, __pyx_int_27);
+  __Pyx_INCREF(__pyx_int_20);
+  __Pyx_GIVEREF(__pyx_int_20);
+  PyList_SET_ITEM(__pyx_t_2, 25, __pyx_int_20);
+  __Pyx_INCREF(__pyx_int_13);
+  __Pyx_GIVEREF(__pyx_int_13);
+  PyList_SET_ITEM(__pyx_t_2, 26, __pyx_int_13);
+  __Pyx_INCREF(__pyx_int_6);
+  __Pyx_GIVEREF(__pyx_int_6);
+  PyList_SET_ITEM(__pyx_t_2, 27, __pyx_int_6);
+  __Pyx_INCREF(__pyx_int_7);
+  __Pyx_GIVEREF(__pyx_int_7);
+  PyList_SET_ITEM(__pyx_t_2, 28, __pyx_int_7);
+  __Pyx_INCREF(__pyx_int_14);
+  __Pyx_GIVEREF(__pyx_int_14);
+  PyList_SET_ITEM(__pyx_t_2, 29, __pyx_int_14);
+  __Pyx_INCREF(__pyx_int_21);
+  __Pyx_GIVEREF(__pyx_int_21);
+  PyList_SET_ITEM(__pyx_t_2, 30, __pyx_int_21);
+  __Pyx_INCREF(__pyx_int_28);
+  __Pyx_GIVEREF(__pyx_int_28);
+  PyList_SET_ITEM(__pyx_t_2, 31, __pyx_int_28);
+  __Pyx_INCREF(__pyx_int_35);
+  __Pyx_GIVEREF(__pyx_int_35);
+  PyList_SET_ITEM(__pyx_t_2, 32, __pyx_int_35);
+  __Pyx_INCREF(__pyx_int_42);
+  __Pyx_GIVEREF(__pyx_int_42);
+  PyList_SET_ITEM(__pyx_t_2, 33, __pyx_int_42);
+  __Pyx_INCREF(__pyx_int_49);
+  __Pyx_GIVEREF(__pyx_int_49);
+  PyList_SET_ITEM(__pyx_t_2, 34, __pyx_int_49);
+  __Pyx_INCREF(__pyx_int_56);
+  __Pyx_GIVEREF(__pyx_int_56);
+  PyList_SET_ITEM(__pyx_t_2, 35, __pyx_int_56);
+  __Pyx_INCREF(__pyx_int_57);
+  __Pyx_GIVEREF(__pyx_int_57);
+  PyList_SET_ITEM(__pyx_t_2, 36, __pyx_int_57);
+  __Pyx_INCREF(__pyx_int_50);
+  __Pyx_GIVEREF(__pyx_int_50);
+  PyList_SET_ITEM(__pyx_t_2, 37, __pyx_int_50);
+  __Pyx_INCREF(__pyx_int_43);
+  __Pyx_GIVEREF(__pyx_int_43);
+  PyList_SET_ITEM(__pyx_t_2, 38, __pyx_int_43);
+  __Pyx_INCREF(__pyx_int_36);
+  __Pyx_GIVEREF(__pyx_int_36);
+  PyList_SET_ITEM(__pyx_t_2, 39, __pyx_int_36);
+  __Pyx_INCREF(__pyx_int_29);
+  __Pyx_GIVEREF(__pyx_int_29);
+  PyList_SET_ITEM(__pyx_t_2, 40, __pyx_int_29);
+  __Pyx_INCREF(__pyx_int_22);
+  __Pyx_GIVEREF(__pyx_int_22);
+  PyList_SET_ITEM(__pyx_t_2, 41, __pyx_int_22);
+  __Pyx_INCREF(__pyx_int_15);
+  __Pyx_GIVEREF(__pyx_int_15);
+  PyList_SET_ITEM(__pyx_t_2, 42, __pyx_int_15);
+  __Pyx_INCREF(__pyx_int_23);
+  __Pyx_GIVEREF(__pyx_int_23);
+  PyList_SET_ITEM(__pyx_t_2, 43, __pyx_int_23);
+  __Pyx_INCREF(__pyx_int_30);
+  __Pyx_GIVEREF(__pyx_int_30);
+  PyList_SET_ITEM(__pyx_t_2, 44, __pyx_int_30);
+  __Pyx_INCREF(__pyx_int_37);
+  __Pyx_GIVEREF(__pyx_int_37);
+  PyList_SET_ITEM(__pyx_t_2, 45, __pyx_int_37);
+  __Pyx_INCREF(__pyx_int_44);
+  __Pyx_GIVEREF(__pyx_int_44);
+  PyList_SET_ITEM(__pyx_t_2, 46, __pyx_int_44);
+  __Pyx_INCREF(__pyx_int_51);
+  __Pyx_GIVEREF(__pyx_int_51);
+  PyList_SET_ITEM(__pyx_t_2, 47, __pyx_int_51);
+  __Pyx_INCREF(__pyx_int_58);
+  __Pyx_GIVEREF(__pyx_int_58);
+  PyList_SET_ITEM(__pyx_t_2, 48, __pyx_int_58);
+  __Pyx_INCREF(__pyx_int_59);
+  __Pyx_GIVEREF(__pyx_int_59);
+  PyList_SET_ITEM(__pyx_t_2, 49, __pyx_int_59);
+  __Pyx_INCREF(__pyx_int_52);
+  __Pyx_GIVEREF(__pyx_int_52);
+  PyList_SET_ITEM(__pyx_t_2, 50, __pyx_int_52);
+  __Pyx_INCREF(__pyx_int_45);
+  __Pyx_GIVEREF(__pyx_int_45);
+  PyList_SET_ITEM(__pyx_t_2, 51, __pyx_int_45);
+  __Pyx_INCREF(__pyx_int_38);
+  __Pyx_GIVEREF(__pyx_int_38);
+  PyList_SET_ITEM(__pyx_t_2, 52, __pyx_int_38);
+  __Pyx_INCREF(__pyx_int_31);
+  __Pyx_GIVEREF(__pyx_int_31);
+  PyList_SET_ITEM(__pyx_t_2, 53, __pyx_int_31);
+  __Pyx_INCREF(__pyx_int_39);
+  __Pyx_GIVEREF(__pyx_int_39);
+  PyList_SET_ITEM(__pyx_t_2, 54, __pyx_int_39);
+  __Pyx_INCREF(__pyx_int_46);
+  __Pyx_GIVEREF(__pyx_int_46);
+  PyList_SET_ITEM(__pyx_t_2, 55, __pyx_int_46);
+  __Pyx_INCREF(__pyx_int_53);
+  __Pyx_GIVEREF(__pyx_int_53);
+  PyList_SET_ITEM(__pyx_t_2, 56, __pyx_int_53);
+  __Pyx_INCREF(__pyx_int_60);
+  __Pyx_GIVEREF(__pyx_int_60);
+  PyList_SET_ITEM(__pyx_t_2, 57, __pyx_int_60);
+  __Pyx_INCREF(__pyx_int_61);
+  __Pyx_GIVEREF(__pyx_int_61);
+  PyList_SET_ITEM(__pyx_t_2, 58, __pyx_int_61);
+  __Pyx_INCREF(__pyx_int_54);
+  __Pyx_GIVEREF(__pyx_int_54);
+  PyList_SET_ITEM(__pyx_t_2, 59, __pyx_int_54);
+  __Pyx_INCREF(__pyx_int_47);
+  __Pyx_GIVEREF(__pyx_int_47);
+  PyList_SET_ITEM(__pyx_t_2, 60, __pyx_int_47);
+  __Pyx_INCREF(__pyx_int_55);
+  __Pyx_GIVEREF(__pyx_int_55);
+  PyList_SET_ITEM(__pyx_t_2, 61, __pyx_int_55);
+  __Pyx_INCREF(__pyx_int_62);
+  __Pyx_GIVEREF(__pyx_int_62);
+  PyList_SET_ITEM(__pyx_t_2, 62, __pyx_int_62);
+  __Pyx_INCREF(__pyx_int_63);
+  __Pyx_GIVEREF(__pyx_int_63);
+  PyList_SET_ITEM(__pyx_t_2, 63, __pyx_int_63);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_zz_indices, __pyx_t_2) < 0) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "proto_mpeg_x.pyx":41
+ *                53, 60, 61, 54, 47, 55, 62, 63]
+ * 
+ * zz_reverse_indices = [ 0,  1,  5,  6, 14, 15, 27, 28,             # <<<<<<<<<<<<<<
+ *   2,  4,  7, 13, 16, 26, 29, 42,
+ *   3,  8, 12, 17, 25, 30, 41, 43,
+ */
+  __pyx_t_2 = PyList_New(64); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_int_0);
   __Pyx_GIVEREF(__pyx_int_0);
@@ -10773,930 +10625,413 @@ PyMODINIT_FUNC PyInit_proto_mpeg_x(void)
   __Pyx_INCREF(__pyx_int_28);
   __Pyx_GIVEREF(__pyx_int_28);
   PyList_SET_ITEM(__pyx_t_2, 7, __pyx_int_28);
-
-  /* "proto_mpeg_x.pyx":27
- * # Zigzag order. Note that zigzag order != indicies.
- * zz_order = [[ 0,  1,  5,  6, 14, 15, 27, 28],
- *             [ 2,  4,  7, 13, 16, 26, 29, 42],             # <<<<<<<<<<<<<<
- *             [ 3,  8, 12, 17, 25, 30, 41, 43],
- *             [ 9, 11, 18, 24, 31, 40, 44, 53],
- */
-  __pyx_t_3 = PyList_New(8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 27, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_int_2);
   __Pyx_GIVEREF(__pyx_int_2);
-  PyList_SET_ITEM(__pyx_t_3, 0, __pyx_int_2);
+  PyList_SET_ITEM(__pyx_t_2, 8, __pyx_int_2);
   __Pyx_INCREF(__pyx_int_4);
   __Pyx_GIVEREF(__pyx_int_4);
-  PyList_SET_ITEM(__pyx_t_3, 1, __pyx_int_4);
+  PyList_SET_ITEM(__pyx_t_2, 9, __pyx_int_4);
   __Pyx_INCREF(__pyx_int_7);
   __Pyx_GIVEREF(__pyx_int_7);
-  PyList_SET_ITEM(__pyx_t_3, 2, __pyx_int_7);
+  PyList_SET_ITEM(__pyx_t_2, 10, __pyx_int_7);
   __Pyx_INCREF(__pyx_int_13);
   __Pyx_GIVEREF(__pyx_int_13);
-  PyList_SET_ITEM(__pyx_t_3, 3, __pyx_int_13);
+  PyList_SET_ITEM(__pyx_t_2, 11, __pyx_int_13);
   __Pyx_INCREF(__pyx_int_16);
   __Pyx_GIVEREF(__pyx_int_16);
-  PyList_SET_ITEM(__pyx_t_3, 4, __pyx_int_16);
+  PyList_SET_ITEM(__pyx_t_2, 12, __pyx_int_16);
   __Pyx_INCREF(__pyx_int_26);
   __Pyx_GIVEREF(__pyx_int_26);
-  PyList_SET_ITEM(__pyx_t_3, 5, __pyx_int_26);
+  PyList_SET_ITEM(__pyx_t_2, 13, __pyx_int_26);
   __Pyx_INCREF(__pyx_int_29);
   __Pyx_GIVEREF(__pyx_int_29);
-  PyList_SET_ITEM(__pyx_t_3, 6, __pyx_int_29);
+  PyList_SET_ITEM(__pyx_t_2, 14, __pyx_int_29);
   __Pyx_INCREF(__pyx_int_42);
   __Pyx_GIVEREF(__pyx_int_42);
-  PyList_SET_ITEM(__pyx_t_3, 7, __pyx_int_42);
-
-  /* "proto_mpeg_x.pyx":28
- * zz_order = [[ 0,  1,  5,  6, 14, 15, 27, 28],
- *             [ 2,  4,  7, 13, 16, 26, 29, 42],
- *             [ 3,  8, 12, 17, 25, 30, 41, 43],             # <<<<<<<<<<<<<<
- *             [ 9, 11, 18, 24, 31, 40, 44, 53],
- *             [10, 19, 23, 32, 39, 45, 52, 54],
- */
-  __pyx_t_9 = PyList_New(8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 28, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_9);
+  PyList_SET_ITEM(__pyx_t_2, 15, __pyx_int_42);
   __Pyx_INCREF(__pyx_int_3);
   __Pyx_GIVEREF(__pyx_int_3);
-  PyList_SET_ITEM(__pyx_t_9, 0, __pyx_int_3);
+  PyList_SET_ITEM(__pyx_t_2, 16, __pyx_int_3);
   __Pyx_INCREF(__pyx_int_8);
   __Pyx_GIVEREF(__pyx_int_8);
-  PyList_SET_ITEM(__pyx_t_9, 1, __pyx_int_8);
+  PyList_SET_ITEM(__pyx_t_2, 17, __pyx_int_8);
   __Pyx_INCREF(__pyx_int_12);
   __Pyx_GIVEREF(__pyx_int_12);
-  PyList_SET_ITEM(__pyx_t_9, 2, __pyx_int_12);
+  PyList_SET_ITEM(__pyx_t_2, 18, __pyx_int_12);
   __Pyx_INCREF(__pyx_int_17);
   __Pyx_GIVEREF(__pyx_int_17);
-  PyList_SET_ITEM(__pyx_t_9, 3, __pyx_int_17);
+  PyList_SET_ITEM(__pyx_t_2, 19, __pyx_int_17);
   __Pyx_INCREF(__pyx_int_25);
   __Pyx_GIVEREF(__pyx_int_25);
-  PyList_SET_ITEM(__pyx_t_9, 4, __pyx_int_25);
+  PyList_SET_ITEM(__pyx_t_2, 20, __pyx_int_25);
   __Pyx_INCREF(__pyx_int_30);
   __Pyx_GIVEREF(__pyx_int_30);
-  PyList_SET_ITEM(__pyx_t_9, 5, __pyx_int_30);
+  PyList_SET_ITEM(__pyx_t_2, 21, __pyx_int_30);
   __Pyx_INCREF(__pyx_int_41);
   __Pyx_GIVEREF(__pyx_int_41);
-  PyList_SET_ITEM(__pyx_t_9, 6, __pyx_int_41);
+  PyList_SET_ITEM(__pyx_t_2, 22, __pyx_int_41);
   __Pyx_INCREF(__pyx_int_43);
   __Pyx_GIVEREF(__pyx_int_43);
-  PyList_SET_ITEM(__pyx_t_9, 7, __pyx_int_43);
-
-  /* "proto_mpeg_x.pyx":29
- *             [ 2,  4,  7, 13, 16, 26, 29, 42],
- *             [ 3,  8, 12, 17, 25, 30, 41, 43],
- *             [ 9, 11, 18, 24, 31, 40, 44, 53],             # <<<<<<<<<<<<<<
- *             [10, 19, 23, 32, 39, 45, 52, 54],
- *             [20, 22, 33, 38, 46, 51, 55, 60],
- */
-  __pyx_t_11 = PyList_New(8); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 29, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_11);
+  PyList_SET_ITEM(__pyx_t_2, 23, __pyx_int_43);
   __Pyx_INCREF(__pyx_int_9);
   __Pyx_GIVEREF(__pyx_int_9);
-  PyList_SET_ITEM(__pyx_t_11, 0, __pyx_int_9);
+  PyList_SET_ITEM(__pyx_t_2, 24, __pyx_int_9);
   __Pyx_INCREF(__pyx_int_11);
   __Pyx_GIVEREF(__pyx_int_11);
-  PyList_SET_ITEM(__pyx_t_11, 1, __pyx_int_11);
+  PyList_SET_ITEM(__pyx_t_2, 25, __pyx_int_11);
   __Pyx_INCREF(__pyx_int_18);
   __Pyx_GIVEREF(__pyx_int_18);
-  PyList_SET_ITEM(__pyx_t_11, 2, __pyx_int_18);
+  PyList_SET_ITEM(__pyx_t_2, 26, __pyx_int_18);
   __Pyx_INCREF(__pyx_int_24);
   __Pyx_GIVEREF(__pyx_int_24);
-  PyList_SET_ITEM(__pyx_t_11, 3, __pyx_int_24);
+  PyList_SET_ITEM(__pyx_t_2, 27, __pyx_int_24);
   __Pyx_INCREF(__pyx_int_31);
   __Pyx_GIVEREF(__pyx_int_31);
-  PyList_SET_ITEM(__pyx_t_11, 4, __pyx_int_31);
+  PyList_SET_ITEM(__pyx_t_2, 28, __pyx_int_31);
   __Pyx_INCREF(__pyx_int_40);
   __Pyx_GIVEREF(__pyx_int_40);
-  PyList_SET_ITEM(__pyx_t_11, 5, __pyx_int_40);
+  PyList_SET_ITEM(__pyx_t_2, 29, __pyx_int_40);
   __Pyx_INCREF(__pyx_int_44);
   __Pyx_GIVEREF(__pyx_int_44);
-  PyList_SET_ITEM(__pyx_t_11, 6, __pyx_int_44);
+  PyList_SET_ITEM(__pyx_t_2, 30, __pyx_int_44);
   __Pyx_INCREF(__pyx_int_53);
   __Pyx_GIVEREF(__pyx_int_53);
-  PyList_SET_ITEM(__pyx_t_11, 7, __pyx_int_53);
-
-  /* "proto_mpeg_x.pyx":30
- *             [ 3,  8, 12, 17, 25, 30, 41, 43],
- *             [ 9, 11, 18, 24, 31, 40, 44, 53],
- *             [10, 19, 23, 32, 39, 45, 52, 54],             # <<<<<<<<<<<<<<
- *             [20, 22, 33, 38, 46, 51, 55, 60],
- *             [21, 34, 37, 47, 50, 56, 59, 61],
- */
-  __pyx_t_10 = PyList_New(8); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 30, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_10);
+  PyList_SET_ITEM(__pyx_t_2, 31, __pyx_int_53);
   __Pyx_INCREF(__pyx_int_10);
   __Pyx_GIVEREF(__pyx_int_10);
-  PyList_SET_ITEM(__pyx_t_10, 0, __pyx_int_10);
+  PyList_SET_ITEM(__pyx_t_2, 32, __pyx_int_10);
   __Pyx_INCREF(__pyx_int_19);
   __Pyx_GIVEREF(__pyx_int_19);
-  PyList_SET_ITEM(__pyx_t_10, 1, __pyx_int_19);
+  PyList_SET_ITEM(__pyx_t_2, 33, __pyx_int_19);
   __Pyx_INCREF(__pyx_int_23);
   __Pyx_GIVEREF(__pyx_int_23);
-  PyList_SET_ITEM(__pyx_t_10, 2, __pyx_int_23);
+  PyList_SET_ITEM(__pyx_t_2, 34, __pyx_int_23);
   __Pyx_INCREF(__pyx_int_32);
   __Pyx_GIVEREF(__pyx_int_32);
-  PyList_SET_ITEM(__pyx_t_10, 3, __pyx_int_32);
+  PyList_SET_ITEM(__pyx_t_2, 35, __pyx_int_32);
   __Pyx_INCREF(__pyx_int_39);
   __Pyx_GIVEREF(__pyx_int_39);
-  PyList_SET_ITEM(__pyx_t_10, 4, __pyx_int_39);
+  PyList_SET_ITEM(__pyx_t_2, 36, __pyx_int_39);
   __Pyx_INCREF(__pyx_int_45);
   __Pyx_GIVEREF(__pyx_int_45);
-  PyList_SET_ITEM(__pyx_t_10, 5, __pyx_int_45);
+  PyList_SET_ITEM(__pyx_t_2, 37, __pyx_int_45);
   __Pyx_INCREF(__pyx_int_52);
   __Pyx_GIVEREF(__pyx_int_52);
-  PyList_SET_ITEM(__pyx_t_10, 6, __pyx_int_52);
+  PyList_SET_ITEM(__pyx_t_2, 38, __pyx_int_52);
   __Pyx_INCREF(__pyx_int_54);
   __Pyx_GIVEREF(__pyx_int_54);
-  PyList_SET_ITEM(__pyx_t_10, 7, __pyx_int_54);
-
-  /* "proto_mpeg_x.pyx":31
- *             [ 9, 11, 18, 24, 31, 40, 44, 53],
- *             [10, 19, 23, 32, 39, 45, 52, 54],
- *             [20, 22, 33, 38, 46, 51, 55, 60],             # <<<<<<<<<<<<<<
- *             [21, 34, 37, 47, 50, 56, 59, 61],
- *             [35, 36, 48, 49, 57, 58, 62, 63]]
- */
-  __pyx_t_8 = PyList_New(8); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 31, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_8);
+  PyList_SET_ITEM(__pyx_t_2, 39, __pyx_int_54);
   __Pyx_INCREF(__pyx_int_20);
   __Pyx_GIVEREF(__pyx_int_20);
-  PyList_SET_ITEM(__pyx_t_8, 0, __pyx_int_20);
+  PyList_SET_ITEM(__pyx_t_2, 40, __pyx_int_20);
   __Pyx_INCREF(__pyx_int_22);
   __Pyx_GIVEREF(__pyx_int_22);
-  PyList_SET_ITEM(__pyx_t_8, 1, __pyx_int_22);
+  PyList_SET_ITEM(__pyx_t_2, 41, __pyx_int_22);
   __Pyx_INCREF(__pyx_int_33);
   __Pyx_GIVEREF(__pyx_int_33);
-  PyList_SET_ITEM(__pyx_t_8, 2, __pyx_int_33);
+  PyList_SET_ITEM(__pyx_t_2, 42, __pyx_int_33);
   __Pyx_INCREF(__pyx_int_38);
   __Pyx_GIVEREF(__pyx_int_38);
-  PyList_SET_ITEM(__pyx_t_8, 3, __pyx_int_38);
+  PyList_SET_ITEM(__pyx_t_2, 43, __pyx_int_38);
   __Pyx_INCREF(__pyx_int_46);
   __Pyx_GIVEREF(__pyx_int_46);
-  PyList_SET_ITEM(__pyx_t_8, 4, __pyx_int_46);
+  PyList_SET_ITEM(__pyx_t_2, 44, __pyx_int_46);
   __Pyx_INCREF(__pyx_int_51);
   __Pyx_GIVEREF(__pyx_int_51);
-  PyList_SET_ITEM(__pyx_t_8, 5, __pyx_int_51);
+  PyList_SET_ITEM(__pyx_t_2, 45, __pyx_int_51);
   __Pyx_INCREF(__pyx_int_55);
   __Pyx_GIVEREF(__pyx_int_55);
-  PyList_SET_ITEM(__pyx_t_8, 6, __pyx_int_55);
+  PyList_SET_ITEM(__pyx_t_2, 46, __pyx_int_55);
   __Pyx_INCREF(__pyx_int_60);
   __Pyx_GIVEREF(__pyx_int_60);
-  PyList_SET_ITEM(__pyx_t_8, 7, __pyx_int_60);
-
-  /* "proto_mpeg_x.pyx":32
- *             [10, 19, 23, 32, 39, 45, 52, 54],
- *             [20, 22, 33, 38, 46, 51, 55, 60],
- *             [21, 34, 37, 47, 50, 56, 59, 61],             # <<<<<<<<<<<<<<
- *             [35, 36, 48, 49, 57, 58, 62, 63]]
- * 
- */
-  __pyx_t_7 = PyList_New(8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 32, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
+  PyList_SET_ITEM(__pyx_t_2, 47, __pyx_int_60);
   __Pyx_INCREF(__pyx_int_21);
   __Pyx_GIVEREF(__pyx_int_21);
-  PyList_SET_ITEM(__pyx_t_7, 0, __pyx_int_21);
+  PyList_SET_ITEM(__pyx_t_2, 48, __pyx_int_21);
   __Pyx_INCREF(__pyx_int_34);
   __Pyx_GIVEREF(__pyx_int_34);
-  PyList_SET_ITEM(__pyx_t_7, 1, __pyx_int_34);
+  PyList_SET_ITEM(__pyx_t_2, 49, __pyx_int_34);
   __Pyx_INCREF(__pyx_int_37);
   __Pyx_GIVEREF(__pyx_int_37);
-  PyList_SET_ITEM(__pyx_t_7, 2, __pyx_int_37);
+  PyList_SET_ITEM(__pyx_t_2, 50, __pyx_int_37);
   __Pyx_INCREF(__pyx_int_47);
   __Pyx_GIVEREF(__pyx_int_47);
-  PyList_SET_ITEM(__pyx_t_7, 3, __pyx_int_47);
+  PyList_SET_ITEM(__pyx_t_2, 51, __pyx_int_47);
   __Pyx_INCREF(__pyx_int_50);
   __Pyx_GIVEREF(__pyx_int_50);
-  PyList_SET_ITEM(__pyx_t_7, 4, __pyx_int_50);
+  PyList_SET_ITEM(__pyx_t_2, 52, __pyx_int_50);
   __Pyx_INCREF(__pyx_int_56);
   __Pyx_GIVEREF(__pyx_int_56);
-  PyList_SET_ITEM(__pyx_t_7, 5, __pyx_int_56);
+  PyList_SET_ITEM(__pyx_t_2, 53, __pyx_int_56);
   __Pyx_INCREF(__pyx_int_59);
   __Pyx_GIVEREF(__pyx_int_59);
-  PyList_SET_ITEM(__pyx_t_7, 6, __pyx_int_59);
+  PyList_SET_ITEM(__pyx_t_2, 54, __pyx_int_59);
   __Pyx_INCREF(__pyx_int_61);
   __Pyx_GIVEREF(__pyx_int_61);
-  PyList_SET_ITEM(__pyx_t_7, 7, __pyx_int_61);
-
-  /* "proto_mpeg_x.pyx":33
- *             [20, 22, 33, 38, 46, 51, 55, 60],
- *             [21, 34, 37, 47, 50, 56, 59, 61],
- *             [35, 36, 48, 49, 57, 58, 62, 63]]             # <<<<<<<<<<<<<<
- * 
- * # This is an array of indices that we use to sample a flattened DCT array in zigzag order.
- */
-  __pyx_t_6 = PyList_New(8); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 33, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
+  PyList_SET_ITEM(__pyx_t_2, 55, __pyx_int_61);
   __Pyx_INCREF(__pyx_int_35);
   __Pyx_GIVEREF(__pyx_int_35);
-  PyList_SET_ITEM(__pyx_t_6, 0, __pyx_int_35);
+  PyList_SET_ITEM(__pyx_t_2, 56, __pyx_int_35);
   __Pyx_INCREF(__pyx_int_36);
   __Pyx_GIVEREF(__pyx_int_36);
-  PyList_SET_ITEM(__pyx_t_6, 1, __pyx_int_36);
+  PyList_SET_ITEM(__pyx_t_2, 57, __pyx_int_36);
   __Pyx_INCREF(__pyx_int_48);
   __Pyx_GIVEREF(__pyx_int_48);
-  PyList_SET_ITEM(__pyx_t_6, 2, __pyx_int_48);
+  PyList_SET_ITEM(__pyx_t_2, 58, __pyx_int_48);
   __Pyx_INCREF(__pyx_int_49);
   __Pyx_GIVEREF(__pyx_int_49);
-  PyList_SET_ITEM(__pyx_t_6, 3, __pyx_int_49);
+  PyList_SET_ITEM(__pyx_t_2, 59, __pyx_int_49);
   __Pyx_INCREF(__pyx_int_57);
   __Pyx_GIVEREF(__pyx_int_57);
-  PyList_SET_ITEM(__pyx_t_6, 4, __pyx_int_57);
+  PyList_SET_ITEM(__pyx_t_2, 60, __pyx_int_57);
   __Pyx_INCREF(__pyx_int_58);
   __Pyx_GIVEREF(__pyx_int_58);
-  PyList_SET_ITEM(__pyx_t_6, 5, __pyx_int_58);
+  PyList_SET_ITEM(__pyx_t_2, 61, __pyx_int_58);
   __Pyx_INCREF(__pyx_int_62);
   __Pyx_GIVEREF(__pyx_int_62);
-  PyList_SET_ITEM(__pyx_t_6, 6, __pyx_int_62);
+  PyList_SET_ITEM(__pyx_t_2, 62, __pyx_int_62);
   __Pyx_INCREF(__pyx_int_63);
   __Pyx_GIVEREF(__pyx_int_63);
-  PyList_SET_ITEM(__pyx_t_6, 7, __pyx_int_63);
+  PyList_SET_ITEM(__pyx_t_2, 63, __pyx_int_63);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_zz_reverse_indices, __pyx_t_2) < 0) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "proto_mpeg_x.pyx":26
- * 
- * # Zigzag order. Note that zigzag order != indicies.
- * zz_order = [[ 0,  1,  5,  6, 14, 15, 27, 28],             # <<<<<<<<<<<<<<
- *             [ 2,  4,  7, 13, 16, 26, 29, 42],
- *             [ 3,  8, 12, 17, 25, 30, 41, 43],
- */
-  __pyx_t_5 = PyList_New(8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 26, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_GIVEREF(__pyx_t_2);
-  PyList_SET_ITEM(__pyx_t_5, 0, __pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_3);
-  PyList_SET_ITEM(__pyx_t_5, 1, __pyx_t_3);
-  __Pyx_GIVEREF(__pyx_t_9);
-  PyList_SET_ITEM(__pyx_t_5, 2, __pyx_t_9);
-  __Pyx_GIVEREF(__pyx_t_11);
-  PyList_SET_ITEM(__pyx_t_5, 3, __pyx_t_11);
-  __Pyx_GIVEREF(__pyx_t_10);
-  PyList_SET_ITEM(__pyx_t_5, 4, __pyx_t_10);
-  __Pyx_GIVEREF(__pyx_t_8);
-  PyList_SET_ITEM(__pyx_t_5, 5, __pyx_t_8);
-  __Pyx_GIVEREF(__pyx_t_7);
-  PyList_SET_ITEM(__pyx_t_5, 6, __pyx_t_7);
-  __Pyx_GIVEREF(__pyx_t_6);
-  PyList_SET_ITEM(__pyx_t_5, 7, __pyx_t_6);
-  __pyx_t_2 = 0;
-  __pyx_t_3 = 0;
-  __pyx_t_9 = 0;
-  __pyx_t_11 = 0;
-  __pyx_t_10 = 0;
-  __pyx_t_8 = 0;
-  __pyx_t_7 = 0;
-  __pyx_t_6 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_zz_order, __pyx_t_5) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-
-  /* "proto_mpeg_x.pyx":36
- * 
- * # This is an array of indices that we use to sample a flattened DCT array in zigzag order.
- * zz_indices = [ 0,  1,  8, 16,  9,  2,  3, 10,             # <<<<<<<<<<<<<<
- *                17, 24, 32, 25, 18, 11, 4,  5,
- *                12, 19, 26, 33, 40, 48, 41, 34,
- */
-  __pyx_t_5 = PyList_New(64); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 36, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_INCREF(__pyx_int_0);
-  __Pyx_GIVEREF(__pyx_int_0);
-  PyList_SET_ITEM(__pyx_t_5, 0, __pyx_int_0);
-  __Pyx_INCREF(__pyx_int_1);
-  __Pyx_GIVEREF(__pyx_int_1);
-  PyList_SET_ITEM(__pyx_t_5, 1, __pyx_int_1);
-  __Pyx_INCREF(__pyx_int_8);
-  __Pyx_GIVEREF(__pyx_int_8);
-  PyList_SET_ITEM(__pyx_t_5, 2, __pyx_int_8);
-  __Pyx_INCREF(__pyx_int_16);
-  __Pyx_GIVEREF(__pyx_int_16);
-  PyList_SET_ITEM(__pyx_t_5, 3, __pyx_int_16);
-  __Pyx_INCREF(__pyx_int_9);
-  __Pyx_GIVEREF(__pyx_int_9);
-  PyList_SET_ITEM(__pyx_t_5, 4, __pyx_int_9);
-  __Pyx_INCREF(__pyx_int_2);
-  __Pyx_GIVEREF(__pyx_int_2);
-  PyList_SET_ITEM(__pyx_t_5, 5, __pyx_int_2);
-  __Pyx_INCREF(__pyx_int_3);
-  __Pyx_GIVEREF(__pyx_int_3);
-  PyList_SET_ITEM(__pyx_t_5, 6, __pyx_int_3);
-  __Pyx_INCREF(__pyx_int_10);
-  __Pyx_GIVEREF(__pyx_int_10);
-  PyList_SET_ITEM(__pyx_t_5, 7, __pyx_int_10);
-  __Pyx_INCREF(__pyx_int_17);
-  __Pyx_GIVEREF(__pyx_int_17);
-  PyList_SET_ITEM(__pyx_t_5, 8, __pyx_int_17);
-  __Pyx_INCREF(__pyx_int_24);
-  __Pyx_GIVEREF(__pyx_int_24);
-  PyList_SET_ITEM(__pyx_t_5, 9, __pyx_int_24);
-  __Pyx_INCREF(__pyx_int_32);
-  __Pyx_GIVEREF(__pyx_int_32);
-  PyList_SET_ITEM(__pyx_t_5, 10, __pyx_int_32);
-  __Pyx_INCREF(__pyx_int_25);
-  __Pyx_GIVEREF(__pyx_int_25);
-  PyList_SET_ITEM(__pyx_t_5, 11, __pyx_int_25);
-  __Pyx_INCREF(__pyx_int_18);
-  __Pyx_GIVEREF(__pyx_int_18);
-  PyList_SET_ITEM(__pyx_t_5, 12, __pyx_int_18);
-  __Pyx_INCREF(__pyx_int_11);
-  __Pyx_GIVEREF(__pyx_int_11);
-  PyList_SET_ITEM(__pyx_t_5, 13, __pyx_int_11);
-  __Pyx_INCREF(__pyx_int_4);
-  __Pyx_GIVEREF(__pyx_int_4);
-  PyList_SET_ITEM(__pyx_t_5, 14, __pyx_int_4);
-  __Pyx_INCREF(__pyx_int_5);
-  __Pyx_GIVEREF(__pyx_int_5);
-  PyList_SET_ITEM(__pyx_t_5, 15, __pyx_int_5);
-  __Pyx_INCREF(__pyx_int_12);
-  __Pyx_GIVEREF(__pyx_int_12);
-  PyList_SET_ITEM(__pyx_t_5, 16, __pyx_int_12);
-  __Pyx_INCREF(__pyx_int_19);
-  __Pyx_GIVEREF(__pyx_int_19);
-  PyList_SET_ITEM(__pyx_t_5, 17, __pyx_int_19);
-  __Pyx_INCREF(__pyx_int_26);
-  __Pyx_GIVEREF(__pyx_int_26);
-  PyList_SET_ITEM(__pyx_t_5, 18, __pyx_int_26);
-  __Pyx_INCREF(__pyx_int_33);
-  __Pyx_GIVEREF(__pyx_int_33);
-  PyList_SET_ITEM(__pyx_t_5, 19, __pyx_int_33);
-  __Pyx_INCREF(__pyx_int_40);
-  __Pyx_GIVEREF(__pyx_int_40);
-  PyList_SET_ITEM(__pyx_t_5, 20, __pyx_int_40);
-  __Pyx_INCREF(__pyx_int_48);
-  __Pyx_GIVEREF(__pyx_int_48);
-  PyList_SET_ITEM(__pyx_t_5, 21, __pyx_int_48);
-  __Pyx_INCREF(__pyx_int_41);
-  __Pyx_GIVEREF(__pyx_int_41);
-  PyList_SET_ITEM(__pyx_t_5, 22, __pyx_int_41);
-  __Pyx_INCREF(__pyx_int_34);
-  __Pyx_GIVEREF(__pyx_int_34);
-  PyList_SET_ITEM(__pyx_t_5, 23, __pyx_int_34);
-  __Pyx_INCREF(__pyx_int_27);
-  __Pyx_GIVEREF(__pyx_int_27);
-  PyList_SET_ITEM(__pyx_t_5, 24, __pyx_int_27);
-  __Pyx_INCREF(__pyx_int_20);
-  __Pyx_GIVEREF(__pyx_int_20);
-  PyList_SET_ITEM(__pyx_t_5, 25, __pyx_int_20);
-  __Pyx_INCREF(__pyx_int_13);
-  __Pyx_GIVEREF(__pyx_int_13);
-  PyList_SET_ITEM(__pyx_t_5, 26, __pyx_int_13);
-  __Pyx_INCREF(__pyx_int_6);
-  __Pyx_GIVEREF(__pyx_int_6);
-  PyList_SET_ITEM(__pyx_t_5, 27, __pyx_int_6);
-  __Pyx_INCREF(__pyx_int_7);
-  __Pyx_GIVEREF(__pyx_int_7);
-  PyList_SET_ITEM(__pyx_t_5, 28, __pyx_int_7);
-  __Pyx_INCREF(__pyx_int_14);
-  __Pyx_GIVEREF(__pyx_int_14);
-  PyList_SET_ITEM(__pyx_t_5, 29, __pyx_int_14);
-  __Pyx_INCREF(__pyx_int_21);
-  __Pyx_GIVEREF(__pyx_int_21);
-  PyList_SET_ITEM(__pyx_t_5, 30, __pyx_int_21);
-  __Pyx_INCREF(__pyx_int_28);
-  __Pyx_GIVEREF(__pyx_int_28);
-  PyList_SET_ITEM(__pyx_t_5, 31, __pyx_int_28);
-  __Pyx_INCREF(__pyx_int_35);
-  __Pyx_GIVEREF(__pyx_int_35);
-  PyList_SET_ITEM(__pyx_t_5, 32, __pyx_int_35);
-  __Pyx_INCREF(__pyx_int_42);
-  __Pyx_GIVEREF(__pyx_int_42);
-  PyList_SET_ITEM(__pyx_t_5, 33, __pyx_int_42);
-  __Pyx_INCREF(__pyx_int_49);
-  __Pyx_GIVEREF(__pyx_int_49);
-  PyList_SET_ITEM(__pyx_t_5, 34, __pyx_int_49);
-  __Pyx_INCREF(__pyx_int_56);
-  __Pyx_GIVEREF(__pyx_int_56);
-  PyList_SET_ITEM(__pyx_t_5, 35, __pyx_int_56);
-  __Pyx_INCREF(__pyx_int_57);
-  __Pyx_GIVEREF(__pyx_int_57);
-  PyList_SET_ITEM(__pyx_t_5, 36, __pyx_int_57);
-  __Pyx_INCREF(__pyx_int_50);
-  __Pyx_GIVEREF(__pyx_int_50);
-  PyList_SET_ITEM(__pyx_t_5, 37, __pyx_int_50);
-  __Pyx_INCREF(__pyx_int_43);
-  __Pyx_GIVEREF(__pyx_int_43);
-  PyList_SET_ITEM(__pyx_t_5, 38, __pyx_int_43);
-  __Pyx_INCREF(__pyx_int_36);
-  __Pyx_GIVEREF(__pyx_int_36);
-  PyList_SET_ITEM(__pyx_t_5, 39, __pyx_int_36);
-  __Pyx_INCREF(__pyx_int_29);
-  __Pyx_GIVEREF(__pyx_int_29);
-  PyList_SET_ITEM(__pyx_t_5, 40, __pyx_int_29);
-  __Pyx_INCREF(__pyx_int_22);
-  __Pyx_GIVEREF(__pyx_int_22);
-  PyList_SET_ITEM(__pyx_t_5, 41, __pyx_int_22);
-  __Pyx_INCREF(__pyx_int_15);
-  __Pyx_GIVEREF(__pyx_int_15);
-  PyList_SET_ITEM(__pyx_t_5, 42, __pyx_int_15);
-  __Pyx_INCREF(__pyx_int_23);
-  __Pyx_GIVEREF(__pyx_int_23);
-  PyList_SET_ITEM(__pyx_t_5, 43, __pyx_int_23);
-  __Pyx_INCREF(__pyx_int_30);
-  __Pyx_GIVEREF(__pyx_int_30);
-  PyList_SET_ITEM(__pyx_t_5, 44, __pyx_int_30);
-  __Pyx_INCREF(__pyx_int_37);
-  __Pyx_GIVEREF(__pyx_int_37);
-  PyList_SET_ITEM(__pyx_t_5, 45, __pyx_int_37);
-  __Pyx_INCREF(__pyx_int_44);
-  __Pyx_GIVEREF(__pyx_int_44);
-  PyList_SET_ITEM(__pyx_t_5, 46, __pyx_int_44);
-  __Pyx_INCREF(__pyx_int_51);
-  __Pyx_GIVEREF(__pyx_int_51);
-  PyList_SET_ITEM(__pyx_t_5, 47, __pyx_int_51);
-  __Pyx_INCREF(__pyx_int_58);
-  __Pyx_GIVEREF(__pyx_int_58);
-  PyList_SET_ITEM(__pyx_t_5, 48, __pyx_int_58);
-  __Pyx_INCREF(__pyx_int_59);
-  __Pyx_GIVEREF(__pyx_int_59);
-  PyList_SET_ITEM(__pyx_t_5, 49, __pyx_int_59);
-  __Pyx_INCREF(__pyx_int_52);
-  __Pyx_GIVEREF(__pyx_int_52);
-  PyList_SET_ITEM(__pyx_t_5, 50, __pyx_int_52);
-  __Pyx_INCREF(__pyx_int_45);
-  __Pyx_GIVEREF(__pyx_int_45);
-  PyList_SET_ITEM(__pyx_t_5, 51, __pyx_int_45);
-  __Pyx_INCREF(__pyx_int_38);
-  __Pyx_GIVEREF(__pyx_int_38);
-  PyList_SET_ITEM(__pyx_t_5, 52, __pyx_int_38);
-  __Pyx_INCREF(__pyx_int_31);
-  __Pyx_GIVEREF(__pyx_int_31);
-  PyList_SET_ITEM(__pyx_t_5, 53, __pyx_int_31);
-  __Pyx_INCREF(__pyx_int_39);
-  __Pyx_GIVEREF(__pyx_int_39);
-  PyList_SET_ITEM(__pyx_t_5, 54, __pyx_int_39);
-  __Pyx_INCREF(__pyx_int_46);
-  __Pyx_GIVEREF(__pyx_int_46);
-  PyList_SET_ITEM(__pyx_t_5, 55, __pyx_int_46);
-  __Pyx_INCREF(__pyx_int_53);
-  __Pyx_GIVEREF(__pyx_int_53);
-  PyList_SET_ITEM(__pyx_t_5, 56, __pyx_int_53);
-  __Pyx_INCREF(__pyx_int_60);
-  __Pyx_GIVEREF(__pyx_int_60);
-  PyList_SET_ITEM(__pyx_t_5, 57, __pyx_int_60);
-  __Pyx_INCREF(__pyx_int_61);
-  __Pyx_GIVEREF(__pyx_int_61);
-  PyList_SET_ITEM(__pyx_t_5, 58, __pyx_int_61);
-  __Pyx_INCREF(__pyx_int_54);
-  __Pyx_GIVEREF(__pyx_int_54);
-  PyList_SET_ITEM(__pyx_t_5, 59, __pyx_int_54);
-  __Pyx_INCREF(__pyx_int_47);
-  __Pyx_GIVEREF(__pyx_int_47);
-  PyList_SET_ITEM(__pyx_t_5, 60, __pyx_int_47);
-  __Pyx_INCREF(__pyx_int_55);
-  __Pyx_GIVEREF(__pyx_int_55);
-  PyList_SET_ITEM(__pyx_t_5, 61, __pyx_int_55);
-  __Pyx_INCREF(__pyx_int_62);
-  __Pyx_GIVEREF(__pyx_int_62);
-  PyList_SET_ITEM(__pyx_t_5, 62, __pyx_int_62);
-  __Pyx_INCREF(__pyx_int_63);
-  __Pyx_GIVEREF(__pyx_int_63);
-  PyList_SET_ITEM(__pyx_t_5, 63, __pyx_int_63);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_zz_indices, __pyx_t_5) < 0) __PYX_ERR(0, 36, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-
-  /* "proto_mpeg_x.pyx":45
- *                53, 60, 61, 54, 47, 55, 62, 63]
- * 
- * zz_reverse_indices = [ 0,  1,  5,  6, 14, 15, 27, 28,             # <<<<<<<<<<<<<<
- *   2,  4,  7, 13, 16, 26, 29, 42,
- *   3,  8, 12, 17, 25, 30, 41, 43,
- */
-  __pyx_t_5 = PyList_New(64); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 45, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_INCREF(__pyx_int_0);
-  __Pyx_GIVEREF(__pyx_int_0);
-  PyList_SET_ITEM(__pyx_t_5, 0, __pyx_int_0);
-  __Pyx_INCREF(__pyx_int_1);
-  __Pyx_GIVEREF(__pyx_int_1);
-  PyList_SET_ITEM(__pyx_t_5, 1, __pyx_int_1);
-  __Pyx_INCREF(__pyx_int_5);
-  __Pyx_GIVEREF(__pyx_int_5);
-  PyList_SET_ITEM(__pyx_t_5, 2, __pyx_int_5);
-  __Pyx_INCREF(__pyx_int_6);
-  __Pyx_GIVEREF(__pyx_int_6);
-  PyList_SET_ITEM(__pyx_t_5, 3, __pyx_int_6);
-  __Pyx_INCREF(__pyx_int_14);
-  __Pyx_GIVEREF(__pyx_int_14);
-  PyList_SET_ITEM(__pyx_t_5, 4, __pyx_int_14);
-  __Pyx_INCREF(__pyx_int_15);
-  __Pyx_GIVEREF(__pyx_int_15);
-  PyList_SET_ITEM(__pyx_t_5, 5, __pyx_int_15);
-  __Pyx_INCREF(__pyx_int_27);
-  __Pyx_GIVEREF(__pyx_int_27);
-  PyList_SET_ITEM(__pyx_t_5, 6, __pyx_int_27);
-  __Pyx_INCREF(__pyx_int_28);
-  __Pyx_GIVEREF(__pyx_int_28);
-  PyList_SET_ITEM(__pyx_t_5, 7, __pyx_int_28);
-  __Pyx_INCREF(__pyx_int_2);
-  __Pyx_GIVEREF(__pyx_int_2);
-  PyList_SET_ITEM(__pyx_t_5, 8, __pyx_int_2);
-  __Pyx_INCREF(__pyx_int_4);
-  __Pyx_GIVEREF(__pyx_int_4);
-  PyList_SET_ITEM(__pyx_t_5, 9, __pyx_int_4);
-  __Pyx_INCREF(__pyx_int_7);
-  __Pyx_GIVEREF(__pyx_int_7);
-  PyList_SET_ITEM(__pyx_t_5, 10, __pyx_int_7);
-  __Pyx_INCREF(__pyx_int_13);
-  __Pyx_GIVEREF(__pyx_int_13);
-  PyList_SET_ITEM(__pyx_t_5, 11, __pyx_int_13);
-  __Pyx_INCREF(__pyx_int_16);
-  __Pyx_GIVEREF(__pyx_int_16);
-  PyList_SET_ITEM(__pyx_t_5, 12, __pyx_int_16);
-  __Pyx_INCREF(__pyx_int_26);
-  __Pyx_GIVEREF(__pyx_int_26);
-  PyList_SET_ITEM(__pyx_t_5, 13, __pyx_int_26);
-  __Pyx_INCREF(__pyx_int_29);
-  __Pyx_GIVEREF(__pyx_int_29);
-  PyList_SET_ITEM(__pyx_t_5, 14, __pyx_int_29);
-  __Pyx_INCREF(__pyx_int_42);
-  __Pyx_GIVEREF(__pyx_int_42);
-  PyList_SET_ITEM(__pyx_t_5, 15, __pyx_int_42);
-  __Pyx_INCREF(__pyx_int_3);
-  __Pyx_GIVEREF(__pyx_int_3);
-  PyList_SET_ITEM(__pyx_t_5, 16, __pyx_int_3);
-  __Pyx_INCREF(__pyx_int_8);
-  __Pyx_GIVEREF(__pyx_int_8);
-  PyList_SET_ITEM(__pyx_t_5, 17, __pyx_int_8);
-  __Pyx_INCREF(__pyx_int_12);
-  __Pyx_GIVEREF(__pyx_int_12);
-  PyList_SET_ITEM(__pyx_t_5, 18, __pyx_int_12);
-  __Pyx_INCREF(__pyx_int_17);
-  __Pyx_GIVEREF(__pyx_int_17);
-  PyList_SET_ITEM(__pyx_t_5, 19, __pyx_int_17);
-  __Pyx_INCREF(__pyx_int_25);
-  __Pyx_GIVEREF(__pyx_int_25);
-  PyList_SET_ITEM(__pyx_t_5, 20, __pyx_int_25);
-  __Pyx_INCREF(__pyx_int_30);
-  __Pyx_GIVEREF(__pyx_int_30);
-  PyList_SET_ITEM(__pyx_t_5, 21, __pyx_int_30);
-  __Pyx_INCREF(__pyx_int_41);
-  __Pyx_GIVEREF(__pyx_int_41);
-  PyList_SET_ITEM(__pyx_t_5, 22, __pyx_int_41);
-  __Pyx_INCREF(__pyx_int_43);
-  __Pyx_GIVEREF(__pyx_int_43);
-  PyList_SET_ITEM(__pyx_t_5, 23, __pyx_int_43);
-  __Pyx_INCREF(__pyx_int_9);
-  __Pyx_GIVEREF(__pyx_int_9);
-  PyList_SET_ITEM(__pyx_t_5, 24, __pyx_int_9);
-  __Pyx_INCREF(__pyx_int_11);
-  __Pyx_GIVEREF(__pyx_int_11);
-  PyList_SET_ITEM(__pyx_t_5, 25, __pyx_int_11);
-  __Pyx_INCREF(__pyx_int_18);
-  __Pyx_GIVEREF(__pyx_int_18);
-  PyList_SET_ITEM(__pyx_t_5, 26, __pyx_int_18);
-  __Pyx_INCREF(__pyx_int_24);
-  __Pyx_GIVEREF(__pyx_int_24);
-  PyList_SET_ITEM(__pyx_t_5, 27, __pyx_int_24);
-  __Pyx_INCREF(__pyx_int_31);
-  __Pyx_GIVEREF(__pyx_int_31);
-  PyList_SET_ITEM(__pyx_t_5, 28, __pyx_int_31);
-  __Pyx_INCREF(__pyx_int_40);
-  __Pyx_GIVEREF(__pyx_int_40);
-  PyList_SET_ITEM(__pyx_t_5, 29, __pyx_int_40);
-  __Pyx_INCREF(__pyx_int_44);
-  __Pyx_GIVEREF(__pyx_int_44);
-  PyList_SET_ITEM(__pyx_t_5, 30, __pyx_int_44);
-  __Pyx_INCREF(__pyx_int_53);
-  __Pyx_GIVEREF(__pyx_int_53);
-  PyList_SET_ITEM(__pyx_t_5, 31, __pyx_int_53);
-  __Pyx_INCREF(__pyx_int_10);
-  __Pyx_GIVEREF(__pyx_int_10);
-  PyList_SET_ITEM(__pyx_t_5, 32, __pyx_int_10);
-  __Pyx_INCREF(__pyx_int_19);
-  __Pyx_GIVEREF(__pyx_int_19);
-  PyList_SET_ITEM(__pyx_t_5, 33, __pyx_int_19);
-  __Pyx_INCREF(__pyx_int_23);
-  __Pyx_GIVEREF(__pyx_int_23);
-  PyList_SET_ITEM(__pyx_t_5, 34, __pyx_int_23);
-  __Pyx_INCREF(__pyx_int_32);
-  __Pyx_GIVEREF(__pyx_int_32);
-  PyList_SET_ITEM(__pyx_t_5, 35, __pyx_int_32);
-  __Pyx_INCREF(__pyx_int_39);
-  __Pyx_GIVEREF(__pyx_int_39);
-  PyList_SET_ITEM(__pyx_t_5, 36, __pyx_int_39);
-  __Pyx_INCREF(__pyx_int_45);
-  __Pyx_GIVEREF(__pyx_int_45);
-  PyList_SET_ITEM(__pyx_t_5, 37, __pyx_int_45);
-  __Pyx_INCREF(__pyx_int_52);
-  __Pyx_GIVEREF(__pyx_int_52);
-  PyList_SET_ITEM(__pyx_t_5, 38, __pyx_int_52);
-  __Pyx_INCREF(__pyx_int_54);
-  __Pyx_GIVEREF(__pyx_int_54);
-  PyList_SET_ITEM(__pyx_t_5, 39, __pyx_int_54);
-  __Pyx_INCREF(__pyx_int_20);
-  __Pyx_GIVEREF(__pyx_int_20);
-  PyList_SET_ITEM(__pyx_t_5, 40, __pyx_int_20);
-  __Pyx_INCREF(__pyx_int_22);
-  __Pyx_GIVEREF(__pyx_int_22);
-  PyList_SET_ITEM(__pyx_t_5, 41, __pyx_int_22);
-  __Pyx_INCREF(__pyx_int_33);
-  __Pyx_GIVEREF(__pyx_int_33);
-  PyList_SET_ITEM(__pyx_t_5, 42, __pyx_int_33);
-  __Pyx_INCREF(__pyx_int_38);
-  __Pyx_GIVEREF(__pyx_int_38);
-  PyList_SET_ITEM(__pyx_t_5, 43, __pyx_int_38);
-  __Pyx_INCREF(__pyx_int_46);
-  __Pyx_GIVEREF(__pyx_int_46);
-  PyList_SET_ITEM(__pyx_t_5, 44, __pyx_int_46);
-  __Pyx_INCREF(__pyx_int_51);
-  __Pyx_GIVEREF(__pyx_int_51);
-  PyList_SET_ITEM(__pyx_t_5, 45, __pyx_int_51);
-  __Pyx_INCREF(__pyx_int_55);
-  __Pyx_GIVEREF(__pyx_int_55);
-  PyList_SET_ITEM(__pyx_t_5, 46, __pyx_int_55);
-  __Pyx_INCREF(__pyx_int_60);
-  __Pyx_GIVEREF(__pyx_int_60);
-  PyList_SET_ITEM(__pyx_t_5, 47, __pyx_int_60);
-  __Pyx_INCREF(__pyx_int_21);
-  __Pyx_GIVEREF(__pyx_int_21);
-  PyList_SET_ITEM(__pyx_t_5, 48, __pyx_int_21);
-  __Pyx_INCREF(__pyx_int_34);
-  __Pyx_GIVEREF(__pyx_int_34);
-  PyList_SET_ITEM(__pyx_t_5, 49, __pyx_int_34);
-  __Pyx_INCREF(__pyx_int_37);
-  __Pyx_GIVEREF(__pyx_int_37);
-  PyList_SET_ITEM(__pyx_t_5, 50, __pyx_int_37);
-  __Pyx_INCREF(__pyx_int_47);
-  __Pyx_GIVEREF(__pyx_int_47);
-  PyList_SET_ITEM(__pyx_t_5, 51, __pyx_int_47);
-  __Pyx_INCREF(__pyx_int_50);
-  __Pyx_GIVEREF(__pyx_int_50);
-  PyList_SET_ITEM(__pyx_t_5, 52, __pyx_int_50);
-  __Pyx_INCREF(__pyx_int_56);
-  __Pyx_GIVEREF(__pyx_int_56);
-  PyList_SET_ITEM(__pyx_t_5, 53, __pyx_int_56);
-  __Pyx_INCREF(__pyx_int_59);
-  __Pyx_GIVEREF(__pyx_int_59);
-  PyList_SET_ITEM(__pyx_t_5, 54, __pyx_int_59);
-  __Pyx_INCREF(__pyx_int_61);
-  __Pyx_GIVEREF(__pyx_int_61);
-  PyList_SET_ITEM(__pyx_t_5, 55, __pyx_int_61);
-  __Pyx_INCREF(__pyx_int_35);
-  __Pyx_GIVEREF(__pyx_int_35);
-  PyList_SET_ITEM(__pyx_t_5, 56, __pyx_int_35);
-  __Pyx_INCREF(__pyx_int_36);
-  __Pyx_GIVEREF(__pyx_int_36);
-  PyList_SET_ITEM(__pyx_t_5, 57, __pyx_int_36);
-  __Pyx_INCREF(__pyx_int_48);
-  __Pyx_GIVEREF(__pyx_int_48);
-  PyList_SET_ITEM(__pyx_t_5, 58, __pyx_int_48);
-  __Pyx_INCREF(__pyx_int_49);
-  __Pyx_GIVEREF(__pyx_int_49);
-  PyList_SET_ITEM(__pyx_t_5, 59, __pyx_int_49);
-  __Pyx_INCREF(__pyx_int_57);
-  __Pyx_GIVEREF(__pyx_int_57);
-  PyList_SET_ITEM(__pyx_t_5, 60, __pyx_int_57);
-  __Pyx_INCREF(__pyx_int_58);
-  __Pyx_GIVEREF(__pyx_int_58);
-  PyList_SET_ITEM(__pyx_t_5, 61, __pyx_int_58);
-  __Pyx_INCREF(__pyx_int_62);
-  __Pyx_GIVEREF(__pyx_int_62);
-  PyList_SET_ITEM(__pyx_t_5, 62, __pyx_int_62);
-  __Pyx_INCREF(__pyx_int_63);
-  __Pyx_GIVEREF(__pyx_int_63);
-  PyList_SET_ITEM(__pyx_t_5, 63, __pyx_int_63);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_zz_reverse_indices, __pyx_t_5) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-
-  /* "proto_mpeg_x.pyx":55
+  /* "proto_mpeg_x.pyx":51
  * 
  * 
  * class frame:             # <<<<<<<<<<<<<<
- *     def __init__(self, *image,QF=.1):
+ *     def __init__(self, *image):
  *         '''
  */
-  __pyx_t_5 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_frame, __pyx_n_s_frame, (PyObject *) NULL, __pyx_n_s_proto_mpeg_x, (PyObject *) NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 55, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_frame, __pyx_n_s_frame, (PyObject *) NULL, __pyx_n_s_proto_mpeg_x, (PyObject *) NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
 
-  /* "proto_mpeg_x.pyx":56
+  /* "proto_mpeg_x.pyx":52
  * 
  * class frame:
- *     def __init__(self, *image,QF=.1):             # <<<<<<<<<<<<<<
+ *     def __init__(self, *image):             # <<<<<<<<<<<<<<
  *         '''
  *         :param image: RBG image of shape (height, width, 3)
  */
-  __pyx_t_6 = PyDict_New(); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 56, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_QF, ((PyObject*)__pyx_float__1)) < 0) __PYX_ERR(0, 56, __pyx_L1_error)
-  __pyx_t_7 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_1__init__, 0, __pyx_n_s_frame___init, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__48)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 56, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_CyFunction_SetDefaultsKwDict(__pyx_t_7, __pyx_t_6);
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (PyObject_SetItem(__pyx_t_5, __pyx_n_s_init, __pyx_t_7) < 0) __PYX_ERR(0, 56, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_1__init__, 0, __pyx_n_s_frame___init, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__48)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_init, __pyx_t_1) < 0) __PYX_ERR(0, 52, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":75
+  /* "proto_mpeg_x.pyx":70
  *             self.h_mblocks = None
  * 
  *     def getFrame(self):             # <<<<<<<<<<<<<<
  *         reconstructed_image = np.dstack((self.r, self.g, self.b))
  *         return reconstructed_image
  */
-  __pyx_t_7 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_3getFrame, 0, __pyx_n_s_frame_getFrame, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__50)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 75, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  if (PyObject_SetItem(__pyx_t_5, __pyx_n_s_getFrame, __pyx_t_7) < 0) __PYX_ERR(0, 75, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_3getFrame, 0, __pyx_n_s_frame_getFrame, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__50)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_getFrame, __pyx_t_1) < 0) __PYX_ERR(0, 70, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":79
+  /* "proto_mpeg_x.pyx":74
  *         return reconstructed_image
  * 
  *     def load_from_file(self, path):             # <<<<<<<<<<<<<<
  *         image = skimage.io.imread(path)
  *         self.r = image[:, :, 0]
  */
-  __pyx_t_7 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_5load_from_file, 0, __pyx_n_s_frame_load_from_file, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__52)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 79, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  if (PyObject_SetItem(__pyx_t_5, __pyx_n_s_load_from_file, __pyx_t_7) < 0) __PYX_ERR(0, 79, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_5load_from_file, 0, __pyx_n_s_frame_load_from_file, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__52)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_load_from_file, __pyx_t_1) < 0) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":87
+  /* "proto_mpeg_x.pyx":82
  *         self.h_mblocks = np.shape(self.r)[1] // 16
  * 
  *     def show(self):             # <<<<<<<<<<<<<<
  *         reconstructed_image = np.dstack((self.r, self.g, self.b))
  *         ec504viewer.view_single(reconstructed_image)
  */
-  __pyx_t_7 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_7show, 0, __pyx_n_s_frame_show, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__54)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 87, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  if (PyObject_SetItem(__pyx_t_5, __pyx_n_s_show, __pyx_t_7) < 0) __PYX_ERR(0, 87, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_7show, 0, __pyx_n_s_frame_show, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__54)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_show, __pyx_t_1) < 0) __PYX_ERR(0, 82, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":91
+  /* "proto_mpeg_x.pyx":86
  *         ec504viewer.view_single(reconstructed_image)
  * 
  *     def image_to_blocks(self):             # <<<<<<<<<<<<<<
  *         """
  *         Convert the stored image into a sequence of 8x8 pixel blocks for encoding
  */
-  __pyx_t_7 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_9image_to_blocks, 0, __pyx_n_s_frame_image_to_blocks, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__56)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 91, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  if (PyObject_SetItem(__pyx_t_5, __pyx_n_s_image_to_blocks, __pyx_t_7) < 0) __PYX_ERR(0, 91, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_9image_to_blocks, 0, __pyx_n_s_frame_image_to_blocks, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__56)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_image_to_blocks, __pyx_t_1) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":98
+  /* "proto_mpeg_x.pyx":93
  *         return proto_mpeg_computation.image_to_blocks(self.r, self.g, self.b)
  * 
  *     def blocks_to_image(self, blocks):             # <<<<<<<<<<<<<<
  *         """
  *         Given a sequence of blocks, reconstruct the original image. This routine relies on knowing the original dim.
  */
-  __pyx_t_7 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_11blocks_to_image, 0, __pyx_n_s_frame_blocks_to_image, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__58)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 98, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  if (PyObject_SetItem(__pyx_t_5, __pyx_n_s_blocks_to_image, __pyx_t_7) < 0) __PYX_ERR(0, 98, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_11blocks_to_image, 0, __pyx_n_s_frame_blocks_to_image, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__58)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 93, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_blocks_to_image, __pyx_t_1) < 0) __PYX_ERR(0, 93, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":109
+  /* "proto_mpeg_x.pyx":104
  *         return proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), self.v_mblocks, self.h_mblocks)
  * 
  *     def set_image(self, blocks):             # <<<<<<<<<<<<<<
  *         """
  *         Given a sequence of blocks (x, 8, 8), reconstruct the image and save it as my stored image
  */
-  __pyx_t_7 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_13set_image, 0, __pyx_n_s_frame_set_image, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__60)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 109, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  if (PyObject_SetItem(__pyx_t_5, __pyx_n_s_set_image, __pyx_t_7) < 0) __PYX_ERR(0, 109, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_13set_image, 0, __pyx_n_s_frame_set_image, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__60)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_set_image, __pyx_t_1) < 0) __PYX_ERR(0, 104, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":120
+  /* "proto_mpeg_x.pyx":115
  *         # (self.r, self.g, self.b) = self.blocks_to_image(blocks)
  * 
  *     def quantize_intra(self, F):             # <<<<<<<<<<<<<<
- *         quant_matrix=np.ceil(quant_intra*self.QF)
- *         quant_matrix[quant_matrix>255]=255
+ *         return np.rint(F/quant_intra).astype(np.int)
+ * 
  */
-  __pyx_t_7 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_15quantize_intra, 0, __pyx_n_s_frame_quantize_intra, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__62)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 120, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  if (PyObject_SetItem(__pyx_t_5, __pyx_n_s_quantize_intra, __pyx_t_7) < 0) __PYX_ERR(0, 120, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_15quantize_intra, 0, __pyx_n_s_frame_quantize_intra, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__62)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 115, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_quantize_intra, __pyx_t_1) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":125
- *         return np.rint(F/quant_matrix).astype(np.int)
+  /* "proto_mpeg_x.pyx":118
+ *         return np.rint(F/quant_intra).astype(np.int)
  * 
  *     def dequantize_intra(self, F):             # <<<<<<<<<<<<<<
- *         quant_matrix=np.ceil(quant_intra*self.QF)
- *         quant_matrix[quant_matrix>255]=255
+ *         return F*quant_intra
+ * 
  */
-  __pyx_t_7 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_17dequantize_intra, 0, __pyx_n_s_frame_dequantize_intra, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__64)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 125, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  if (PyObject_SetItem(__pyx_t_5, __pyx_n_s_dequantize_intra, __pyx_t_7) < 0) __PYX_ERR(0, 125, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_17dequantize_intra, 0, __pyx_n_s_frame_dequantize_intra, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__64)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 118, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_dequantize_intra, __pyx_t_1) < 0) __PYX_ERR(0, 118, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":130
- *         return F*quant_matrix
+  /* "proto_mpeg_x.pyx":121
+ *         return F*quant_intra
  * 
  *     def zigzag_from_block(self, F):             # <<<<<<<<<<<<<<
  *         """
  *         Given a quantized 8x8 array of DCT coefficients, generate a string to encode the data
  */
-  __pyx_t_7 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_19zigzag_from_block, 0, __pyx_n_s_frame_zigzag_from_block, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__66)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 130, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  if (PyObject_SetItem(__pyx_t_5, __pyx_n_s_zigzag_from_block, __pyx_t_7) < 0) __PYX_ERR(0, 130, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_19zigzag_from_block, 0, __pyx_n_s_frame_zigzag_from_block, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__66)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_zigzag_from_block, __pyx_t_1) < 0) __PYX_ERR(0, 121, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":171
+  /* "proto_mpeg_x.pyx":162
  *         return encoder_string
  * 
  *     def zigzag_to_block(self, zz):             # <<<<<<<<<<<<<<
  *         """
  *         :param zz: List of decoded entries that describe a block of data
  */
-  __pyx_t_7 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_21zigzag_to_block, 0, __pyx_n_s_frame_zigzag_to_block, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__68)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 171, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  if (PyObject_SetItem(__pyx_t_5, __pyx_n_s_zigzag_to_block, __pyx_t_7) < 0) __PYX_ERR(0, 171, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_21zigzag_to_block, 0, __pyx_n_s_frame_zigzag_to_block, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__68)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_zigzag_to_block, __pyx_t_1) < 0) __PYX_ERR(0, 162, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":199
+  /* "proto_mpeg_x.pyx":190
  *         return np.reshape(block, (8,8)).astype(np.int)
  * 
  *     def zigzag_to_bits(self, encoder_table, zz):             # <<<<<<<<<<<<<<
  * 
  *         # Encode the DC term into a BitArray
  */
-  __pyx_t_7 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_23zigzag_to_bits, 0, __pyx_n_s_frame_zigzag_to_bits, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__70)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 199, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  if (PyObject_SetItem(__pyx_t_5, __pyx_n_s_zigzag_to_bits, __pyx_t_7) < 0) __PYX_ERR(0, 199, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_23zigzag_to_bits, 0, __pyx_n_s_frame_zigzag_to_bits, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__70)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 190, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_zigzag_to_bits, __pyx_t_1) < 0) __PYX_ERR(0, 190, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":235
+  /* "proto_mpeg_x.pyx":226
  *         return encoded_bits
  * 
  *     def encode_to_bits(self):             # <<<<<<<<<<<<<<
  *         """
  *         Encode the stored image data into a bitstream. The calling function is responsible for writing start and
  */
-  __pyx_t_7 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_25encode_to_bits, 0, __pyx_n_s_frame_encode_to_bits, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__72)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 235, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  if (PyObject_SetItem(__pyx_t_5, __pyx_n_s_encode_to_bits, __pyx_t_7) < 0) __PYX_ERR(0, 235, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_25encode_to_bits, 0, __pyx_n_s_frame_encode_to_bits, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__72)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 226, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_encode_to_bits, __pyx_t_1) < 0) __PYX_ERR(0, 226, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":273
+  /* "proto_mpeg_x.pyx":264
  *         return output
  * 
  *     def decode_from_bits(self, bits, h_mblocks, v_mblocks):             # <<<<<<<<<<<<<<
  * 
  *         # Get the decoder table for converting Bits into (run, level)
  */
-  __pyx_t_7 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_27decode_from_bits, 0, __pyx_n_s_frame_decode_from_bits, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__74)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 273, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  if (PyObject_SetItem(__pyx_t_5, __pyx_n_s_decode_from_bits, __pyx_t_7) < 0) __PYX_ERR(0, 273, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5frame_27decode_from_bits, 0, __pyx_n_s_frame_decode_from_bits, NULL, __pyx_n_s_proto_mpeg_x, __pyx_d, ((PyObject *)__pyx_codeobj__74)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 264, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_decode_from_bits, __pyx_t_1) < 0) __PYX_ERR(0, 264, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "proto_mpeg_x.pyx":55
+  /* "proto_mpeg_x.pyx":51
  * 
  * 
  * class frame:             # <<<<<<<<<<<<<<
- *     def __init__(self, *image,QF=.1):
+ *     def __init__(self, *image):
  *         '''
  */
-  __pyx_t_7 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_frame, __pyx_empty_tuple, __pyx_t_5, NULL, 0, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 55, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_frame, __pyx_t_7) < 0) __PYX_ERR(0, 55, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_1 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_frame, __pyx_empty_tuple, __pyx_t_2, NULL, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_frame, __pyx_t_1) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "proto_mpeg_x.pyx":360
+  /* "proto_mpeg_x.pyx":347
  *         return proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), v_mblocks, h_mblocks)
  * 
  * def get_jpegs(directory, number):             # <<<<<<<<<<<<<<
  *     images = []
  *     i = 1
  */
-  __pyx_t_5 = PyCFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_1get_jpegs, NULL, __pyx_n_s_proto_mpeg_x); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 360, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_jpegs, __pyx_t_5) < 0) __PYX_ERR(0, 360, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_1get_jpegs, NULL, __pyx_n_s_proto_mpeg_x); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 347, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_jpegs, __pyx_t_2) < 0) __PYX_ERR(0, 347, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "proto_mpeg_x.pyx":374
+  /* "proto_mpeg_x.pyx":358
  *     return images
  * 
  * def encode_video(files, output_file, compression_level): # queue):             # <<<<<<<<<<<<<<
  *     """
  *     Given a list of files, encode them into output_file with compression_level
  */
-  __pyx_t_5 = PyCFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_3encode_video, NULL, __pyx_n_s_proto_mpeg_x); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 374, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_encode_video, __pyx_t_5) < 0) __PYX_ERR(0, 374, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_3encode_video, NULL, __pyx_n_s_proto_mpeg_x); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 358, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_encode_video, __pyx_t_2) < 0) __PYX_ERR(0, 358, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "proto_mpeg_x.pyx":422
+  /* "proto_mpeg_x.pyx":406
  * 
  * 
  * def decode_video(file):             # <<<<<<<<<<<<<<
  *     """
  *     :param file:
  */
-  __pyx_t_5 = PyCFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5decode_video, NULL, __pyx_n_s_proto_mpeg_x); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 422, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_decode_video, __pyx_t_5) < 0) __PYX_ERR(0, 422, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_12proto_mpeg_x_5decode_video, NULL, __pyx_n_s_proto_mpeg_x); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 406, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_decode_video, __pyx_t_2) < 0) __PYX_ERR(0, 406, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "proto_mpeg_x.pyx":1
  * import numpy as np             # <<<<<<<<<<<<<<
  * from os import listdir
- * import color_convert
+ * import skimage.io
  */
-  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_5) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_2) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /*--- Wrapped vars code ---*/
 
@@ -11711,8 +11046,6 @@ PyMODINIT_FUNC PyInit_proto_mpeg_x(void)
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
   __Pyx_XDECREF(__pyx_t_9);
-  __Pyx_XDECREF(__pyx_t_10);
-  __Pyx_XDECREF(__pyx_t_11);
   if (__pyx_m) {
     if (__pyx_d) {
       __Pyx_AddTraceback("init proto_mpeg_x", __pyx_clineno, __pyx_lineno, __pyx_filename);

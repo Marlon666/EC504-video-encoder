@@ -112,13 +112,15 @@ cpdef blocks_to_image(DTYPE_pixel[:, :, :] blocks, int v_mblocks, int h_mblocks)
 
 # Typed DCT functions. Not currently in use.
 cpdef dct(np.ndarray[DTYPE_pixel, ndim=2] f):
-    return fft.dct(fft.dct(f, axis=0, norm='ortho', type=2), axis=1, norm='ortho', type=2)
+    F=fft.dct(fft.dct(f, axis=0, norm='ortho', type=2), axis=1, norm='ortho', type=2)
+    F[0,0]=F[0,0]/64.
+    return F #fft.dct(fft.dct(f, axis=0, norm='ortho', type=2), axis=1, norm='ortho', type=2)
 
 cpdef idct(np.ndarray[double, ndim=2] F):
+    F[0,0]=F[0,0]*64
     return fft.idct(fft.idct(F, axis=0, norm='ortho', type=2), axis=1, norm='ortho', type=2)
 
-# Sandbox
-
+# SANDBOX AREA
 # Read entire bitstream one bit at a time
 # 1.35e-5 seconds per bit
 cpdef bitstream_test(bs):
