@@ -3,9 +3,10 @@ from os import listdir
 import color_convert
 import skimage.io
 import matplotlib.pyplot as plt
-#import dct_fast as dct
 import proto_mpeg_computation as dct
 import huffman_mpeg
+import huffman_mpeg as codes
+import motion as mot
 from bitstring import BitArray, BitStream, Bits, ReadError
 import proto_mpeg_computation
 import time
@@ -346,92 +347,6 @@ def get_jpegs(directory, number):
         i=i+1
     return images
 
-def encode_video_old(files, output_file, compression_level): # queue):
-    """
-    Given a list of files, encode them into output_file with compression_level
-    :param files: 
-    :param output_file: 
-    :param compression_level: 
-    :return: None
-    """
-
-    # Open output file
-    try:
-        f = open(output_file, 'wb')
-    except:
-        raise Exception("Could not open output file", output_file, "for writing.")
-
-    # Get a frame object
-    img = frame()
-
-    # Create output bit array
-    output = BitArray()
-
-    i = 1
-
-    for path in files:
-        # Load an image
-        img.load_from_file(path)
-        # Append the encoded bits to the output
-        output.append(img.encode_to_bits())
-        # Append an end of frame character
-        output.append('0b' + huffman_mpeg.EOF)
-
-        print("File", i, "of", len(files), "encoded.")
-        i += 1
-
-        # queue.put(100/len(files))
-
-
-    # WRITE HEADER
-    # v_mblocks and h_mblocks will be encoded as 8-bit unsigned integers
-    output.prepend('uint:8=' + str(img.h_mblocks))
-    output.prepend('uint:8=' + str(img.v_mblocks))
-    # number of images written as 20-bit unsigned integer
-    output.prepend('uint:20=' + str(len(files)))
-
-    output.tofile(f)
-    f.close()
-
-
-def decode_video_old(file):
-    """
-    :param file: 
-    :return: (height, width, 3, x) series of x images
-    """
-
-    # Open a BitStream from the file
-    try:
-        f = open(file, 'rb')
-    except:
-        raise Exception("Could not open input file", file, "for reading.")
-
-    decoder_bits = BitStream(f)
-
-    # READ HEADER
-    num_imgs  = decoder_bits.read('uint:20')
-    v_mblocks = decoder_bits.read('uint:8')
-    h_mblocks = decoder_bits.read('uint:8')
-
-    video = np.empty((v_mblocks*16, h_mblocks*16, 3, num_imgs), dtype=np.uint8)
-
-    img = frame()
-
-    for i in range(num_imgs):
-
-        this_image_bits = decoder_bits.readto('0b' + huffman_mpeg.EOF)[:-1*len(huffman_mpeg.EOF)]
-        video[:, :, :, i] = img.decode_from_bits(this_image_bits, h_mblocks, v_mblocks)
-        print("decoded", i+1, "out of", num_imgs, "images")
-        print(decoder_bits.pos, len(decoder_bits))
-
-    f.close()
-
-    return video
-
-
-import huffman_mpeg as codes
-import motion as mot
-
 def convert2uint8(arr):
     arr[arr<0]=0
     arr[arr>255]=255
@@ -489,18 +404,18 @@ def encodeVideo(outname,files,mot_est='none',mot_clip=100,Ssize=7,QF=1):
 
     output=BitArray()
     # Create a frame object initialized with our image
-    print("Encoding image-1")
+    print("Encoding image 1")
     t=time.time()
     fr = frame(images[0],QF=QF)
     # Retreive the binary encoding of the image
     output.append(fr.encode_to_bits())
     # Append an end of frame character
     output.append('0b' + codes.EOF)
-    print(str(time.time()-t)+' seconds')
+    print("%.1f seconds" % (time.time()-t))
 
     for k in range(1,len(images)):
         # Create a frame object initialized with our image
-        print("Encoding image-"+str(k+1))
+        print("Encoding image "+str(k+1))
         t=time.time()
         if(mot_est=='none' or np.mod(k,4)==0):
             code=images[k]
@@ -524,7 +439,7 @@ def encodeVideo(outname,files,mot_est='none',mot_clip=100,Ssize=7,QF=1):
             output.append(mot_bin)
             output.append('0b' + codes.EOF)
             # Append an end of frame character
-        print(str(time.time()-t)+' seconds')
+        print("%.1f seconds" % (time.time()-t))
 
     # BUILD HEADER
 
@@ -567,16 +482,7 @@ def playVideo(fname, realTime=True, delay=1):
     v_mblocks = decoded_bits.read('uint:8')
     h_mblocks = decoded_bits.read('uint:8')
 
-    '''
-    plt.ion()
-    ax = plt.gca()
-    ax.axis('off')
-    fig = plt.gcf()
-    fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
-    fig.canvas.set_window_title("EC504 Viewer")
-    plt.pause(.001)
-    '''
-    # New setup
+    # Configure viewer window
     mpl.rcParams['toolbar'] = 'None'
     fig, ax = plt.subplots(1)
     fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
@@ -584,20 +490,21 @@ def playVideo(fname, realTime=True, delay=1):
     im = ax.imshow(np.zeros((256, 256, 3)), extent=(0, 1, 1, 0))
     ax.axis('tight')
     ax.axis('off')
-    fig.set_size_inches(8, v_mblocks/h_mblocks*8, forward=True) # This makes sure we get the aspect ratio correct
+    # The following command sets the window size to the appropriate aspect ratio
+    fig.set_size_inches(8, v_mblocks/h_mblocks*8, forward=True)
     fig.show()
 
-
-    k=0
     prev_image=mot_clip*np.ones([v_mblocks*16,h_mblocks*16,3]).astype(np.uint8)
     frames=list()
-    while(True):
+
+    for k in range(num_imgs):
         # Read the stream up to the end of frame (EOF) character.
         try:
             framebits = decoded_bits.readto('0b' + codes.EOF)[:-1*len(codes.EOF)]
-        except ReadError:
-            break
-        print("Decoding image-"+str(k))
+        except:
+            print("Error reading file.")
+            return -1
+        print("Decoding image " + str(k+1))
         t=time.time()
         # Create a frame object from the proto_mpeg library
         fr = frame(QF=QF)
@@ -620,14 +527,11 @@ def playVideo(fname, realTime=True, delay=1):
                 prev_image_w=mot.wrap(prev_image,mot_arr)
                 image=convert2uint8(prev_image_w.astype(int)-code.astype(int)+mot_clip)
             prev_image=image
-        print(str(time.time()-t)+' seconds')
+
+        print("%.1f seconds" % (time.time()-t))
         if(realTime):
             im.set_data(image)
             im.axes.figure.canvas.draw()
-
-            #plt.imshow(image, extent=(0, 1, 1, 0))
-            #plt.draw()
-            #plt.pause(.001)
         else:
             frames.append(image)
         del fr
@@ -635,15 +539,12 @@ def playVideo(fname, realTime=True, delay=1):
     f.close()
     print('Decode time for one frame is %.3f seconds'%((time.time()-start)/k))
 
-    if(not realTime):
-        for k in range(len(frames)):
-            image=frames[k]
-            '''
-            plt.imshow(image, extent=(0, 1, 1, 0))
-            plt.draw()
-            plt.pause(delay)
-            '''
-            im.set_data(image)
-            im.axes.figure.canvas.draw()
-            time.sleep(delay)
-    input("Press [enter] to continue.")
+    if not realTime:
+        while(True):
+            for image in frames:
+                im.set_data(image)
+                im.axes.figure.canvas.draw()
+                time.sleep(delay)
+            ans = input("Replay? (y/N): ")
+            if ans.lower() != 'y' and ans.lower() != 'yes':
+                break
