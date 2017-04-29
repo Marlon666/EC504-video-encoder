@@ -134,8 +134,54 @@ cpdef bitstream_test_2(bs):
     while bs.pos <= len(bs)-32:
         bs.read('bin:32')
 
-# Read bitstream 64 bits at a time
+# Read bitstream 32 bits at a time, but loop over the 32 bits inside
 #  seconds per bit
 cpdef bitstream_test_3(bs):
+    cdef int i
+    cdef int j
+    print(type(bs.read('bin:64')))
     while bs.pos <= len(bs)-64:
         bs.read('bin:64')
+        for i in range(64):
+            j += 1
+    return j
+
+# Read all bits into a numpy array of dtype=bool
+# 2.92e-7 seconds to retreive each bit
+cpdef bitstream_test_4(bs):
+    cdef int i
+    my_arr = np.empty(len(bs), dtype=np.bool_)
+    i = 0
+    bits = ''
+    print(len(bs), "bits")
+    while bs.pos <= len(bs)-1024:
+        bits = bs.read('bin:1024')
+        for bit in bits:
+            if bit == '1':
+                my_arr[i] = True
+            elif bit == '0':
+                my_arr[i] = False
+            else:
+                print("FUCK")
+            i += 1
+    return my_arr
+
+# Read all bits into a numpy array of dtype=str
+# 8.9e-7 seconds per bit
+# This seems like it might work out
+cpdef bitstream_test_5(bs):
+    cdef int i
+    my_arr = np.empty(len(bs), dtype=np.str)
+    i = 0
+    bits = ''
+    print(len(bs), "bits")
+    # Read most of the bits into a numpy array
+    while bs.pos <= len(bs)-10240:
+        bits = bs.read('bin:10240')
+        for bit in bits:
+            my_arr[i] = bit
+            i += 1
+    # Iterate over numpy array to check running time
+    for i in range(len(my_arr)):
+        my_arr[i] = '1' + 'a'
+    return my_arr
