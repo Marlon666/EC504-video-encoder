@@ -13,7 +13,10 @@ import time
 import matplotlib as mpl
 # import queue commend
 
-ycbcr=True
+# Do not change to True until implementation is fixed.
+# First, encode to bits does not correctly handle conversion back to rbg.
+# Second, the encode_video function does not convert to ycbcr.
+ycbcr=False
 
 quant_intra=np.array([[ 1, 16, 19, 22, 26, 27, 29, 34],
              [16, 16, 22, 24, 27, 29, 34, 37],
@@ -328,9 +331,13 @@ class frame:
         #self.h_mblocks = h_mblocks
         #self.v_mblocks = v_mblocks
         #self.set_image(blocks)
+
+        # I am disabiling ycbcr. See note at top of file. This code had no effect on what this function returned.
+        '''
         img=proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), v_mblocks, h_mblocks)
         if(ycbcr):
             img=color_convert.ycbcr2rgb(img).astype(np.uint8)
+        '''
         return proto_mpeg_computation.blocks_to_image(blocks.astype(np.uint8), v_mblocks, h_mblocks)
 
 def get_jpegs(directory, number):
