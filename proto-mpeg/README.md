@@ -1,7 +1,7 @@
 # proto-mpeg encoder and decoder
 
 ## Dependencies
-Our code was written with Python 3.5. We have utilized free Python libraries to implement our encoder and decoder prototype. The complete list may be found below. Each item links to the installation instructions.
+Our code was written with Python 3.5. Minimum compatible version is Python 3.2. We have utilized free Python libraries to implement our encoder and decoder prototype. The complete list may be found below. Each item links to the installation instructions.
 
 - [numpy](www.numpy.com): for array manipulation
 - [matplotlib](http://matplotlib.org/users/installing.html): for image viewing
@@ -27,7 +27,7 @@ To build our code on your machine, `cd` into the `proto-mpeg` folder and run:
 ```
 python3 setup.py build_ext --inplace
 ```
-(Note that your Python 3.0+ interpreter may have a different name.)
+(Note that your Python 3.2+ interpreter may have a different name.)
 
 This commmand will prompt Cython to generate and then compile pure C code for our encoder and decoder software.
 
