@@ -5,44 +5,52 @@ import sys
 
 def main():
 
-    parser = argparse.ArgumentParser(description='EC504 proto-mpeg encoder. At minimum, you must specify files to encode either through --dir or --files arguments.')
-    parser.add_argument('--out', nargs=1, default='output.bin', help='filename of encoded file. default is output.bin')
-    parser.add_argument('--dir', nargs=1, help='directory from which to source files. Filenames will be encoded in sorted filename order')
-    parser.add_argument('--alg', nargs=1, choices=['n', 'fd', 'bm'], default='n', help='temporal compression algorithm. n=none; fd=frame difference; bm=block matching. Default is none.')
+    parser = argparse.ArgumentParser(description='EC504 proto-mpeg encoder for jpeg images.')
+    parser.add_argument('--out', nargs=1, default=['output.bin'], help='filename of encoded file. default is output.bin')
+    parser.add_argument('--alg', nargs=1, choices=['n', 'fd', 'bm'], default=['n'], help='temporal compression algorithm. n=none; fd=frame difference; bm=block matching. Default is none.')
     parser.add_argument('--qf', nargs=1, type=int, choices=[1, 2, 3, 4], default=1, help='quantization factor for HF suppression. Default is 1.')
-    parser.add_argument('--limit', nargs=1, type=int, help='cap the number of images that will be encoded. Default is all files.')
-    parser.add_argument('--files', nargs=argparse.REMAINDER, help='files to encode. Ignored if a directory is specified.')
+    parser.add_argument('--limit', nargs=1, type=int, help='cap the number of images that will be encoded. Default is no limit (all files).')
+    parser.add_argument('input', nargs=argparse.REMAINDER, help='Either a single directory or a list of files to encode, separated by spaces.')
 
+    args = parser.parse_args()
+
+    # Print help if no arguments are given
     if (len(sys.argv[1:])) == 0:
         parser.print_help()
         parser.exit()
 
-    args = parser.parse_args()
-
-    #print("input arguments:", args)
-
     # Handle output filename argument
-    if args.out == None:
-        outname = 'output.bin'
-    else:
-        outname = args.out[0]
+    outname = args.out[0]
 
-    # Handle source location
-    if args.dir == None:
-        if args.files == None:
-            print("No files specified.")
-            return
-        else:
-            files = args.files
+    # Handle source location (either a directory or a list of files)
+    if args.input == []:
+        # If not given any files for the input argument
+        print("No input files given. Use -h to see help.")
+        parser.exit()
     else:
-        filenames = sorted(listdir(args.dir[0]))
-        files = [args.dir[0] + fname for fname in filenames]
+        # try to read directory at input[0]. If this fails, assume we have a list of one or more files.
+        try:
+            filenames = sorted(listdir(args.input[0]))
+            # Listdir will work without a trailing '/', but the code that follows won't. Append it if it is missing.
+            if args.input[0][-1] != '/':
+                args.input[0] = args.input[0] + '/'
+            files = [args.input[0] + fname for fname in filenames] #if fname.endswith('.jpg') or fname.endswith('.jpeg')]
+            if len(args.input) > 1:
+                print("Warning: additional parmeters for <input> that follow a directory are ignored. Use -h to see help.")
+        except NotADirectoryError:
+            print("I'm here!")
+            files = args.input
+        finally:
+            files = [file for file in files if file.endswith('.jpg') or file.endswith('.jpeg')]
+            if len(files) == 0:
+                print("No jpeg files found.")
+                parser.exit()
 
-    # Handle number of files
+    # Handle limit on number of files
     if args.limit != None and len(files) > args.limit[0]:
         files = files[:args.limit[0]]
 
-    # Capture algorithm
+    # Translate algorithm selection
     if args.alg[0]=='n':
         method='none'
     elif args.alg[0]=='fd':
@@ -50,8 +58,8 @@ def main():
     elif args.alg[0]=='bm':
         method='block_matching'
 
-    print("Encoding", len(files), "files into", outname, "with motion algorithm", method, "and QF", args.qf)
-    proto_mpeg_x.encodeVideo(outname, files, mot_est=method, QF=args.qf)
+    print("Encoding", len(files), "files into", outname, "with motion algorithm", method, "and QF =", args.qf[0])
+    proto_mpeg_x.encodeVideo(outname, files, mot_est=method, QF=args.qf[0])
 
 if __name__ == "__main__":
     main()
