@@ -1,7 +1,7 @@
 import argparse
-import proto_mpeg_x
 from os import listdir
 import sys
+import proto_mpeg_x
 
 def main():
 
@@ -34,11 +34,10 @@ def main():
             # Listdir will work without a trailing '/', but the code that follows won't. Append it if it is missing.
             if args.input[0][-1] != '/':
                 args.input[0] = args.input[0] + '/'
-            files = [args.input[0] + fname for fname in filenames] #if fname.endswith('.jpg') or fname.endswith('.jpeg')]
+            files = [args.input[0] + fname for fname in filenames]
             if len(args.input) > 1:
                 print("Warning: additional parmeters for <input> that follow a directory are ignored. Use -h to see help.")
         except NotADirectoryError:
-            print("I'm here!")
             files = args.input
         finally:
             files = [file for file in files if file.endswith('.jpg') or file.endswith('.jpeg')]
