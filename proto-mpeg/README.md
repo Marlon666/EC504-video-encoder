@@ -72,7 +72,7 @@ optional arguments:
 
 ```
 python3 decode.py output.bin
-``
+```
 
 To see help for decode.py usage:
 ```
