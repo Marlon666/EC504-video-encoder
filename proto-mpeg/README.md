@@ -7,6 +7,7 @@ Our code was written with Python 3.5. We have utilized free Python libraries to 
 - [matplotlib](http://matplotlib.org/users/installing.html): for image viewing
 - [scikit-image](http://scikit-image.org/download.html): to read .jpeg files
 - [bitstring](https://pypi.python.org/pypi/bitstring/3.1.3): for binary data manipulation
+- [cython](http://cython.org/#download): for improvement of running time
 
 To install these libraries using `pip`, run the folllowing.
 
@@ -15,28 +16,54 @@ pip install numpy
 pip install matplotlib
 pip install -U scikit-image
 pip install bitstring
+pip install Cython
 ```
 
 ## How to run
 
-1. First, make sure you have installed all required dependencies.
-2. Clone or download this repository to a local drive.
-3. Run `python3 proto_mpeg_test.py` to encode and decode an image. The prototype is slow. Be prepared to wait on the order of 10 minutes for both encode and decode operations.
+Our code uses Cython for improvement of running time. Cython is an optimizing C-compiler for python code. More information on Cython may be found below.
+To build our code on your machine, `cd` into the `proto-mpeg` folder and run:
 
-## Overview of file structure
+```
+python3 setup.py build_ext --inplace
+```
+(Note that your Python 3.0+ interpreter may have a different name.)
 
-#### dct.py
-This library contains a naive implementation of the 2-D DCT and I-DCT. It is the primary culprit for the lackluster speed of our code. One of our next steps is to implement a fast cosine transform method in either pure C or in Cython-wrapped Python.
+This commmand will prompt Cython to generate and then compile pure C code for our encoder and decoder software.
 
-#### huffman_mpeg
-This library is used to generate the lookup tables for the encoder and decoder. The lookup tables map `(run, level)` pairs to variable-length Huffman code and vice-versa. We used the Huffman codes that were recommended by the MPEG-1 standard. The lookup tables are implemented using Python dictionaries. These permit O(1)
-lookups.
+After this is done, you are all set to run our software!
 
-#### proto_mpeg
-This library is the meat and potates of our encoder-decoder implementation. It handles all of the array manipulation and logic that is required to turn an image into a stream of bits and vice-versa. More detail about how the encoder-decoder functions may be found in the top-level readme.
+We have written easy-to-use command-line interfaces to run encode and decode operations.
 
-#### ec504viewer
-This library is used to display images or a series of images with the help of matplotlib.
+To use the GUI instead, run `python3 gui.py`.
 
-#### proto_mpeg_test
-This is a short script that demonstrates how to use the proto_mpeg library to encode, decode, and view an image.
+Typical usage for encode operation:
+
+```
+python3 encode.py --limit 10 ../testing/beach_288p/
+```
+
+To see help for encode.py usage:
+```
+$ python3 encode.py -h
+
+usage: encode.py [-h] [--out OUT] [--alg {n,fd,bm}] [--qf {1,2,3,4}]
+                 [--limit LIMIT]
+                 ...
+
+EC504 proto-mpeg encoder for jpeg images
+
+positional arguments:
+  input            Either a single directory or a list of files to encode,
+                   separated by spaces.
+
+optional arguments:
+  -h, --help       show this help message and exit
+  --out OUT        filename of encoded file. default is output.bin
+  --alg {n,fd,bm}  temporal compression algorithm. n=none; fd=frame
+                   difference; bm=block matching. Default is none.
+  --qf {1,2,3,4}   quantization factor for HF suppression. Default is 1.
+                   Higher values achieve higher compression.
+  --limit LIMIT    cap the number of images that will be encoded. Default is
+                   no limit (all files).
+```
