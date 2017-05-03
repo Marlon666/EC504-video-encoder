@@ -75,7 +75,7 @@ class ThreadedTask(threading.Thread):
             print("long process done")
 
 class encodeVideo(threading.Thread):
-    def __init__(self, queue):
+    def __init__(self, queue, files):
         threading.Thread.__init__(self)
         self.queue = queue
 
@@ -128,8 +128,10 @@ def startEncoding():
     encodeButton.configure(state = tkinter.DISABLED)
     decodeButton.configure(state = tkinter.DISABLED)
     #ThreadedTask(queue, sliderValue).start()
-    encodeVideo(queue).start()
-    top.after(100, process_queue, sliderValue)
+    files = []
+    print(listbox.data)
+    #encodeVideo(queue, files).start()
+    #top.after(100, process_queue, sliderValue)
 
 
 def startDecoding():
