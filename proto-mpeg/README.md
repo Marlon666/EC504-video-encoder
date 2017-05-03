@@ -21,7 +21,7 @@ pip install Cython
 
 ## How to run
 
-Our code uses Cython for improvement of running time. Cython is an optimizing C-compiler for python code. More information on Cython may be found below.
+Our code uses Cython for improvement of running time. Cython is an optimizing C-compiler for python code. More information on our use of Cython may be found in our report.
 To build our code on your machine, `cd` into the `proto-mpeg` folder and run:
 
 ```
@@ -37,7 +37,7 @@ We have written easy-to-use command-line interfaces to run encode and decode ope
 
 To use the GUI instead, run `python3 gui.py`.
 
-Typical usage for encode operation:
+**Typical usage for encode operation:**
 
 ```
 python3 encode.py --limit 10 ../testing/beach_288p/
@@ -66,4 +66,25 @@ optional arguments:
                    Higher values achieve higher compression.
   --limit LIMIT    cap the number of images that will be encoded. Default is
                    no limit (all files).
+```
+
+**Typical usage for decode operaton:**
+
+```
+python3 decode.py output.bin
+``
+
+To see help for decode.py usage:
+```
+$ python3 decode.py -h
+
+usage: decode.py [-h] input
+
+EC504 proto-mpeg decoder
+
+positional arguments:
+  input       file to be decoded
+
+optional arguments:
+  -h, --help  show this help message and exit
 ```

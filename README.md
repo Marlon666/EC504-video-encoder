@@ -1,5 +1,11 @@
 # EC504-video-encoder
 
+### Final submission
+
+Our final code may be found in the [proto-mpeg](proto-mpeg) folder. A readme with running instructions may be found there.
+
+A wealth of test images are contained in the [testing](testing) folder.
+
 ### Midterm demo
 Our midterm demo code, along with instructions to run, may be found in the [proto-mpeg](proto-mpeg) folder.
 We also have a prototype GUI completed. The prototype code and instructions to run may be found in the [GUI](GUI) folder.
