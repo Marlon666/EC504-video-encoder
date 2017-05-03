@@ -375,7 +375,7 @@ def decodeMot(mot_bin,nbits,w,l):
         mot_vec[k]=mot_bin[k*nbits:(k+1)*nbits].uint
     return mot_vec.reshape([w,l,2]).astype(int)
 
-def encodeVideo(outname,files,mot_est='none',mot_clip=100,Ssize=7,QF=1):
+def encodeVideo(outname,files,mot_est='none',mot_clip=50,Ssize=7,QF=1):
     """
     Given list of files encode them into a single file
     Inputs
@@ -469,7 +469,7 @@ def encodeVideo(outname,files,mot_est='none',mot_clip=100,Ssize=7,QF=1):
 
     print('Encode time for one frame is %.3f seconds'%((time.time()-start)/(len(images))))
 
-def playVideo(fname, realTime=True, delay=1):
+def playVideo(fname, realTime=True, delay=.04):
     ''' 
     Plays the encoded file from fname
     Inputs
@@ -555,3 +555,5 @@ def playVideo(fname, realTime=True, delay=1):
             ans = input("Replay? (y/N): ")
             if ans.lower() != 'y' and ans.lower() != 'yes':
                 break
+
+    plt.close()

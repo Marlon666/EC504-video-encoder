@@ -10,6 +10,7 @@ from tkinter import Label
 from tkinter.ttk import *
 from tkinter import messagebox
 import time
+from os import listdir
 
 top = tkinter.Tk()
 top.geometry('450x450')
@@ -73,6 +74,20 @@ class ThreadedTask(threading.Thread):
             queue.put(25)
             print("long process done")
 
+class encodeVideo(threading.Thread):
+    def __init__(self, queue, files):
+        threading.Thread.__init__(self)
+        self.queue = queue
+
+    def run(self):
+        import proto_mpeg_x
+        img_directory = '../testing/beach_288p/'
+        filenames = sorted(listdir(img_directory))
+        files = [img_directory + fname for fname in filenames]
+        files = files[:4]
+        print("Encoding files:")
+        print(*files, sep='\n')
+        proto_mpeg_x.encodeVideo('output.bin', files, mot_est='none', QF=1)
 
 
 #Completion Methods
@@ -112,8 +127,11 @@ def startEncoding():
     print(sliderValue)
     encodeButton.configure(state = tkinter.DISABLED)
     decodeButton.configure(state = tkinter.DISABLED)
-    ThreadedTask(queue, sliderValue).start()
-    top.after(100, process_queue, sliderValue)
+    #ThreadedTask(queue, sliderValue).start()
+    files = []
+    print(listbox.data)
+    #encodeVideo(queue, files).start()
+    #top.after(100, process_queue, sliderValue)
 
 
 def startDecoding():
@@ -165,6 +183,7 @@ filesText =  Label(top, justify='center',background = "white", text="Selected Fi
 progressBar = ttk.Progressbar(top, style="TProgressbar", orient="horizontal",length=450, mode="determinate", maximum = 100.001, value = 0)
 slider = Scale(top, from_=0, to=100, length=200, command = update_value)
 listbox = CustomListBox(top, width = 450)
+
 #Buttons
 encodeButton = tkinter.Button(top, text = "Encode Photos", command = startEncoding)
 decodeButton = tkinter.Button(top, text = "Decode File", command = startDecoding)
