@@ -5,7 +5,7 @@ import sys
 
 def main():
 
-    parser = argparse.ArgumentParser(description='EC504 proto-mpeg encoder for jpeg images.')
+    parser = argparse.ArgumentParser(description='EC504 proto-mpeg encoder for jpeg images')
     parser.add_argument('--out', nargs=1, default=['output.bin'], help='filename of encoded file. default is output.bin')
     parser.add_argument('--alg', nargs=1, choices=['n', 'fd', 'bm'], default=['n'], help='temporal compression algorithm. n=none; fd=frame difference; bm=block matching. Default is none.')
     parser.add_argument('--qf', nargs=1, type=int, choices=[1, 2, 3, 4], default=1, help='quantization factor for HF suppression. Default is 1.')
