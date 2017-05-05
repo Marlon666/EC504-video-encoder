@@ -404,7 +404,7 @@ def encodeVideo(outname,files,mot_est='none',mot_clip=50,Ssize=7,QF=1):
         mot_code=0
         print("Invalid motion coded provided. Defaulting to I-frame encoding.")
 
-    start=time.time()
+
     images = []
     for path in files:
         images.append(skimage.io.imread(path))
@@ -418,8 +418,8 @@ def encodeVideo(outname,files,mot_est='none',mot_clip=50,Ssize=7,QF=1):
     output.append(fr.encode_to_bits())
     # Append an end of frame character
     output.append('0b' + codes.EOF)
-    print("%.1f seconds" % (time.time()-t))
-
+    #print("%.1f seconds" % (time.time()-t))
+    start=time.time()
     for k in range(1,len(images)):
         # Create a frame object initialized with our image
         print("Encoding image "+str(k+1))
@@ -446,7 +446,7 @@ def encodeVideo(outname,files,mot_est='none',mot_clip=50,Ssize=7,QF=1):
             output.append(mot_bin)
             output.append('0b' + codes.EOF)
             # Append an end of frame character
-        print("%.1f seconds" % (time.time()-t))
+        #print("%.1f seconds" % (time.time()-t))
 
     # BUILD HEADER
 
@@ -467,7 +467,7 @@ def encodeVideo(outname,files,mot_est='none',mot_clip=50,Ssize=7,QF=1):
     with open(outname, 'wb') as f:
         output.tofile(f)
 
-    print('Encode time for one frame is %.3f seconds'%((time.time()-start)/(len(images))))
+    print('Average encode time for one frame is %.3f seconds'%((time.time()-start)/(len(images))))
 
 def playVideo(fname, realTime=True, delay=.04):
     ''' 
@@ -478,7 +478,7 @@ def playVideo(fname, realTime=True, delay=.04):
         If Flase, first decode all frames than show time 
     delay(float): time between showing consecutive frames. It is used only if realTime=True
     '''
-    start=time.time()
+
     f = open(fname, 'rb')
     decoded_bits = BitStream(f)
     QF=decoded_bits.read('float:32')
@@ -488,6 +488,8 @@ def playVideo(fname, realTime=True, delay=.04):
     num_imgs  = decoded_bits.read('uint:20')
     v_mblocks = decoded_bits.read('uint:8')
     h_mblocks = decoded_bits.read('uint:8')
+
+    print("Total frames: %s" % num_imgs) # Do not remove. The GUI relies on this exact statement, here.
 
     # Configure viewer window
     mpl.rcParams['toolbar'] = 'None'
@@ -503,7 +505,7 @@ def playVideo(fname, realTime=True, delay=.04):
 
     prev_image=mot_clip*np.ones([v_mblocks*16,h_mblocks*16,3]).astype(np.uint8)
     frames=list()
-
+    start=time.time()
     for k in range(num_imgs):
         # Read the stream up to the end of frame (EOF) character.
         try:
@@ -535,7 +537,7 @@ def playVideo(fname, realTime=True, delay=.04):
                 image=convert2uint8(prev_image_w.astype(int)-code.astype(int)+mot_clip)
             prev_image=image
 
-        print("%.1f seconds" % (time.time()-t))
+        #print("%.1f seconds" % (time.time()-t))
         if(realTime):
             im.set_data(image)
             im.axes.figure.canvas.draw()
@@ -544,7 +546,7 @@ def playVideo(fname, realTime=True, delay=.04):
         del fr
         k+=1
     f.close()
-    print('Decode time for one frame is %.3f seconds'%((time.time()-start)/k))
+    print('Average decode time for one frame is %.3f seconds'%((time.time()-start)/k))
 
     if not realTime:
         while(True):
