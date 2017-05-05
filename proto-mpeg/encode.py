@@ -1,5 +1,5 @@
 import argparse
-from os import listdir
+from os import listdir, path
 import sys
 import proto_mpeg_x
 
@@ -59,6 +59,18 @@ def main():
 
     print("Encoding", len(files), "files into", outname, "with motion algorithm", method, "and QF =", args.qf[0])
     proto_mpeg_x.encodeVideo(outname, files, mot_est=method, QF=args.qf[0])
+
+    # Calculate original file size
+    original_size_B = 0
+    for file in files:
+        original_size_B += path.getsize(file)
+
+    #Calculate compressed file size
+    compressed_size = path.getsize(outname)
+
+    print("Sum of input image sizes:", '%.2f' % (original_size_B/1e6), 'MB')
+    print("Compressed video size:", '%.2f' % (compressed_size/1e6), 'MB')
+    print("Compression ratio: %.3f" % (original_size_B/compressed_size))
 
 if __name__ == "__main__":
     main()

@@ -6,6 +6,7 @@ def main():
 
     parser = argparse.ArgumentParser(description='EC504 proto-mpeg decoder')
     parser.add_argument('input', nargs=1, help='file to be decoded')
+    parser.add_argument('--realtime', action='store_true')
 
     args = parser.parse_args()
 
@@ -16,7 +17,7 @@ def main():
 
     print("Decoding file", args.input[0])
 
-    proto_mpeg_x.playVideo(args.input[0], realTime=False, delay=0.04)
+    proto_mpeg_x.playVideo(args.input[0], realTime=args.realtime, delay=0.04)
 
 if __name__ == "__main__":
     main()
