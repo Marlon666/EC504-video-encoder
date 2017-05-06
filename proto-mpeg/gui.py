@@ -14,10 +14,10 @@ from os import listdir
 import subprocess
 
 top = tkinter.Tk()
-top.geometry('600x500')
+top.geometry('600x540')
 s = Style()
 s.theme_use("classic")
-s.configure("TProgressbar", thickness=35)
+s.configure("TProgressbar", thickness=10)
 progBarValue = DoubleVar()
 sliderValue = 1
 queue = queue.Queue()
@@ -198,11 +198,11 @@ outputText = Label(name_frame, justify='center', text="Encoded file name:", font
 
 
 #Other Items
-outputName = Entry(name_frame)
+outputName = Entry(name_frame, width=22)
 outputName.delete(0, END)
 outputName.insert(0, "output.bin")
 progressBar = ttk.Progressbar(top, style="TProgressbar", orient="horizontal",length=450, mode="determinate", maximum = 100.001, value = 0, variable=progBarValue)
-slider = Scale(QF_frame, from_=1, to=4, length=200, command = update_value)
+slider = Scale(QF_frame, from_=1, to=4, length=203, command = update_value)
 listbox = CustomListBox(top, width = 450, height=20)
 
 #Buttons
@@ -240,7 +240,7 @@ QF_frame.pack(fill=X)
 
 name_frame.pack(fill=X, padx=0)
 outputText.pack(side=LEFT, padx=5)
-outputName.pack(side=LEFT, padx=5)
+outputName.pack(side=LEFT, padx=4)
 
 encodeButton.pack(side = LEFT)
 decodeButton.pack(side = LEFT)
