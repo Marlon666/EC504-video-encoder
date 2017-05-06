@@ -95,8 +95,13 @@ def startEncoding():
     decodeButton.configure(state=tkinter.DISABLED)
 
     QF = int(sliderValue)
-
-    proc = subprocess.Popen([sys.executable, '-u', 'encode.py', '--qf', str(QF)] + list(files), stdout=subprocess.PIPE, bufsize=1)
+    
+    print (outputName.get())
+    fileName = outputName.get()
+    if fileName == "":
+        fileName = "output.bin"
+    
+    proc = subprocess.Popen([sys.executable, '-u', 'encode.py', '--out', fileName, '--qf', str(QF)] + list(files), stdout=subprocess.PIPE, bufsize=1)
     for line in iter(proc.stdout.readline, b''):
         print(line.decode(sys.stdout.encoding), end='')
         if i >= 0:
@@ -188,7 +193,14 @@ sliderValueText = Label(QF_frame, justify='center', text="0", font=("Helvetica",
 ft_frame = Frame(master=top)
 filesText = Label(ft_frame, justify='center', text="Selected Files:", font=("Helvetica", 12))
 
+name_frame = Frame(master=top)
+outputText = Label(name_frame, justify='center', text="Encoded file name:", font=("Helvetica", 12))
+
+
 #Other Items
+outputName = Entry(name_frame)
+outputName.delete(0, END)
+outputName.insert(0, "output.bin")
 progressBar = ttk.Progressbar(top, style="TProgressbar", orient="horizontal",length=450, mode="determinate", maximum = 100.001, value = 0, variable=progBarValue)
 slider = Scale(QF_frame, from_=1, to=4, length=200, command = update_value)
 listbox = CustomListBox(top, width = 450, height=20)
@@ -226,10 +238,13 @@ slider.pack(side=LEFT, padx=5)
 sliderValueText.pack(side=LEFT, padx=5)
 QF_frame.pack(fill=X)
 
+name_frame.pack(fill=X, padx=0)
+outputText.pack(side=LEFT, padx=5)
+outputName.pack(side=LEFT, padx=5)
+
 encodeButton.pack(side = LEFT)
 decodeButton.pack(side = LEFT)
 actions_frame.pack(pady=10)
-
 
 progressBar.pack(fill=X, pady=10, padx=5)
 
